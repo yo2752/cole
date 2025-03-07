@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping wildcard="false" map-id="tramiteInteve">
+		<class-a>org.gestoresmadrid.oegamInteve.view.dto.TramiteTraficoInteveDto</class-a>
+		<class-b>org.gestoresmadrid.core.trafico.inteve.model.vo.TramiteTraficoInteveVO</class-b>
+		<field>
+			<a>refPropia</a>
+			<b>refPropia</b>
+		</field>
+	</mapping>
+
+</mappings>

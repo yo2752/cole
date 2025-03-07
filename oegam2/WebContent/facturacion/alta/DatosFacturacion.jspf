@@ -1,0 +1,123 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">Datos de la Factura</span>
+			</td>
+		</tr>
+	</table>
+	
+	<s:hidden id="NumColegiado"  	name="datosCliente.factura.id.numColegiado"/>
+	<s:hidden id="NumExpediente" 	name="datosCliente.factura.numExpediente"/>
+	<s:hidden id="FechaAlta"     	name="datosCliente.factura.fechaAlta"/>
+	<s:hidden id="FechaFactHidden"/>
+	
+	<table class="tablaformbasica" cellSpacing="1" cellPadding="2" border="0">
+	
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="codFactura">Nº Factura: <span class="naranja">*</span></label>
+			</td>		
+       		<td align="left" nowrap="nowrap" colspan="3" style="width: 40%">
+				<s:textfield name="datosCliente.factura.id.numFactura" 
+        					id="idNumFactura" readonly="true" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					size="20" maxlength="30" style="color:#6E6E6E"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="fechaFactura">Fecha Factura: <span class="naranja">*</span></label>
+			</td>
+	        <td align="left" nowrap="nowrap" >
+				<s:textfield name="datosCliente.factura.fechaFactura" 
+        					id="idFechaFactura" 
+        					onblur="this.className='input2';" 
+        					readonly="true"
+        					onfocus="this.className='inputfocus';"
+        					size="10" maxlength="10" disabled="false" style="color:#6E6E6E"/>
+			</td>
+			<td>
+  				<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendar(document.formData.idFechaFactura);modificarFacturaRetardo();return false;" 
+  					title="Seleccionar fecha">
+   				<img class="PopcalTrigger" 
+   					align="left" 
+   					src="img/ico_calendario.gif" 
+   					width="15" height="16" 
+   					border="0" alt="Calendario"/>
+  				</a>
+			</td>
+	
+		</tr>
+		<tr>
+			
+			<td align="left" nowrap="nowrap" colspan="1" style="width: 12%">
+				<label for="numSerie">Nº Serie: </label>
+			</td>
+			
+			<s:if test="%{datosCliente.IsPantallaAlta}">		
+	       		<td align="left" nowrap="nowrap" style="width: 25%" >
+					<s:textfield name="datosCliente.factura.numSerie" 
+	        					id="idNumSerie" 
+	        					onblur="this.className='input2';" 
+	        					onfocus="this.className='inputfocus';"
+	        					onKeyUp="modificarNumFactura(this)"
+	        					size="5" maxlength="4" />
+				</td>
+			</s:if>
+			
+			<s:if test="%{!datosCliente.IsPantallaAlta}">
+				<td align="left" nowrap="nowrap" style="width: 25%" >
+					<s:textfield name="datosCliente.factura.numSerie" 
+	        					id="idNumSerie" 
+	        					onblur="this.className='input2';" 
+	        					onfocus="this.className='inputfocus';"	        					
+	        					readOnly="true"
+	        					style="color:#6E6E6E"
+	        					size="5" maxlength="5" />
+				</td>
+			</s:if>
+			
+			<td align="left" nowrap="nowrap" style="width: 10%">
+				<label for="numCodigo">Nº Codigo: </label>
+			</td>   	       			
+	        <td align="left" nowrap="nowrap" style="width: 15%" >
+				<s:textfield name="datosCliente.factura.numCodigo" 
+        					id="idNumCodigo" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					readOnly="true"
+        					size="5" maxlength="5" style="color:#6E6E6E"/>
+			</td>	
+			
+			<td align="left" nowrap="nowrap" colspan="1" style="width: 15%">
+				<label for="codFactura">Numeracion:</label>
+			</td>
+       		
+			<s:if test="%{datosCliente.IsPantallaAlta}">		
+	       		<td align="left" nowrap="nowrap" colspan="1" style="width: 15%">
+				<s:textfield name="datosCliente.factura.numeracion" 
+        					id="numeracion"
+        					onblur="rellenarCerosNumeracion();modificarNumFactura(this);this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					onKeyUp="modificarNumFactura(this);"
+        					size="8" maxlength="5" />
+			</td>
+			</s:if>
+			
+			<s:if test="%{!datosCliente.IsPantallaAlta}">
+				<td align="left" nowrap="nowrap" colspan="1" style="width: 15%">
+				<s:textfield name="datosCliente.factura.numeracion" 
+        					id="numeracion"
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"        					
+        					readOnly="true"
+        					style="color:#6E6E6E"
+        					size="8" maxlength="6" />
+			</td>
+			</s:if>		
+		</tr>
+	</table>
+	

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns2="http://www.map.es/scsp/esquemas/V2/peticion" targetNamespace="http://www.map.es/scsp/esquemas/datosespecificos" elementFormDefault="qualified">
+	<import namespace="http://www.map.es/scsp/esquemas/V2/peticion" schemaLocation="Peticion.xsd"/>
+	<!--
+	************************************************************************************
+	* TIPOS COMUNES A TODOS LOS ESQUEMAS.
+	*
+	************************************************************************************
+	-->
+	<simpleType name="strnoblanks">
+		<annotation>
+			<documentation>
+						String sin espacios en blanco
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern
+						value="([^\n|\r|\t])*([^\n|\r|\t|\s])([^\n|\r|\t])*" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsmall">
+		<annotation>
+			<documentation>
+						String sin minúsculas sin espacios en blanco
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern
+						value="([^a-z|?|?|\n|\r|\t])*([^a-z|?|?|\s|\n|\r|\t])([^a-z|?|?|\n|\r|\t])*" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strnumbers">
+		<annotation>
+			<documentation>
+						String numérico sin espacios en blanco
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]| )*([0-9])([0-9]| )*" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strwithreturn">
+		<annotation>
+			<documentation>
+						String no vacío (permite tabulador y retorno de
+						carro)
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="(\w|\W)*(\S)(\w|\W)*" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strdateundelimited">
+		<annotation>
+			<documentation>
+						String de fecha sin delimitar ejem: 20090101
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="\d{8}" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="date">
+		<annotation>
+			<documentation>Fecha formato normal</documentation>
+		</annotation>
+		<restriction base="date">
+			<minInclusive value="1800-01-01"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="nif">
+		<annotation>
+			<documentation>Nif</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<length value="9" />
+					<pattern value="([A-Z]|[0-9]){9}" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup1e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						1 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,1}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup3e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						3 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,3}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup4e3d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						4 enteros y 3 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,4}((,)?([0-9]){0,3})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup5e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						5 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,5}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup7e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						7 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,7}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup9e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						9 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,9}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<simpleType name="strsup13e2d">
+		<annotation>
+			<documentation>
+						String preparado para números en formato
+						decimal, de
+						13 enteros y 2 decimales
+					</documentation>
+		</annotation>
+		<restriction base="string">
+			<!--<pattern value="([0-9]){1,13}((,)?([0-9]){0,2})?" />-->
+		</restriction>
+	</simpleType>
+	<!--
+				************************************************************************************
+				* ERRORES *
+				************************************************************************************
+			-->
+	<element name="errores" type="ns1:erroresType">
+		<annotation>
+			<documentation>
+						Elemento de errores con la especificación de un
+						error
+					</documentation>
+		</annotation>
+	</element>
+	<complexType name="erroresType">
+		<sequence>
+			<element name="progerr" type="ns1:progerrType">
+				<annotation>
+					<documentation>
+								Error en el programa
+							</documentation>
+				</annotation>
+			</element>
+			<element name="numerr" type="ns1:numerrType">
+				<annotation>
+					<documentation>
+								Número de error
+							</documentation>
+				</annotation>
+			</element>
+			<element name="linerr" type="ns1:linerrType">
+				<annotation>
+					<documentation>
+								Linea de error
+							</documentation>
+				</annotation>
+			</element>
+			<element name="sqlerr" type="ns1:sqlerrType">
+				<annotation>
+					<documentation>Error SQL</documentation>
+				</annotation>
+			</element>
+			<element name="menserr" type="ns1:menserrType">
+				<annotation>
+					<documentation>
+								Descripción del mensaje de error
+							</documentation>
+				</annotation>
+			</element>
+			<element name="nivelerr" type="ns1:nivelerrType">
+				<annotation>
+					<documentation>
+								Nivel del error. Especifica 1.Error
+								Validación, 2.
+								Error java, 3. Error
+								Validación Host, 4. Error no controlado
+							</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="progerrType">
+		<restriction base="ns1:strnoblanks">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="numerrType">
+		<restriction base="ns1:strnumbers">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="linerrType">
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="sqlerrType">
+		<restriction base="ns1:strnoblanks">
+			<maxLength value="10"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="menserrType">
+		<restriction base="ns1:strwithreturn">
+			<maxLength value="78"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="nivelerrType">
+		<restriction base="ns1:strnoblanks">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<!--
+				************************************************************************************
+				* FIN TIPOS COMUNES A TODOS LOS ESQUEMAS.
+				************************************************************************************
+			-->
+	<element name="DatosEspecificos" type="ns1:DatosEspecificosAltaProyectoIVTMEntrada"/>
+	<complexType name="DatosEspecificosAltaProyectoIVTMEntrada">
+		<sequence>
+			<element name="docautorizado" type="ns1:docautorizadoTipo"/>
+			<element name="sujeto" type="ns1:sujetoType" minOccurs="0"/>
+			<element name="osujeto" type="ns1:sujetoType" minOccurs="0"/>
+			<element name="vehiculo" type="ns1:vehiculoType"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="sujetoType">
+		<sequence>
+			<element name="nombre" type="ns1:nombreTipo"/>
+			<element name="apellido1" type="ns1:apellidoTipo"/>
+			<element name="apellido2" type="ns1:apellidoTipo"/>
+			<element name="razonsocial" type="ns1:razonsocialTipo"/>
+			<element name="tipodocumento" type="ns1:tipodocumentoTipo"/>
+			<element name="numdocumento" type="ns1:numdocumentoTipo"/>
+			<element name="domicilio" type="ns1:domicilioTipo"/>
+			<element name="email" type="ns1:emailTipo"/>
+			<element name="telefono1" type="ns1:telefonoTipo"/>
+			<element name="telefono2" type="ns1:telefonoTipo"/>
+		</sequence>
+	</complexType>
+	<complexType name="vehiculoType">
+		<sequence>
+			<element name="fchalta" type="ns1:fchaltaTipo"/>
+			<element name="numbastidor" type="ns1:numbastidorTipo"/>
+			<element name="marca" type="ns1:marcaTipo"></element>
+			<element name="modelo" type="ns1:modeloTipo"></element>
+			<element name="fchpresentacion" type="ns1:fchpresentacionTipo"/>
+			<element name="tipoveh" type="ns1:tipovehTipo"/>
+			<element name="potencia" type="ns1:potenciaTipo"/>
+			<element name="plazas" type="ns1:plazasTipo"/>
+			<element name="tonelaje" type="ns1:tonelajeTipo"/>
+			<element name="cubicaje" type="ns1:cubicajeTipo"/>
+			<element name="servicio" type="ns1:servicioTipo"/>
+			<element name="tipocarburante" type="ns1:tipocarburanteTipo"/>
+			<element name="co2" type="ns1:co2Tipo"/>
+			<element name="bodmedamb" type="ns1:bonmedambTipo"/>
+			<element name="porcentajebodmedamb" type="ns1:porcentajebonmedambTipo"/>
+			<element name="iban" type="ns1:ibanTipo" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<simpleType name="nombreTipo">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="apellidoTipo">
+		<restriction base="string">
+			<maxLength value="25"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="razonsocialTipo">
+		<restriction base="string">
+			<maxLength value="70"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="tipodocumentoTipo">
+		<restriction base="string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="numdocumentoTipo">
+		<restriction base="ns1:strnoblanks"/>
+	</simpleType>
+	<simpleType name="clasevialTipo">
+		<restriction base="string">
+			<maxLength value="25"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="nombrevialTipo">
+		<restriction base="string">
+			<maxLength value="60"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="nomappTipo">
+		<restriction base="string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="numappTipo">
+		<restriction base="string">
+			<maxLength value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="calappTipo">
+		<restriction base="string">
+			<maxLength value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="escaleraTipo">
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="pisoTipo">
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="puertaTipo">
+		<restriction base="string">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="poblacionTipo">
+		<restriction base="string">
+			<maxLength value="70"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="provinciaTipo">
+		<restriction base="string">
+			<maxLength value="25"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="codpostalTipo">
+		<restriction base="string">
+			<maxLength value="5"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="emailTipo">
+		<restriction base="string">
+			<maxLength value="50"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="telefonoTipo">
+		<restriction base="ns1:strnumbers">
+			<maxLength value="9"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="docautorizadoTipo">
+		<restriction base="ns1:strnoblanks"/>
+	</simpleType>
+	<simpleType name="fchaltaTipo">
+		<restriction base="ns1:strdateundelimited">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="numbastidorTipo">
+		<restriction base="ns1:strnoblanks"/>
+	</simpleType>
+	<simpleType name="marcaTipo">
+       	<restriction base="string">
+       		<maxLength value="16"></maxLength>
+       	</restriction>
+    </simpleType>
+	<simpleType name="modeloTipo">
+       	<restriction base="string">
+       		<maxLength value="16"></maxLength>
+       	</restriction>
+    </simpleType>
+	<simpleType name="fchpresentacionTipo">
+		<restriction base="ns1:strdateundelimited">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="tipovehTipo">
+		<restriction base="string">
+			<maxLength value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="potenciaTipo">
+		<restriction base="ns1:strsup4e3d">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="plazasTipo">
+		<restriction base="ns1:strsup4e3d">
+			<maxLength value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="tonelajeTipo">
+		<restriction base="ns1:strnumbers">
+			<maxLength value="7"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="cubicajeTipo">
+		<restriction base="ns1:strnumbers">
+			<maxLength value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="servicioTipo">
+		<restriction base="string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="tipocarburanteTipo">
+		<restriction base="string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="co2Tipo">
+		<restriction base="string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="bonmedambTipo">
+		<restriction base="string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="porcentajebonmedambTipo">
+		<restriction base="ns1:strsup3e2d">
+			<maxLength value="6"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ibanTipo">
+		<restriction base="string">
+			<length value="24"/>
+		</restriction>
+	</simpleType>
+	<complexType name="domicilioTipo">
+		<sequence>
+			<element name="clasevial" type="ns1:clasevialTipo"/>
+			<element name="nombrevial" type="ns1:nombrevialTipo"/>
+			<element name="nomapp" type="ns1:nomappTipo"/>
+			<element name="numapp" type="ns1:numappTipo"/>
+			<element name="calapp" type="ns1:calappTipo"/>
+			<element name="escalera" type="ns1:escaleraTipo"/>
+			<element name="piso" type="ns1:pisoTipo"/>
+			<element name="puerta" type="ns1:puertaTipo"/>
+			<element name="poblacion" type="ns1:poblacionTipo"/>
+			<element name="provincia" type="ns1:provinciaTipo"/>
+			<element name="codpostal" type="ns1:codpostalTipo"/>
+		</sequence>
+	</complexType>
+</schema>

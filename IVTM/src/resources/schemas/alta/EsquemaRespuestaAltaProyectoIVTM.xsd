@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema targetNamespace="http://www.map.es/scsp/esquemas/datosespecificos"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns2="http://ws.iam.munimadrid.es" xmlns:ns3="http://www.map.es/scsp/esquemas/V2/respuesta">
+	<xs:import namespace="http://ws.iam.munimadrid.es"
+	 schemaLocation="Errores.xsd"/>
+	<xs:element name="DatosEspecificos"
+		type="ns1:DatosEspecificosAltaProyectoIVTMRespuesta" />
+	<xs:complexType name="DatosEspecificosAltaProyectoIVTMRespuesta">
+		<xs:sequence>
+			<xs:element ref="ns1:numautoliquidacion" />
+			<xs:element ref="ns1:emisor" />
+			<xs:element ref="ns1:importeanual" />
+			<xs:element ref="ns1:importe" />
+			<xs:element ref="ns1:digitos" />
+			<xs:element ref="ns1:codgestor" />
+			<xs:element ref="ns1:errores" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="numautoliquidacion" type="xs:string" />
+	<xs:element name="emisor" type="xs:string" />
+	<xs:element name="importeanual" type="xs:string" />
+	<xs:element name="importe" type="xs:string" />
+	<xs:element name="digitos" type="xs:string" />
+	<xs:element name="codgestor" type="xs:string" />
+	<xs:element name="errores" type="ns2:erroresType"/>
+</xs:schema>

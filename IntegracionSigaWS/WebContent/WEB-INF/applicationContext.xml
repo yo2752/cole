@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+        
+	<!-- Servicios -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <context:property-placeholder location="classpath:hibernate.properties" />
+    
+   <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+	    <property name="jndiName" value="${hibernate.connection.datasource}"/>
+	</bean>
+   
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="packagesToScan" value="org.gestoresmadrid.core, org.gestoresmadrid.oegam2.model, hibernate.entities, org.gestoresmadrid.oegam2comun.creditos,org.gestoresmadrid.oegam2comun.tasas.model,es.globaltms.gestorDocumentos.modulo,org.gestoresmadrid.utilidades.components" />
+      <property name="hibernateProperties">
+         <props>
+            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            <prop key="hibernate.show_sql">${hibernate.show.sql}</prop>
+         </props>
+      </property>
+   </bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Configuracion DOZER -->
+	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper" lazy-init="false">
+		<property name="mappingFiles">
+			<list>
+				<value>dozerConfiguration.xml</value>
+		      	<value>dozerBeanMapping.xml</value>
+		      	<value>dozerConversionVOs.xml</value>
+		      	<value>dozerBeanMappingRegistradores.xml</value>
+		      	<value>dozerBeanMappingLicencia.xml</value>
+		      	<!-- <value>dozerBeanMappingInteve.xml</value> -->
+		      	<!-- <value>dozerBeanMappingPermInter.xml</value> -->
+		      	<!-- <value>dozerConversionInteveVOs.xml</value> -->
+    		</list>
+    	</property>
+		<property name="customFieldMapper" ref="dozerCustomFieldMapper" />
+		<property name="customConverters">
+			<list>
+				<ref bean="dozerFechaConverter" />
+				<ref bean="dozerEstadoToLongConverter" />
+				<ref bean="dozerTipoIntervinienteToStringConvert" />
+				<ref bean="dozerTipoPersonaToStringConvert" />
+				<ref bean="dozerEstadoCivilToStringConvert" />
+				<ref bean="dozerEstadoTramiteTraficoToBigDecimalConverter" />
+			</list>
+		</property>
+		<property name="customConvertersWithId">
+			<map>
+				<entry key="dozer0s1sConverter" value-ref="dozer0s1sConverter" />
+				<entry key="dozerSNConverter" value-ref="dozerSNConverter" />
+				<entry key="dozerBigDecimalToStringRegistradoresConverter" value-ref="dozerBigDecimalToStringRegistradoresConverter" />
+				<entry key="dozerFechaConverter" value-ref="dozerFechaConverter" />
+				<entry key="dozerTipoPersonaRegistradoresConverter" value-ref="dozerTipoPersonaRegistradoresConverter" />
+				<entry key="dozerSINORegistradoresConverter" value-ref="dozerSINORegistradoresConverter" />
+				<entry key="dozerSINOConverter" value-ref="dozerSINOConverter" />
+				<entry key="dozerBigDecimalToStringConverter" value-ref="dozerBigDecimalToStringConverter"></entry>
+				<entry key="dozerMotivoBajaConverter" value-ref="dozerMotivoBajaConverter"/>
+				<entry key="dozerBooleanToBigDecimalConverter" value-ref="dozerBooleanToBigDecimalConverter"/>
+				<entry key="dozerBigDecimalToFormatoAutoLiqModelosConverter" value-ref="dozerBigDecimalToFormatoAutoLiqModelosConverter"/>
+				<entry key="dozerTipoIntervinienteModelosConverter" value-ref="dozerTipoIntervinienteModelosConverter"/>
+				<entry key="dozerBigDecimalSNConverter" value-ref="dozerBigDecimalSNConverter"/>
+				<entry key="dozerTagVacioConverter" value-ref="dozerTagVacioConverter"/>
+				<entry key="dozerBigDecimalTagVacioConverter" value-ref="dozerBigDecimalTagVacioConverter"/>
+				<entry key="dozerDateTagVacioConverter" value-ref="dozerDateTagVacioConverter"/>
+				<entry key="dozerXmlCalendarConverter" value-ref="dozerXmlCalendarConverter" />
+			</map>
+		</property>
+	</bean>
+	<!-- custom mapper -->
+	<bean id="dozerCustomFieldMapper" class="org.gestoresmadrid.oegamComun.conversor.CustomFieldLazysMapper" />
+	<!-- custom converters -->
+	<bean id="dozerBigDecimalToStringConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBigDecimalToStringConverter"/>
+	<bean id="dozerBigDecimalToStringRegistradoresConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBigDecimalToStringRegistradoresConverter"/>
+	<bean id="dozerMotivoBajaConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerMotivoBajaConverter"/>
+	<bean id="dozer0s1sConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.Dozer0s1sConverter" />
+	<bean id="dozerSNConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerSNConverter" />
+	<bean id="dozerSINOConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerSINOConverter" />
+	<bean id="dozerSINORegistradoresConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerSINORegistradoresConverter" />
+	<bean id="dozerTipoPersonaRegistradoresConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerTipoPersonaRegistradoresConverter" />
+	<bean id="dozerFechaConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerFechaConverter" />
+	<bean id="dozerEstadoToLongConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerEstadoToLongConverter" />
+	<bean id="dozerTipoIntervinienteToStringConvert" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerTipoIntervinienteToStringConvert" />
+	<bean id="dozerTipoPersonaToStringConvert" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerTipoPersonaToStringConvert" />
+	<bean id="dozerEstadoCivilToStringConvert" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerEstadoCivilToStringConvert" />
+	<bean id="dozerEstadoTramiteTraficoToBigDecimalConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerEstadoTramiteTraficoToBigDecimalConverter" />
+	<bean id="dozerBooleanToBigDecimalConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBooleanToBigDecimalConverter" />
+	<bean id="dozerBigDecimalSNConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBigDecimalToSNConverter" />
+	<bean id="dozerBigDecimalToFormatoAutoLiqModelosConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBigDecimalToFormatoAutoLiqModelosConverter" />
+	<bean id="dozerTipoIntervinienteModelosConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerTipoIntervinienteModelosConverter" />
+	<bean id="dozerTagVacioConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerTagVacioConverter" />
+	<bean id="dozerBigDecimalTagVacioConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerBigDecimalTagVacioConverter" />
+	<bean id="dozerDateTagVacioConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerDateTagVacioConverter" />
+	<bean id="dozerXmlCalendarConverter" class="org.gestoresmadrid.oegamComun.conversor.transform.DozerXmlCalendarConverter" />
+	<!-- Fin configuracion DOZER -->
+
+	<bean id="marcaDgtDao" class="org.gestoresmadrid.core.vehiculo.model.dao.impl.MarcaDgtDaoImpl"/>
+	
+	<context:annotation-config /> 
+   	<context:component-scan base-package="org.gestoresmadrid.utilidades.components,hibernate.dao.general, org.gestoresmadrid.core, estadisticas.beans.daos, 
+   		org.gestoresmadrid.oegam2comun.model, org.gestoresmadrid.oegam2comun.view.dto,
+		org.gestoresmadrid.logs.service,
+   		org.gestoresmadrid.oegam2comun.creditos,
+   		org.gestoresmadrid.oegam2comun.tasas.model,
+   		es.globaltms.gestorDocumentos.modulo,
+   		org.gestoresmadrid.oegamImpresion,
+   		org.gestoresmadrid.oegam2.documentos.base,
+   		utiles.correo, colas.modelo,trafico.daos,
+   		org.gestoresmadrid.oegam2comun.peticionesurl, org.gestoresmadrid.oegam2comun.trafico.prematriculados, org.gestoresmadrid.oegam2comun.trafico.eeff,
+   		org.gestoresmadrid.oegam2comun.comun,trafico.servicio.implementacion, org.gestoresmadrid.oegam2comun.evolucionJustifProf.component.impl, org.gestoresmadrid.oegam2.model.service.impl,
+   		org.gestoresmadrid.oegam2.imputaciones.controller.action, org.gestoresmadrid.oegam2comun.imputaciones.model.service.impl,
+   		org.gestoresmadrid.oegam2comun.imputaciones.component.impl,
+   		org.gestores.oegam2comun.model.service.impl, org.gestoresmadrid.presentacion.jpt, 
+   		org.gestoresmadrid.oegam2comun.presentacion.jpt, org.gestoresmadrid.oegam2comun.datosSensibles.model.service.impl,
+   		org.gestoresmadrid.oegam2.datosSensibles.controller.action,org.gestoresmadrid.oegam2comun.datosSensibles.component.impl,
+   		org.gestoresmadrid.oegam2comun.datosSensibles.views.beans,
+   		org.gestoresmadrid.oegam2comun.accionTramite.model.service.impl,
+   		org.gestoresmadrid.oegam2comun.cola.model.service.impl, org.gestoresmadrid.oegam2comun.proceso.model.service.impl, 
+   		org.gestoresmadrid.oegam2comun.wscn.model.service.impl, org.gi.infra.wscn.pruebas.ws,
+   		org.gestoresmadrid.oegam2comun.wsformulariocam.model.service.impl, opti.presentacion.services, opti.presentacion.domain.xsd,
+   		org.gestoresmadrid.oegam2comun.impresion.masiva,
+   		org.gestoresmadrid.oegam2comun.estacionITV,
+    	org.gestoresmadrid.oegam2comun.direccion,
+    	org.gestoresmadrid.oegam2comun.trafico,
+    	org.gestoresmadrid.oegam2comun.vehiculo,
+    	org.gestoresmadrid.oegam2comun.administracion,
+    	org.gestoresmadrid.oegam2comun.personas,
+    	org.gestoresmadrid.oegam2comun.notificacion,
+    	org.gestoresmadrid.oegam2comun.notificacionpreferencias,
+    	org.gestoresmadrid.oegam2comun.formulariocam,
+    	org.gestoresmadrid.oegam2comun.impresion,
+    	org.gestoresmadrid.oegam2comun.clonarTramites,
+    	org.gestoresmadrid.oegam2comun.importacion,
+    	org.gestoresmadrid.oegam2comun.ivtmMatriculacion,
+    	org.gestoresmadrid.oegam2comun.favoritos.model.service,
+    	org.gestoresmadrid.oegam2comun.consultasTGate,
+    	org.gestoresmadrid.oegam2comun.ficheros.temporales,
+    	org.gestoresmadrid.oegam2comun.grupo,
+    	org.gestoresmadrid.oegam2comun.consultaEitv,
+    	org.gestoresmadrid.oegam2comun.registradores,
+    	org.gestoresmadrid.oegam2comun.paises,
+    	org.gestoresmadrid.oegam2comun.mensajes.procesos,
+    	org.gestoresmadrid.oegam2comun.colegio,
+    	org.gestoresmadrid.oegam2comun.colegiado,
+    	org.gestoresmadrid.oegam2comun.modelos,
+    	org.gestoresmadrid.oegam2comun.notario,
+    	org.gestoresmadrid.oegam2comun.tipoInmueble,
+    	org.gestoresmadrid.oegam2comun.situacion,
+    	org.gestoresmadrid.oegam2comun.sistemaExplotacion,
+    	org.gestoresmadrid.oegam2comun.usoRustico,
+    	org.gestoresmadrid.oegam2comun.bien,
+    	org.gestoresmadrid.oegam2comun.bienRustico,
+    	org.gestoresmadrid.oegam2comun.bienUrbano,
+    	org.gestoresmadrid.oegam2comun.intervinienteModelos,
+    	org.gestoresmadrid.oegam2comun.modelo600_601,
+    	org.gestoresmadrid.oegam2comun.participacion,
+    	org.gestoresmadrid.oegam2comun.remesa,
+    	org.gestoresmadrid.oegam2comun.licenciasCam,
+    	org.gestoresmadrid.oegam2comun.evolucionRemesa,
+    	org.gestoresmadrid.oegam2comun.evolucionModelo600601,
+    	org.gestoresmadrid.oegam2comun.datosBancariosFavoritos,
+    	org.gestoresmadrid.oegam2comun.impresion.modelos,
+    	org.gestoresmadrid.oegam2comun.impresion.remesas,
+    	org.gestoresmadrid.oegam2comun.consulta.tramite,
+    	org.gestoresmadrid.oegam2comun.pegatinas,
+    	org.gestoresmadrid.oegam2comun.evolucionDatosBancariosFavoritos,
+    	org.gestoresmadrid.oegam2comun.santanderWS,
+    	org.gestoresmadrid.oegam2comun.contrato,
+    	org.gestoresmadrid.oegam2comun.evolucionContrato,
+       	org.gestoresmadrid.oegam2comun.evolucionUsuario,
+    	org.gestoresmadrid.oegam2comun.intervinienteTrafico,
+    	org.gestoresmadrid.oegam2comun.consultaDev,
+    	org.gestoresmadrid.oegam2comun.evolucionConsultaDev,
+    	org.gestoresmadrid.oegam2comun.atex5,
+    	org.gestoresmadrid.oegam2comun.evolucionAtex5,
+    	org.gestoresmadrid.oegam2comun.embarcaciones,
+    	org.gestoresmadrid.oegam2comun.transporte,
+    	org.gestoresmadrid.oegam2comun.sega,
+    	org.gestoresmadrid.oegam2comun.vehiculo.model.service,
+    	org.gestoresmadrid.oegam2comun.correo.model.service,
+    	org.gestoresmadrid.oegam2comun.IpNoPermitidas,
+    	org.gestoresmadrid.oegam2comun.mensajeErrorServicio,
+    	org.gestoresmadrid.oegam2comun.evolucionTasa,
+    	org.gestoresmadrid.oegam2comun.permisoDistintivoItv,
+    	org.gestoresmadrid.oegam2comun.distintivo,
+    	org.gestoresmadrid.oegam2comun.docPermDistItv,
+		org.gestoresmadrid.oegam2comun.registradores,
+		org.gestoresmadrid.oegam2comun.actualizacionMF,
+		org.gestoresmadrid.oegam2comun.arrendatarios,
+		org.gestoresmadrid.oegam2comun.conductor,
+		org.gestoresmadrid.oegam2comun.evolucionCayc, 
+		org.gestoresmadrid.oegam2comun.evolucionPrmDstvFicha,
+		org.gestoresmadrid.oegam2comun.evolucionDocPrmDstvFicha,
+		org.gestoresmadrid.oegam2comun.estadisticas,
+		org.gestoresmadrid.oegam2comun.procesos,
+		org.gestoresmadrid.oegam2comun.modeloCAYC,
+		org.gestoresmadrid.oegam2comun.mandato,
+		org.gestoresmadrid.oegam2comun.facturacionDistintivo,
+		org.gestoresmadrid.oegam2comun.circular,
+		org.gestoresmadrid.oegam2comun.envioData,
+		org.gestoresmadrid.oegam2comun.materiales,
+		utilidades.propiedades, utilidades.utiles, 
+		org.gestoresmadrid.oegam2comun.conversion,
+		org.gestoresmadrid.oegam2comun.properties,
+		org.gestoresmadrid.oegamDocBase,
+		trafico.beans.utiles,
+		org.gestoresmadrid.oegam2comun.propiedades,
+		oegam.constantes,
+		org.icogam.legalizacion.utiles,
+		escrituras.modelo,
+		colas.daos,
+		escrituras.utiles.modelo,
+		general.utiles,
+		trafico.utiles,
+		org.gestoresmadrid.utilidades.components,
+		org.gestoresmadrid.oegamImportacion,
+		org.gestoresmadrid.oegamComun,
+		org.gestoresmadrid.oegam2comun.consultaKo,
+		org.gestoresmadrid.oegam2comun.evolucionConsultaKo,
+		org.gestoresmadrid.oegamConversiones"/>
+
+</beans>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://webservices.atex.consulta.vehiculos.servicios.trafico.es" targetNamespace="http://webservices.atex.consulta.vehiculos.servicios.trafico.es">
+<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema>
+<xsd:import schemaLocation="ATEX.xsd1.xsd" namespace="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></xsd:schema></wsdl:types>
+<wsdl:message name="consultaATEXDocumentoRequest">
+<wsdl:part name="solicitudConsultaDocumentoAtex" element="xsns:SolicitudConsultaDocumentoAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXDocumentoResponse">
+<wsdl:part name="respuestaAtex" element="xsns:RespuestaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXEucarisRequest">
+<wsdl:part name="solicitudConsultaEucarisAtex" element="xsns:SolicitudConsultaEucarisAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXEucarisResponse">
+<wsdl:part name="respuestaAtex" element="xsns:RespuestaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXMultiplePersonasRequest">
+<wsdl:part name="solicitudConsultaATEXMultiplePersonas" element="xsns:SolicitudConsultaATEXMultiplePersonas" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXMultiplePersonasResponse">
+<wsdl:part name="respuestaAtexMultiple" element="xsns:RespuestaATEXMultiple" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXMultipleVehiculosRequest">
+<wsdl:part name="solicitudConsultaATEXMultipleVehiculos" element="xsns:SolicitudConsultaATEXMultipleVehiculos" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXMultipleVehiculosResponse">
+<wsdl:part name="respuestaAtexMultiple" element="xsns:RespuestaATEXMultiple" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXPersonaRequest">
+<wsdl:part name="solicitudConsultaPersonaAtex" element="xsns:SolicitudConsultaPersonaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXPersonaResponse">
+<wsdl:part name="respuestaAtex" element="xsns:RespuestaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXVehiculoFechaRequest">
+<wsdl:part name="solicitudConsultaVehiculoAtexFecha" element="xsns:SolicitudConsultaVehiculoAtexFecha" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXVehiculoFechaResponse">
+<wsdl:part name="respuestaAtex" element="xsns:RespuestaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXVehiculoRequest">
+<wsdl:part name="solicitudConsultaVehiculoAtex" element="xsns:SolicitudConsultaVehiculoAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaATEXVehiculoResponse">
+<wsdl:part name="respuestaAtex" element="xsns:RespuestaAtex" xmlns:xsns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:portType name="ConsultaATEX">
+<wsdl:operation name="consultaATEXDocumento">
+<wsdl:input name="consultaATEXDocumentoRequest" message="ns0:consultaATEXDocumentoRequest"/>
+<wsdl:output name="consultaATEXDocumentoResponse" message="ns0:consultaATEXDocumentoResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXEucaris">
+<wsdl:input name="consultaATEXEucarisRequest" message="ns0:consultaATEXEucarisRequest"/>
+<wsdl:output name="consultaATEXEucarisResponse" message="ns0:consultaATEXEucarisResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXMultiplePersonas">
+<wsdl:input name="consultaATEXMultiplePersonasRequest" message="ns0:consultaATEXMultiplePersonasRequest"/>
+<wsdl:output name="consultaATEXMultiplePersonasResponse" message="ns0:consultaATEXMultiplePersonasResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXMultipleVehiculos">
+<wsdl:input name="consultaATEXMultipleVehiculosRequest" message="ns0:consultaATEXMultipleVehiculosRequest"/>
+<wsdl:output name="consultaATEXMultipleVehiculosResponse" message="ns0:consultaATEXMultipleVehiculosResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXPersona">
+<wsdl:input name="consultaATEXPersonaRequest" message="ns0:consultaATEXPersonaRequest"/>
+<wsdl:output name="consultaATEXPersonaResponse" message="ns0:consultaATEXPersonaResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXVehiculo">
+<wsdl:input name="consultaATEXVehiculoRequest" message="ns0:consultaATEXVehiculoRequest"/>
+<wsdl:output name="consultaATEXVehiculoResponse" message="ns0:consultaATEXVehiculoResponse"/></wsdl:operation>
+<wsdl:operation name="consultaATEXVehiculoFecha">
+<wsdl:input name="consultaATEXVehiculoFechaRequest" message="ns0:consultaATEXVehiculoFechaRequest"/>
+<wsdl:output name="consultaATEXVehiculoFechaResponse" message="ns0:consultaATEXVehiculoFechaResponse"/></wsdl:operation></wsdl:portType>
+<wsdl:binding name="ATEX" type="ns0:ConsultaATEX">
+<soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="consultaATEXDocumento">
+<soap11:operation soapAction="urn:consultaATEXDocumento" style="document"/>
+<wsdl:input name="consultaATEXDocumentoRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXDocumentoResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXEucaris">
+<soap11:operation soapAction="urn:consultaATEXEucaris" style="document"/>
+<wsdl:input name="consultaATEXEucarisRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXEucarisResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXMultiplePersonas">
+<soap11:operation soapAction="urn:SolicitudConsultaATEXMultiplePersonas" style="document"/>
+<wsdl:input name="consultaATEXMultiplePersonasRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXMultiplePersonasResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXMultipleVehiculos">
+<soap11:operation soapAction="urn:SolicitudConsultaATEXMultipleVehiculos" style="document"/>
+<wsdl:input name="consultaATEXMultipleVehiculosRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXMultipleVehiculosResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXPersona">
+<soap11:operation soapAction="urn:consultaATEXPersona" style="document"/>
+<wsdl:input name="consultaATEXPersonaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXPersonaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXVehiculo">
+<soap11:operation soapAction="urn:consultaATEXVehiculo" style="document"/>
+<wsdl:input name="consultaATEXVehiculoRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXVehiculoResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaATEXVehiculoFecha">
+<soap11:operation soapAction="urn:consultaATEXVehiculoFecha" style="document"/>
+<wsdl:input name="consultaATEXVehiculoFechaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaATEXVehiculoFechaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation></wsdl:binding>
+<wsdl:service name="ATEX">
+<wsdl:port name="ATEX" binding="ns0:ATEX">
+<soap11:address location="https://pr-aplicaciones-pre.trafico.es:8081/WS_ATEX5/services/ATEX"/></wsdl:port>
+<wsdl:port name="ATEX.0" binding="ns0:ATEX">
+<soap11:address location="https://pr-aplicaciones-pre.trafico.es:8081/WS_ATEX5/services/ATEX"/></wsdl:port></wsdl:service></wsdl:definitions>

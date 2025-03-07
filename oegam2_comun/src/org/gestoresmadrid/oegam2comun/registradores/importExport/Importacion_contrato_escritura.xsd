@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="tipos.xsd"/>
+	<xs:element name="FORMATO_GA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="CABECERA">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="DATOS_GESTORIA">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="NIF" type="tipoNIF" minOccurs="0" />
+										<xs:element name="NOMBRE" type="alfa50" minOccurs="0" />
+										<xs:element name="PROFESIONAL" type="numCol" />
+										<xs:element name="PROVINCIA" type="tipoProvincia" minOccurs="0" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ESCRITURAS_NUEVO_ENVIO" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>ESCRITURAS</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Escritura" type="EscrituraType" minOccurs="0"/>
+							<xs:element name="Destinatario" type="Identificacion_SujetoType" minOccurs="0"/>
+							<xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+							<xs:element name="Registro" type="RegistroType" minOccurs="0"/>
+							<xs:element name="Bienes" type="Bienes_EscrituraType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="FechaCreacion" type="xs:string" use="optional" />
+			<xs:attribute name="Plataforma" type="xs:string" use="optional" />
+		</xs:complexType>
+    </xs:element>
+</xs:schema>

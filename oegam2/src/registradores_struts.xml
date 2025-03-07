@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="registradores" extends="default">
+
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="*TramiteRegistroMd1" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoCYNReunionJuntaAction">
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name ="verRm" type="chain">
+				<param name="actionName">mostrarRm</param>
+			</result>
+			<result name ="solicitarRm" type="chain">
+				<param name="actionName">solicitarRm</param>
+			</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*TramiteRegistroMd2" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoAYNReunionJuntaAction">
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name ="verRm" type="chain">
+				<param name="actionName">mostrarRm</param>
+			</result>
+			<result name ="solicitarRm" type="chain">
+				<param name="actionName">solicitarRm</param>
+			</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*TramiteRegistroMd3" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoCYNJuntaAccionistasAction">
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name ="verRm" type="chain">
+				<param name="actionName">mostrarRm</param>
+			</result>
+			<result name ="solicitarRm" type="chain">
+				<param name="actionName">solicitarRm</param>
+			</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*TramiteRegistroMd4" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoCYNJuntaSociosAction">
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name ="verRm" type="chain">
+				<param name="actionName">mostrarRm</param>
+			</result>
+			<result name ="solicitarRm" type="chain">
+				<param name="actionName">solicitarRm</param>
+			</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*TramiteRegistroMd5" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoDelegacionFacultadesAction">
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+			<result name ="verRm" type="chain">
+				<param name="actionName">mostrarRm</param>
+			</result>
+			<result name ="solicitarRm" type="chain">
+				<param name="actionName">solicitarRm</param>
+			</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*TramiteRegistroMd6" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoEscrituraAction">
+			<result name="tramiteRegistroModelo6" type="tiles">tramiteRegistroModelo6</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*Rm" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.RmAction">
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+			<result name="tramiteRegistroModelo6" type="tiles">tramiteRegistroModelo6</result>
+			<result name="verRM" type="tiles">verRM</result>
+		</action>
+
+		<action name="*Sociedad" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.SociedadAction">	
+			<result name="success">/registradores/buscarSociedad.jsp</result>
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+			<result name="tramiteRegistroCuenta" type="tiles">tramiteRegistroCuenta</result>
+			<result name="tramiteRegistroLibro" type="tiles">tramiteRegistroLibro</result> 
+		</action>
+
+		<action name="*Certificante" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.CertificanteAction">
+			<result name="success">/registradores/buscarCertificantes.jsp</result>
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+		</action>
+
+		<action name="*Asistente" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.AsistenteAction">
+			<result name="success">/registradores/buscarAsistentes.jsp</result>
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+		</action>
+
+		<action name="*Reunion" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ReunionAction">
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+		</action>
+
+		<action name="*Cargo" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.CargoAction">
+			<result name="success">/registradores/buscarCargos.jsp</result>
+		</action>
+
+		<action name="*Acuerdo" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.AcuerdoAction">
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+		</action>
+
+		<action name="*Inmueble" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.InmuebleAction">
+			<result name ="success">/registradores/buscarInmuebles.jsp</result>
+		</action> 
+
+		<!-- <action name="*ReunionJunta" method="{1}" class="registradores.acciones.ReunionJuntaAction">
+			<result name="tramite" type="tiles">tramiteRegistro</result>
+			<result name="tramiteModelo2" type="tiles">aceptacionNombramiento</result>
+		</action>-->
+
+		<action name="*RecuperarTramite" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.RecuperarTramiteAction">
+			<result name="success" type="tiles">listaRecuperarTramite</result>
+			<result name="tramiteRegistroModelo1" type="tiles">tramiteRegistroModelo1</result>
+			<result name="tramiteRegistroModelo2" type="tiles">tramiteRegistroModelo2</result>
+			<result name="tramiteRegistroModelo3" type="tiles">tramiteRegistroModelo3</result>
+			<result name="tramiteRegistroModelo4" type="tiles">tramiteRegistroModelo4</result>
+			<result name="tramiteRegistroModelo5" type="tiles">tramiteRegistroModelo5</result>
+			<result name="tramiteRegistroModelo6" type="tiles">tramiteRegistroModelo6</result>
+			<result name="Financiacion" type="tiles">contratosFinanciacion</result>
+			<result name="Leasing" type="tiles">contratosLeasing</result>
+			<result name="Renting" type="tiles">contratosRenting</result>
+			<result name="Cancelacion" type="tiles">contratosCancelaciones</result>
+			<result name="tramiteRegistroCuenta" type="tiles">tramiteRegistroCuenta</result>
+			<result name="tramiteRegistroLibro" type="tiles">tramiteRegistroLibro</result>
+			<result name="Desistimiento" type="tiles">contratosDesistimiento</result>
+			<result name="popUpSeleccionEstado">/registradores/seleccionEstado.jsp</result>
+			<result name="documento" type="stream">
+				<param name="contentDisposition">attachment;filename=${documentoDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="exportarTramite" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<action name="*Medio" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.MedioAction">
+			<result name="success">/registradores/buscarMedio.jsp</result>
+		</action>
+
+		<action name="*RegistradoresAjax" method="{1}" class="org.gestoresmadrid.oegam2comun.registradores.ajax.RegistradoresAjax">
+			<result name="applet">registradores/empty.jsp</result>
+			<result name="bienInmueble">/registradores/formularioInmueble.jsp</result>
+		</action>
+
+		<action name="AbrirPopUpRegistradores">
+			<result>/registradores/seleccionEstado.jsp</result>
+		</action>
+
+		<action name="*ConsultaEvTramiteRg" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ConsultaEvolucionTramiteRegistroAction">
+			<result name ="success">/registradores/consultaEvolucionTramiteRegistro.jsp</result>
+		</action>
+
+		<action name="*NotarioReg" method="{1}" class="org.gestoresmadrid.oegam2.notario.controller.action.ConsultaNotarioAction">
+			<result name ="success">/registradores/buscarNotarios.jsp</result>
+		</action>
+
+		<!-- * * * * ACCIONES RBM * * * * * *-->
+
+		<action name="*RecuperarFinanciadores" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.financiadores.RecuperarFinanciadoresAction">
+			<result name="listar" type="tiles">listarFinanciadores</result>
+			<result name="success" type="tiles">listarFinanciadores</result>
+		</action>
+
+		<action name="*FinanciadoresAjax" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.financiadores.FinanciadoresAjaxAction">
+			<result name="editar">/registradores/rbm/financiadores/detalle.jsp</result>
+			<result name="success" type="tiles">detalleFinanciadores</result>
+			<result name ="popUpRepresentanteFinanciadorRegistro">/registradores/rbm/financiadores/representantePopUp.jsp</result>
+		</action>
+
+		<action name="*Financiadores" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.financiadores.FinanciadoresAction">
+			<result name="detalle" type="tiles">detalleFinanciadores</result>
+			<result name="editar" type="tiles">detalleFinanciadores</result>
+			<result name="success" type="tiles">detalleFinanciadores</result>
+			<result name ="popUpRepresentanteFinanciadorRegistro">/registradores/rbm/financiadores/representantePopUp.jsp</result>
+		</action>
+
+		<action name="*Financiacion" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoFinanciacionAction">
+			<result name="alta" type="tiles">contratosFinanciacion</result>
+			<result name="editar" type="tiles">contratosFinanciacion</result>
+			<result name="listFinancialBacker">/registradores/rbm/contratosFinanciacion/financiadoresList.jsp</result>
+			<result name ="popUpDatosFirmaRegistro">/registradores/rbm/contratosRecursos/datosFirmaPopUp.jsp</result> 
+			<result name ="popUpComisionRegistro">/registradores/rbm/contratosRecursos/comisionPopUp.jsp</result> 
+			<result name ="popUpOtrosImportesRegistro">/registradores/rbm/contratosRecursos/otrosImportesPopUp.jsp</result>
+			<result name ="popUpReconocimientoDeudaRegistro">/registradores/rbm/contratosRecursos/reconocimientoDeudaPopUp.jsp</result>
+			<result name ="popUpCuadroAmortizacionRegistro">/registradores/rbm/contratosFinanciacion/cuadrosAmortizacionPopUp.jsp</result>
+			<result name ="popUpRepresentanteCesionarioRegistro">/registradores/rbm/contratosRecursos/representanteCesionarioPopUp.jsp</result>
+			<result name ="popUpRepresentanteCompradorRegistro">/registradores/rbm/contratosFinanciacion/representanteCompradorPopUp.jsp</result>
+			<result name ="popUpClausulaRegistro">/registradores/rbm/contratosRecursos/clausulasPopUp.jsp</result>
+			<result name ="popUpRepresentanteAvalistaRegistro">/registradores/rbm/contratosRecursos/representanteAvalistaPopUp.jsp</result>
+			<result name ="popUpMotorBuque">/registradores/rbm/contratosRecursos/motorPopUp.jsp</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+		</action>
+
+		<action name="*Cancelacion" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoCancelacionAction">
+			<result name="alta" type="tiles">contratosCancelaciones</result>
+			<result name="editar" type="tiles">contratosCancelaciones</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+			<result name ="popUpRepresentanteSolicitanteRegistro">/registradores/rbm/contratosCancelaciones/representanteSolicitantePopUp.jsp</result>
+			<result name ="popUpMotorBuque">/registradores/rbm/contratosRecursos/motorPopUp.jsp</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*Desistimiento" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoDesistimientoAction">
+			<result name="alta" type="tiles">contratosDesistimiento</result>
+			<result name="editar" type="tiles">contratosDesistimiento</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+			<result name ="popUpRepresentanteSolicitanteRegistro">/registradores/rbm/contratosDesistimiento/representanteSolicitantePopUp.jsp</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*Leasing" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoLeasingAction">
+			<result name="alta" type="tiles">contratosLeasing</result>
+			<result name="editar" type="tiles">contratosLeasing</result>
+			<result name ="popUpDatosFirmaRegistro">/registradores/rbm/contratosRecursos/datosFirmaPopUp.jsp</result> 
+			<result name ="popUpComisionRegistro">/registradores/rbm/contratosRecursos/comisionPopUp.jsp</result> 
+			<result name ="popUpOtrosImportesRegistro">/registradores/rbm/contratosRecursos/otrosImportesPopUp.jsp</result>
+			<result name ="popUpReconocimientoDeudaRegistro">/registradores/rbm/contratosRecursos/reconocimientoDeudaPopUp.jsp</result>
+			<result name ="popUpCuadroAmortizacionRegistro">/registradores/rbm/contratosLeasing/cuadrosAmortizacionPopUp.jsp</result>
+			<result name ="popUpCuadroAmortizacionFIRegistro">/registradores/rbm/contratosLeasing/cuadrosAmortizacionFIPopUp.jsp</result>
+			<result name ="popUpCuadroAmortizacionFSRegistro">/registradores/rbm/contratosLeasing/cuadrosAmortizacionFSPopUp.jsp</result>
+			<result name ="popUpRepresentanteCesionarioRegistro">/registradores/rbm/contratosRecursos/representanteCesionarioPopUp.jsp</result>
+			<result name ="popUpRepresentanteArrendatarioRegistro">/registradores/rbm/contratosLeasingRenting/representanteArrendatarioPopUp.jsp</result>
+			<result name ="popUpRepresentanteArrendadorRegistro">/registradores/rbm/contratosLeasingRenting/representanteArrendadorPopUp.jsp</result>
+			<result name ="popUpClausulaRegistro">/registradores/rbm/contratosRecursos/clausulasPopUp.jsp</result>
+			<result name ="popUpRepresentanteAvalistaRegistro">/registradores/rbm/contratosRecursos/representanteAvalistaPopUp.jsp</result>
+			<result name ="popUpMotorBuque">/registradores/rbm/contratosRecursos/motorPopUp.jsp</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+		</action>
+
+		<action name="*Renting" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoRentingAction">
+			<result name="alta" type="tiles">contratosRenting</result>
+			<result name="editar" type="tiles">contratosRenting</result>
+			<result name ="popUpDatosFirmaRegistro">/registradores/rbm/contratosRecursos/datosFirmaPopUp.jsp</result>
+			<result name ="popUpComisionRegistro">/registradores/rbm/contratosRecursos/comisionPopUp.jsp</result>
+			<result name ="popUpOtrosImportesRegistro">/registradores/rbm/contratosRecursos/otrosImportesPopUp.jsp</result>
+			<result name ="popUpReconocimientoDeudaRegistro">/registradores/rbm/contratosRecursos/reconocimientoDeudaPopUp.jsp</result>
+			<result name ="popUpRepresentanteCesionarioRegistro">/registradores/rbm/contratosRecursos/representanteCesionarioPopUp.jsp</result>
+			<result name ="popUpRepresentanteArrendatarioRegistro">/registradores/rbm/contratosLeasingRenting/representanteArrendatarioPopUp.jsp</result>
+			<result name ="popUpRepresentanteArrendadorRegistro">/registradores/rbm/contratosLeasingRenting/representanteArrendadorPopUp.jsp</result>
+			<result name ="popUpClausulaRegistro">/registradores/rbm/contratosRecursos/clausulasPopUp.jsp</result>
+			<result name ="popUpRepresentanteAvalistaRegistro">/registradores/rbm/contratosRecursos/representanteAvalistaPopUp.jsp</result>
+			<result name ="popUpMotorBuque">/registradores/rbm/contratosRecursos/motorPopUp.jsp</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+		</action>
+
+		<action name="*Cuenta" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoCuentaAction">
+			<result name="tramiteRegistroCuenta" type="tiles">tramiteRegistroCuenta</result> 
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+		</action>
+
+		<action name="*Libro" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ContratoLibroAction">
+			<result name="tramiteRegistroLibro" type="tiles">tramiteRegistroLibro</result>
+			<result name="descargarDocumento" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="consulta" type="tiles">listaRecuperarTramite</result>
+		</action>
+
+		<!-- <action name="*files" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.general.FilesAction">
+			<result name="descargarZIP" type="stream">
+				<param name="contentType">application/x-zip-compressed</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action> -->
+
+		<action name= "*ImportarTramiteRegistro" method="{1}" class="org.gestoresmadrid.oegam2.registradores.controller.action.ImportarTramiteRegistroAction">
+			<result name ="success" type="tiles">importarRegistro</result>
+		</action>
+
+		<!-- FIN ACCIONES RBM -->
+
+	</package>
+
+</struts>

@@ -1,0 +1,19 @@
+package org.gestoresmadrid.oegamDuplicadoPermisoConducir.conversor.service;
+
+import java.io.Serializable;
+import java.util.List;
+
+public interface ConversorDuplPermCond extends Serializable {
+
+	<T> T transform(Object object, Class<T> clase);
+
+	<T> T transform(Object object, Class<T> clase, String mapId);
+
+	void transform(Object object, Object destination);
+
+	void transform(Object object, Object destination, String mapId);
+
+	<T> List<T> transform(List<?> object, Class<T> clase);
+
+	<T> List<T> transform(List<?> object, Class<T> clase, String mapId);
+}

@@ -1,0 +1,167 @@
+body {
+ background: #fff; 
+ /* background: blue;*/
+  font: 9px/1.2em Arial, Helvetica, sans-serif;
+  
+  
+}
+
+ul.glassList {
+    list-style: url(img/aquadot.jpg) disc outside;
+    margin-right: 50px;
+}
+
+div#content {
+    margin:0;
+    padding: 1em;
+    clear:both;
+	width: 400px;
+}
+
+div#header {
+    margin-bottom: 0px;
+}
+
+div#source {
+    padding: 3px;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+    position: absolute;
+    width: 120px;
+    top: 0px;
+    right: 0px;
+    z-index: 1000;
+    border-left: 1px solid silver;
+    border-bottom: 1px solid silver;
+     background: #eee; 
+   /* background: red;*/
+}
+
+div#pageSource {
+	position: absolute;
+	top: 0px;
+	right: 133px;
+	width: 200px;
+	border: 1px solid silver;
+	border-top: 0;
+	 background: #ffd; 
+	/* background: purple;*/
+	padding: 3px;
+	z-index: 1000;
+}
+
+img.download {
+	vertical-align: middle;
+	border: 0;
+}
+
+body#index div#source {
+	
+    background: none; 
+  /*  background: brown;*/
+    border: none;
+}
+
+div#source a {
+    color: green;
+}
+
+div#footer {
+    border-top: 1px solid #eee;
+    padding: 3px;
+    text-align: center;
+    font-size: 11px;
+}
+
+div#footer a {
+    font-family: tahoma, arial, sans-serif;
+    text-decoration: none;
+    color: #999;
+}
+
+pre {
+     background: #ffffdd; 
+   /* background: yellow;*/
+    border: 1px solid #999999;
+    color: #000000;
+    padding: 5px 5px 5px 7px;
+    font-size: 12px;
+    line-height: normal;
+}
+
+div.dynamicMenu {
+    position: relative;
+    left: 0;
+    text-align:left;
+    /*background-color:rgb(154,34,61);*/
+    padding:10px;
+    padding-top:25px;
+}
+
+div.tree {
+    padding: 10px;
+}
+
+fieldset.DOS {
+	PADDING-RIGHT: 8px; 
+	PADDING-LEFT: 10px; 
+	PADDING-BOTTOM: 10px; 
+	MARGIN: 0px auto; 
+	WIDTH: 60%; 
+	BORDER-TOP-STYLE: solid; 
+	BORDER-RIGHT-STYLE: solid; 
+	BORDER-LEFT-STYLE: solid; 
+	BACKGROUND-COLOR: #F4F4F4; 
+	BORDER-BOTTOM-STYLE: solid; 
+	border-top-color: silver;
+	border-right-color: silver;
+	border-bottom-color: silver;
+	border-left-color: silver;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+}
+
+legend.dos{
+	font: 11px/1.5em Arial, Helvetica, sans-serif;
+}
+
+label.gris{
+	color:silver;
+}
+
+label.negra{
+	color:black;
+}
+
+.rbroundbox { background: url(../img/nt.gif) repeat; }
+.rbtop div { background: url(../img/tl.gif) no-repeat top left; }
+.rbtop { background: url(../img/tr.gif) no-repeat top right; }
+.rbbot div { background: url(../img/bl.gif) no-repeat bottom left; }
+.rbbot { background: url(../img/br.gif) no-repeat bottom right; }
+
+.rbtop div, .rbtop, .rbbot div, .rbbot {
+width: 100%;
+height: 7px;
+font-size: 1px;
+}
+.rbcontent { margin: 0 7px; }
+.rbroundbox { width: 80%; margin: 1em auto; }
+
+.oculto{
+	display: none;
+}
+
+.visible{
+	display: block;
+}
+
+div#boxNumExp{
+	border: 1px solid silver;
+	font-size: 12px;
+	padding: 5px;
+	font-weight: bold;
+	background-color: white;
+}

@@ -1,0 +1,39 @@
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+<table class="subtitulo" cellSpacing="0">
+	<tr>
+		<td>Stock Pegatinas</td>
+	</tr>
+</table>
+
+<div class="divCreditos">	
+	<table border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td class="left disponibles" align="left">Pegatinas Disponibles</td>		
+		</tr>
+		<s:iterator value="listaStock" status="estado">
+		
+		<tr>
+			<td class="" align="left">Distintivo <s:property value="tipo" /> Jefatura <s:property value="jefatura" /></td>		
+			<td class="right" nowrap="nowrap">
+					
+					<s:property value="stock" />
+			
+			</td>
+		</tr>
+		</s:iterator>
+		
+		
+		
+
+		<tr>
+			<td class="left solicitados">Pegatinas Solicitadas</td>		
+			<td class="right" nowrap="nowrap">
+			
+			<s:property value="numeroPegatinas" />
+			</td>
+		</tr>
+	</table>
+</div>

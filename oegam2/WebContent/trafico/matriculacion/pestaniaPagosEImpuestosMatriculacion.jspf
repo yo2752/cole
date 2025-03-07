@@ -1,0 +1,209 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+   <div class="contentTabs" id="PagosEImpuestos" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">  
+	<div class="contenido">
+									
+			<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+			<tr>
+				<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+				<td>PAGOS Y PRESENTACIÓN</td>
+			</tr>
+			</table>
+			
+			<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+				<tr>
+					<td class="tabular">
+						<span class="titulo">DATOS DE PRESENTACIÓN EN LA A.E.A.T.</span>
+					</td>
+				</tr>
+			</table>
+												
+			<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">			
+				 <tr>
+        			<td align="left" nowrap="nowrap" style="width: 250px;">
+        				<label for="cem">Código Electrónico de Matriculación (CEM)</label>
+        			</td>
+        			<td align="left" nowrap="nowrap">
+        				<s:textfield disabled="%{flagDisabled}" 
+        					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.cemIedtm" 
+        					id="idCem" onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';" 
+        					size="8" maxLength="8"/>
+        			</td>	
+        			<td align="left" nowrap="nowrap">
+						<table>
+							<tr>
+								<td align="left" nowrap="nowrap">
+									<label for="exentoCem">Exento CEM: </label>
+								</td>     
+			        		
+					       		<td align="left" nowrap="nowrap">
+									<s:checkbox id="exentoCem" disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.exentoCem" />
+								</td>	
+							</tr>
+						</table>
+					</td> 
+        					        		
+	    		</tr>		        		
+	    		
+
+		        <tr>
+		        	<s:if test=""></s:if>
+		        	<td align="left" nowrap="nowrap" style="width: 250px;">
+        				<label for="idCema">Código Electrónico de Matriculacion Agrícola (CEMA)</label>
+        			</td>
+        			<td align="left" nowrap="nowrap">
+        				<s:textfield disabled="%{flagDisabled}" id="idCema" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.cema" 
+        				onblur="this.className='input2';" onfocus="this.className='inputfocus';" size="8" maxLength="8"/>
+        			</td>
+		        </tr>
+		    </table>
+									
+	<!-- //TODO MPC. Cambio IVTM. -->			
+	<%@include file="./pestaniaIVTMMatriculacion.jspf" %>
+			
+			
+		<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+			<tr>
+				<td class="tabular">
+					<span class="titulo">DECLARACIÓN DE RESPONSABILIDAD</span>
+				</td>
+			</tr>
+		</table>
+			
+		<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">		
+		<tr>
+			<td align="left" colspan="3">
+				El Gestor Administrativo colegiado asume la responsabilidad de que se trata del correspondiente modelo del AEAT del vehículo que pretende matricular.
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="left" nowrap="nowrap" width="5%">
+	            <b>ACEPTA</b>                        
+           	</td>
+      </tr>
+      <tr></table>
+									
+			<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+				<tr>
+					<td class="tabular">
+						<span class="titulo">DATOS DE PRESENTACIÓN EN LA D.G.T.</span>
+					</td>
+				</tr>
+			</table>
+			
+			
+	
+			
+			<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">		
+					
+		<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="matriculaDGT">Matricula <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.matricula" 
+       				id="matricula" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				onkeypress="return validarMatricula(event)"
+       				onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)" 
+       				size="9" maxLength="9"
+       				/>
+       		</td>			
+			</tr><tr>
+			<td align="left" nowrap="nowrap">
+       			<label for="jefaturaId">Jefatura provincial:<span class="naranja">*</span></label>
+       		</td>
+         		
+       		<td align="left" nowrap="nowrap" colspan="3">
+       			<s:select	id="jefaturaId"
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.jefaturaTrafico.jefaturaProvincial" 
+       				disabled="%{flagDisabled}" 
+       				list="@trafico.utiles.UtilesVistaTrafico@getInstance().getJefaturasTraficoTodas()"
+					headerKey="-1"
+			        headerValue="Seleccione jefatura provincial"
+					listKey="jefatura_provincial" listValue="descripcion"
+					onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"/>
+   			</td>		        		
+		</tr>	
+										
+			<tr>
+				<td width="22%" align="left" width="14%">
+						
+				<label for="diaAltaIni">Fecha de Presentacion</label></td>
+			
+				<td><table><tr>
+				<td align="left" nowrap="nowrap" width="5%">
+					<s:textfield name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.dia" id="idDiaPresentacionDGT"
+				onblur="this.className='input2';"
+				onfocus="this.className='inputfocus';" 
+				size="2" maxlength="2" 
+				disabled="%{flagDisabled}"/>
+				</td>
+							
+				<td width="3%" style="font-size:15px;vertical-align:middle;">/</td>
+						
+				<td width="5%" nowrap="nowrap" align="left">
+					<s:textfield name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.mes" id="idMesPresentacionDGT"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" size="2" maxlength="2" 
+								disabled="%{flagDisabled}"/>
+				</td>												
+					<td width="3%" style="font-size:15px;vertical-align:middle;">/</td>						
+					<td align="left" nowrap="nowrap" width="5%">
+					<s:textfield name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.anio" id="idAnioPresentacionDGT"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';" size="5" maxlength="4"
+						disabled="%{flagDisabled}" />
+					</td>
+											
+					<td align="left" nowrap="nowrap" width="5%">
+					
+					</td>
+					<td width="auto" nowrap="nowrap" align="left">	</td>					
+			</tr>
+					
+					
+						
+			</table>
+								
+		</td>
+		 
+	</table>
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableMATE(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" class="oculto" name="bGuardar" id="idBotonGuardar" value="Consultar / Guardar" onClick="return guardarAltaMatriculacion('PagosEImpuestos');" onKeyPress="this.onClick"/>
+			</td>
+		</tr>
+	</table>
+</s:if>	
+<script type="text/javascript">	
+recargarComboTasas('TipoTasa','CodigoTasaId','CodigoTasa');
+habilitarCEMA();
+	//JMC : Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+	if (document.getElementById("permisoEspecial").value == "true") {		
+		document.getElementById("idCheckPagoEfectivo").disabled =true;
+		document.getElementById("idCem").disabled =true;		
+	}
+
+	$( document ).ready(function() {
+
+		
+		$('#PagosEImpuestos').find('input, textarea, button').attr('readonly','readonly');
+		$('#PagosEImpuestos').find('select').attr('disabled','disabled');
+		});
+
+	
+</script>		
+			
+												
+	</div>
+	</div>
+
+

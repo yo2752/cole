@@ -1,0 +1,242 @@
+  <%@ taglib prefix="s" uri="/struts-tags" %>
+  
+   <div class="contentTabs" id="Tramite" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">  
+	<div class="contenido">		
+			
+			<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+			<tr>
+				<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+				<td>Trámite de Matriculación</td>
+			</tr>
+			</table>
+					
+			<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+				<tr>
+					<td class="tabular">
+						<span class="titulo">DATOS DEL TRÁMITE</span>
+						<s:set var="numExpediente" value="traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente"/>
+						<s:if test="@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()">
+							<s:if test="%{(#numExpediente!=null && #numExpediente!='')}">
+								<img title="Ver evolución JPT" onclick="abrirEvolucionJPT('<s:property value="traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+							</s:if>
+						</s:if>
+					</td>
+				</tr>
+			</table>						
+			<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+			
+				<!-- Tipo de trámite de matriculación:
+				Solo está habilitado el tipo 1. Queda oculto el combo para mostrarlo cuando se habiliten más tipos.
+				Cuando eso ocurra solo hay que quitar del tr el display none y cambiar el header key y value del select -->
+				<tr style="display:none;">
+				<td align="left" nowrap="nowrap">
+        			<label for="idTipoTramiteMatriculacion">Tipo de tr&aacute;mite de matriculaci&oacute;n:</label>
+        		</td>
+				<td align="left" nowrap="nowrap" colspan="4">
+       				<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboTiposTramiteMatriculacion()"
+       					headerKey="1"
+					    headerValue="Matricular tipo definitiva"
+					    name="traficoTramiteMatriculacionBean.tipoTramiteMatriculacion"
+					    listKey="valorEnum" listValue="nombreEnum"
+       					id="idTipoTramiteMatriculacion"
+		       			disabled="%{flagDisabled}"
+						onblur="this.className='input2';" 
+		       			onfocus="this.className='inputfocus';"
+		       			/>
+   				</td>
+        		</tr>
+				
+				<s:hidden id="idNumColegiado" 
+					    		name="traficoTramiteMatriculacionBean.tramiteTraficoBean.numColegiado"/>
+					
+					<tr>					
+	        			<td align="left" nowrap="nowrap">
+	        				<label for="referenciaPropia">Referencia Propia</label>
+	        			</td>
+	        			<td align="left" nowrap="nowrap" colspan="4">
+	        				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.referenciaPropia" id="referenciaPropia" onblur="this.className='input2';" onfocus="this.className='inputfocus';" size="50" maxlength="50"/>
+	        			</td>
+	        			<s:if test="@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()">
+		        			<td>
+		        				<label>Origen Tramite:</label>
+		        			</td>
+		        			<td>
+		        				<s:textfield cssClass="campo_disabled" name="origenTramite" readonly="true" value="%{@general.utiles.TipoCreacionEnum@getEnum(traficoTramiteMatriculacionBean.idTipoCreacion).getNombre()}"></s:textfield>
+		        			</td>
+	        			</s:if>				        		
+		    		</tr>		        		
+	    		<tr>        	       			
+			<td align="left">
+   				<label for="observacionesId">Anotaciones:</label>
+   			</td>
+
+       		<td align="left" nowrap="nowrap" colspan="6">
+   				<s:textarea name="traficoTramiteMatriculacionBean.tramiteTraficoBean.anotaciones" 
+   				id="observacionesId" 
+   				disabled="%{flagDisabled}"
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				rows="5"
+   				cols="50"
+   				maxlength="500"/>
+			</td>
+      	</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+       			<label for="rentingId">Renting:</label>
+       		</td>
+         		
+       		<td align="left" nowrap="nowrap" >
+       			<s:checkbox disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.renting" 
+       			id="rentingId" onclick="cambioRentingId()"/>
+   			</td>		        		
+		    <td align="left" nowrap="nowrap">
+       			<label for="carshingId">Carsharing:</label>
+       		</td>
+       		<td align="left" nowrap="nowrap" >
+       			<s:checkbox disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.carsharing" 
+	       			id="carshingId"/>
+   			</td>	  
+   		</tr>
+		<tr>  			
+   			<td align="left" nowrap="nowrap">
+   				<label for="nombre">Nº Expediente</label>
+  			</td>
+   			<td align="left" nowrap="nowrap">
+	   			<s:textfield disabled="true" value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente}" id="idExpediente" onblur="this.className='input2';" onfocus="this.className='inputfocus';" size="17" maxlength="17"
+	   				/>
+   			</td>
+   			<td align="left" nowrap="nowrap">
+       			<label for="estadoId">Estado trámite:</label>
+       		</td>
+      		<td align="left" nowrap="nowrap">
+       			<s:select id="estadoId"
+		    			name="traficoTramiteMatriculacionBean.tramiteTraficoBean.estado" 
+		       			list="@trafico.utiles.UtilesVistaTrafico@getInstance().getEstadosTramiteTrafico()"
+						headerKey="-1"
+					    headerValue="Iniciado"
+						listKey="valorEnum" listValue="nombreEnum"
+						onblur="this.className='input2';" 
+		       			onfocus="this.className='inputfocus';"
+		       			disabled="true"/>
+   			</td>
+   		</tr>
+		<tr>
+        	<td align="left" nowrap="nowrap">
+       			<label for="idEntFact">Entrega Factura:</label>
+       		</td>
+         		
+       		<td align="left" nowrap="nowrap" >
+       			<s:checkbox disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.EntregaFactMatriculacion" 
+       			id="idEntFact"/>
+   			</td>	
+			<td align="left" nowrap="nowrap">
+				<label for="tipoTasaMatriculacionId">Tipo Tasa: </label>
+			</td>
+			<td align="left" nowrap="nowrap" >
+				<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboTipoTasaMatriculacion()"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					headerKey="-1"
+					headerValue="-"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.tipoTasa" 
+					listKey="valorEnum" listValue="nombreEnum"
+					id="tipoTasaMatriculacionId"
+					onchange="habilitarCodigoTasa('tipoTasaMatriculacionId','codigoTasaMatriculacionId');cargarListaCodigosTasa(this,'codigoTasaMatriculacionId','codigoTasaMatriculacionSeleccionadoId')"
+				/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="codigoTasaMatriculacionId">Código Tasa: </label>
+			</td>
+		    <%
+				// Se hace con scriptlet temporalmente por falta de tiempo. Habría que recuperar el hostName por struts si es posible
+				String hostName=request.getServerName();
+				if(hostName.equals("localhost")){
+			%>
+				<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()}">
+					<s:set var="onchangeTasa" value="%{'seleccionarCampo(\\'codigoTasaMatriculacionSeleccionadoId\\',\\'codigoTasaMatriculacionId\\'); cargaComentariosTasa(this.value);'}" />
+				</s:if>
+				<s:else>
+					<s:set var="onchangeTasa" value="%{'seleccionarCampo(\\'codigoTasaMatriculacionSeleccionadoId\\',\\'codigoTasaMatriculacionId\\');'}" />
+				</s:else>
+		    <% } else { %>
+		    
+		    	<s:set var="onchangeTasa" value="%{'seleccionarCampo(\\'codigoTasaMatriculacionSeleccionadoId\\',\\'codigoTasaMatriculacionId\\');'}" />					    
+		    
+		    <% } %>
+			<td align="left" nowrap="nowrap" >
+       			<s:select  list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCodigosTasaMatriculacion(traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.codigoTasa,traficoTramiteMatriculacionBean.tramiteTraficoBean.idContrato,traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.tipoTasa)"
+       				onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					headerKey="-1"
+					onchange="%{onchangeTasa}"
+					disabled="%{flagDisabled}"
+			        headerValue="Seleccione codigo de tasa"			      
+       				id="codigoTasaMatriculacionId" 
+       				listKey="codigoTasa"
+       				listValue="codigoTasa" />
+       			
+       			<s:hidden id="codigoTasaMatriculacionSeleccionadoId" 
+		    		name="traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.codigoTasa"/>
+   			</td>	
+			<td align="left" nowrap="nowrap" colspan="2">
+				<label for="diaAltaIniModif">Fecha de Ultima Modificacion: </label>
+			</td>
+   			<td align="left" nowrap="nowrap" colspan="4">
+   				<table>
+   					<tr>
+						<td align="left" nowrap="nowrap" >
+							<s:textfield disabled="true" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaUltModif.dia" 
+								id="diaAltaIniModif"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								size="2" maxlength="2" />
+						</td>
+						<td >/</td>
+						<td align="left" nowrap="nowrap" >
+							<s:textfield disabled="true" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaUltModif.mes" 
+								id="mesAltaIniModif"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								size="2" maxlength="2" />
+						</td>
+						<td >/</td>
+						<td align="left" nowrap="nowrap" >
+							<s:textfield disabled="true" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaUltModif.anio" 
+								id="anioAltaIniModif"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								size="5" maxlength="4" />
+						</td>
+					</tr>
+   				</table>
+   			</td>
+        </tr>
+	</table>
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableMATW(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardarTramite" value="Consultar / Guardar" onClick="return guardarAltaMatriculacionMatw('Tramite');" onKeyPress="this.onClick"/>
+				</td>
+			</tr>
+		</table>
+	</s:if>	
+	</div>		
+</div>
+	
+	
+	<script>
+	//JMC : Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+	if (document.getElementById("permisoEspecial").value == "false") {
+		habilitarCodigoTasa('tipoTasaMatriculacionId','codigoTasaMatriculacionId');
+	}
+		anyadeTasaSiNoExiste('codigoTasaMatriculacionId', 'codigoTasaMatriculacionSeleccionadoId');
+	
+	</script>

@@ -1,0 +1,25 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">ÚLTIMAS ACCIONES ASOCIADAS AL TRÁMITE</span>
+			
+		<s:if test="%{listaAcciones.getFullListSize()>@escrituras.utiles.UtilesVista@RESULTADOS_POR_PAGINA_POR_DEFECTO}">
+				
+			  	<input class="botonpeque" type="button" id="bVerTodas" name="bVerTodas" 
+			  	value="Ver Todas" style="margin-left: 250px"
+			  	onClick="return abrirListaAcciones();" onKeyPress="this.onClick" />
+		</s:if>
+			</td>
+		</tr>
+			<tr>
+				<td>
+				<s:set var="resultadosPorPagina" value="5"/>
+		<%@include file="./evolucionTabla.jspf" %>
+		
+		</td>
+		</tr>
+	</table>
+

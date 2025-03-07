@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns="http://www.gaa9.com/csv"
+    targetNamespace="http://www.gaa9.com/csv"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+
+    <xs:annotation>
+        <xs:documentation>
+            Documento: Codigo Seguro de Verificacion.xsd
+            Versión 1.1
+            Fecha: 29/05/2012
+            Especificación del XML Schema de Datos Solicitud Matrícula/Transferencia y Firmas para la generación del Código Seguro de Verificación
+            Copyright (c) 2012 Gestores 1880 SAU
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- Main -->
+
+    <xs:element name="csv">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element name="matriculaTelematica" type="matriculaTelematica"/>
+                    <xs:element name="matriculaPDF" type="matriculaPDF"/>
+                    <xs:element name="transferenciaTelematica" type="transferenciaTelematica"/>
+                    <xs:element name="transferenciaPDF" type="transferenciaPDF"/>
+                </xs:choice>
+                <xs:element name="firmas" type="firmas"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Complex Type -->
+
+    <xs:complexType name="matriculaTelematica">
+        <xs:sequence>
+            <xs:element name="gestor">
+                <xs:complexType>  
+                    <xs:sequence>
+                        <xs:element name="expediente" type="alfa20"/>
+                        <xs:element name="metadata" type="xs:string"/>
+                        <xs:element name="diligenciaGestor" type="xs:string"/>
+                        <xs:element name="notas" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="Id" type="xs:string" use="required" fixed="s1"/> 
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="colegio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="diligenciaColegio" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string" use="required" fixed="s2"/> 
+    </xs:complexType>
+
+    <xs:complexType name="matriculaPDF">
+        <xs:sequence>
+            <xs:element name="gestor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="expediente" type="alfa20"/>
+                        <xs:element name="metadata" type="xs:string"/>
+                        <xs:element name="diligenciaGestor" type="xs:string"/>
+                        <xs:element name="notas" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="Id" type="xs:string" use="required" fixed="s1"/> 
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="colegio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="diligenciaColegio" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string" use="required" fixed="s2"/> 
+    </xs:complexType>
+
+    <xs:complexType name="transferenciaTelematica">
+        <xs:sequence>
+            <xs:element name="gestor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="expediente" type="alfa20"/>
+                        <xs:element name="metadata" type="xs:string"/>
+                        <xs:element name="diligenciaGestor" type="xs:string"/>
+                        <xs:element name="notas" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="Id" type="xs:string" use="required" fixed="s1"/> 
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="colegio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="diligenciaColegio" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string" use="required" fixed="s2"/> 
+    </xs:complexType>
+
+    <xs:complexType name="transferenciaPDF">
+        <xs:sequence>
+            <xs:element name="gestor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="expediente" type="alfa20"/>
+                        <xs:element name="metadata" type="xs:string"/>
+                        <xs:element name="diligenciaGestor" type="xs:string"/>
+                        <xs:element name="notas" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="Id" type="xs:string" use="required" fixed="s1"/> 
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="colegio">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="diligenciaColegio" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string" use="required" fixed="s2"/> 
+    </xs:complexType>
+
+    <xs:complexType name="firmas">
+        <xs:sequence>
+            <xs:element name="firmaGestor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ds:Signature"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="firmaColegio" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ds:Signature"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="firma">
+        <xs:sequence>
+            <xs:any processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Simple Type -->
+
+    <xs:simpleType name="alfa20">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+
+</xs:schema>

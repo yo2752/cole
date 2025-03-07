@@ -1,0 +1,44 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+ <div class="contenido">
+
+	<jsp:include page="transmitente/transmitente.jsp" flush="true" />
+
+	<jsp:include page="transmitente/representante.jsp" flush="true" />
+
+	<jsp:include page="transmitente/primerCotitular.jsp" flush="true" />
+
+	<jsp:include page="transmitente/representanteCotitular1.jsp" flush="true" />
+
+	<jsp:include page="transmitente/segundoCotitular.jsp" flush="true" />
+
+	<jsp:include page="transmitente/representanteCotitular2.jsp" flush="true" />
+
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmision(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button"
+					   class="boton"
+					   name="bGuardar3"
+					   id="bGuardar3"
+					   value="Consultar / Guardar"
+					   onClick="sinPermiso();return guardarAltaTramiteTransmision('Transmitente');"
+					   onKeyPress="this.onClick"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage3" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+		</tr>
+	</table>
+	</s:if>
+	<script type="text/javascript">
+		// En esta función debe incluirse cualquier sentencia javascript que necesite esta pestaña, para liberarla de código innecesario
+		var viaTransmitenteTransmision = new BasicContentAssist(document.getElementById('viaTransmitente'), [], null, true);
+		var viaPrimerCotitularTransmitenteTransmision = new BasicContentAssist(document.getElementById('viaPrimerCotitularTransmitente'), [], null, true);
+		var viaSegundoCotitularTransmitenteTransmision = new BasicContentAssist(document.getElementById('viaSegundoCotitularTransmitente'), [], null, true);
+		iniciarPestaniaTransmitenteTransmision();
+	</script>
+</div>

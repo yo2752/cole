@@ -1,0 +1,164 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td colspan="4">Trámite</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DEL TRÁMITE</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="numExpedienteId">Núm. expediente:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.numExpediente}"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="refPropiaId">Referencia Propia:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="tramiteTraficoBean.referenciaPropia"
+				id="refPropiaId"
+				onblur="this.className='input2';"
+				onfocus="this.className='inputfocus';" size="30" maxlength="50"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="estadoId">Estado trámite:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select id="estadoId"
+						name="tramiteTraficoBean.estado"
+						list="@trafico.utiles.UtilesVistaTrafico@getInstance().getEstadosTramiteTrafico()"
+						headerKey="-1"
+						headerValue="Iniciado"
+						listKey="valorEnum" listValue="nombreEnum"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="true"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="jefaturaId">Jefatura provincial:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="jefaturaId"
+					name="tramiteTraficoBean.jefaturaTrafico.jefaturaProvincial" 
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getJefaturasTraficoTodas()"
+					headerKey="-1"
+					headerValue="Seleccione jefatura provincial"
+					listKey="jefatura_provincial" listValue="descripcion"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idMotivoJustificante">Motivo: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select id="idColor" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="motivoJustificante"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getMotivosJustificante()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey="-1"
+					headerValue="Seleccione Motivo"
+					disabled="false"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idDocumentosJustificante">Documentos: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="documentosJustificante"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getDocumentosJustificante()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey="-1"
+					headerValue="Seleccione Documentos"
+					disabled="false"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left">
+				<label for="observacionesId">Observaciones:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:textarea name="tramiteTraficoBean.anotaciones"
+				id="observacionesId"
+				onblur="this.className='input2';"
+				onfocus="this.className='inputfocus';"
+				rows="5"
+				cols="68"/>
+			</td>
+		</tr>
+			<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idDiasValidez">Dias de Validez: <span class="naranja">*</span></label>
+			</td>
+				<td align="left" nowrap="nowrap">
+					<s:textfield name="diasValidez"
+					id="refPropiaId"
+					value="30" readonly="true"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" size="2" maxlength="2"/>
+				</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoTransferenciaId">Tipo tramite:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select	list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoTramitesJustificantes()"
+							name="tipoTramiteJustificante"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="tipoTramiteId"
+							onblur="this.className='input2';"
+							disabled="false"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+
+		</tr>
+
+	</table>
+
+	<script>
+		tieneNumExpediente();
+	</script>
+</div>

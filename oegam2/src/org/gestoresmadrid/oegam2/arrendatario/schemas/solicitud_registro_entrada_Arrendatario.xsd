@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified">
+<!--<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />-->
+	<xs:element name="Solicitud_Registro_Entrada">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Firmados" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="Datos_Genericos" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Datos_Especificos" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="Documentos" minOccurs="0" maxOccurs="1"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Genericos">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="Organismo" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="Remitente" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Interesados" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="Asunto"  minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Destino"  minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Numero_Expediente" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="Matricula" minOccurs="0"/>
+				<xs:element ref="Bastidor" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Especificos">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="Matricula" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="Bastidor" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="Documentos">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Documento"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Documento" type="InformacionDocumento"/>
+	<xs:element name="Organismo" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Remitente" type="InformacionPersona"/>
+	<xs:element name="Interesados">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Interesado"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Interesado" type="InformacionPersona"/>
+	<xs:element name="Asunto" type="InformacionAsunto"/>
+	<xs:element name="Destino" type="InformacionDestino"/>
+	<xs:element name="Numero_Expediente" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+				<xs:minLength value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Matricula" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Bastidor" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="21"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:complexType name="InformacionPersona">
+		<xs:all>
+			<xs:element name="Nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Apellidos" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Documento_Identificacion">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="Tipo" minOccurs="0"  maxOccurs="1" nillable="true">
+							<xs:simpleType>
+								<xs:restriction base="xs:positiveInteger">
+									<xs:maxInclusive value="5"/>
+									<xs:minInclusive value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Numero">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="9"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Correo_Electronico" minOccurs="0" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>	
+						<xs:maxLength value="250"/>							
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InformacionDestino">
+		<xs:all>
+			<xs:element name="Codigo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Descripcion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InformacionAsunto">
+		<xs:all>
+			<xs:element name="Codigo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Descripcion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InformacionDocumento">
+		<xs:all>
+			<xs:element name="Codigo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"/>
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+						<xs:maxLength value="256"/>
+						<xs:pattern value=".+\..+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Hash">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="28"/>
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

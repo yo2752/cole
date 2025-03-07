@@ -1,0 +1,74 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>Changes Tester Project</title>
+		<author email="jruiz@exist.com">Johnny R. Ruiz III</author>
+	</properties>
+	<body>
+		<!--<release version="1.1" date="2005-03-01" description="Subsequent release">
+			<action dev="jruiz" type="add">
+				Added additional documentation on how to configure the plugin.
+			</action>
+			
+			<action dev="aramirez" type="fix" issue="MPJIRA-11">
+				Enable retrieving component-specific issues.
+			</action>
+			
+			<action dev="jruiz" type="remove" due-to="Allan Ramirez" due-to-email="aramirez@exist.com">
+				The element type " link " must be terminated by the matching end-tag.
+				Deleted the erroneous code.
+			</action>
+		</release>-->
+		
+		<release version="2.2" date="2013-11-20" description="Cambios por mantenimiento y mejora de funcionalidad">
+			<action dev="santiago.cuenca" type="update" issue="0008299">
+				Se añade un cuadro de diálogo de confirmación para revertir documentos.
+			</action>
+			
+			<action dev="santiago.cuenca" type="update" issue="0008298">
+				Se añade información sobre los cuadros de monitorización.
+			</action>
+			
+			<action dev="santiago.cuenca" type="update" issue="0008146">
+				Se añade encriptación contraseña al web service Yerbabuena.
+			</action>
+			
+			<action dev="santiago.cuenca" type="fix" issue="0008143">
+				Se revisa y mejora la gestión de transacciones en la generación de documentos base a demanda.
+			</action>
+		</release>
+		
+		<release version="2.1" date="2013-08-31" description="Sección de monitorización de Gestión Documental">
+			<action dev="santiago.cuenca" type="update">
+				Se añade una sección de monitorización, que permite comprobar el estado de la cola de generación de documentos base a demanda, y el estado general de creación de documentos base por tipo y fecha.
+			</action>
+		</release>
+		
+		<release version="2.0" date="2013-11-20" description="Inclusión de matriculación y nuevos requisitos para CTIT">
+			<action dev="santiago.cuenca" type="fix" issue="0006179">
+				Se resuelve una incidencia en la modificación de documentos base, por la que se podían añadir expedientes de un tipo de carpeta, a documentos de carpeta que no le correspondían.
+			</action>
+			
+			<action dev="santiago.cuenca" type="update" issue="0004369">
+				Incluye cambios generales para permitir la generación de documentos base, a partir de trámites de matriculación, y amplía los campos que se envían en las peticiones de transmisión (CTIT). Se crea un nuevo proceso para recibir el estado de digitalización de los documentos base y sus documentos asociados.
+			</action>
+		</release>
+		
+		<release version="1.2" date="2013-02-22" description="Códigos de Mandato y Trámites simultáneos">
+			<action dev="santiago.cuenca" type="update" issue="0003702">
+				Realizados los cambios necesarios para incluir en la petición los códigos de mandato, y gestionar las transmisiones simultáneas.
+			</action>
+		</release>
+		
+		<release version="1.1" date="2013-02-08" description="Envío a Demanda">
+			<action dev="santiago.cuenca" type="update" issue="0003110">
+				Creado un nuevo proceso para permitir la creación a demanda de Documentos Base, por parte de los colegiados.
+			</action>
+		</release>
+		
+		<release version="1.0" date="2013-01-01" description="Primera versión estable para CTIT">
+			<action dev="santiago.cuenca" type="update" issue="0002458">
+				Publicada la primera versión estable de "Integración con Yerbabuena", en el entorno de producción.
+			</action>
+		</release>
+	</body>
+</document>

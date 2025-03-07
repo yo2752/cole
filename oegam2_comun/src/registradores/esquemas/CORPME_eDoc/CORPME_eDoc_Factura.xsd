@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Facturacion">
+		<xs:annotation>
+			<xs:documentation>Describe el XML de las facturas generadas mediante  tramitación electrónica</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Orden">
+					<xs:annotation>
+						<xs:documentation>Datos de identificación de la orden de cobro/facturación</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Tramite">
+								<xs:annotation>
+									<xs:documentation>Datos identificativos del trámite</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Categoria">
+											<xs:annotation>
+												<xs:documentation>Indica la aplicación que ha motivado el cobro. RBM = Bienes Muebles, DEPFIR = Depósito de cuentas, LEGFIR = Legalización Libros, CIRCE = Facturacion  CIRCE, BORME = Facturación BORME, CERFIR = Certificaciones Firmadas Electronicamente, DOCFIR = Otros documentos firmados</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="DEPFIR"/>
+													<xs:enumeration value="LEGFIR"/>
+													<xs:enumeration value="RBM"/>
+													<xs:enumeration value="BORME"/>
+													<xs:enumeration value="CIRCE"/>
+													<xs:enumeration value="CERFIR"/>
+													<xs:enumeration value="DOCFIR"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Identificador">
+											<xs:annotation>
+												<xs:documentation>Identificador del trámite</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Identificador_Cliente" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Identificador dentro del registro del cliente</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Transaccion">
+								<xs:annotation>
+									<xs:documentation>Datos de la transacción a realizar</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Tipo">
+											<xs:annotation>
+												<xs:documentation>Indica el tipo de transacción. 01 = Orden de cobro, 02 = Orden de abono</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="01"/>
+													<xs:enumeration value="02"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Identificador" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Campo opcional, identificador de la transacción dentro del contexto del registro. Puede utilizarse para identificar las transacciones realizadas para el mismo trámite o para referenciar una transacción anterior dentro del trámite. </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Emisor">
+					<xs:annotation>
+						<xs:documentation>Datos del emisor de la factura.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CodigoRegistro">
+								<xs:annotation>
+									<xs:documentation>Código de registro CORPME</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="NIFCIFRegistrador">
+								<xs:annotation>
+									<xs:documentation>NIF o CIF del Registrador</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Cobro">
+					<xs:annotation>
+						<xs:documentation>Datos para el cobro</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Importe">
+								<xs:annotation>
+									<xs:documentation>Importes</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BORME" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Sólo en la factura BORME</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Coste" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Coste (sin IVA) por el trámite. N,N(2)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PorcentajeIVA" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Porcentaje de IVA a aplicar. N,N(2)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PorcentajeIRPF" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Porcentaje de IRPF a retener. N,N(2)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Honorarios" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Coste" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Coste (sin IVA) por el trámite. N,N(2)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="PorcentajeIVA" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Porcentaje de IVA a aplicar. N,N(2)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PorcentajeIRPF" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Porcentaje de IRPF a retener. N,N(2)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Pagador" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Datos del pagador</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NIFCIF" type="xs:string" minOccurs="0"/>
+										<xs:element name="Nombre" minOccurs="0"/>
+										<xs:element name="Apellido1" type="xs:string" minOccurs="0"/>
+										<xs:element name="Apellido2" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ModoPago" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="1"/>
+										<xs:enumeration value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="CuentaCorriente" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IBAN" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Entidad">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Oficina">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Control">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Cuenta">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Tarjeta" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Numero">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="16"/>
+													<xs:maxLength value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Caducidad">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="4"/>
+													<xs:maxLength value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CriterioCaja" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Indica si la factura está acogida al regimen especial del criterio de caja (S/N). S = Factura acogida al regimen especial, N=No acogida. Si no se informa el campo se entiende que no se  encuentra acogida</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+										<xs:maxLength value="1"/>
+										<xs:pattern value="S"/>
+										<xs:pattern value="N"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Factura">
+					<xs:annotation>
+						<xs:documentation>Datos de  la factura</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Factura_reg">
+								<xs:annotation>
+									<xs:documentation>Identificación de la factura</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Fecha">
+											<xs:annotation>
+												<xs:documentation>Fecha factura. DD/MM/YYYY</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Ejercicio" type="xs:string"/>
+										<xs:element name="Serie">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Numero" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Factura_que_abona" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Identificación de la factura abonada. Cuando Transaccion/Tipo = 02</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Fecha">
+											<xs:annotation>
+												<xs:documentation>DD/MM/YYYY</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Ejercicio" type="xs:string"/>
+										<xs:element name="Serie">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Numero" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Factura_borme" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Solo para facturas con Borme</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Fecha">
+											<xs:annotation>
+												<xs:documentation>DD/MM/YYYY</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Ejercicio" type="xs:string"/>
+										<xs:element name="Serie">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Numero" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Titular">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NIFCIF">
+											<xs:annotation>
+												<xs:documentation>NIF o CIF del titular de la factura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Nombre">
+											<xs:annotation>
+												<xs:documentation>Nombre del titular de la factura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Apellido1" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Primer apellido del titular de la factura</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Apellido2" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Segundo apellido del titular de la factura</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Domicilio">
+											<xs:annotation>
+												<xs:documentation>Domicilio del titular de la factura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodigoPostal">
+											<xs:annotation>
+												<xs:documentation>Código postal del titular de la factura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Poblacion">
+											<xs:annotation>
+												<xs:documentation>Municipio del titular de la factura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodProvincia" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Código Provincia del titular de la factura</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Telefono" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Teléfono del titular de la factura</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Fax" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fax del titular de la factura</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Email" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Presentante" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Presentante</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NIFCIF" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Nombre" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Honorarios">
+								<xs:annotation>
+									<xs:documentation>Detalle de honorarios</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Conceptos">
+											<xs:annotation>
+												<xs:documentation>Conceptos aplicados</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CostesEnvio" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Coste del envío</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="Descripcion">
+																	<xs:annotation>
+																		<xs:documentation>Descripción</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Cantidad" type="xs:integer">
+																	<xs:annotation>
+																		<xs:documentation>Cantidad</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="CosteUnitario" type="xs:string">
+																	<xs:annotation>
+																		<xs:documentation>Coste unitario N,N(2)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="CosteTotal" type="xs:string">
+																	<xs:annotation>
+																		<xs:documentation>Coste total N,N(2)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Aranceles">
+														<xs:annotation>
+															<xs:documentation>Aranceles aplicados</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Arancel" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:all>
+																			<xs:element name="Bases" type="xs:string">
+																				<xs:annotation>
+																					<xs:documentation>Base aplicada</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="CodigoArancel">
+																				<xs:annotation>
+																					<xs:documentation>Código de arancel</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string"/>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Descripcion">
+																				<xs:annotation>
+																					<xs:documentation>Descripción del arancel</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string"/>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Cantidad" type="xs:string">
+																				<xs:annotation>
+																					<xs:documentation>Cantidad</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Concepto" type="xs:string" minOccurs="0"/>
+																			<xs:element name="CosteUnitario" type="xs:string">
+																				<xs:annotation>
+																					<xs:documentation>Coste unitario N,N(2)</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="CosteTotal" type="xs:string">
+																				<xs:annotation>
+																					<xs:documentation>Coste Total N,N(2)</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Reduccion" minOccurs="0"/>
+																			<xs:element name="Nota">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:enumeration value=""/>
+																						<xs:enumeration value="(*)"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="DatosAdicionales" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Datos adicionales del arancel</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence maxOccurs="unbounded">
+																						<xs:element name="DatoAdicional" type="xs:string" minOccurs="0"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:all>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Comentario" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Envio" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Datos sobre envío de la factura</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Modo" type="xs:string"/>
+										<xs:element name="NIFCIF" type="xs:string" minOccurs="0"/>
+										<xs:element name="Nombre" type="xs:string" minOccurs="0"/>
+										<xs:element name="Apellido1" type="xs:string" minOccurs="0"/>
+										<xs:element name="Apellido2" type="xs:string" minOccurs="0"/>
+										<xs:element name="Domicilio" type="xs:string" minOccurs="0"/>
+										<xs:element name="CodigoPostal" type="xs:string" minOccurs="0"/>
+										<xs:element name="Poblacion" type="xs:string" minOccurs="0"/>
+										<xs:element name="CodProvincia" type="xs:string" minOccurs="0"/>
+										<xs:element name="Fax" type="xs:string" minOccurs="0"/>
+										<xs:element name="Email" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="BORME" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Comentario" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

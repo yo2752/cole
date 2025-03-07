@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ 
+	<xs:element name="Solicitud_Informacion_Vehiculos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:string" name="numExpediente"/>
+				<xs:element type="alfa2" name="estado"/>
+				<xs:element name="Solicitudes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Solicitud" type="Solicitud" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Solicitud"  >
+		<xs:sequence>
+			<xs:element name="estado" type="alfa2"/>
+			<xs:element name="motivo" minOccurs="1" type="alfa2"/>
+			<xs:element name="tipoInforme" minOccurs="1" type="alfa2"/>
+			<xs:element name="matricula" type="tipoMatricula"/>
+			<xs:element name="bastidor" type="tipoBastidor"/>
+			<xs:element name="nive"  type="tipoNive"/>
+            <xs:element name="codigoTasa" minOccurs="1" type="tipoTasa"/>
+            <xs:element name="informe" type="tipoB64" />
+		</xs:sequence>
+	</xs:complexType>	
+	
+	<xs:simpleType name="tipoB64">
+		<xs:restriction base="xs:base64Binary">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa2">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoTasa">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa15">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	 <xs:simpleType name="tipoBastidor">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="21"/>
+			<xs:pattern value="[a-zA-Z0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoMatricula">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+			<xs:pattern value="[a-zA-Z0-9]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoNive">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{1,32}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

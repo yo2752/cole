@@ -1,0 +1,166 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+  
+<div class="contentTabs" id="DatosdelColegiado" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">  
+	<div class="contenido">		
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos de Colegiado</td>
+		</tr>
+	</table>
+
+
+		<table cellSpacing="3" class="tablaformbasica" cellPadding="0" summary="Datos usuario principal">
+			<tr>
+			<s:if test="%{altaNuevo}">
+				<s:hidden id="alta" name="altaNuevo" value="true"></s:hidden>
+				<td align="left" nowrap="nowrap"><br/>
+					<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado<span class="naranja">*</span></label>	
+					<s:textfield name="contratoBean.datosColegiado.numColegiado" 
+					id="numColegiadoUsuarioPpal" 
+					onfocus="this.className='inputfocus';" 
+					size="30" maxLength="20"/>
+				</td>
+				<td align="left" nowrap="nowrap"><br/>
+					<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado Nacional</label>	
+					<s:textfield name="contratoBean.datosColegiado.numColegiadoNacional" 
+						id="numColegiadoNacionalUsuarioPpal" onblur="this.className='input2';" size="30" maxLength="20"/>
+				</td>
+			</s:if>
+			<s:else>
+				<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()}">
+					<td align="left" nowrap="nowrap"><br/>
+						<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado</label>	
+						<s:textfield name="contratoBean.datosColegiado.numColegiado" id="numColegiadoUsuarioPpal" cssClass="inputview" readonly="true"/>
+					</td>
+					<td align="left" nowrap="nowrap"><br/>
+						<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado Nacional</label>	
+						<s:textfield name="contratoBean.datosColegiado.numColegiadoNacional" 
+							id="numColegiadoNacionalUsuarioPpal" onblur="this.className='input2';" size="30" maxLength="20"/>
+					</td>
+				</s:if>
+				<s:elseif test="contratoBean.datosColegiado.numColegiadoNacional != null && contratoBean.datosColegiado.numColegiadoNacional != ''">
+					<td align="left" nowrap="nowrap"><br/>
+						<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado</label>	
+						<s:textfield name="contratoBean.datosColegiado.numColegiadoNacional" id="numColegiadoUsuarioPpal" cssClass="inputview" readonly="true"/>
+					</td>
+				</s:elseif>
+				<s:else>
+					<td align="left" nowrap="nowrap"><br/>
+						<label for="numColegiadoUsuarioPpal">N&uacute;mero Colegiado</label>	
+						<s:textfield name="contratoBean.datosColegiado.numColegiado" id="numColegiadoUsuarioPpal" cssClass="inputview" readonly="true"/>
+					</td>
+				</s:else>
+			</s:else>
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap"><br/>
+					<label for="aliasColegiado">Alias<span class="naranja">*</span></label>
+					<s:textfield name="contratoBean.datosColegiado.alias" 
+						id="aliasColegiado" onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';" 
+						size="30" maxLength="20"/>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="nombre">Nombre<span class="naranja">*</span></label>
+					<s:textfield name="contratoBean.datosColegiado.nombre" 
+					id="nombreUsuarioPpal" onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="60" maxLength="100"/>
+				</td>
+				<td  align="left" nowrap="nowrap">
+					<label for="nifNieUsuarioPpal">NIF/NIE<span class="naranja">*</span></label>			
+					<s:textfield name="contratoBean.datosColegiado.nif" 
+					id="nifNieUsuarioPpal" 
+					onblur="this.className='input2'; calculaLetraDni('nifNieUsuarioPpal');" 
+					onfocus="this.className='inputfocus';" 
+					size="9" maxLength="9"/>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="apellido1">Apellido1<span class="naranja">*</span></label>
+					<s:textfield name="contratoBean.datosColegiado.apellido1" 
+					id="apellido1UsuarioPpal" onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="60" maxLength="100"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="apellido2">Apellido2<span class="naranja">*</span></label>
+					<s:textfield name="contratoBean.datosColegiado.apellido2" 
+					id="apellido2UsuarioPpal" onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="60" maxLength="100"/>
+				</td>
+
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="correoElectronicoUsuarioPpal">Correo Electr&oacute;nico<span class="naranja">*</span></label>	
+						<s:textfield name="contratoBean.datosColegiado.correoElectronico" 
+						id="correoElectronicoUsuarioPpal" onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';" 
+						size="60" maxLength="100"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="NcorpmeUsuario">Ncorpme</label>
+					<s:textfield name="contratoBean.datosColegiado.ncorpme" 
+					id="NcorpmeUsuario" onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="20" maxLength="30"/>
+				</td>
+			</tr>
+			<tr>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="GrupoUsuario">Grupo Usuario Especial</label>
+					<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+						@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+						<s:select list="@trafico.datosSensibles.utiles.UtilesVistaDatosSensibles@getInstance().listarGrupos()"					
+							name="contratoBean.datosColegiado.idGrupoUsuario"
+							listKey="idGrupo" listValue="descGrupo"
+							headerKey="-1" headerValue="Ninguno" 						
+							id="idGrupoUsuario" />
+					</s:if>
+					<s:else>
+						<s:hidden name="contratoBean.datosColegiado.idGrupoUsuario"/>
+						<s:textfield readonly="true" value="%{@trafico.datosSensibles.utiles.UtilesVistaDatosSensibles@getInstance().traducirGrupo(contratoBean.datosColegiado.idGrupoUsuario)}" />
+					</s:else>
+				</td>
+				<td align="left" nowrap="nowrap">
+				<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||	@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+        			<label for="lbMobileGest">Mobile Gest:</label>
+	      			<s:select list="@org.gestoresmadrid.oegam2.utiles.UtilesVistaContrato@getInstance().getEsMobileGest()"
+						id="idMobileGest" onblur="this.className='input2';" onfocus="this.className='inputfocus';" name="contratoBean.mobileGest"
+						listKey="valorEnum" listValue="nombreEnum" headerKey="" headerValue=""
+						 onchange="mostrarEstadoMobileGest();"/>
+				</s:if>
+        		</td>
+			</tr>
+			
+		</table>
+		<table class="acciones">
+		<tr>
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+				@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+			<td>
+				<input type="button" class="boton" name="bGuardar" id="idBotonGuardar" value="Guardar" onClick="return guardarContrato('DatosdelColegiado');" onKeyPress="this.onClick"/>
+				&nbsp;
+					
+			</td>
+			</s:if>
+			
+			<td align="center">
+				<input type="button" class="boton" name="bVolver" id="bVolver" value="Volver" onClick="nuevaConsulta();" onKeyPress="this.onClick" />&nbsp;                     
+		     </td>
+		</tr>
+	</table>
+
+	</div>
+
+</div>
+

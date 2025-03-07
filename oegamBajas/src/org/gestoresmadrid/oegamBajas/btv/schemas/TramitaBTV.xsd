@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Administrador (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <xs:element name="Solicitud_Registro_Entrada">
+        <xs:annotation>
+            <xs:documentation>Solicitud de trámite firmada por el Remitente</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Datos_Firmados"/>
+                <xs:element name="Firma" type="tipoFirma"/>
+            </xs:sequence>
+            <xs:attribute name="Version" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--Elementos predefinidos-->
+    <xs:element name="Datos_Genericos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Organismo" type="tipoOrganismo"/>
+                <xs:element name="Remitente" type="Datos_Remitente"/>
+                <xs:element name="Interesados">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Interesado" type="Datos_Interesado"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Asunto" type="Asunto"/>
+                <xs:element name="Destino" type="Destino"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Datos_Especificos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Datos_Colegio">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Id"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datos_Gestoria">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Id"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datos_Gestor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Filiacion">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="70"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="DOI" type="tipoDOI"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Numero_Expediente_Gestor" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="0"/>
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Datos_Expediente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Tipo_Tramite">
+                                <xs:simpleType>
+                                    <xs:restriction base="tipoTramite">
+                                        <xs:length value="1"/>
+                                        <xs:enumeration value="4"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Motivo_Transmision">
+                                <xs:simpleType>
+                                    <xs:restriction base="tipoMotivo">
+                                        <xs:length value="1"/>
+                                        <xs:enumeration value="1"/>
+                                        <xs:enumeration value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Fecha_Tramite" type="tipoFechaAAAAMMDD"/>
+                            <xs:element name="Jefatura">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Sucursal">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Tasas">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Tasa_Tramite" type="tipoTasa"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datos_Vehiculo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Datos_Matriculacion">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Matricula">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:minLength value="0"/>
+                                                  <xs:maxLength value="9"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Bastidor">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="6"/>
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Titular">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DOI" type="tipoDOItitular"/>
+                            <xs:element name="Datos_Representante" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="DOI" type="tipoDOI"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Solicitante" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DOI" type="tipoDOI"/>
+                            <xs:element name="Datos_Representante" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="DOI" type="tipoDOI"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Indicadores">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Pais_Destino">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Acreditacion_Posesion" type="tipoSI" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Texto_Legal" type="tipoTextoLegal"/>
+                <xs:element name="Firma_Gestor" type="tipoFirma"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Datos_Firmados">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Datos_Genericos"/>
+                <xs:element ref="Datos_Especificos"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Id">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <!--Tipos complejos-->
+    <xs:complexType name="Datos_Remitente">
+        <xs:sequence>
+            <xs:element name="Nombre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="250"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Apellidos" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="120"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Documento_Identificacion">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Numero" type="tipoDOI_Remitente"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Correo_Electronico" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="250"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Interesado">
+        <xs:sequence>
+            <xs:element name="Nombre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="250"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Apellidos" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="120"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Documento_Identificacion">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Numero" type="tipoDOI"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Correo_Electronico" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="250"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Asunto">
+        <xs:sequence>
+            <xs:element name="Codigo">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="BTETC"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Descripcion">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration
+                            value="Solicitud de Baja Telemática por Exportación o Tránsito Comunitario"
+                        />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Destino">
+        <xs:sequence>
+            <xs:element name="Codigo">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="101001"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Descripcion">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="DGT - Vehículos"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--Tipos simples-->
+    <xs:simpleType name="tipoDOItitular">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|[A-Z]\d{7}[A-Z]"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoDOI">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoDOI_Remitente">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoFechaAAAAMMDD">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))"/>
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:simpleType name="tipoTasa">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="12"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+    <xs:simpleType name="tipoTramite">
+        <xs:restriction base="xs:string">
+            <xs:length value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoMotivo">
+        <xs:restriction base="xs:string">
+            <xs:length value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoFirma">
+        <xs:restriction base="xs:base64Binary">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoTextoLegal">
+        <xs:restriction base="xs:string">
+            <xs:enumeration
+                value="Este Colegio de Gestores Administrativos ha verificado que la solicitud de baja definitiva por Exportación o Tránsito Comunitario presentada cumple con todas las obligaciones establecidas en el Reglamento General de Vehículos y resto de la normativa aplicable, así como las derivadas de la aplicación de las Instrucciones de la Dirección General de tráfico vigentes en el momento de la solicitud."
+            />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoSI">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SI"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoOrganismo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DGT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

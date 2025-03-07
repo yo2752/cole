@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<div align="center">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td>Resumen Generación Documento Base:</td>
+		</tr>
+	</table>
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la generación" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+   		<tr>
+   			<th></th>
+   			<th>Generados</th>
+   			<th>Fallidos </th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<s:label style="color:green;" value="%{resum.numOk}"/>
+			</td>
+			<td>
+				<s:label style="color:red;" value="%{resum.numError}"/>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold;">
+				TOTAL
+			</td>
+			<td>
+				<s:label style="color:green" value="%{resumenDocBase.numOk}"/>
+				<s:if test="%{resumenDocBase.numOk != null && resumenDocBase.numOk != 0}">
+					<img id="despGenDocBase"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueGenDocBase();" />
+	   			</s:if>
+			</td>
+			<td>
+				<s:label style="color:red" value="%{resumenDocBase.numError}"/>
+				<s:if test="%{resumenDocBase.numError != null && resumenDocBase.numError != 0}">
+					<img id="despFallidosGenDocBase"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueFallidosGenDocBase();" />
+	   			</s:if>	
+			</td>
+		</tr>
+ 	</table>
+	<div id="bloqueGenDocBase" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+			<tr>
+				<td  style="width:100%;text-align:center;">Detalle Generados</td>
+			</tr>
+		</table>						
+		<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left">
+			<s:iterator value="resumenDocBase.listaOk">
+				<li><span style="text-align: left;"><s:property /></span></li>	
+			</s:iterator>
+		</ul>		
+	</div>		
+	<div id="bloqueFallidosGenDocBase" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+			<tr>
+				<td  style="width:100%;text-align:center;">Detalle Fallidas</td>
+			</tr>
+		</table>	
+		<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="resumenDocBase.listaError">
+				<li><span><s:property /></span></li>	
+			</s:iterator>
+		</ul>
+	</div>
+</div> 		

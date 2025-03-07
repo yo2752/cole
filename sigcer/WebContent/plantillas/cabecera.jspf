@@ -1,0 +1,24 @@
+
+ <div id="recuadro">
+ 	<div class="cabecera">
+    	<div id="logo" style="margin-left:-1px;"><img src="img/logogtms-2.jpg" alt="Colegio de Gestores Administrativos de Madrid." />
+    	</div>
+    	<div id="fonCab"> 	
+    	</div>
+    	<div id="titulo" style="height:108px">
+    		<div  style="float:right;padding:5px;padding-top:15px;background-color:transparent;width:500px;text-align:right;">
+    			<table style="width:480px; height:15px; background-color:transparent;text-align:right;border:0px;">
+	    		<tr><td colspan="3" style="text-decoration:none;color:white;font-size:1.25em;font-weight:bold;">Oficina Electr&oacute;nica para Gestores Administrativos</td></tr>	
+    				<tr><td colspan="3" style="text-decoration:none;color:white;font-size:1.25em;font-weight:bold;height:200px;"></td></tr>
+    			
+    			
+    			</table>
+
+    		</div>
+    		
+
+    		
+      	</div>
+   	</div>
+		
+   	</div>

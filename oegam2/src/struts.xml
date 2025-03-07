@@ -1,0 +1,1211 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.ui.theme" value="simple" /> 
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/> 	
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.excludePattern" value="/recargaCombosServlet,/recargaDatosSensiblesServlet,/recargaStatusOegamServlet,/cargarLopd,/jnlpServlet,/jnlpServlet05"/>
+	<constant name="struts.custom.i18n.resources" value="global" />
+	<constant name="struts.multipart.maxSize" value="52428800"/>
+	
+	<package name="default" extends="struts-default">	
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+<!--  -->
+		<interceptors>		
+			<interceptor name="interceptorSesiones" class="struts2.interceptors.InterceptorSesiones"/> 
+			<interceptor name="interceptorNotificaciones" class="struts2.interceptors.InterceptorNotificaciones"/>
+			<interceptor name="securityInterceptor" class="struts2.interceptors.SecurityInterceptor"/>              
+			<interceptor name="interceptorCirculares" class="struts2.interceptors.InterceptorCirculares"></interceptor>
+			
+			<interceptor-stack name="stackInterceptores">
+				<interceptor-ref name="interceptorSesiones" />
+				<interceptor-ref name="securityInterceptor" />
+     			<interceptor-ref name="defaultStack"/>  
+     			<interceptor-ref name="interceptorCirculares"></interceptor-ref>
+			</interceptor-stack>
+			
+		</interceptors>
+
+		<default-interceptor-ref name="stackInterceptores" />
+   
+		<global-results>					
+			<result name="forbidden" type="tiles">errorPermisos</result>
+			<result name="excepcionSinCapturar" type="tiles">errorGenerico</result>
+			<result name="sesionExpirada" type="tiles">sesionExpirada</result>
+    		<result name="input" type="tiles">error</result>
+    		<result name="error" type="tiles">error</result>
+    		<result name="ERROR" type="tiles">error</result>
+    		<result name="redireccionOegam3" type="tiles">redireccionOegam3</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="excepcionSinCapturar" />
+		</global-exception-mappings>
+		
+		<action name="index">
+			<result name="success" type="tiles">bienvenida</result>
+		</action>
+		
+		<!--  <action name="colegioAccion" class="arbol.acciones.ColegioAccion" >
+	    	<result name="success">/madrid/index.jsp</result>
+		</action> -->
+		
+		<action name= "*DetallePersona" method="{1}" class="org.gestoresmadrid.oegam2.personas.controller.action.DetallePersonaAction">
+			<result name ="success" type="tiles">detallePersona</result>
+			<result name="expedienteDireccion" type="tiles">expedientesDireccion</result>	
+		</action>
+		
+		<action name= "*DetalleInterviniente" method="{1}" class="org.gestoresmadrid.oegam2.intervinienteTrafico.controller.action.DetalleIntervinienteAction">
+			<result name ="success" type="tiles">detalleInterviniente</result>
+		</action>
+		
+		<action name= "*ConsultaEvolucionPersona" method="{1}" class="org.gestoresmadrid.oegam2.personas.controller.action.ConsultaEvolucionPersonaAction">
+			<result name ="success">/persona/consultaEvolucionPersona.jsp</result>
+		</action>
+		
+		<action name="*ConsultaPersona" method="{1}" class="org.gestoresmadrid.oegam2.personas.controller.action.ConsultaPersonaAction">
+			<result name="success" type="tiles">consultaPersona</result>
+		</action>
+		
+		<action name="*ConsultaInterviniente" method="{1}" class="org.gestoresmadrid.oegam2.intervinienteTrafico.controller.action.ConsultaIntervinienteAction">
+			<result name="success" type="tiles">consultaInterviniente</result>
+		</action>
+		
+		<!-- <action name="*Contratos" method="{1}" class="escrituras.acciones.ContratoAction">
+		    <result name="detalleContratos" type="dispatcher">detalleContratos?idContratoSeleccion=${idContrato}</result>	
+		    <result name="manteniemientoPermisosContratos" type="dispatcher">manteniemientoPermisosContratos?codigo_AplicacionSeleccion=${codigoAplicacion}</result>		   
+			<result name="listaContratos" type="tiles">listaContratos</result>
+			<result name="listaDetalle" type="tiles">listaDetalle</result>	
+			<result name="colegiadoDetalle" type="tiles">colegiadoDetalle</result>
+			<result name="nuevoContrato" type="tiles">nuevoContrato</result>
+			<result name="listaModificaciones" type="tiles">listaModificaciones</result>
+			<result name="modificarContrato" type="tiles">modificarContrato</result>	
+		    <result name="listaContratoAplicacion" type="tiles">listaContratoAplicacion</result>
+		    <result name="listaUsuarioContratos" type="tiles">listaUsuarioContratos</result>	
+		    <result name="contratoUsuarioDetalle" type="tiles">contratoUsuarioDetalle</result>
+		    <result name="contratoUsuarioAlta" type="tiles">contratoUsuarioAlta</result>
+		    <result name="listaUsuarioModificacion" type="tiles">listaUsuarioModificacion</result>
+		    <result name="SUCCESS" type="tiles">inicio</result>			     				 
+		</action> -->
+		
+		<action name="*Oegam" method="{1}" class="administracion.acciones.OegamAction">
+			<result name="descargarManual" type="stream">
+			  <param name="contentDisposition">attachment;filename="Manual_Usuario_Oegam.pdf"</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*ContratoNuevo" method="{1}" class="escrituras.acciones.ContratoNuevoAction">
+			<result name="consultaContrato" type="tiles">consultaContrato</result>	
+			<result name="modificarContrato" type="tiles">modificarContrato</result>		
+			<result name ="popPupMotivo">/contrato/motivoPopPup.jsp</result>    
+			<result name ="popPupActualizarAlias">/contrato/actualizarAliasPopPup.jsp</result>  
+			<result name="irEvolucionContrato" type="chain">
+				<param name="actionName">consultarAntEvolucionContrato</param>
+			</result>				 
+		</action>
+		
+		<action name="*DetalleContrato" method="{1}" class="org.gestoresmadrid.oegam2.contrato.controller.action.DetalleContratoAction">
+			<result name ="success" type="tiles">detalleContrato</result>	
+			<result name="irEvolucionUsuario" type="chain">
+				<param name="actionName">consultarEvolucionUsuario</param>
+			</result>
+			 				 
+		</action>
+		
+		<action name="*ContratosAjax" method="{1}" class="org.gestoresmadrid.oegam2comun.contratos.ajax.ContratosAjax">
+           	<result name="applet">trafico/empty.jsp</result>
+  		</action>
+		
+		<action name="*EvolucionUsuario" method="{1}"
+		
+			class="org.gestoresmadrid.oegam2.evolucionUsuario.controller.action.EvolucionUsuarioAction">
+			<result name="success">/contrato/consultaEvolucionUsuario.jsp</result>
+		</action>
+		
+		<action name="*ConsultaCreditoCargar" method="{1}" class="org.gestoresmadrid.oegam2.creditos.controller.action.ConsultaCreditoCargarAction">
+			<result name="success" type="tiles">consultaCreditoCargar</result>
+		</action>
+		
+		<action name="*Colegiados" method="{1}" class="escrituras.acciones.ColegiadoAction">
+			<result name="listaColegiados" type="tiles">listaColegiados</result>							  
+		</action>
+		
+		<action name="*ConsultaColegiado" method="{1}" class="org.gestoresmadrid.oegam2.controller.action.ConsultaColegiadosAction">
+			<result name="success" type="tiles">consultaColegiados</result>							  
+		</action>
+		
+		<!-- DATOS SENSIBLES-->		
+		<!--action name="*DatosSensibles" method="{1}" class="trafico.datosSensibles.acciones.DatosSensiblesAction"-->
+		
+		 <action name="*DatosSensibles" method="{1}" class="org.gestoresmadrid.oegam2.datosSensibles.controller.action.DatosSensiblesAction">
+			<result name="consultaDatosSensibles" type="tiles">consultaDatosSensibles</result>	
+			<result name="altaDatosSensibles" type="tiles">altaDatosSensibles</result>
+			<result name="consultaBastidor" type="tiles">consultaBastidor</result>	
+			<result name="altaBastidor" type="tiles">altaBastidor</result>		  
+			<result name="importarDatosSensibles" type="tiles">importarDatosSensibles</result>
+			<result name="irEvolucion" type="chain">
+				<param name="actionName">consultarEvolucionDatSensibles</param>
+			</result>		     				 
+		</action>
+		<action name= "*EvolucionDatSensibles" method="{1}" class="org.gestoresmadrid.oegam2.datosSensibles.controller.action.EvolucionDatosSensiblesAction">
+			<result name ="success">/datosSensibles/evolucionDatosSensibles.jsp</result>
+		</action>
+		
+		<!-- ESTADISTICAS ANTIGUO // Borrar-->
+		<action name="*Estadisticas" method="{1}" class="estadisticas.acciones.EstadisticasAction">
+			<result name ="listadoGeneralEstadisticas" type="tiles">listadoGeneralEstadisticas</result>			
+			<result name ="listadoUsuariosIPEstadisticas" type="tiles">listadoUsuariosIPEstadisticas</result>
+			<result name ="listadoJustificantesNoUltimadosEstadisticas" type="tiles">listadoJustificantesNoUltimadosEstadisticas</result>
+			<result name ="listadoTasaExpedientes" type="tiles">listadoTasaExpedientes</result>
+			<result name ="listadoVehiculosEstadisticas" type="tiles">listadoVehiculosEstadisticas</result>
+			<result name ="listadoMatriculasEstadisticas" type="tiles">listadoMatriculasEstadisticas</result>			
+			<result name="mostrarDocumentoEstadisticas" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>			
+		</action>
+		
+		
+		<!-- ESTADISTICAS -->								 
+		<action name="*ListadoUsuarios" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoUsuariosAction">
+			<result name="success" type="tiles">listadoUsuarios</result>
+			<result name="pagUsuariosOnlineAgrupados">/estadisticas/listadoUsuarios/usuariosOnlineAgrupados.jsp</result>
+			<result name="pagUsuariosOnlineRepetidos">/estadisticas/listadoUsuarios/usuariosOnlineRepetidos.jsp</result>
+		</action>
+		
+		<action name="*ListadoJustificantesNoUltimados" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoJustificantesNoUltimadosAction">
+			<result name="success" type="tiles">listadoJustificantesNoUltimados</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*ListadoMatriculas" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoMatriculasAction">
+			<result name="success" type="tiles">listadoMatriculas</result>
+		</action>
+		
+		<action name="*ListadoTasasPorExpediente" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoTasasPorExpedienteAction">
+			<result name="success" type="tiles">listadoTasasPorExpediente</result>
+		</action>
+		
+		<action name="*ListadoVehiculos" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoVehiculosAction">
+			<result name="success" type="tiles">listadoVehiculos</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*ListadoGeneralYPersonalizado" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoGeneralYPersonalizadoAction">
+			<result name="success" type="tiles">listadoGeneralYPersonalizado</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*ListadoMensajesErrorServicio" method="{1}" class="org.gestoresmadrid.oegam2.estadisticas.listados.controller.action.ListadoMensajesErrorServicioAction">
+			<result name="success" type="tiles">listadoMensajesErrorServicio</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		
+		<!-- ESCRITURAS -->		
+		<action name="*ContadoresUso" method="{1}" class="escrituras.acciones.ContadoresUsoAction">
+			<result name="listaContadoresUso" type="tiles">listaContadoresUso</result>		  
+		</action>
+		
+		 
+		 <action name="Login" class="escrituras.acciones.LoginAction">
+			<result name ="applet">registradores/empty.jsp</result>	
+			<!--result name ="applet">registradores/emptyNueva.jsp</result-->
+		</action>
+		
+		<action name="*Info" method="{1}" class="general.acciones.InfoAction">
+			<result name ="recuperar">recuperarInfo</result>	
+		</action>
+		
+		<action name="ErrorViafirma" class="error.acciones.ErrorViafirmaAction">
+			<result name="success" type="tiles">error</result>
+		</action>
+
+		<!-- CONTROL DEL GESTOR DE PROCESOS BATCH -->
+		<action name="*Procesos" method="{1}" class="colas.acciones.ControlGestorColasAction">
+			<result name="listar" type="tiles">listaProcesos</result>
+			<result name="success" type="tiles">listaProcesos</result>
+			<result name="data" type="tiles">dataProcesos</result>
+		</action>
+		
+		<!-- CONTROL DEL GESTOR DE PROCESOS BATCH -->
+		<action name="*GestionProceso" method="{1}" class="org.gestoresmadrid.oegam2.controller.proceso.action.ProcesosAction">
+			<result name="pagListaProcesos" type="tiles">pagListaProcesos</result>
+			<result name="login" type="chain">
+				<param name="actionName">inicioProcesoLoginCYP</param>
+			</result>
+		</action>
+		
+		<action name="*LoginCYP" method="{1}" class="org.gestoresmadrid.oegam2.controller.proceso.action.LoginColasYProcesosAction">
+			<result name="loginCYP" type="tiles">loginCYP</result>
+			<result name="cambioPassword" type="tiles">cambioPassword</result>
+			<result name="inicioGestionCola" type="chain">
+				<param name="actionName">inicioGestionCola</param>
+			</result>
+			<result name="inicioGestionProceso" type="chain">
+				<param name="actionName">listaGestionProceso</param>
+			</result>
+		</action>
+		
+		<action name="*GestionCola" method="{1}" class="org.gestoresmadrid.oegam2.colas.controller.action.GestionColasAction">
+			<result name="pagGestionCola" type="tiles">pagGestionCola</result>
+			<result name="login" type="chain">
+				<param name="actionName">inicioColaLoginCYP</param>
+			</result>
+		</action>
+		
+		<action name="*GCAjax" method="{1}" class="org.gestoresmadrid.oegam2.colas.controller.action.GestionColaAjaxAction">
+			<result name="pestaniaPeticionesCola">/gestionCola/pestaniaSolicitudesCola.jsp</result>
+			<result name="pestaniaUltimaEjecucion">/gestionCola/pestaniaUltimaEjecucion.jsp</result>
+			<result name="pagConsultaGestionCola" type="tiles">pagConsultaGestionCola</result>
+		</action>
+
+		<action name="*Notificaciones" method="{1}" class="escrituras.acciones.NotificacionAction">
+			<result name="verTodas" >notificarRegistrar.action</result>	
+		</action>	
+		
+		<action name="*NotificacionesAjax" method="{1}" class="escrituras.acciones.NotificacionAjaxAction">
+			<interceptor-ref name="interceptorNotificaciones"/>
+		</action>
+		
+		<action name="*CambioEstado" method="{1}" class="administracion.acciones.CambioEstadoAction">
+			<result name="popUp">/administracion/seleccionEstado.jsp</result>
+		</action>
+		
+		<action name="*Monitorizacion" method="{1}" class="org.gestoresmadrid.oegam2.controller.action.MonitorizacionAction">
+			<result name="monitorizaProcesos" type="tiles">monitorizaProcesos</result>
+			<result name="estadisticaProcesos" type="tiles">estadisticaProcesos</result>
+		</action>
+
+		<!-- RECONOCIMIENTO MEDICO -->
+		<action name="*_ReconocimientoMedico" method="{1}" class="general.acciones.ReconocimientoMedicoAction">
+			<result name="list" type="tiles">reconocimientos_list</result>
+			<result name="consulta" type="tiles">reconocimientos_consulta</result>
+			<result name="popUp">/reconocimientos/seleccionEstado.jsp</result>
+			<result name="popUpFechaVisita">/reconocimientos/seleccionFechaVisita.jsp</result>
+			<result name="peticionPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="resumenXLS" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>
+		
+		<!-- ALTA DE MARCAS DE VEHÍCULOS -->		
+		<action name="*MarcaDgt" method="{1}" class="administracion.acciones.MarcaDgtAction">	
+			<result name="jsp" type="tiles">altaMarcaDgt</result>		  		     				 
+		</action>
+		
+		<!-- GESTIÓN DE LOS ALMACENES DE CLAVES PÚBLICAS Y PRIVADAS -->		
+		<action name="*KeyStore" method="{1}" class="administracion.acciones.KeyStoreAction">	
+			<result name="jspKeyStores" type="tiles">jspKeyStores</result>
+			<result name="popUpDetalle">/administracion/certificateDetails.jsp</result>
+			<result name="popUpImportacion">/administracion/certificateImport.jsp</result>
+			<result name="exportacionCertificado" type="stream">
+				<param name="inputName">inputStream</param>
+			    <param name="contentDisposition">attachment;filename=${fileName}</param>
+			    <param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<!-- RECARGA DE CACHES -->
+		<action name="recargaCaches"  method="inicio" class="administracion.acciones.RecargaCachesAction">
+			<result name="success" type="tiles">recargaCaches</result>	
+		</action>
+		<action name="*_RecargaCaches" method="{1}" class="administracion.acciones.RecargaCachesAction">
+			<result name="success" type="tiles">recargaCaches</result>	
+		</action>
+		
+		<!-- CAMBIO DE CONTRATO DEL ADMINISTRADOR -->
+		<action name="CambioContrato" class="administracion.acciones.CambioContratoAction">
+	        <result name="success" type="tiles">inicio</result>
+        </action>
+		
+		<action name="*Properties" method="{1}" class="administracion.acciones.PropertiesAction">	
+			<result name="success" type="tiles">jspProperties</result>
+			<result name="cerrarSesion" type="redirectAction" >
+				<param name="actionName">invalidaCerrarSession.action</param>
+			</result>
+		</action> 
+
+		<action name="*GrupoUsuarios" method="{1}" class="grupoUsuarios.acciones.GrupoUsuariosAction">
+			<interceptor-ref name="stackInterceptores" />       
+             <result name="success" type="tiles">consultaGrupos</result>
+        </action>
+
+		<action name = "*Security" method="{1}" class="org.gestoresmadrid.oegam2.controller.security.SecurityAction">
+		</action>
+
+		<action name="*Justificante576" method="{1}" class="org.gestoresmadrid.oegam2.controller.action.Justificante576Action">
+			<result name="success" type="tiles">aeat_descargaJustificante576</result>
+			<result name="peticionPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*Logs" method="{1}" class="org.gestoresmadrid.logs.controller.LogsAction">
+             <result name="success" type="tiles">consultaLogs</result>
+             <result name="descargarLog" type="stream">
+             	<param name="contentType">application/zip</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+        </action>
+        
+        <action name="*Favoritos" method="{1}" class="org.gestoresmadrid.oegam2.controller.action.FavoritosAction">
+			<result name="success" type="tiles">favoritos</result>
+		</action>
+        
+        <action name="*ConsultaNotificacion" method="{1}" class="org.gestoresmadrid.oegam2.seguridadsocial.controller.action.ConsultaNotificacionAction">
+            <result name="success" type="tiles">inicioConsultaNotificacion</result>
+            <result name="peticionPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="evolucion">/seguridadsocial/evolucionNotificaciones.jsp</result>
+			<result name="aceptacion" type="tiles">aceptacionServicio</result>
+        </action>
+        
+        <action name="*PreferenciasSeguridadSocial" method="{1}" class="org.gestoresmadrid.oegam2.seguridadsocial.controller.action.PreferenciasSeguridadSocialAction">
+            <result name="success" type="tiles">inicioPreferenciasSeguridadSocial</result>
+			<result name="aceptacion" type="tiles">aceptacionServicio</result>
+        </action>
+        
+        <action name="*ImpresionPegatinas" method="{1}" class="org.gestoresmadrid.oegam2.pegatinas.controller.action.ImpresionPegatinasAction">
+            <result name="success" type="tiles">impresionPegatinas</result>
+            <result name="evolucion">/pegatinas/evolucionPegatinas.jsp</result>
+            <result name="identificadores">/pegatinas/introducirIdentificador.jsp</result>
+            <result name="peticionPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			
+			<result name="notificaPegatina">pegatinas/notificaPegatina.jsp</result>
+			<result name="imprimirPegatinas" type="tiles">imprimirPegatinas</result>
+        </action>
+        
+		<action name="*GestionMateriales" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.GestionMaterialesAction">
+			<result name="success" type="tiles">gestionMateriales</result>
+		</action>
+		
+		<action name="*StockMateriales" method="{1}"
+			class="org.gestoresmadrid.oegam2.material.controller.action.ConsultaMaterialStockAction">
+			<result name="success" type="tiles">stockMateriales</result>
+			<result name="recargar" >/trafico/materiales/popUpRecargar.jsp</result>
+			<result name="agregar" >/trafico/materiales/popUpAgregar.jsp</result>
+			<result name="verEvolucion" >/trafico/materiales/popUpEvolucion.jsp</result>
+		</action>
+		
+		<action name="*EvolucionMaterial" method="{1}"
+		class="org.gestoresmadrid.oegam2.material.controller.action.EvolucionMaterialStockAction">
+			<result name="evolucion">/trafico/materiales/popUpEvolucion.jsp</result>
+		</action>
+		
+		
+		<action name="*EvolucionMateriales" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.EvolucionMaterialesAction">
+			<result name="success">/trafico/materiales/historicoMateriales.jsp
+			</result>
+		</action>
+
+		<action name="*EvolucionPedido" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.EvolucionPedidoAction">
+			<result name="success">/trafico/materiales/evolucionPedidos.jsp</result>
+		</action>
+
+		<action name="*PaquetesPedido" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.PaquetesPedidoAction">
+			<result name="success">/trafico/materiales/paquetesPedidos.jsp</result>
+		</action>
+
+		<action name="*DetallePedido" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.DetallePedidoAction">
+			<result name="success">/trafico/materiales/consultarPedido.jsp</result>
+			<result name="modify" type="redirectAction" >
+				<param name="actionName">modifyModifyPedido.action</param>
+				<param name="pedido">${pedido}</param>
+			</result>
+		</action>
+
+		<action name="*FacturacionStock" method="{1}"
+			    class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.FacturacionStockAction">
+			<result name="success" type="tiles">facturacionStock</result>
+			<result name="GenerarExcelStock" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*FacturacionSemanal" method="{1}"
+			    class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.FacturacionSemanalAction">
+			<result name="success" type="tiles">facturacionSemanal</result>
+			<result name="GenerarExcelStock" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*CrearIncidencia" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.CrearIncidenciaAction">
+			<result name="success" type="tiles">altaIncidencia</result>
+		</action>
+
+		<action name="*GestionIncidencia" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.GestionIncidenciasAction">
+			<result name="success" type="tiles">gestionIncidencia</result>
+			<result name="modificacion" type="redirectAction" >
+				<param name="actionName">modificaCrearIncidencia.action</param>
+				<param name="incidenciaId">${incidenciaId}</param>
+			</result>
+		</action>
+
+		<action name="*GestionPedidos" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.GestionPedidosAction">
+			<result name="success" type="tiles">gestionPedidos</result>
+		</action>
+
+		<action name="*CrearPedido" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.CrearPedidoAction">
+			<result name="crearPedido" type="tiles">crearPedido</result>
+		</action>
+
+		<action name="*ModifyPedido" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.ModifyPedidoAction">
+			<result name="modifyPedido" type="tiles">crearPedido</result>
+		</action>
+
+		<action name="*CrearPedidoAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.CrearPedidoAjaxAction">
+		    <result type="stream">
+		        <param name="contentType">text/plain</param>
+		    </result>
+		</action>
+		
+		<action name="*GestionStock" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.GestionStockAction">
+			<result name="success" type="tiles">gestionStock</result>
+		</action>
+
+		<action name="*PegatinasPeticionStock" method="{1}"
+			class="org.gestoresmadrid.oegam2.pegatinas.controller.action.PegatinasPeticionStockAction">
+			<result name="success" type="tiles">stockPegatinas</result>
+			<result name="evolucion">/pegatinas/evolucionPegatinasPeticion.jsp
+			</result>
+		</action>
+        
+        <action name="*GestionPegatinas" method="{1}" class="org.gestoresmadrid.oegam2.pegatinas.controller.action.GestionPegatinasAction">
+            <result name="success" type="tiles">gestionPegatinas</result>
+            <result name="popupStock">/pegatinas/stockPopup.jsp</result>
+        </action>
+        
+        <action name="*PegatinasPeticionStock" method="{1}" class="org.gestoresmadrid.oegam2.pegatinas.controller.action.PegatinasPeticionStockAction">
+            <result name="success" type="tiles">stockPegatinas</result>
+            <result name="evolucion">/pegatinas/evolucionPegatinasPeticion.jsp</result>
+        </action>
+        
+        <action name="*PegatinasHistoricoStock" method="{1}" class="org.gestoresmadrid.oegam2.pegatinas.controller.action.PegatinasStockHistoricoAction">
+            <result name="success" type="tiles">stockHistorico</result>
+        </action>
+        
+        <action name="*JefaturaPegatinas" method="{1}" class="org.gestoresmadrid.oegam2.pegatinas.controller.action.JefaturaPegatinasAction">
+			<result name="success" type="tiles">asociarJefaturaPegatinas</result>
+	    </action>
+		        
+       <!--  <action name="*RespuestaSeguridadSocial" method="{1}" class="org.gestoresmadrid.oegam2.seguridadsocial.controller.action.RespuestaSeguridadSocialAction">
+            <result name="success">/seguridadsocial/respuestaSeguridadSocial2.jsp</result>
+        </action> -->
+        
+        <action name="*AltaPoderes" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.AltaPoderesTransporteAction">
+			<result name="altaPoderTransporte" type="tiles">altaPoderTransporte</result>
+			<result name="descargarPoder" type="stream">
+		  		<param name="inputName">inputStream</param>
+		 		<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+        </action>
+        
+        <action name="*ConsultaPoderes" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.ConsultaPoderesTransporteAction">
+			<result name="success" type="tiles">consultaPoderTransporte</result>
+			<result name="descargarPdf" type="stream">
+		  		<param name="inputName">inputStream</param>
+		 		<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+        </action>
+        
+        <action name="*AjaxPoderTrans" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.PoderesTransporteAjaxAction"></action>
+	
+
+         <!-- ALTA FORMULARIO EMBARCACIONES 06 -->		
+		<action name="*AltaFormulario" method="{1}" class="org.gestoresmadrid.oegam2.embarcaciones.controller.action.AltaFormularioAction">	
+			<result name="success" type="tiles">altaFormulario</result>
+			<result name="descargarPdf" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="descargarTxt" type="stream">
+				<param name="contentType">application/txt</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+        
+       	<action name="*NotifTransporte" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.NotificacionesTransporteAction">
+			<result name="success" type="tiles">consultaNotTransporte</result>
+			<result name="descargarPdf" type="stream">
+		  		<param name="inputName">inputStream</param>
+		 		<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+        </action>
+        
+        <action name="*AltaPoderes" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.AltaPoderesTransporteAction">
+			<result name="altaPoderTransporte" type="tiles">altaPoderTransporte</result>
+			<result name="descargarPoder" type="stream">
+		  		<param name="inputName">inputStream</param>
+		 		<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+        </action>
+        
+        <action name="*ConsultaPoderes" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.ConsultaPoderesTransporteAction">
+			<result name="success" type="tiles">consultaPoderTransporte</result>
+			<result name="descargarPdf" type="stream">
+		  		<param name="inputName">inputStream</param>
+		 		<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+        </action>
+        
+        <action name="*AjaxPoderTrans" method="{1}" class="org.gestoresmadrid.oegam2.transporte.controller.action.PoderesTransporteAjaxAction"></action>
+	
+		<!-- Modelos -->
+		
+		<action name= "*MD" method="{1}" class="org.gestoresmadrid.oegam2.modelos.controller.action.AltaModelosAction">
+			<result name ="altaModelo600" type="tiles">altaModelo600</result>
+			<result name ="altaModelo601" type="tiles">altaModelo601</result>
+			<result name="descargarDoc" type="stream">
+			  <param name="inputName">inputStream</param>
+			  <param name="contentType">application/pdf</param>
+			  <param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		<action name= "*AjaxMd" method="{1}" class="org.gestoresmadrid.oegam2.modelos.controller.action.ModelosAjaxAction">
+			<result name ="pestaniaBienRustico">/modelos/bien/rustico/bienRustico.jsp</result>
+			<result name ="pestaniaBienUrbano">/modelos/bien/urbano/bienUrbano.jsp</result>
+			<result name ="pestaniaOtroBien">/modelos/bien/otro/otroBien.jsp</result>
+			<result name ="pagTransmitente">/modelos/personas/transmitente.jsp</result>
+			<result name ="pagSujetoPasivo">/modelos/personas/sujetoPasivo.jsp</result>
+			<result name ="pagDatosBancarios600">/modelos/modelo600/pestaniaDatosBancarios.jsp</result>
+			<result name ="pagDatosBancarios601">/modelos/modelo601/pestaniaDatosBancarios.jsp</result>
+			<result name ="pagNotario600">/modelos/modelo600/pestaniaDocumento.jsp</result>
+			<result name ="pagNotario601">/modelos/modelo601/pestaniaDocumento.jsp</result>
+			<result name ="popPupPresentarModelo">/modelos/datosBancariosPopPup.jsp</result>
+			<result name ="pagBien600">/modelos/modelo600/pestaniaBienes.jsp</result>
+			<result name ="pagBien601">/modelos/modelo601/pestaniaBienes.jsp</result>
+		</action>
+		
+		<action name= "*ConsultaMd" method="{1}" class="org.gestoresmadrid.oegam2.modelos.controller.action.ConsultaModelosAction">
+			<result name ="success" type="tiles">consultaModelos</result>
+			<result name ="popUpCambioEstadoModelo">/modelos/cambiarEstado.jsp</result>
+			<result name ="popPupPresentarModelo">/modelos/datosBancariosPopPup.jsp</result>
+			<result name="irAltaModelos" type="chain">
+				<param name="actionName">altaMD</param>
+			</result>
+			<result name="irEvolucionModelo" type="chain">
+				<param name="actionName">consultarEvolucionMds</param>
+			</result>
+		</action>
+		
+		<action name= "*EvolucionMds" method="{1}" class="org.gestoresmadrid.oegam2.evolucionModelo600601.controller.action.EvolucionModelo600601Action">
+			<result name ="success">/modelos/evolucionModelo.jsp</result>
+		</action>
+		
+		<action name= "*ImpMd" method="{1}" class="org.gestoresmadrid.oegam2.impresion.modelos.controller.action.ImprimirMdAction">
+			<result name ="success" type="tiles">impresionModelos</result>
+			<result name="descargarDoc" type="stream">
+			  <param name="inputName">inputStream</param>
+			  <param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		<action name= "*importarModelos" method="{1}" class="org.gestoresmadrid.oegam2.modelos.controller.action.ImportarModelosAction">
+			<result name ="success" type="tiles">importarModelos</result>
+		</action>
+
+		<!-- BIENES -->
+		
+		<action name= "*BN" method="{1}" class="org.gestoresmadrid.oegam2.bienes.controller.action.AltaBienesAction">
+			<result name ="altaBienRustico" type="tiles">altaBienRustico</result>
+			<result name ="altaBienUrbano" type="tiles">altaBienUrbano</result>
+			<result name ="altaOtroBien" type="tiles">altaOtroBien</result>
+			<result name="irAConsultaBien" type="chain">
+				<param name="actionName">inicioConsultaBnS</param>
+			</result>
+			<result name="irAModelos" type="chain">
+				<param name="actionName">altaMD</param>
+			</result>
+			<result name="irARemesas" type="chain">
+				<param name="actionName">altaRms</param>
+			</result>
+			<result name="irAInmuebles" type="chain">
+				<param name="actionName">recuperarTramiteRegistroMd6</param>
+			</result>
+		</action>
+		
+		<action name= "*ConsultaBnS" method="{1}" class="org.gestoresmadrid.oegam2.bienes.controller.action.ConsultaBienesAction">
+			<result name ="success" type="tiles">consultaBienes</result>
+			<result name="popup" >/bien/otro/consulta.jsp</result>
+		</action>
+		
+		<action name= "*AjaxBn" method="{1}" class="org.gestoresmadrid.oegam2.bienes.controller.action.BienesAjaxAction"/>
+		
+		<!-- ATEX5 -->
+		<action name="*ConsultaAtx5Persona" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.ConsultaPersonaAtex5Action">
+			<result name="success" type="tiles">consultaPersonaAtex5</result>
+			<result name="popPupCambioEstado">/atex5/cambiarEstado.jsp</result>
+			<result name="irAltaPersonaAtex5" type="chain">
+				<param name="actionName">altaAltaAtx5Persona</param>
+			</result>
+			<result name="descargarPdf" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*AltaAtx5Persona" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.AltaConsultaPersonaAtex5Action">
+			<result name="altaPersonaAtex5" type="tiles">altaPersonaAtex5</result>
+			<result name="descargarPdf" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*EvolucionAtex5" method="{1}"
+			class="org.gestoresmadrid.oegam2.evolucionAtex5.controller.action.EvolucionAtex5Action">
+			<result name="success">/atex5/evolucionAtex5.jsp</result>
+		</action>
+		<action name="*AjaxAtex5" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.AjaxAtex5Action">
+			<result name="pestaniaDatosPersonasMasivas">/atex5/personasMasivas/pestaniaDatosPersonasMasivasAtex5.jsp
+			</result>
+			<result name="pestaniaDatosVehiculoMasivas">/atex5/vehiculosMasivas/pestaniaDatosVehiculosMasivasAtex5.jsp
+			</result>
+		</action>
+
+		<action name="*ConsultaAtx5Vehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.ConsultaVehiculoAtex5Action">
+			<result name="success" type="tiles">consultaVehiculoAtex5</result>
+			<result name="popUpCambioEstado">/atex5/cambiarEstado.jsp</result>
+			<result name="popUpAsignarTasa">/atex5/asignarTasaAtex5.jsp</result>
+			<result name="descargar" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+
+		<action name="*AltaAtx5Vehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.AltaConsultaVehiculoAtex5Action">
+			<result name="altaVehiculoAtex5" type="tiles">altaVehiculoAtex5
+			</result>
+			<result name="descargarPdf" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<!-- ATEX5 -->
+		
+        <!-- IP NO PERMITIDAS -->		
+<!-- 		<action name="*IpNoPermitidas" method="{1}" class="org.gestoresmadrid.oegam2.ipNoPermitidas.controller.action.IpNoPermitidasAction">
+			<result name="consultaIpNoPermitidas" type="tiles">consultaIpNoPermitidas</result>	
+			<result name="altaIpNoPermitidas" type="tiles">altaIpNoPermitidas</result>
+			<result name="irEvolucion" type="chain">
+				<param name="actionName">consultarEvolucionIpNoPermitidas</param>
+			</result>		     				 
+		</action>
+		<action name= "*EvolucionIpNoPermitidas" method="{1}" class="org.gestoresmadrid.oegam2.ipNoPermitidas.controller.action.EvolucionIpNoPermitidasAction">
+			<result name ="success">/ipNoPermitidas/evolucionIpNoPermitidas.jsp</result>
+		</action> -->
+		
+		<!-- MENSAJE ERROR SERVICIO -->
+		<action name="*MensajeErrorServicio" method="{1}" class="org.gestoresmadrid.oegam2.mensajeErrorServicio.controller.action.MensajeErrorServicioAction">
+			<result name ="listadoMensajeErrorServicio" type="tiles">listadoMensajeErrorServicio</result>			
+			<result name="obtenerExcel" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>			
+			<result name="generarExcel" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>			
+		</action>
+		
+		<!-- GESTIONAR PERMISO / DISTINTIVO / ITV-->
+		<action name="*GestionPDI" method="{1}"  class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.GestionPermDstvItvAction">
+			<result name="success" type="tiles">gestionarPermDstvItv</result>
+			<result name="datosDocuGener" type="tiles">datosDocuGener</result>
+			<result name="impDescarga" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="popUpNumSerie">/permisoDistintivoItv/introducirNumSerie.jsp</result>
+			<result name="popUpCambioEstado">/permisoDistintivoItv/cambiarEstado.jsp</result>
+		</action>
+		
+		<!-- GESTIONAR  DISTINTIVOS MEDIOAMBIENTALES-->
+		<action name="*GestionDstv" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.GestionDistintivoDgtAction">
+			<result name ="success" type="tiles">gestionDstv</result>		
+			<result name="popUpCambioEstado">/permisoDistintivoItv/cambiarEstadoDstv.jsp</result>
+			<result name="modificarVehiculoConsultaPDI" type="tiles">modificarVehiculoGestionDstv</result>
+			
+		</action>
+		<action name="*DetalleDocumento" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.DetalleDocPrmDstvFichaAction">
+			<result name ="success" type="tiles">datosDocuGener</result>		
+		</action>
+		
+		<!-- ALTA VEHICULOS NO MATRICULADOS EN OEGAM-->
+		<action name="*AltaVehNo" method="{1}"  class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.AltaVehNoMatOegamAction">
+			<result name="altaVehNoMatOegam" type="tiles">altaVehNoMatOegam</result>
+		</action>
+		
+		<action name="*ConsultaVehNo" method="{1}"  class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.ConsultaVehNoMatOegamAction">
+			<result name="success" type="tiles">consultaVehNoMatOegam</result>
+			<result name="popUpCambioEstado">/permisoDistintivoItv/cambiarEstadoDstv.jsp</result>
+			<result name="irAltaVehNoMaO" type="chain">
+				<param name="actionName">inicioAltaVehNo</param>
+			</result>
+		</action>
+		<action name="*EvolucionVehNo" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.EvolucionVehNoMatOegamAction">
+				<result name="success">/permisoDistintivoItv/evolucionVehNoMatOegam.jsp</result>
+		</action>
+	<!-- Consulta y alta generación KO -->
+		<action name="*ConsMatrKo" method="{1}"  class="org.gestoresmadrid.oegam2.consultaKo.controller.action.ConsultaKoAction">
+			<result name="success" type="tiles">consultaKo</result>
+			<result name="popUpAltaKo">/consultaKo/altaKo.jsp</result>
+			<result name="descargarExcelKo" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+					<param name="bufferSize">1024</param>
+			</result>
+			<result name="popUpCambioEstado">/consultaKo/cambiarEstado.jsp</result>
+		</action>
+		<action name="*EvMatrKo" method="{1}" class="org.gestoresmadrid.oegam2.consultaKo.controller.action.EvolucionConsultaKoAction">
+			<result name="success">/consultaKo/evolucionConsultaKo.jsp</result>
+		</action>
+
+
+		<action name="*AltaAtx5Vehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.AltaConsultaVehiculoAtex5Action">
+			<result name="altaVehiculoAtex5" type="tiles">altaVehiculoAtex5
+			</result>
+			<result name="descargarPdf" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*ConsultaAtx5Vehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.atex5.controller.action.ConsultaVehiculoAtex5Action">
+			<result name="success" type="tiles">consultaVehiculoAtex5</result>
+			<result name="popUpCambioEstado">/atex5/cambiarEstado.jsp</result>
+			<result name="popUpAsignarTasa">/atex5/asignarTasaAtex5.jsp</result>
+			<result name="descargar" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		
+		<!-- ARRENDATARIOS -->
+		
+		 <action name="*ConsultaArrendatarios" method="{1}"
+				class="org.gestoresmadrid.oegam2.arrendatarios.controller.action.ConsultaArrendatariosAction">
+			<result name="inicioConsultaArrendatarios" type="tiles">inicioConsultaArrendatarios</result>	
+	     	<result name="popPupCambioEstado">/arrendatarios/cambiarEstado.jsp</result>
+	        <result name="popPupFinalizar">/arrendatarios/finalizar.jsp</result>
+	     </action>	
+		<action name="*AltaArrendatarios" method="{1}"
+				class="org.gestoresmadrid.oegam2.arrendatarios.controller.action.AltaArrendatariosAction">
+			<result name="altaArrendatario" type="tiles">altaArrendatario</result>				
+		</action>	
+		
+		 <action name="*ModificarArrendatarios" method="{1}"
+				class="org.gestoresmadrid.oegam2.arrendatarios.controller.action.ModificarArrendatariosAction">
+				<result name="altaArrendatario" type="tiles">altaArrendatario</result>
+		</action>	
+			
+		<!-- CONDUCTOR -->
+		
+		<action name="*ConsultaConductorHabitual" method="{1}"
+				class="org.gestoresmadrid.oegam2.conductor.controller.action.ConsultaConductorHabitualAction">
+			<result name="inicioConsultaConductorHabitual" type="tiles">inicioConsultaConductorHabitual</result>	
+			<result name="popPupCambioEstado">/conductor/cambiarEstado.jsp</result>		
+			<result name="popPupModificarFechas">/conductor/popPupModificarFechas.jsp</result>				
+		</action>
+				
+		<action name="*ModificarConductorHabitual" method="{1}"
+				class="org.gestoresmadrid.oegam2.conductor.controller.action.ModificarConductorHabitualAction">
+				<result name="altaConductorHabitual" type="tiles">altaConductorHabitual</result>					
+		</action>
+				
+		<action name="*AltaConductorHabitual" method="{1}"
+				class="org.gestoresmadrid.oegam2.conductor.controller.action.AltaConductorHabitualAction">
+			<result name="altaConductorHabitual" type="tiles">altaConductorHabitual</result>			
+		</action>	
+		
+		
+		<!-- DIRe -->
+		
+		<action name="*ConsultaEmpresaDIRe" method="{1}"
+				class="org.gestoresmadrid.oegam2.DIRe.controller.action.ConsultaEmpresaDIReAction">
+			<result name="consulta_ConsultaEmpresaDIRe" type="tiles">tiles_consultaEmpresaDIRe</result>	
+			<result name="popPupCambioEstado">/DIRe/cambiarEstado.jsp</result>		
+			<result name="popPupModificarFechas">/DIRe/popPupModificarFechas.jsp</result>				
+		</action>
+				
+		<action name="*ModificarEmpresaDIRe" method="{1}"
+				class="org.gestoresmadrid.oegam2.DIRe.controller.action.ModificarEmpresaDIReAction">
+				<result name="modificar_ModificarEmpresaDIRe" type="tiles">tiles_modificarEmpresaDIRe</result>					
+		</action>
+				
+		<action name="*AltaEmpresaDIRe" method="{1}"
+				class="org.gestoresmadrid.oegam2.DIRe.controller.action.AltaEmpresaDIReAction">
+			<result name="alta_AltaEmpresaDIRe" type="tiles">tiles_altaEmpresaDIRe</result>			
+		</action>	
+		
+		<!--  LICENCIAS CAM -->
+		<action name= "*AltaSolicitudLicencia" method="{1}" class="org.gestoresmadrid.oegam2.licenciasCam.controller.action.AltaLicenciasCamAction">
+			<result name ="altaSolicitudLicencia" type="tiles">altaSolicitudLicencia</result>
+			<result name="descargarDocumento" type="stream">
+			  <param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name= "*ValidarDireccion" method="{1}" class="org.gestoresmadrid.oegam2.licenciasCam.controller.action.ValidarDireccionAction">
+			<result name ="success">/licenciasCam/validacionDireccion/listaValidaciones.jsp</result>
+			<result name ="altaSolicitudLicencia" type="tiles">altaSolicitudLicencia</result>
+		</action>
+		<action name= "*ConsultaSolicitudLicencia" method="{1}" class="org.gestoresmadrid.oegam2.licenciasCam.controller.action.ConsultaLicenciasCamAction">
+			<result name="success" type="tiles">consultaSolicitudLicencia</result>
+			<result name ="consultaSolicitudLicencia" type="tiles">consultaSolicitudLicencia</result>
+			<result name="popUpSeleccionEstado">/licenciasCam/seleccionEstado.jsp</result>
+		</action>
+		<action name="*EvolucionLicencia" method="{1}" class="org.gestoresmadrid.oegam2.evolucionLicenciasCam.controller.action.EvolucionLicenciasAction">
+			<result name="success">/licenciasCam/evolucionLicencias.jsp</result>
+		</action>
+		
+		<action name= "*AjaxLc" method="{1}" class="org.gestoresmadrid.oegam2.licenciasCam.controller.action.LicenciasAjaxAction">
+			<result name ="pagInteresadoPrincipal">/licenciasCam/datosInteresadoPrincipal.jsp</result>
+			<result name ="pagRepInteresado">/licenciasCam/datosRepresentante.jsp</result>
+			<result name ="pagNotificacion">/licenciasCam/pestaniaNotificacionLC.jsp</result>
+			<result name ="pagOtrInteresado">/licenciasCam/datosOtrosInteresados.jsp</result>
+		</action>
+		
+		<!--  CAYC General -->
+		
+		<action name= "*AjaxCayc" method="{1}" class="org.gestoresmadrid.oegam2.arrendatarios.controller.action.CaycAjaxAction">
+			<result name="pagPersonaArrendatario">/arrendatarios/datosPersonaArrendatario.jsp</result>	
+			<result name="pagPersonaConductor">/conductor/datosPersonaConductor.jsp</result>
+		</action>
+		
+		<action name="*EvolucionCayc" method="{1}"
+			class="org.gestoresmadrid.oegam2.evolucionCayc.controller.action.EvolucionCaycAction">
+			<result name="success">/arrendatarios/evolucionCayc.jsp</result>
+		</action>
+		
+		<action name= "*CAYCImportaciones" method="{1}" class="org.gestoresmadrid.oegam2.CAYCImportacion.controller.action.CAYCImportacionesAction">
+			<result name ="success" type="tiles">importarCAYC</result>
+		</action>
+		
+		<action name="*AltaMandato" method="{1}" class="org.gestoresmadrid.oegam2.mandato.controller.action.AltaMandatoAction">
+			<result name="altaMandato" type="tiles">altaMandato</result>			
+		</action>
+		
+		<action name="*ConsultaMandatos" method="{1}" class="org.gestoresmadrid.oegam2.mandato.controller.action.ConsultaMandatosAction">
+			<result name="success" type="tiles">consultaMandato</result>			
+		</action>		
+		
+		<action name="*EvolucionMandatos" method="{1}" class="org.gestoresmadrid.oegam2.mandato.controller.action.EvolucionMandatosAction">
+			<result name="success">/mandato/evolucionMandatos.jsp</result>
+		</action>
+		
+		<!-- Generar Excel liquidacion 620 -->
+		<action name="*Liquidacion620" method="{1}"
+			class="org.gestoresmadrid.oegam2.generarExcelLiquidacion620.controller.action.GenerarExcelLiquidacion620Action">
+			<result name="success" type="tiles">generarExcelLiquidacion620</result>
+			<result name="generarExcel" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<!-- Generar Estadistica Impresion -->
+		<action name="*EstadisticaImpresion" method="{1}"
+			class="org.gestoresmadrid.oegam2.estadisticas.impresion.controller.action.EstadisticaImpresionAction">
+			<result name="success" type="tiles">estadisticaImpresion</result>
+			<result name="generarExcel" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	
+		<action name="*ImportarDupDstv" method="{1}"
+			class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.ImportacionDuplicadosDstvAction">
+			<result name="success" type="tiles">importarDupDstv</result>
+		</action>
+	
+		<action name="*SolicitarMasivoDstv" method="{1}"
+			class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.SolicitudesMasivasDstvAction">
+			<result name="success" type="tiles">solictudesMasivasDstv</result>
+		</action>
+		<action name="*GestionDB" method="{1}" class="org.gestoresmadrid.oegam2.docBase.controller.action.GestionDocBaseAction">
+			<result name="success" type="tiles">getionDocBase</result>
+			<result name="popUpSeleccionEstado">/docBase/seleccionEstado.jsp</result>
+			<result name="descargarDocBase" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>		
+		</action>
+		
+		<action name="*PreferenciasDocBase" method="{1}" class="org.gestoresmadrid.oegam2.docBase.controller.action.PreferenciasDocBaseAction">
+			<result name="success" type="tiles">preferenciasDocBase</result>
+		</action>
+		
+		<!-- Acciones de legalización nuevas, módulo oegamLegalizaciones -->
+		<action name="*AltaLegalizacionNuevo" method="{1}" class="org.gestoresmadrid.oegam2.legalizaciones.controller.action.AltaLegalizacionAction">
+			<interceptor-ref name="fileUpload">
+                <param name="maximumSize">2000000</param>
+            </interceptor-ref>
+            <interceptor-ref name="stackInterceptores" />            
+             <result name="listadoPeticiones" type="tiles">consultaLegalizacionNuevo</result>
+             <result name="success" type="tiles">altaLegalizacionNuevo</result>
+             <result name="descargarDocumentos" type="stream">
+             	<param name="contentType">application/x-zip-compressed</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+        </action>
+        
+        <action name="*ConsultaLegalizacionNuevo" method="{1}" class="org.gestoresmadrid.oegam2.legalizaciones.controller.action.ConsultaLegalizacionAction">   
+       		 <interceptor-ref name="fileUpload">
+                <param name="maximumSize">200000</param>
+             </interceptor-ref>
+             <interceptor-ref name="stackInterceptores" />       
+             <result name="success" type="tiles">consultaLegalizacionNuevo</result>
+             <result name="recargarListado" type="redirect">inicioConsultaLegalizacionNuevo.action</result>
+             <result name="descargarDocumentos" type="stream">
+             	<param name="contentType">application/x-zip-compressed</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+        </action>
+        
+        <action name="*ListadoDiarioNuevo" method="{1}" class="org.gestoresmadrid.oegam2.legalizaciones.controller.action.ListadoDiarioAction">   
+       		 <interceptor-ref name="fileUpload">
+                <param name="maximumSize">200000</param>
+             </interceptor-ref>
+             <interceptor-ref name="stackInterceptores" />       
+             <result name="success" type="tiles">listadoDiarioNuevo</result>
+			<result name="descargarPDF" type="stream">
+             	<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+        </action>
+        
+		<action name="AbrirPopUpLegalizacionNuevo">
+			<result>
+	legalizacion/oegamLegalizacion/seleccionEstado.jsp</result>
+		</action>
+		
+		<!-- Acciones de Semáforos -->
+		
+		<action name= "*GestionSemaforos" method="{1}" class="org.gestoresmadrid.oegam2.semaforo.controller.action.GestionSemaforosAction">
+			<result name="gestionSemaforo" type="tiles">gestionSemaforo</result>
+			<result name="popUpCambioEstado">/semaforo/seleccionEstado.jsp</result>
+		</action>
+		
+		<action name= "*CreacionSemaforo" method="{1}" class="org.gestoresmadrid.oegam2.semaforo.controller.action.CreacionSemaforoAction">
+			<result name="altaSemaforo" type="tiles">altaSemaforo</result>
+		</action>
+		
+		<action name= "*EvolucionSemaforos" method="{1}" class="org.gestoresmadrid.oegam2.evolucionSemaforo.controller.action.EvolucionSemaforoAction">
+			<result name="listadoEvolSemaforo">/semaforo/consultaEvolucionSemaforo.jsp</result>
+		</action>
+		
+		
+		<!-- oegamCreditos -->
+		<action name="*ResumenCargaCredito" method="{1}" class="org.gestoresmadrid.oegam2.creditos.controller.action.ResumenCargaCreditosAction">
+			<result name="success" type="tiles">resumenCargaCreditos</result>
+			<result name="resumenCreditosMes" type="tiles">resumenCargaCreditosMes</result>
+			<result name="creditosDisponibles" type="tiles">creditosDisponibles</result>	
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename="resumenCreditos.csv"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarFichero" type="stream">
+				<param name="inputName">ficheroResultado</param>
+			    <param name="contentDisposition">attachment;filename=${fileName}</param>
+			    <param name="allowCaching">false</param>
+			</result>
+		</action>
+		
+		<action name="*ConsultaHistCredito" method="{1}" class="org.gestoresmadrid.oegam2.creditos.controller.action.HistoricoCreditosAction">
+		 	<result name="success" type="tiles">consultaHistCreditos</result>
+		</action>
+		
+		<action name="*GastoMensualCredito" method="{1}" class="org.gestoresmadrid.oegam2.creditos.controller.action.GastoMensualCreditosAction">
+            <result name="success" type="tiles">gastoMensualCreditos</result>
+            <result name="detalleTramites">/creditos/listaTramites.jsp</result>
+			<result name="peticionPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/csv</param>
+				<param name="inputName">ficheroResultado</param>
+				<param name="contentDisposition">attachment;filename="gastoMensualCreditos.csv"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+        </action>
+        
+        <action name="*TipoCredito" method="{1}" class="org.gestoresmadrid.oegam2.creditos.controller.action.TipoCreditosAction">
+        	<result name="success" type="tiles">tipoCreditos</result>
+        	<result name="nuevoTipoCredito" type="tiles">nuevoTipoCredito</result>	 
+			<result name="detalleTipoCredito" type="tiles">detalleTipoCredito</result> 	 
+		</action>
+		
+		<action name="*ResumenEstadisticaSolNRE06" method="{1}" class="org.gestoresmadrid.oegam2.solicitudNRE06.controller.action.ResumenEstadisticaSolicitudNRE06Action">
+        	<result name="success" type="tiles">resumenNRE06</result>
+        	<result name="generarExcel" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="json" extends="json-default">	
+		<action name="*ObtenerPedidoAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.ObtenerPedidoAjaxAction">
+		    <result type="json">
+		        <param name="pedido">${pedido}</param>
+		        <param name="root">detallePedidoDto</param>
+		    </result>
+		</action>
+		<action name="*IncidenciaAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.IncidenciaAjaxAction">
+		    <result type="json">
+		        <param name="incidencia">${incidencia}</param>
+		        <param name="root">descripcion</param>
+		    </result>
+		</action>
+		<action name="*EvolucionAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.EvolucionMaterialAjaxAction">
+		    <result type="json">
+		        <param name="evolucion">${evolucion}</param>
+		        <param name="root">descripcion</param>
+		    </result>
+		</action>
+		<action name="*TipoDistintivoAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.TipoDistintivoAjaxAction">
+		    <result type="json">
+		        <param name="tipoDocumento">${tipoDocumento}</param>
+		        <param name="root">tipoDistintivo</param>
+		    </result>
+		</action>
+		<action name="*ActualizarInformacionAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.ActualizarInformacionAction">
+		    <result type="json">
+		        <param name="idActualizaciones">${idActualizaciones}</param>
+		        <param name="root">resultado</param>
+		    </result>
+		</action>
+		<action name="*SolicitarPedidoAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.SolicitarPedidoAction">
+		    <result type="json">
+		        <param name="idSolicitudes">${idSolicitudes}</param>
+		        <param name="root">resultado</param>
+		    </result>
+		</action>
+		<action name="*EntregarPedidoAjax" method="{1}"
+				class="org.gestoresmadrid.oegam2.trafico.materiales.controller.action.EntregarPedidoAction">
+		    <result type="json">
+		        <param name="idEntregados">${idEntregados}</param>
+		        <param name="root">resultado</param>
+		    </result>
+		</action>
+	 </package>	
+	
+	
+	 <include file="facturacion_struts.xml"/>
+	 <include file="arbol.xml"/>
+	 <include file="registradores_struts.xml"/>
+	 <include file="trafico_struts.xml"/>
+	 <include file="legalizacion-struts.xml"/>
+	 <include file="sancion-struts.xml"/>
+	 	 
+<!--	<package name="default" extends="struts-default" namespace="/escrituras">-->
+<!--	-->
+<!--	</package>-->
+</struts>

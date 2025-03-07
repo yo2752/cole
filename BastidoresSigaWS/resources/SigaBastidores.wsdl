@@ -1,0 +1,69 @@
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://src" xmlns:intf="http://src" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://src">
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://src">
+<element name="enviaInformacionBastidores">
+<complexType>
+<sequence>
+<element name="bastidoresRequest" type="impl:EntidadesFinancierasRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="EntidadesFinancierasRequest">
+<sequence>
+<element name="alta" nillable="true" type="xsd:string"/>
+<element name="bastidor" nillable="true" type="xsd:string"/>
+<element name="fechaModificacion" nillable="true" type="impl:tipoFechaAAAAMMDD"/>
+<element name="nombreUsuario" nillable="true" type="xsd:string"/>
+<element name="numeroFinanciero" type="xsd:int"/>
+</sequence>
+</complexType>
+<element name="enviaInformacionBastidoresResponse">
+<complexType>
+<sequence>
+<element name="enviaInformacionBastidoresReturn" type="impl:EntidadesFinancierasResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="EntidadesFinancierasResponse">
+<sequence>
+<element name="descripcion" nillable="true" type="xsd:string"/>
+<element name="resultado" type="xsd:boolean"/>
+</sequence>
+</complexType>
+<simpleType name="tipoFechaAAAAMMDD">
+<restriction base="xsd:string">
+<pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))"/>
+</restriction>
+</simpleType>
+</schema>
+</wsdl:types>
+<wsdl:message name="enviaInformacionBastidoresResponse">
+<wsdl:part element="impl:enviaInformacionBastidoresResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="enviaInformacionBastidoresRequest">
+<wsdl:part element="impl:enviaInformacionBastidores" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="InformarEntidadesFinancierasWS">
+<wsdl:operation name="enviaInformacionBastidores">
+<wsdl:input message="impl:enviaInformacionBastidoresRequest" name="enviaInformacionBastidoresRequest"></wsdl:input>
+<wsdl:output message="impl:enviaInformacionBastidoresResponse" name="enviaInformacionBastidoresResponse"></wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="InformarEntidadesFinancierasWSSoapBinding" type="impl:InformarEntidadesFinancierasWS">
+<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="enviaInformacionBastidores">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="enviaInformacionBastidoresRequest">
+<wsdlsoap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="enviaInformacionBastidoresResponse">
+<wsdlsoap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="InformarEntidadesFinancierasWSService">
+<wsdl:port binding="impl:InformarEntidadesFinancierasWSSoapBinding" name="InformarEntidadesFinancierasWS">
+<wsdlsoap:address location="https://www.e-matricula.com:443/SerialNumberService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

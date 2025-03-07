@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.iam.munimadrid.es" xmlns:ns1="http://ws.iam.munimadrid.es" xmlns:ns2="http://www.map.es/scsp/esquemas/datosespecificos">
+<xs:import namespace="http://www.map.es/scsp/esquemas/datosespecificos"
+	 schemaLocation="EsquemaRespuestaModificacionProyectoIVTM.xsd"/>
+	 <xs:element name="errores" type="ns1:erroresType"/>
+	 <xs:complexType name="erroresType">
+	 	<xs:sequence>
+	 		<xs:element ref="ns1:linerr" />
+			<xs:element ref="ns1:menserr" />
+			<xs:element ref="ns1:nivelerr" />
+			<xs:element ref="ns1:numerr" />
+			<xs:element ref="ns1:progerr" />
+			<xs:element ref="ns1:sqlerr" />
+	 	</xs:sequence>
+	 </xs:complexType>
+	 <xs:element name="linerr" type="xs:string" />
+	 <xs:element name="menserr" type="xs:string" />
+	 <xs:element name="nivelerr" type="xs:string" />
+	 <xs:element name="numerr" type="xs:string" />
+	 <xs:element name="progerr" type="xs:string" />
+	 <xs:element name="sqlerr" type="xs:string" />
+	 
+	 <xs:element name="numautoliquidacion" type="xs:string" />
+	<xs:element name="emisor" type="xs:string" />
+	<xs:element name="importeanual" type="xs:string" />
+	<xs:element name="importe" type="xs:string" />
+	<xs:element name="digitos" type="xs:string" />
+	<xs:element name="codgestor" type="xs:string" />
+	
+</xs:schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net https://dozer.sourceforge.net/schema/beanmapping.xsd">
+   
+  	<mapping type="bi-directional">
+  		<class-a>org.gestoresmadrid.core.trafico.solicitudesplacas.model.vo.SolicitudPlacaVO</class-a>
+  		<class-b>org.gestoresmadrid.oegamPlacasMatricula.view.dto.SolicitudPlacaDto</class-b>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fechaSolicitud</a>
+			<b>fechaSolicitud</b>
+		</field>
+  	</mapping>
+  	
+</mappings>

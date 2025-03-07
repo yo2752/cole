@@ -1,0 +1,88 @@
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FORMATO_AltaArrendamiento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CABECERA" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DATOS_GESTORIA">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="NIF"/>
+                    <xs:element type="xs:string" name="NOMBRE"/>
+                    <xs:element type="xs:string" name="PROFESIONAL"/>
+                    <xs:element type="xs:string" name="PROVINCIA"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      
+        <xs:element name="AltaArrendamiento"  minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DatosArrendamiento">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="doi"/>
+                    <xs:element type="xs:date" name="fechaNacimiento"/>
+                    <xs:element type="xs:dateTime" name="fechaIni"/>
+                    <xs:element type="xs:dateTime" name="fechaFin"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+             
+              <xs:element name="DatosPersonaCompleta">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="doi"/>
+                    <xs:element type="xs:date" name="fechaNacimiento"/>
+                    <xs:element type="xs:string" name="nombre"/>
+                    <xs:element type="xs:string" name="primerApellido"/>
+                    <xs:element type="xs:string" name="segundoApellido"/>
+                    <xs:element type="xs:string" name="razonSocial"/>
+                    <xs:element type="xs:string" name="sexo"/>
+                    <xs:element type="xs:string" name="estadocivil"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DatosDomicilio">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="tipoVia"/>
+                    <xs:element type="xs:string" name="via"/>
+                    <xs:element type="xs:string" name="numero"/>
+                    <xs:element type="xs:string" name="hm"/>
+                    <xs:element type="xs:string" name="escalera"/>
+                    <xs:element type="xs:string" name="km"/>
+                    <xs:element type="xs:string" name="planta"/>
+                    <xs:element type="xs:string" name="portal"/>
+                    <xs:element type="xs:string" name="puerta"/>
+                    <xs:element type="xs:string" name="cp"/>
+                    <xs:element type="xs:string" name="provincia"/>
+                    <xs:element type="xs:string" name="municipio"/>
+                    <xs:element type="xs:string" name="localidad"/>
+                    <xs:element type="xs:string" name="bloque"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DatosVehiculo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="doiTitular"/>
+                    <xs:element type="xs:string" name="matricula"/>
+                    <xs:element type="xs:string" name="bastidor"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+ 
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

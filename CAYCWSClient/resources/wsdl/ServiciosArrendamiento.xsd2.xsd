@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:ns1="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/peticion" xmlns:ns2="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/respuesta" xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices">
+   <xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/peticion" schemaLocation="ServiciosArrendamiento.xsd3.xsd"/>
+   <xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/respuesta" schemaLocation="ServiciosArrendamiento.xsd4.xsd"/>
+   <xs:element name="altaArrendamiento" type="tns:altaArrendamiento"/>
+   <xs:element name="altaArrendamientoResponse" type="tns:altaArrendamientoResponse"/>
+   <xs:element name="modificacionArrendamiento" type="tns:modificacionArrendamiento"/>
+   <xs:element name="modificacionArrendamientoResponse" type="tns:modificacionArrendamientoResponse"/>
+   <xs:element name="altaConductorHabitual" type="tns:altaConductorHabitual"/>
+   <xs:element name="altaConductorHabitualResponse" type="tns:altaConductorHabitualResponse"/>
+   <xs:element name="modificacionConductorHabitual" type="tns:modificacionConductorHabitual"/>
+   <xs:element name="modificacionConductorHabitualResponse" type="tns:modificacionConductorHabitualResponse"/>
+   <xs:complexType name="altaArrendamiento">
+      <xs:sequence>
+         <xs:element minOccurs="1" name="datosArrendamiento" type="ns1:DatosArrendamiento"/>
+         <xs:element minOccurs="1" name="datosPersona" type="ns1:DatosPersonaCompleta"/>
+         <xs:element minOccurs="0" name="datosDomicilio" type="ns1:DatosDomicilio"/>
+         <xs:element minOccurs="1" name="datosVehiculo" type="ns1:DatosVehiculo"/>
+         <xs:element minOccurs="1" name="solicitud" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="altaArrendamientoResponse">
+      <xs:sequence>
+         <xs:element minOccurs="1" ref="ns2:ResultadoComunicacion"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="modificacionArrendamiento">
+      <xs:sequence>
+         <xs:element minOccurs="1" name="datosArrendamiento" type="ns1:DatosArrendamiento"/>
+         <xs:element minOccurs="1" name="datosVehiculo" type="ns1:DatosVehiculo"/>
+         <xs:element minOccurs="1" name="solicitud" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="modificacionArrendamientoResponse">
+      <xs:sequence>
+         <xs:element minOccurs="1" ref="ns2:ResultadoComunicacion"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="altaConductorHabitual">
+      <xs:sequence>
+         <xs:element minOccurs="1" name="datosConductorHabitual" type="ns1:DatosConductorHabitual"/>
+         <xs:element minOccurs="0" name="datosDomicilio" type="ns1:DatosDomicilio"/>
+         <xs:element minOccurs="1" name="datosVehiculo" type="ns1:DatosVehiculo"/>
+         <xs:element minOccurs="1" name="solicitud" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="altaConductorHabitualResponse">
+      <xs:sequence>
+         <xs:element minOccurs="1" ref="ns2:ResultadoComunicacion"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="modificacionConductorHabitual">
+      <xs:sequence>
+         <xs:element minOccurs="1" name="datosConductorHabitual" type="ns1:DatosConductorHabitual"/>
+         <xs:element minOccurs="1" name="datosVehiculo" type="ns1:DatosVehiculo"/>
+         <xs:element minOccurs="1" name="solicitud" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="modificacionConductorHabitualResponse">
+      <xs:sequence>
+         <xs:element minOccurs="1" ref="ns2:ResultadoComunicacion"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

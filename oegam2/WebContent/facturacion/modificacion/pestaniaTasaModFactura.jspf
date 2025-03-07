@@ -1,0 +1,172 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+ <div class="contentTabs" id="Tasa" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">
+	<div class="contenido">		
+		<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+			<tr>
+				<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+				<td> Datos de las tasas </td>
+			</tr>
+		</table>
+	
+		<!-- DRC@20/06/2012 Incluye la parte de los datos de la factura -->	
+		<%@include file="resumenDatosModFactura.jspf" %>
+				
+		<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+			<tr>
+				<td class="tabular">
+					<span class="titulo">Facturar</span>
+				</td>
+			</tr>
+		</table>
+		
+		<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" border="0">
+			<tr>    			
+	    		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Concepto: <span class="naranja">*</span></label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="100" maxlength="255"/>
+			    </td>
+	       	</tr> 
+	    </table>
+	    
+	    <table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" border="0">	
+	       	<tr>    			
+	    		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor"></label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor"></label>
+			    </td>			    		    
+			    <td align="left" nowrap="nowrap">
+	       			<label for="apellido2Proveedor">IVA</label>
+	       		</td>				        		
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">% IVA</label>
+			    </td>
+			    <td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Total</label>
+			    </td>
+	       	</tr>
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Honorario: </label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="10" maxlength="5"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	<input type="checkbox" name="listaChecksConsultaTramite" id="" value='' />
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10"/>
+	       		</td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>      	
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Suplido: </label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="10" maxlength="5"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	<input type="checkbox" name="listaChecksConsultaTramite" id="" value='' />
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10"/>
+	       		</td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Otro: </label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="10" maxlength="5"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	<input type="checkbox" name="listaChecksConsultaTramite" id="" value='' />
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10"/>
+	       		</td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">IRPF: </label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="10" maxlength="5"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	<input type="checkbox" name="listaChecksConsultaTramite" id="" value='' />
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10"/>
+	       		</td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Descuento:</label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="10" maxlength="5"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	<input type="checkbox" name="listaChecksConsultaTramite" id="" value='' />
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10"/>
+	       		</td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>
+	       	<tr> 
+	       		<td align="left" nowrap="nowrap" >
+			       	
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       	       	
+	       		</td>			    				        		
+	       		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Total</label>
+			    </td>      	
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="10" maxlength="10" disabled="true"/>
+	       		</td>
+	       	</tr>
+	       	
+		</table>				
+		
+		
+		<!-- DRC@20/06/2012 Incluye la parte del resumen de gastos totales desplegados  -->	
+		<%@include file="resumenTotalesModGastos.jspf" %>
+		
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardar" value="Guardar" onClick="return guardarAltaFactura('Cliente');" onKeyPress="this.onClick"/>
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardar" value="Generar PDF" onClick="return guardarAltaFactura('Cliente');" onKeyPress="this.onClick"/>
+				</td>
+			</tr>
+		</table>
+	
+	</div>
+</div>

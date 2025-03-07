@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="RBM_Protocolo_Tipos.xsd"/>
+	<xs:element name="RBM-Desistimiento">
+		<xs:annotation>
+			<xs:documentation>Formato XML para realizar la transmisión de los desistimientos a los Registros de Bienes Muebles</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Solicitante" type="SolicitanteType">
+					<xs:annotation>
+						<xs:documentation>Solicitante del desistimiento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Identificacion_Documento">
+					<xs:annotation>
+						<xs:documentation>Identificación del documento presentado del cual se quiere desistir</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Entrada" type="Identificacion_RegistralType">
+								<xs:annotation>
+									<xs:documentation>Datos de entrada en el registro</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Presentacion" type="PresentacionType">
+								<xs:annotation>
+									<xs:documentation>Datos de presentación en el registro</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Texto_Solicitud" type="xs:string" default="Por la presente y de conformidad con lo dispuesto en el artículo 433 del Reglamento Hipotecario, aplicable a los Registros de Bienes Muebles según dispone el apartado 6º de la disposición adicional única del Real Decreto 1828/1999, de 3 de diciembre, DESISTE de la solicitud de inscripción del documento presentado en ese Registro. Y en consecuencia SOLICITA SU CANCELACION." maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Texto Literal de la solicitud</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Firma_Solicitante" type="Firma_SolicitanteType">
+					<xs:annotation>
+						<xs:documentation>Datos de la firma del solicitante</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Clausula_LOPD" type="xs:string" default="Declaro que los datos aportados son correctos y completos a efectos de la solicitud por mí realizada, y de acuerdo con el Art. 6 y 11 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, autorizo la utilización de la información contenida en el/los documentos remitidos, a efectos de su almacenamiento electrónico y utilización para los fines del Registro de Bienes Muebles">
+					<xs:annotation>
+						<xs:documentation>Contenido de la claúsula de la ley de protección de datos</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

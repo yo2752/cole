@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto/respuesta">
+
+  <xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto/respuesta" schemaLocation="ServicioInformesCompletoIntv_schema1.xsd"/>
+
+  <xs:element name="obtenerInformeCompleto" type="tns:obtenerInformeCompleto"/>
+
+  <xs:element name="obtenerInformeCompletoResponse" type="tns:obtenerInformeCompletoResponse"/>
+
+  <xs:complexType name="obtenerInformeCompleto">
+    <xs:sequence>
+      <xs:element name="solicitudInforme" type="tns:inInformeCompleto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inInformeCompleto">
+    <xs:complexContent>
+      <xs:extension base="tns:inServicioINTV">
+        <xs:sequence>
+          <xs:element name="codInforme" type="xs:int" minOccurs="1"/>
+          <xs:element name="motivoSolicitud" type="xs:int" minOccurs="1"/>
+          <xs:element name="numTasa" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="inServicioINTV" abstract="true">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="bastidor" type="xs:string" minOccurs="0"/>
+      <xs:element name="doi" type="xs:string" minOccurs="1"/>
+      <xs:element maxOccurs="unbounded" name="matricula" type="xs:string" minOccurs="0"/>
+      <xs:element maxOccurs="unbounded" name="nive" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="obtenerInformeCompletoResponse">
+    <xs:sequence>
+      <xs:element ref="ns1:ResultadoInformeCompleto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="outInformeCompleto">
+    <xs:complexContent>
+      <xs:extension base="tns:outServicioINTV">
+        <xs:sequence>
+          <xs:element name="informePdf" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="outServicioINTV" abstract="true">
+    <xs:sequence>
+      <xs:element name="resultadoComunicacion" type="tns:resultadoComunicacion" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resultadoComunicacion">
+    <xs:sequence>
+      <xs:element name="codigoError" type="xs:int" minOccurs="0"/>
+      <xs:element name="descripcionError" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

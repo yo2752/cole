@@ -1,0 +1,2920 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:complexType name="Solicitante_CancelacionType">
+        <xs:sequence>
+            <xs:element name="Codigo_Identificacion_Fiscal" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de documento de identificación administrativo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Razon_Social" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Razón social del solicitante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Social" type="Domicilio_Social_CancelacionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Domicilio solicitante cancelación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Correo_Electronico" type="Correo_ElectronicoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Correo electrónico del solicitante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Representante" type="RepresentanteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Información represtante del solicitante. Normas particulares.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Domicilio_Social_CancelacionType">
+        <xs:sequence>
+            <xs:element name="Domicilio" type="xs:string"/>
+            <xs:element name="Codigo_Postal" type="xs:string"/>
+            <xs:element name="Municipio" type="xs:string"/>
+            <xs:element name="Provincia" type="Tipificacion_ProvinciaType">
+                <xs:annotation>
+                    <xs:documentation>Tipificacion 4.Provincias</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RepresentanteType">
+        <xs:sequence>
+            <xs:element name="Codigo_Identificacion_Fiscal" type="xs:string"/>
+            <xs:element name="Nombre" type="xs:string"/>
+            <xs:element name="Primer_Apellido" type="xs:string"/>
+            <xs:element name="Segundo_Apellido" type="xs:string"/>
+            <xs:element name="Datos_Poder" type="Datos_PoderType">
+                <xs:annotation>
+                    <xs:documentation>Información poder del representante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_PoderType">
+        <xs:sequence>
+            <xs:element name="Datos_Notario" type="Datos_NotarioType">
+                <xs:annotation>
+                    <xs:documentation>Información datos notario</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_MercantilType">
+                <xs:annotation>
+                    <xs:documentation>Información datos registrales</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_NotarioType">
+        <xs:sequence>
+            <xs:element name="Notario" type="xs:string"/>
+            <xs:element name="Plaza" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Plaza o lugar</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Otorgamiento" type="FechaType"/>
+            <xs:element name="Numero_Protocolo" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Registrales_MercantilType">
+        <xs:sequence>
+            <xs:element name="Codigo_R_Mercantil">
+                <xs:annotation>
+                    <xs:documentation>Tipificacion 11.Registros</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="Tipificacion_RegistroType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Tomo_R_Mercantil" type="NumericoType"/>
+            <xs:element name="Folio_R_Mercantil" type="NumericoType"/>
+            <xs:element name="Inscripcion_R_Mercantil" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Bien_CancelacionType">
+        <xs:choice>
+            <xs:sequence>
+                <xs:element name="Clase" type="xs:string" minOccurs="0"/>
+                <xs:element name="Marca" type="xs:string" minOccurs="0"/>
+                <xs:element name="Modelo" type="xs:string" minOccurs="0"/>
+                <xs:element name="Matricula" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Obligatorio si no se indica bastidor</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Bastidor" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Obligatorio si no se indica matrícula</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Numero_Fabricacion" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Obligatorio si no se indica ni matrícula, ni bastidor</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:element name="Maquinaria" type="MaquinariaType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Datos identificativos/descriptivos categoría maquinaria industrial. Los bienes de esta categoría podrán describirse en función de los datos identificativos de cada bien y / o a través de los datos de ubicación del inmueble en el que se encuentran depositados o instalados </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Establecimiento" type="EstablecimientoMercantilType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Datos identificativos/descriptivos categoría establecimientos mercantiles</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Buque" type="BuqueType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría buques </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Aeronave" type="AeronaveType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría aeronaves </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Propiedad_Industrial" type="Propiedad_IndustrialType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría propiedad industrial </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Propiedad_Intelectual" type="Propiedad_IntelectualType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría propiedad intelectual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Otros_Bienes" type="Otros_BienesType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría otros bienes registrables</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato_InscritoType">
+        <xs:sequence>
+            <xs:element name="Entidad_Titular_Suscriptora" type="Entidad_Titular_SuscriptoraType">
+                <xs:annotation>
+                    <xs:documentation>Entidad titular suscriptora</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Entidad_Sucesora" type="Entidad_SucesoraType" minOccurs="0"/>
+            <xs:element name="Numero_Impreso" type="xs:string" minOccurs="0"/>
+            <xs:element name="Datos_Inscripcion" type="Datos_InscripcionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Datos inscripción por la que causó el alta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Comprador_Arrendatario" type="Comprador_ArrendatarioType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Describir los compradores/arrendatarios</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Entidad_Titular_SuscriptoraType">
+        <xs:sequence>
+            <xs:element name="Codigo_Identificacion_Fiscal" type="xs:string"/>
+            <xs:element name="Razon_Social" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Entidad_SucesoraType">
+        <xs:sequence>
+            <xs:element name="Codigo_Identificacion_Fiscal" type="xs:string"/>
+            <xs:element name="Razon_Social" type="xs:string"/>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_MercantilType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Firma_SolicitanteType">
+        <xs:sequence>
+            <xs:element name="Lugar_Firma" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Lugar firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Firma" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_InscripcionType">
+        <xs:sequence>
+            <xs:element name="Codigo_RBM" type="Tipificacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 11.Registros</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Registral_Bien">
+                <xs:annotation>
+                    <xs:documentation>Número registral asignado por el registro al bien</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="NumericoType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Numero_Inscripcion_Bien" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de inscripción en la que causa el alta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Inscripcion" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha de inscripción del alta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato3Type">
+        <xs:sequence>
+            <xs:element name="Contrato_Marco" type="Identificacion_Contrato_MarcoType">
+                <xs:annotation>
+                    <xs:documentation>Identificación del contrato marco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Documento" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre del documento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Aprobado_DGRN" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Referencia al texto que aprueba el modelo por la DGRN. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato2Type">
+        <xs:sequence>
+            <xs:element name="Contrato_Marco" type="Identificacion_Contrato_MarcoType">
+                <xs:annotation>
+                    <xs:documentation>Identificación del contrato marco al amparo del que se suscribe el contrato individual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Contrato_Individual" type="Identificacion_Contrato_IndividualType">
+                <xs:annotation>
+                    <xs:documentation>Identificación del contrato individual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Documento" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre del documento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Aprobado_DGRN" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Referencia al texto que aprueba el modelo por la DGRN. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_ContratoType">
+        <xs:sequence>
+            <xs:element name="Numero_Operacion" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Indica el número de operación asignado por la entidad de financiación. En el modelo ASNEF se etiqueta como N en la cabecera</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Asociacion" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre de la asociación que representa a la entidad (ASNEF, AEL, ...)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Ejemplar" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de ejemplar o número de copia</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo_Contrato" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Código de modelo de contrato</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Documento" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre del documento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Aprobado_DGRN" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Referencia al texto que aprueba el modelo por la DGRN. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Impreso" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número único de impreso asignado por el Registro de Bienes Muebles Central (comunicado por ASNEF y AEL a sus asociados).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato_PrevioType">
+        <xs:sequence>
+            <xs:element name="Numero_Operacion" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Indica el número de operación asignado por la entidad de financiación. Debe ser el mismo número de operación enviando en el contrato definitivo.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Contrato">
+                <xs:annotation>
+                    <xs:documentation>Tipo de contrato A1=VENTA A PLAZOS CON RESERVA DE DOMINIO
+A2=VENTA A PLAZOS CON PROHIBICIÓN DE DISPONER
+B1=FINANCIACIÓN A COMPRADOR CON RESERVA DE DOMINIO
+B2=FINANCIACIÓN A COMPRADOR CON PROHIBICIÓN DE DISPONER
+C1=FINANCIACIÓN A VENDEDOR CON RESERVA DE DOMINIO
+C2=FINANCIACIÓN A VENDEDOR CON PROHIBICIÓN DE DISPONER
+L1=LEASING CON OPCIÓN DE COMPRA
+L2=LEASING
+R1=RENTING CON OPCIÓN DE COMPRA
+R2=RENTING</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="A1"/>
+                        <xs:enumeration value="A2"/>
+                        <xs:enumeration value="B1"/>
+                        <xs:enumeration value="B2"/>
+                        <xs:enumeration value="C1"/>
+                        <xs:enumeration value="C2"/>
+                        <xs:enumeration value="L1"/>
+                        <xs:enumeration value="L2"/>
+                        <xs:enumeration value="R1"/>
+                        <xs:enumeration value="R2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Iden_SujetoType">
+        <xs:sequence>
+            <xs:element name="Tipo_Persona">
+                <xs:annotation>
+                    <xs:documentation>Tipificación = 8. Tipos de persona</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="Tipificacion_Tipo_PersonaType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Nif_Cif" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>El nif/cif deberá estar validado en relación a su letra y/o dígito de control según norma oficial del organismo regulador</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre si es persona física y denominación o razón social si es jurídica</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Apellidos" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Se debe indicar cuando sea una persona física</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Domicilio_INEType">
+        <xs:sequence>
+            <xs:element name="Pais">
+                <xs:annotation>
+                    <xs:documentation>Tipificación = 16. Paises</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="Tipificacion_PaisType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Estado_Region_Provincia_Extranjera" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Estado, región o provincia si el país no es España </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Provincia" type="Tipificacion_ProvinciaType">
+                <xs:annotation>
+                    <xs:documentation>Se debe indicar cuando el pais es  España (ES).  Tipificación = 4. Provincias</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Municipio" type="Tipificacion_MunicipioType">
+                <xs:annotation>
+                    <xs:documentation>Se debe indicar cuando el pais es España (ES). Tipificación = 3. Municipios</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Entidad_Local_Menor" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre de la entidad local menor. La entidad debe depender del municipio (Cod_Municipio), ya sea entidad colectiva, singular o diseminado.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Tipo_Via" type="Tipificacion_Tipo_ViaType">
+                <xs:annotation>
+                    <xs:documentation>Se debe indicar cuando el pais es España (ES).  Tipificación = 9. Tipos vías</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Via" type="xs:string"/>
+            <xs:element name="Punto_Kilometrico" type="xs:string"/>
+            <xs:element name="Numero" type="NumericoType"/>
+            <xs:element name="Numero_Bis" type="xs:string"/>
+            <xs:element name="Portal" type="xs:string"/>
+            <xs:element name="Bloque" type="xs:string"/>
+            <xs:element name="Escalera" type="xs:string"/>
+            <xs:element name="Planta" type="xs:string"/>
+            <xs:element name="Puerta" type="xs:string"/>
+            <xs:element name="Codigo_Postal" type="xs:string"/>
+            <xs:element name="Lugar_Ubicacion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Datos adicionales para describir características particulares del domicilio como linderos, paraje, etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Des_Bien_MuebleType">
+        <xs:sequence>
+            <xs:element name="Categoria" type="Tipificacion_Categoria_BienType">
+                <xs:annotation>
+                    <xs:documentation>Indica la categoría que se ha establecido para describir e identificar al bien. Tipificación = 2. Categorías de Bienes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Categoria" type="Datos_CategoriaType">
+                <xs:annotation>
+                    <xs:documentation>Bloque con información de los datos aplicables a cada categoría</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_CategoriaType">
+        <xs:choice>
+            <xs:element name="Vehiculo" type="VehiculoType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Datos identificativos/descriptivos categoría vehículos. Se incluyen en esta categoría, todos aquellos bienes muebles que para circular por las vías públicas precisan de matrícula asignada por la Dirección General de Tráfico (DGT)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Maquinaria" type="MaquinariaType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Datos identificativos/descriptivos categoría maquinaria industrial. Los bienes de esta categoría podrán describirse en función de los datos identificativos de cada bien y / o a través de los datos de ubicación del inmueble en el que se encuentran depositados o instalados </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Establecimiento" type="EstablecimientoMercantilType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Datos identificativos/descriptivos categoría establecimientos mercantiles</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Buque" type="BuqueType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría buques </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Aeronave" type="AeronaveType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría aeronaves </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Propiedad_Industrial" type="Propiedad_IndustrialType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría propiedad industrial </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Propiedad_Intelectual" type="Propiedad_IntelectualType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría propiedad intelectual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Otros_Bienes" type="Otros_BienesType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>atributos categoría otros bienes registrables</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Condicion_General" type="Condicion_GeneralType">
+                <xs:annotation>
+                    <xs:documentation>atributos categoria condiciones genereales</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="VehiculoType">
+        <xs:sequence>
+            <xs:element name="Tipo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Descripción literal del bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>La que corresponde al vehículo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>El que corresponda, en su caso</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo" type="Tipificacion_Grupo_BienType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>El que corresponda al vehículo de acuerdo con tabla de grupos. Tipificación = 10. Grupos de Bienes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Matricula" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Matrícula. Matrícula del vehículo en la DGT. El formato debe ser uno de los definidos por la DGT. Ver validación formato matrícula DGT</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Bastidor" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de bastidor. Número de identificación asignado por el fabricante al vehículo. Será obligatorio de no existir matrícula. Ver validación formato bastidor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NIVE" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número Unico de Identificación Vehiculo en la DGT</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Vehiculo2Type">
+        <xs:sequence>
+            <xs:element name="Tipo" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Descripción literal del bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>La que corresponde al vehículo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>El que corresponda, en su caso</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Bastidor" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de bastidor. Número de identificación asignado por el fabricante al vehículo.  Ver validación formato bastidor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NIVE" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número Unico de Identificación Vehiculo en la DGT</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MaquinariaType">
+        <xs:sequence>
+            <xs:element name="Tipo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Descripción literal del bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>La que corresponde al bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>El que corresponda, en su caso</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo" type="Tipificacion_Grupo_BienType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>El que corresponda al vehículo de acuerdo con tabla de grupos. Tipificación = 10. Grupos de Bienes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Serie" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de serie / fabricación, el asignado por el fabricante y que sirve de identificación al bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ubicacion" type="UbicacionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>para indicar la ubicación de la maquinaria</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UbicacionType">
+        <xs:sequence>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>para indicar el domicilio </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Registrales" type="Datos_Registrales_PropiedadType" minOccurs="0"/>
+            <xs:element name="Referencia_Catastral" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Registrales_PropiedadType">
+        <xs:sequence>
+            <xs:element name="Cod_Registro_Propiedad" type="Tipificacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Registro de la propiedad. Tipificación = 11. Registros</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Provincia" type="Tipificacion_ProvinciaType">
+                <xs:annotation>
+                    <xs:documentation>Provincia de la finca. Tipificación 4. Provincias</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Municipio" type="Tipificacion_MunicipioType">
+                <xs:annotation>
+                    <xs:documentation>Municipio de la finca. Tipificación 3. Municipios</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Seccion_Propiedad" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Sección de la finca. Si aplica</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Finca" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de finca registral</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Finca_Bis" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número bis de finca registral</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Sub_Finca" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Subnúmero de finca registral</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IDUFIR" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Identificador único de finca</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EstablecimientoMercantilType">
+        <xs:sequence>
+            <xs:element name="Nombre_Establecimiento" type="xs:string"/>
+            <xs:element name="Clase_Establecimiento" type="xs:string"/>
+            <xs:element name="Numero_Establecimiento" type="xs:string"/>
+            <xs:element name="Ubicacion" type="UbicacionType">
+                <xs:annotation>
+                    <xs:documentation>Bloque con datos de ubicación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BuqueType">
+        <xs:sequence>
+            <xs:element name="Nombre_Buque" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Matricula_Buque" type="Matricula_BuqueType">
+                <xs:annotation>
+                    <xs:documentation>indicar la matrícula del buque. Deberá contener el bloque de Matricula_Maritima o el elemento Matricula_Fluvial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NIB" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>El número de identificación del buque (NIB) identifica unívocamente el buque, no obstante dicho número no siempre consta en los documentos que tienen acceso al Registro. El resto de los atributos pueden cambiar durante la existencia del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Pabellon" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipificación = 16. Países</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OMI" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número internacional del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Clasificacion_Buque" type="Clasificacion_BuqueType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>clasificación del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Dimensiones" type="DimensionesType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>dimensiones del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tonelaje" type="TonelajeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>tonelaje del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Casco" type="CascoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>características del casco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Motores" type="MotoresType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>información sobre los motores</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Estado" type="Tipificacion_Estado_BuqueType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 17. Estado Buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Otros_Datos" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Otros datos del buque</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Clasificacion_BuqueType">
+        <xs:sequence>
+            <xs:element name="Tipo_Embarcacion" minOccurs="0"/>
+            <xs:element name="SubTipo_Embarcacion" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DimensionesType">
+        <xs:sequence>
+            <xs:element name="Eslora" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Longitud de la embarcación. Es la distancia medida paralelamente a la línea de agua de diseño, entre dos planos perpendiculares a la línea de crujía, uno a proa y otro a popa, sin considerar elementos no estructurales del casco</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="LongitudType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Manga" type="LongitudType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Anchura de la embarcación. Es la máxima anchura del casco con las estructuras fijas</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Puntal" type="LongitudType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Máxima dimensión vertical medida desde la parte superior de la quilla hasta cubierta estanca superior</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Calado_Maximo" type="LongitudType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Profundidad de la embarcación. Es la máxima dimensión sumergida del casco medida verticalmente, sin contar el timón, la orza, las colas de los motores y otros apéndices similares</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TonelajeType">
+        <xs:sequence>
+            <xs:element name="Bruto" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje bruto de la embarcación</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="PesoType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Registrado_Bruto" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje bruto registrado de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Neto" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje neto de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Registrado_Neto" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje neto registrado de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Desplazamiento" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje de desplazamiento de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Peso_Muerto" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tonelaje del peso muerto de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Carga_Maxima" type="PesoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Carga máxima de la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CascoType">
+        <xs:sequence>
+            <xs:element name="Astillero" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Nombre del astillero donde se construyo la embarcación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Año_Construccion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Año de construcción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Pais" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipificación = 16. Paises</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Marca del casco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Modelo del casco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Serie" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de serie o fabricación del casco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Material" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Material del casco</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Matricula_BuqueType">
+        <xs:choice>
+            <xs:element name="Matricula_Maritima" type="Matricula_MaritimaType">
+                <xs:annotation>
+                    <xs:documentation>indicar la información si la matrícula ha sido asignada por la marina mercante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Matricula_Fluvial" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Matrícula fluvial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="Matricula_MaritimaType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="Capitania_Maritima" type="Tipificacion_Capitania_MaritimaType">
+                    <xs:annotation>
+                        <xs:documentation>Tipificación = 12.  Capitanías Marítimas</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Provincia_Maritima" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Provincia marítima o puerto de primera categoría</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="Distrito_Maritimo" type="xs:string" minOccurs="0"/>
+            <xs:element name="Num_Lista" type="Tipificacion_Lista_MaritimaType">
+                <xs:annotation>
+                    <xs:documentation>Tipificación  = 15. Listas Marítimas</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Folio_Inscripcion" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Folio de inscripción en la lista</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Año_Inscripcion" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Año de inscripción en la lista</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MotoresType">
+        <xs:sequence>
+            <xs:element name="Tipo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipo de motor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Marca del motor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Modelo del motor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Serie" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de serie o fabricación del motor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Año_Construccion" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Año construcción del motor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Potencia_KW" type="PotenciaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Potencia en Kilowatios</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Potencia_CV" type="PotenciaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Potencia en caballos de vapor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AeronaveType">
+        <xs:sequence>
+            <xs:element name="Matricula" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Matrícula de la aeronave</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Tipo de aeronave</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Marca" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Marca aeronave</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Modelo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Modelo aeronave</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Serie" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de serie o fabricación de la aeronave</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Propiedad_IndustrialType">
+        <xs:sequence>
+            <xs:element name="Nombre_Marca" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre de la marca o patente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Marca" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Tipo de marca o patente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Reg_Adm" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número en el registro administrativo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Clase_Marca" type="Tipificacion_Clase_Propiedad_IndustrialType">
+                <xs:annotation>
+                    <xs:documentation>Clase. Tipificación 18. Clases Propiedad Industrial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Sub_Clase_Marca" type="Tipificacion_SubClase_Propiedad_IndustrialType">
+                <xs:annotation>
+                    <xs:documentation>Subclase.  Tipificación 19. SubClases Propiedad Industrial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Descripcion" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Descripción general de la marca o patente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Propiedad_IntelectualType">
+        <xs:sequence>
+            <xs:element name="Num_Reg_Adm" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número en el registro administrativo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Clase" type="Tipificacion_Clase_Propiedad_IntelectualType">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 20. Clases Propiedad Intelectual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Descripcion" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Descripción general propiedad </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Otros_BienesType">
+        <xs:sequence>
+            <xs:element name="Des_Otros_Bienes" type="Des_Otros_BienesType" minOccurs="0"/>
+            <xs:element name="Registro_Administrativo" type="Registro_AdministrativoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar la información de registro administrativo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ubicacion" type="UbicacionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar la ubicación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Sociedad" type="SociedadType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>información sobre la sociedad</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Otra_Descripcion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Otra descripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Des_Otros_BienesType">
+        <xs:sequence>
+            <xs:element name="Tipo" type="xs:string" minOccurs="0"/>
+            <xs:element name="Marca" type="xs:string" minOccurs="0"/>
+            <xs:element name="Modelo" type="xs:string" minOccurs="0"/>
+            <xs:element name="Num_Serie" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Registro_AdministrativoType">
+        <xs:sequence>
+            <xs:element name="Tipo_Reg_Adm" type="Tipificacion_Registro_AdministrativoType">
+                <xs:annotation>
+                    <xs:documentation>Tipo del registro administrativo. Tipificación 21. Registros administrativos</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Reg_Adm" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número identificativo en el registro administrativo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SociedadType">
+        <xs:sequence>
+            <xs:element name="Nombre_Sociedad" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre sociedad</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cif_Sociedad" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Cif sociedad</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNAE" type="Tipificacion_CNAEType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Código de actividad económica. Tipificacion 22. CNAE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ins_Reg_Mercantil" type="Ins_Reg_MercantilType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>información inscripción registro mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Ins_Reg_MercantilType">
+        <xs:sequence>
+            <xs:element name="Cod_Reg_Mercantil" type="Tipificacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Código registro mercantil. Tipificación = 11. Registros</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Seccion_Mercantil" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de sección en el registro mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Hoja" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de hoja de sociedad</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Hoja_Dup" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de hoja de sociedad duplicado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Num_Sub_Hoja">
+                <xs:annotation>
+                    <xs:documentation>Subnúmero de hoja de sociedad</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tomo_Sociedad" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Tomo inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Folio_Sociedad" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Folio inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ins_Sociedad" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Registrales_Mercantil2Type">
+        <xs:sequence>
+            <xs:element name="Codigo_R_Mercantil" type="Tipificacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Código registro Mercantil. Tipificacion 11.Registros</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tomo_R_Mercantil" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Tomo inscripción en registro Mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Libro_R_Mercantil" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Libro inscripción en registro Mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Folio_R_Mercantil" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Folio inscripción en registro Mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Hoja_R_Mercantil" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Hoja inscripción en registro Mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Inscripcion_R_Mercantil" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número inscripción en registro Mercantil</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Representante2Type">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType"/>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+            <xs:element name="Cargo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Cargo que ostenta el representante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Notario" type="Datos_Notario2Type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Notario2Type">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType"/>
+            <xs:element name="Cod_Provincia" type="Tipificacion_ProvinciaType">
+                <xs:annotation>
+                    <xs:documentation>Código de provincia. Tipificación 4. Provincias</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cod_Municipio" type="Tipificacion_MunicipioType">
+                <xs:annotation>
+                    <xs:documentation>Código de municipio. Tipificación 3. Municipios</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Otorgamiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha otorgamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Protocolo" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de protocolo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IntervinienteType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType">
+                <xs:annotation>
+                    <xs:documentation>identifica al sujeto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio" type="Domicilio_INEType">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Correo_Electronico" type="Correo_ElectronicoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Correo electrónico </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_Mercantil2Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>información de inscripción en el Registro Mercantil </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Representante" type="Representante2Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Representante/s del interviniente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Telefonos" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Teléfonos</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Telefono" type="TelefonoType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Cada uno de los teléfonos</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Interviniente_FiadorType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType">
+                <xs:annotation>
+                    <xs:documentation>identifica al sujeto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Correo_Electronico" type="Correo_ElectronicoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Correo electrónico </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_Mercantil2Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>información de inscripción en el Registro Mercantil </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Representante" type="Representante2Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Representante/s del interviniente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Telefonos" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Teléfonos</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Telefono" type="TelefonoType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Cada uno de los teléfonos</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VendedorType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType"/>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Objeto_FinanciadoType">
+        <xs:sequence>
+            <xs:element name="Des_Bien_Mueble" type="Des_Bien_MuebleType"/>
+            <xs:element name="Valor" type="ValorType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ValorType">
+        <xs:all>
+            <xs:element name="Valor_Contado" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Valor al contado del bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Unidad_Cuenta" type="Tipificacion_Unidad_CuentaType">
+                <xs:annotation>
+                    <xs:documentation>Indica la moneda en que están expresados los importes. Tipificación = 6. Unidad Cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="Datos_Financieros_FinanciacionType">
+        <xs:sequence>
+            <xs:element name="Unidad_Cuenta" type="Tipificacion_Unidad_CuentaType">
+                <xs:annotation>
+                    <xs:documentation>Indica la moneda en que están expresados los importes. Tipificación = 6. Unidad Cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Precio_Compraventa" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe del precio de compraventa o valor al contado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Desembolso_Inicial" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe desembolso inicial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Capital_Prestamo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe del capital del préstamo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Prestamo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total préstamo. Capital + Otros conceptos financiados</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Intereses">
+                <xs:annotation>
+                    <xs:documentation>Importe intereses del préstamo</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="ImporteType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Tipo_Deudor" type="PorcentajeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipo deudor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Interes_Nominal_Anual" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interés nominal anual por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Intereses_Demora" type="PorcentajeType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Intereses de demora</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Meses" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de meses de intereses por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Ultimo_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha último vencimiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Impuesto_Matriculacion" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe del impuesto de matriculación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Cancelacion_RD_LD" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe  cancelación de la reserva de dominio y/o limitación de disposición</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Adeudado" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>La suma del importe total del crédito más el coste total del crédito para el consumidor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Derecho_Desistimiento" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe del interés diario a efectos del derecho de desistiiento </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Comisiones" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar las comisiones</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Comision" type="ComisionType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>tipo de comisión</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Otros_Importes" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indicar Otros Importes que figuren en el contrato (Servicios, ...) y no estén recogidos en campos anteriores</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Otro_Importe" type="Otro_ImporteType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Otro Importe</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Variabilidad_Tipo_Interes" type="Variabilidad_Tipo_InteresType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Bloque para indicar la variabilidad del tipo de interes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Reconocimiento_Deuda" type="Reconocimiento_Deuda_FinanciacionType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar el reconocimiento de la deuda</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Pago" type="Domicilio_Pago_FinanciacionType">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cuadro_Amortizacion" type="Cuadro_Amortizacion_FinanciacionType">
+                <xs:annotation>
+                    <xs:documentation>describir el cuadro de amortización</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Financieros_RentingType">
+        <xs:sequence>
+            <xs:element name="Unidad_Cuenta" type="Tipificacion_Unidad_CuentaType">
+                <xs:annotation>
+                    <xs:documentation>Indica la moneda en que están expresados los importes. Tipificación = 6. Unidad Cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Arrendamiento" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total arrendamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Opcion_Compra" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe opción de compra</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Entrega_Cuenta" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe entrega a cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Fianza" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe Fianza</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Meses" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de meses de intereses por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Ultimo_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha último vencimiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Comisiones" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar las comisiones</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Comision" type="ComisionType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>tipo de comisión</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Otros_Importes" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indicar Otros Importes que figuren en el contrato y no estén recogidos en campos anteriores</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Otro_Importe" type="Otro_ImporteType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Otro Importe</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Variabilidad_Tipo_Interes" type="Variabilidad_Tipo_InteresType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Bloque para indicar la variabilidad del tipo de interes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Reconocimiento_Deuda" type="Reconocimiento_Deuda_LeasingType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar el reconocimiento de la deuda</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Pago" type="Domicilio_Pago_LeasingType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Datos_Financieros_LeasingType">
+        <xs:sequence>
+            <xs:element name="Unidad_Cuenta" type="Tipificacion_Unidad_CuentaType"/>
+            <xs:element name="Importe_Neto_Material" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe neto de los bienes que forman parte del contrato</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Arrendamiento" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total arrendamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Opcion_Compra" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe opción de compra</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Entrega_Cuenta" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe opción de compra</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Fianza" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe Fianza</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Interes_Nominal_Anual" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interés nominal anual por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tasa_Anual_Equivalente" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>TAE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Meses" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de meses de intereses por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Ultimo_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha último vencimiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Comisiones" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar las comisiones</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Comision" type="ComisionType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Otros_Importes" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indicar Otros Importes que figuren en el contrato y no estén recogidos en campos anteriores</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Otro_Importe" type="Otro_ImporteType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Otro Importe</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Variabilidad_Tipo_Interes" type="Variabilidad_Tipo_InteresType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Bloque para indicar la variabilidad del tipo de interes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Reconocimiento_Deuda" type="Reconocimiento_Deuda_LeasingType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar el reconocimiento de la deuda</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Pago" type="Domicilio_Pago_LeasingType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cuadro_Amortizacion" type="Cuadro_Amortizacion_LeasingType">
+                <xs:annotation>
+                    <xs:documentation>describir el cuadro de amortización</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Financiacion_Impuesto_Anticipado" type="Financiacion_Impuesto_AnticipadoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>describir la información de la financiación del impuesto anticipado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Financiacion_Seguro" type="Financiacion_SeguroType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>describir la información de la financiación del seguro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Reconocimiento_Deuda_FinanciacionType">
+        <xs:sequence>
+            <xs:element name="Importe_Reconocido" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe reconocido</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Plazos" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de plazos</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Plazos" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe de los plazos</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Domicilio_Pago_FinanciacionType">
+        <xs:sequence>
+            <xs:element name="Entidad_Pago" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Entidad de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Entidad_Pago" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Domicilio entidad de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Municipio" type="Tipificacion_MunicipioType"/>
+            <xs:element name="Provincia" type="Tipificacion_ProvinciaType"/>
+            <xs:element name="Numero_Cuenta_Corriente" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número cuenta corriente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Porcentaje_TAE" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Porcentaje TAE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Domicilio_Pago_LeasingType">
+        <xs:sequence>
+            <xs:element name="Entidad_Pago" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Entidad de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio_Entidad_Pago" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Domicilio entidad de pago</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Municipio" type="Tipificacion_MunicipioType"/>
+            <xs:element name="Provincia" type="Tipificacion_ProvinciaType"/>
+            <xs:element name="Numero_Cuenta_Corriente" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número cuenta corriente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ComisionType">
+        <xs:sequence>
+            <xs:element name="Tipo_Comision">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 33. Tipo Comisión</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="Tipificacion_Tipo_ComisionType"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Porcentaje" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Porcentaje comisión</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Minimo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe mínimo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Maximo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe Máximo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Financiado" type="Tipificacion_Si_NoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Si/No ha sido financiado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Condicion_Aplicacion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Condición de aplicación de la comisión</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Cuadro_Amortizacion_FinanciacionType">
+        <xs:sequence>
+            <xs:element name="Plazo" type="Plazo_FinanciacionType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Plazo_FinanciacionType">
+        <xs:sequence>
+            <xs:element name="Fecha_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha de fencimiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Plazo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe del plazo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Capital_Amortizado" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe capital amortizado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Intereses_Plazo" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe intereses plazo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ints_Devengados_Incorp_Al_Capital" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Intereses devengados incorporados al capital</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Capital_Pendiente" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe capital pendiente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Condiciones_ParticularesType">
+        <xs:sequence>
+            <xs:element name="Pactos" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar los pactos establecidos entre los intervinientes</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Pacto" type="PactoType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Cesion" type="CesionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar la información de la cesión se se ha pactado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Clausulas_Particulares" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar las clausulas particulares no incluidas en las generarles</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Clausula" type="ClausulaType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>para describir una clausula</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Condiciones_Particulares2Type">
+        <xs:sequence>
+            <xs:element name="Clausula" type="ClausulaType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>para describir una clausula</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PactoType">
+        <xs:sequence>
+            <xs:element name="Tipo_Pacto" type="Tipificacion_Tipo_PactoType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de pacto firmado. Tipificación 34. Tipo de pacto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Pactado_SN" type="Tipificacion_Si_NoType">
+                <xs:annotation>
+                    <xs:documentation>Si/No se ha pactado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CesionType">
+        <xs:sequence>
+            <xs:element name="Cesion_A_Persona_NO_Determinada" type="Tipificacion_Si_NoType">
+                <xs:annotation>
+                    <xs:documentation>Indica si la cesión es a persona indeterminada. Tipificación 7. Si/No</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Cesion_Tercero" type="Tipificacion_Cesion_TerceroType">
+                <xs:annotation>
+                    <xs:documentation>Indica el tipo de cesión a terceros. El tipo de cedente. Tipificación 31. Tipo cesión tercero</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cesionarios" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>para indicar los cesionarios</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Cesionario" type="CesionarioType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>indicar un cesionario</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CesionarioType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType"/>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_Mercantil2Type" minOccurs="0"/>
+            <xs:element name="Representante" type="Representante2Type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Contenido_PactadoType">
+        <xs:sequence>
+            <xs:element name="Epigrafe" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Epígrafe</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Titulo" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Titulo del epigrafe</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Clausula" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Numero" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Número</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="Titulo" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Título </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="Contenido" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Contenido</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ClausulaType">
+        <xs:sequence>
+            <xs:element name="Numero_Clausula" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de clausula</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nombre_Clausula" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre clausula</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Descripcion_Clausula" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Descripción literal contenido de la clausula</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Condiciones_GeneralesType">
+        <xs:sequence>
+            <xs:element name="Clausula" type="ClausulaType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>para describir una clausula</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FirmaType">
+        <xs:sequence>
+            <xs:element name="Lugar_Firma" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Lugar de la firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Firma" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha de la firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Intervencion" type="Tipificacion_Tipo_IntervencionType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de intenverción del firmante. Tipificación 26. Tipos intervención</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Derecho_Desistimiento" type="Tipificacion_Si_NoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>SI/NO la existencia o ausencia de derecho de desistimiento en caso de que el tipo de intervención sea prestatario/comprador</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Consumidor" type="Tipificacion_Si_NoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>SI/NO declara ser consumidor a los efectos de la Ley de Contratos de crédito de consumo  en caso de que el tipo de intervención sea prestatario/comprador</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Informado" type="Tipificacion_Si_NoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>SI/NO declara haber recibido la información previa al contrato y la explicación personalizada, con la debida antelación y su satisfacción en los términos exigidos en la misma  en caso de que el tipo de intervención sea prestatario/comprador</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Firma" type="Tipificacion_Tipo_FirmaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indica el tipo de firma utilizada. Manuscrita, Electrónica o Digitalizada. Indica el tipo de firma utilizada. Manuscrita, Electrónica o Digitalizada. Tipificación 41. Tipo de Firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Firma2Type">
+        <xs:sequence>
+            <xs:element name="Lugar_Firma" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Lugar de la firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Firma" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha de la firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Intervencion" type="Tipificacion_Tipo_IntervencionType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de intenverción del firmante. Tipificación 26. Tipos intervención</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Firma" type="Tipificacion_Tipo_FirmaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indica el tipo de firma utilizada. Manuscrita, Electrónica o Digitalizada. Tipificación 41. Tipo de Firma</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Comprador_ArrendatarioType">
+        <xs:sequence>
+            <xs:element name="Tipo_Persona" type="Tipificacion_Tipo_PersonaType">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 8.Tipos persona</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Codigo_Identificacion_Fiscal" type="xs:string"/>
+            <xs:element name="Nombre" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Obligatorio si se trata de una persona física</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Primer_Apellido" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Obligatorio si se trata de una persona física</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Segundo_Apellido" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Obligatorio si se trata de una persona física</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Razon_Social" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Razón social en caso de persona jurídica</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Objeto_LeasingType">
+        <xs:sequence>
+            <xs:element name="Des_Bien_Mueble" type="Des_Bien_MuebleType">
+                <xs:annotation>
+                    <xs:documentation>describir e identificar cada bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Precio_Adquisicion" type="Precio_AdquisicionType">
+                <xs:annotation>
+                    <xs:documentation>indicar el precio de adquisición del bien</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Proveedor" type="ProveedorType">
+                <xs:annotation>
+                    <xs:documentation>indicar el proveedor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Impuesto_Matriculacion" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe del impuesto de matriculación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Lugar_Utilizacion" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar el lugar de utilización o de instalación del bien</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Domicilio" type="Domicilio_INEType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Precio_AdquisicionType">
+        <xs:sequence>
+            <xs:element name="Unidad_Cuenta" type="Tipificacion_Unidad_CuentaType">
+                <xs:annotation>
+                    <xs:documentation>Unidad de cuenta. Tipificación = 6. Unidad Cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Base" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe base sin aplicar impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Impuesto" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe base + importe impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProveedorType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType"/>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Reconocimiento_Deuda_LeasingType">
+        <xs:sequence>
+            <xs:element name="Importe_Reconocido" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe reconocido</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Plazos" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Importe reconocido</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Plazos" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe de los plazos</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Dia_Mes_Vencimiento" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Importe de los plazos</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Primer_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha del primer vencimiento </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tiempo_Entre_Pagos" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Tiempo expresado en meses entre pagos </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Cuadro_Amortizacion_LeasingType">
+        <xs:sequence>
+            <xs:element name="Plazo" type="Plazo_LeasingType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>cada plazo del cuadro de amortización</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Plazo_LeasingType">
+        <xs:sequence>
+            <xs:element name="Fecha_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha vencimiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Recuperacion_Coste" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe recuperación del coste</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Recuperacion_Coste_Pendiente" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe recuperación del coste del bien pendiente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Carga_Financiera" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe carga financiera</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Cuota_Neta" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe carga financiera</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Impuesto" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Cuota" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total cuota, importe net + impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Distribucion_Entrega_Cuenta" type="ImporteType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Importe de la distribución de la entrega a cuenta</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Financiacion_Impuesto_AnticipadoType">
+        <xs:sequence>
+            <xs:element name="Importe_Impuesto" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>describir la información de la financiación del impuesto anticipado</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Interes_Nominal_Anual" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interés nominal anual por aplazamiento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tasa_Anual_Equivalente" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>TAE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cuadro_Amortizacion_FI" type="Cuadro_Amortizacion_FIType">
+                <xs:annotation>
+                    <xs:documentation>indicar el cuadro de amortización de la financiación anticipada del impuesto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Cuadro_Amortizacion_FIType">
+        <xs:sequence>
+            <xs:element name="Plazo_FI" type="Plazo_FIType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar cada plazo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Plazo_FIType">
+        <xs:sequence>
+            <xs:element name="Fecha_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha del vencimiento </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Amortizacion" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe amortizado </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Capital_Pendiente" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe amortizado </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Carga_Financiera" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe carga financiera </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Cuota" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total cuota </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Cuadro_Amortizacion_FSType">
+        <xs:sequence>
+            <xs:element name="Plazo_FS" type="Plazo_FSType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar el cuadro de amortización de la financiación del seguro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Plazo_FSType">
+        <xs:sequence>
+            <xs:element name="Fecha_Vencimiento" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha del vencimiento </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Amortizacion" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Fecha del vencimiento </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Capital_Pendiente" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe capital pendiente </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Carga_Financiera" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe capital pendiente </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe_Total_Cuota" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe total cuota </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_DocumentoType">
+        <xs:sequence>
+            <xs:element name="Numero_Documento" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Identificación del documento, número de contrato, número de expediente, etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Clase_Acto_Documento" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Clase de acto asignado en el Registro de Bienes Muebles</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_EF" type="Tipificacion_Entidad_FinanciacionType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Código Entidad de Financiación en los envíos Hermes Lotes . Tipificacion 35. Entidades de financiacion</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ID_Lote" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de lote en los envíos Hermes Lotes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ID_Documento" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Id documento en el  lote en los envíos Hermes Lotes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Presentacion" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Tipo presentación en los envíos Hermes Lotes. Tipificacion  38. Tipo Presentacion</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Entrada" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de entrada subsanado en los envíos Hermes Lotes. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Identificacion_Registral" type="Identificacion_RegistralType">
+                <xs:annotation>
+                    <xs:documentation>identificar el documento en el registro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_RegistralType">
+        <xs:sequence>
+            <xs:element name="Codigo_RBM" type="Tipificacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Código de registro en el que causa entrada</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Entrada" type="FechaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Fecha de entrada en el registro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Entrada" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de entrada</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Operacion_RegistralType">
+        <xs:sequence>
+            <xs:element name="Tipo_Operacion_Registral" type="Tipificacion_Tipo_Operacion_RegistroType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de operación registral realizada</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Presentacion" type="PresentacionType">
+                <xs:annotation>
+                    <xs:documentation>datos presentación en registro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Inscripciones" type="InscripcionesType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar las inscripciones practicadas sobre el documento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Calificaciones_Con_Defecto" type="Calificaciones_Con_DefectoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>para indicar las calificaciones defectuosas</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PresentacionType">
+        <xs:sequence>
+            <xs:element name="Fecha_Presentacion" type="FechaType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Fecha asiento presentación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Asiento" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de presentación</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Diario" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de diario</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Folio" type="NumericoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Número de folio</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="InscripcionesType">
+        <xs:sequence>
+            <xs:element name="Inscripcion" type="InscripcionType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indicar una inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="InscripcionType">
+        <xs:sequence>
+            <xs:element name="Des_Bien_Mueble" type="Des_Bien_MuebleType"/>
+            <xs:element name="Numero_Bien" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número único en el registro para el bien </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Folio_Bien" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de folio de inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Fecha_Inscripcion" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha inscripción</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Avisos" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar avisos de calificación</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Aviso" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Aviso de calificación</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Calificaciones_Con_DefectoType">
+        <xs:sequence>
+            <xs:element name="Calificacion_Documento_Con_Defecto" type="Calificacion_Documento_Con_DefectoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indica los defectos que afectan a todo el documento</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Calificacion_Bien_Con_Defecto" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>indica los defectos de un determinado bien</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Fecha_Calificacion" type="FechaType">
+                            <xs:annotation>
+                                <xs:documentation>Fecha calificación en el registro</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Des_Bien_Mueble" type="Des_Bien_MuebleType">
+                            <xs:annotation>
+                                <xs:documentation>para describir e identificar cada bien</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Defectos">
+                            <xs:annotation>
+                                <xs:documentation>para describir los defectos</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Defecto" type="DefectoType" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>para describir un defecto</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Calificacion_Documento_Con_DefectoType">
+        <xs:sequence>
+            <xs:element name="Fecha_Calificacion" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Fecha calificación en el registro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Defectos">
+                <xs:annotation>
+                    <xs:documentation>para describir los defectos</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Defecto" type="DefectoType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>para describir un defecto</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DefectoType">
+        <xs:sequence>
+            <xs:element name="Tipo_Defecto" type="Tipificacion_Tipo_DefectoType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de defect.Tipificación 29. Tipo defecto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Descripcion_Defecto" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Descripción del defecto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Financiacion_SeguroType">
+        <xs:sequence>
+            <xs:element name="Importe_Seguro" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe del seguro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Interes_Nominal_Anual" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interés nominal</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tasa_Anual_Equivalente" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>TAE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Cuadro_Amortizacion_FS" type="Cuadro_Amortizacion_FSType">
+                <xs:annotation>
+                    <xs:documentation>indicar el cuadro de amortización de la financiación del seguro</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SolicitanteType">
+        <xs:sequence>
+            <xs:element name="Iden_Sujeto" type="Iden_SujetoType">
+                <xs:annotation>
+                    <xs:documentation>identifica al sujeto</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>indicar el domicilio </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Correo_Electronico" type="Correo_ElectronicoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Correo electrónico </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datos_Registrales_Mercantil" type="Datos_Registrales_Mercantil2Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>información de inscripción en el Registro Mercantil </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Representante" type="Representante2Type" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Representante/s del solicititante</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Otro_ImporteType">
+        <xs:sequence>
+            <xs:element name="Tipo_Otro_Importe" type="Tipificacion_Tipo_Otro_ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Tipificación 39 . Tipo Otros Importes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Importe" type="ImporteType">
+                <xs:annotation>
+                    <xs:documentation>Importe</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Porcentaje" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indicar el porcentaje si el importe no es fijo y se aplica sobre una base</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Porcentaje" type="PorcentajeType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Porcentaje</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Base" type="xs:string" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Base sobre la que se aplica el porcentaje.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Observaciones" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Observaciones/Aclaraciones sobre el importe</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Condicionante" type="Tipificacion_Si_NoType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indica si el concepto o servicio es condicionante para la concesión del crédito</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Variabilidad_Tipo_InteresType">
+        <xs:sequence>
+            <xs:element name="Fecha_Revision" type="FechaType">
+                <xs:annotation>
+                    <xs:documentation>Primera fecha en que se revisará el tipo de interés</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Periodo_Revision" type="NumericoType">
+                <xs:annotation>
+                    <xs:documentation>Número de meses en los que  se revisará el tipo de interes de forma sucesiva</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo_Interes_Referencia" type="Tipificacion_Tipo_Interes_ReferenciaType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interes de referencia. Tipificación 40. Tipos de interes de referencia</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Diferencial_Fijo" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tipo de interes de referencia sustitutivo. Diferencial fijo en puntos porcentuales</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tope_Maximo_Interes_Nominal" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Tope maximo de interes nominal anual, a efectos de variacion de interes en perjuicio de tercero</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Condicion_GeneralType">
+        <xs:sequence>
+            <xs:element name="Nombre_Predisponente" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nombre/Denominación predisponente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nif_Cif_Predisponente" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Nif Cif del predisponente</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Denominacion_Identificativa" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Denominación identificativa</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="PorcentajeType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|(\d{1,3}(,\d{1,10}))|\d{1,3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PotenciaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|(\d{1,10}(,\d{3}))|\d{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PesoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|(\d{1,10}(,\d{3}))|\d{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LongitudType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|(\d{1,10}(,\d{2}))|\d{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FechaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Clausula_LOPDType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="ImporteType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|(\d{1,10}(,\d{1,2}))|\d{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Correo_ElectronicoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|([^@]+@[^@]+\.[^@]+)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NumericoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,15}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_ProvinciaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_MunicipioType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_RegistroType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_PersonaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_PaisType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Categoria_BienType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Si_NoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|SI|NO"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_ActoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Unidad_CuentaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_ViaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Grupo_BienType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Lista_MaritimaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[L]{1}[0-9]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Capitania_MaritimaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Estado_BuqueType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Clase_Propiedad_IndustrialType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_SubClase_Propiedad_IndustrialType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Clase_Propiedad_IntelectualType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Registro_AdministrativoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_CNAEType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Extension_DerechoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Clase_DerechoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Motivo_CancelacionType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_IntervencionType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Situacion_JuridicaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Causa_CancelacionType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Cesion_TerceroType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{2,3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_ComisionType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Entidad_FinanciacionType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_PactoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_Operacion_RegistroType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_DefectoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|[A-Z]{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_Otro_ImporteType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_Interes_ReferenciaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tipificacion_Tipo_FirmaType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="S?|\d{1,1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Tipo_DeudorExtType">
+        <xs:sequence>
+            <xs:element name="Tipo" type="PorcentajeType">
+                <xs:annotation>
+                    <xs:documentation>Porcentaje anual</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Condiciones_Aplicacion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Las condiciones de aplicación de dicho tipo</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Indices_Tipos_Referencia" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Los índices o tipos de referencia aplicables al tipo deudor inicial</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Periodos_Condiciones_Procedimientos_Variacion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Períodos, condiciones y procedimientos de variación del tipo deudor</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TelefonoType">
+        <xs:sequence>
+            <xs:element name="Numero" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Número de teléfono</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Tipo" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Tipo de teléfono</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato_MarcoType">
+        <xs:sequence>
+            <xs:element name="Modelo_Contrato" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Código de modelo de contrato</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Contrato" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Indica el número de contrato asignado por la entidad de financiación.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Identificacion_Contrato_IndividualType">
+        <xs:sequence>
+            <xs:element name="Modelo_Contrato" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Código de modelo de contrato</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Numero_Contrato" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Indica el número de contrato asignado por la entidad de financiación.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

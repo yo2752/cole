@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ws.iam.munimadrid.es" version="1.0" xmlns:iam="http://ws.iam.munimadrid.es">
+
+			<!--
+				*********************************************************************************************
+			-->
+			<!--
+				Definición de tipos comunes a los esquemas hijos
+			-->
+			<!--
+				*********************************************************************************************
+			-->
+			<!--
+				03.02.2010
+			-->
+			<!--
+				*********************************************************************************************
+			-->
+
+
+			<!--
+				************************************************************************************
+				* TIPOS COMUNES A TODOS LOS ESQUEMAS. Se incluye comunTypes como xsd
+				*
+				************************************************************************************
+			-->
+			<simpleType name="strnoblanks">
+				<annotation>
+					<documentation>
+						String sin espacios en blanco
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern
+						value="([^\n|\r|\t])*([^\n|\r|\t|\s])([^\n|\r|\t])*" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsmall">
+				<annotation>
+					<documentation>
+						String sin minúsculas sin espacios en blanco
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern
+						value="([^a-z|ñ|ç|\n|\r|\t])*([^a-z|ñ|ç|\s|\n|\r|\t])([^a-z|ñ|ç|\n|\r|\t])*" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strnumbers">
+				<annotation>
+					<documentation>
+						String numérico sin espacios en blanco
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]| )*([0-9])([0-9]| )*" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strwithreturn">
+				<annotation>
+					<documentation>
+						String no vacío (permite tabulador y retorno de
+						carro)
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="(\w|\W)*(\S)(\w|\W)*" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strdateundelimited">
+				<annotation>
+					<documentation>
+						String de fecha sin delimitar ejem: 20090101
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="\d{8}" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="date">
+				<annotation>
+					<documentation>Fecha formato normal</documentation>
+				</annotation>
+				<restriction base="date">
+					<minInclusive value="1800-01-01"/>
+				</restriction>
+			</simpleType>
+			<simpleType name="nif">
+				<annotation>
+					<documentation>Nif</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<length value="9" />
+					<pattern value="([A-Z]|[0-9]){9}" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup1e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						1 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,1}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup3e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						3 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,3}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup4e3d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						4 enteros y 3 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,4}((,)?([0-9]){0,3})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup5e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						5 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,5}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup7e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						7 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,7}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup9e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						9 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,9}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+			<simpleType name="strsup13e2d">
+				<annotation>
+					<documentation>
+						String preparado para números en formato
+						decimal, de
+						13 enteros y 2 decimales
+					</documentation>
+				</annotation>
+				<restriction base="string">
+					<!--<pattern value="([0-9]){1,13}((,)?([0-9]){0,2})?" />-->
+				</restriction>
+			</simpleType>
+
+			<!--
+				************************************************************************************
+				* ERRORES *
+				************************************************************************************
+			-->
+
+			<element name="errores" type="iam:erroresType">
+				<annotation>
+					<documentation>
+						Elemento de errores con la especificación de un
+						error
+					</documentation>
+				</annotation>
+			</element>
+
+			<complexType name="erroresType">
+				<sequence>
+					<element name="progerr" type="iam:progerrType">
+						<annotation>
+							<documentation>
+								Error en el programa
+							</documentation>
+						</annotation>
+					</element>
+					<element name="numerr" type="iam:numerrType">
+						<annotation>
+							<documentation>
+								Número de error
+							</documentation>
+						</annotation>
+					</element>
+					<element name="linerr" type="iam:linerrType">
+						<annotation>
+							<documentation>
+								Linea de error
+							</documentation>
+						</annotation>
+					</element>
+					<element name="sqlerr" type="iam:sqlerrType">
+						<annotation>
+							<documentation>Error SQL</documentation>
+						</annotation>
+					</element>
+					<element name="menserr" type="iam:menserrType">
+						<annotation>
+							<documentation>
+								Descripción del mensaje de error
+							</documentation>
+						</annotation>
+					</element>
+					<element name="nivelerr" type="iam:nivelerrType">
+						<annotation>
+							<documentation>
+								Nivel del error. Especifica 1.Error
+								Validación, 2.
+								Error java, 3. Error
+								Validación Host, 4. Error no controlado
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+
+			<simpleType name="progerrType">
+				<restriction base="iam:strnoblanks">
+					<maxLength value="8"/>
+				</restriction>
+			</simpleType>
+
+			<simpleType name="numerrType">
+				<restriction base="iam:strnumbers">
+					<maxLength value="4"/>
+				</restriction>
+			</simpleType>
+
+			<simpleType name="linerrType">
+				<restriction base="string">
+					<maxLength value="4"/>
+				</restriction>
+			</simpleType>
+
+			<simpleType name="sqlerrType">
+				<restriction base="iam:strnoblanks">
+					<maxLength value="10"/>
+				</restriction>
+			</simpleType>
+
+			<simpleType name="menserrType">
+				<restriction base="iam:strwithreturn">
+					<maxLength value="78"/>
+				</restriction>
+			</simpleType>
+
+			<simpleType name="nivelerrType">
+				<restriction base="iam:strnoblanks">
+					<maxLength value="1"/>
+				</restriction>
+			</simpleType>
+
+
+			<!--
+				************************************************************************************
+				* FIN TIPOS COMUNES A TODOS LOS ESQUEMAS. Se incluye comunTypes como
+				xsd *
+				************************************************************************************
+			-->		
+            
+            <element name="AltaProyectoAutoliquidacionIVTM">
+            	<complexType>
+            		<sequence>
+
+            			<element name="AltaProyectoAutoliquidacionIVTMRequest" type="iam:AltaProyectoAutoliquidacionIVTMRequestType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="AltaProyectoAutoliquidacionIVTMResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="AltaProyectoAutoliquidacionIVTMResponse" type="iam:AltaProyectoAutoliquidacionIVTMResponseType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+		
+            <complexType name="AltaProyectoAutoliquidacionIVTMRequestType">
+            	<sequence>
+            		<element maxOccurs="1" name="docautorizado" type="iam:docautorizadoTipo"/>
+					<element maxOccurs="1" minOccurs="0" name="sujeto" type="iam:sujetoType">
+            		</element>
+            		<element maxOccurs="1" minOccurs="0" name="osujeto" type="iam:sujetoType"/>
+            		<element maxOccurs="1" name="vehiculo" type="iam:vehiculoType"/>
+            	</sequence>
+            </complexType>
+            
+            <complexType name="AltaProyectoAutoliquidacionIVTMResponseType">
+            	<sequence>
+            		<element name="numautoliquidacion" type="iam:numautoliquidacionTipo">
+            		</element>
+            		<element name="emisor" type="iam:emisorTipo"/>
+            		<element name="importeanual" type="iam:importeTipo">
+            		</element>
+            		<element name="importe" type="iam:importeTipo"/>
+            		<element name="digitos" type="iam:digitosTipo"/>
+            		<element name="codgestor" type="iam:codgestorTipo">
+            		</element>
+            		<element minOccurs="0" name="errores" type="iam:erroresType"/>
+            	</sequence>
+            </complexType>
+            <element name="ModificacionProyectoAutoliquidacionIVTM">
+            	<complexType>
+            		<sequence>
+            			<element name="ModificacionProyectoAutoliquidacionIVTMRequest" type="iam:ModificacionProyectoAutoliquidacionIVTMRequestType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="ModificacionProyectoAutoliquidacionIVTMResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="ModificacionProyectoAutoliquidacionIVTMResponse" type="iam:ModificacionProyectoAutoliquidacionIVTMResponseType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+		
+            <complexType name="ModificacionProyectoAutoliquidacionIVTMRequestType">
+            	<sequence>
+            		<element maxOccurs="1" name="docautorizado" type="iam:docautorizadoTipo"/>
+            		<element maxOccurs="1" name="numautoliquidacion" type="iam:numautoliquidacionTipo"/>
+            		<element maxOccurs="1" minOccurs="0" name="sujeto" type="iam:sujetoType"/>
+            		<element maxOccurs="1" minOccurs="0" name="osujeto" type="iam:sujetoType"/>
+            		<element maxOccurs="1" name="vehiculo" type="iam:vehiculoType"/>
+            	</sequence>
+            </complexType>
+            
+            <complexType name="ModificacionProyectoAutoliquidacionIVTMResponseType">
+            	<sequence>
+                    <element name="numautoliquidacion" type="iam:numautoliquidacionTipo"/>
+                    <element name="emisor" type="iam:emisorTipo"/>
+            		<element name="importeanual" type="iam:importeTipo">
+            		</element>
+            		<element name="importe" type="iam:importeTipo"/>
+            		<element name="digitos" type="iam:digitosTipo"/>
+            		<element name="codgestor" type="iam:codgestorTipo">
+            		</element>
+            		<element minOccurs="0" name="errores" type="iam:erroresType"/>
+
+            	</sequence>
+            </complexType>
+            <element name="AsociacionMatricula">
+            	<complexType>
+            		<sequence>
+            			<element name="AsociacionMatriculaRequest" type="iam:AsociacionMatriculaRequestType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="AsociacionMatriculaResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="AsociacionMatriculaResponse" type="iam:AsociacionMatriculaResponseType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+		
+            <complexType name="AsociacionMatriculaRequestType">
+            	<sequence>
+
+
+            		<element maxOccurs="unbounded" minOccurs="1" name="asociacion" type="iam:asociacionTipo"/>
+            	</sequence>
+            </complexType>
+            
+            <complexType name="AsociacionMatriculaResponseType">
+            	<sequence>
+            		<element minOccurs="0" name="errores" type="iam:erroresType"/>
+            		<element maxOccurs="unbounded" minOccurs="1" name="validacionasociacion" type="iam:validacionasociacionTipo"/>
+            	</sequence>
+            </complexType>
+            <element name="ConsultaDeudasIVTM">
+            	<complexType>
+            		<sequence>
+            			<element name="ConsultaDeudasIVTMRequest" type="iam:ConsultaDeudasIVTMRequestType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="ConsultaDeudasIVTMResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="ConsultaDeudasIVTMResponse" type="iam:ConsultaDeudasIVTMResponseType"/>
+            		</sequence>
+            	</complexType>
+            </element>
+		
+            <complexType name="ConsultaDeudasIVTMRequestType">
+            	<sequence>
+            		<element name="docautorizado" type="iam:docautorizadoTipo"/>
+            		<element name="matricula" type="iam:matriculaTipo"/>
+            	</sequence>
+            </complexType>
+            
+            <complexType name="ConsultaDeudasIVTMResponseType">
+            	<sequence>
+            		<element name="mensaje" type="iam:mensajeTipo"/>
+            		<element minOccurs="0" name="errores" type="iam:erroresType"/>
+            	</sequence>
+            </complexType>
+            
+            <complexType name="sujetoType">
+            	<sequence>
+            		<element name="nombre" type="iam:nombreTipo"/>
+            		<element name="apellido1" type="iam:apellidoTipo"/>
+            		<element name="apellido2" type="iam:apellidoTipo"/>
+            		<element name="razonsocial" type="iam:razonsocialTipo">
+            		</element>
+            		<element name="tipodocumento" type="iam:tipodocumentoTipo">
+            		</element>
+            		<element name="numdocumento" type="iam:numdocumentoTipo">
+            		</element>
+                    <element name="domicilio" type="iam:domicilioTipo"/>
+            		<element name="email" type="iam:emailTipo"/>
+            		<element name="telefono1" type="iam:telefonoTipo"/>
+            		<element name="telefono2" type="iam:telefonoTipo"/>
+
+            	</sequence>
+            </complexType>
+		
+            <complexType name="vehiculoType">
+            	<sequence>
+            		<element name="fchalta" type="iam:fchaltaTipo"/>
+            		<element name="numbastidor" type="iam:numbastidorTipo"/>
+            		<element name="marca" type="iam:marcaTipo"/>
+					<element name="modelo" type="iam:modeloTipo"/>
+            		<element name="fchpresentacion" type="iam:fchpresentacionTipo"/>
+            		<element name="tipoveh" type="iam:tipovehTipo"/>
+            		<element name="potencia" type="iam:potenciaTipo"/>
+            		<element name="plazas" type="iam:plazasTipo"/>
+            		<element name="tonelaje" type="iam:tonelajeTipo"/>
+            		<element name="cubicaje" type="iam:cubicajeTipo"/>
+            		<element name="servicio" type="iam:servicioTipo"/>
+            		<element name="tipocarburante" type="iam:tipocarburanteTipo"/>
+            		<element name="co2" type="iam:co2Tipo"/>
+            		<element name="bodmedamb" type="iam:bonmedambTipo"/>
+					<element name="porcentajebodmedamb" type="iam:porcentajebonmedambTipo"/>
+            		<element minOccurs="0" name="iban" type="iam:ibanTipo"/>
+            	</sequence>
+            </complexType>
+		
+            <simpleType name="nombreTipo">
+            	<restriction base="string">
+            		<maxLength value="20"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="apellidoTipo">
+            	<restriction base="string">
+            		<maxLength value="25"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="razonsocialTipo">
+            	<restriction base="string">
+            		<maxLength value="70"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="tipodocumentoTipo">
+            	<restriction base="string">
+            		<maxLength value="1"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="numdocumentoTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+		
+            <simpleType name="clasevialTipo">
+            	<restriction base="string">
+            		<maxLength value="25"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="nombrevialTipo">
+            	<restriction base="string">
+            		<maxLength value="60"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="nomappTipo">
+            	<restriction base="string">
+            		<maxLength value="3"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="numappTipo">
+            	<restriction base="string">
+            		<maxLength value="6"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="calappTipo">
+            	<restriction base="string">
+            		<maxLength value="2"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="escaleraTipo">
+            	<restriction base="string">
+            		<maxLength value="4"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="pisoTipo">
+            	<restriction base="string">
+            		<maxLength value="4"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="puertaTipo">
+            	<restriction base="string">
+            		<maxLength value="4"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="poblacionTipo">
+            	<restriction base="string">
+            		<maxLength value="70"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="provinciaTipo">
+            	<restriction base="string">
+            		<maxLength value="25"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="codpostalTipo">
+            	<restriction base="string">
+            		<maxLength value="5"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="emailTipo">
+            	<restriction base="string">
+            		<maxLength value="50"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="telefonoTipo">
+            	<restriction base="iam:strnumbers">
+            		<maxLength value="9"/>
+            	</restriction>
+            </simpleType>
+            
+		
+            <simpleType name="docautorizadoTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+		
+            <simpleType name="fchaltaTipo">
+            	<restriction base="iam:strdateundelimited">
+            		<maxLength value="8"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="numbastidorTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+            
+            <simpleType name="marcaTipo">
+            	<restriction base="string">
+            		<maxLength value="16"/>
+            	</restriction>
+            </simpleType>
+			
+			<simpleType name="modeloTipo">
+            	<restriction base="string">
+            		<maxLength value="16"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="fchpresentacionTipo">
+            	<restriction base="iam:strdateundelimited">
+            		<maxLength value="8"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="tipovehTipo">
+            	<restriction base="string">
+            		<maxLength value="2"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="potenciaTipo">
+            	<restriction base="iam:strsup4e3d">
+            		<maxLength value="8"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="plazasTipo">
+            	<restriction base="iam:strsup4e3d">
+            		<maxLength value="4"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="tonelajeTipo">
+            	<restriction base="iam:strnumbers">
+            		<maxLength value="7"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="cubicajeTipo">
+            	<restriction base="iam:strnumbers">
+            		<maxLength value="6"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="servicioTipo">
+            	<restriction base="string">
+            		<maxLength value="3"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="tipocarburanteTipo">
+            	<restriction base="string">
+            		<maxLength value="3"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="co2Tipo">
+            	<restriction base="string">
+            		<maxLength value="3"/>
+            	</restriction>
+            </simpleType>
+                   
+            <simpleType name="bonmedambTipo">
+            	<restriction base="string">
+            		<maxLength value="1"/>
+            	</restriction>
+            </simpleType>
+			
+			<simpleType name="porcentajebonmedambTipo">
+            	<restriction base="iam:strsup3e2d">
+            		<maxLength value="6"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="ibanTipo">
+            	<restriction base="string">
+            		<length value="24"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="numautoliquidacionTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+            
+            <simpleType name="emisorTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+            
+            <simpleType name="importeTipo">
+            	<restriction base="iam:strsup13e2d"/>
+            </simpleType>
+		
+            <simpleType name="digitosTipo">
+            	<restriction base="string">
+            		<maxLength value="2"/>
+            	</restriction>
+            </simpleType>
+            
+            <simpleType name="codgestorTipo">
+            	<restriction base="iam:strnoblanks"/>
+            </simpleType>
+		
+            <simpleType name="matriculaTipo">
+            	<restriction base="iam:strnoblanks">
+            		<maxLength value="12"/>
+            	</restriction>
+            </simpleType>
+		
+            <simpleType name="mensajeTipo">
+            	<restriction base="string">
+            		<maxLength value="80"/>
+            	</restriction>
+            </simpleType>
+		
+            <complexType name="domicilioTipo">
+            	<sequence>
+            		<element name="clasevial" type="iam:clasevialTipo"/>
+            		<element name="nombrevial" type="iam:nombrevialTipo"/>
+            		<element name="nomapp" type="iam:nomappTipo"/>
+            		<element name="numapp" type="iam:numappTipo"/>
+            		<element name="calapp" type="iam:calappTipo"/>
+            		<element name="escalera" type="iam:escaleraTipo"/>
+            		<element name="piso" type="iam:pisoTipo"/>
+            		<element name="puerta" type="iam:puertaTipo"/>
+            		<element name="poblacion" type="iam:poblacionTipo"/>
+            		<element name="provincia" type="iam:provinciaTipo"/>
+            		<element name="codpostal" type="iam:codpostalTipo"/>
+            	</sequence>
+            </complexType>
+		
+            <complexType name="asociacionTipo">
+            	<sequence>
+            		<element name="munautoliquidacion" type="iam:numautoliquidacionTipo"/>
+            		<element name="matricula" type="iam:matriculaTipo"/>
+            	</sequence>
+            </complexType>
+		
+            <complexType name="validacionasociacionTipo">
+            	<sequence>
+            		<element name="numautoliquidacion" type="iam:numautoliquidacionTipo"/>
+            		<element name="matricula" type="iam:matriculaTipo"/>
+            		<element name="mensajeerror" type="iam:mensajeerrorTipo"/>
+            	</sequence>
+            </complexType>
+		
+            <simpleType name="mensajeerrorTipo">
+            	<restriction base="iam:strnoblanks">
+            		<maxLength value="70"/>
+            	</restriction>
+            </simpleType>
+		</schema>

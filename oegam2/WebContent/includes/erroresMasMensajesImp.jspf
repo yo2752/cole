@@ -1,0 +1,33 @@
+
+<s:if test="hasActionErrors() || hasActionMessages()">
+<div id="idResumenImportacion" >
+		<table class="subtitulo" cellSpacing="0" cellspacing="0">
+			<tr>
+				<td>Detalle de la importación:</td>
+			</tr>
+		</table>
+	<div id="divError">
+		<table class="tablaformbasica" width="100%">
+			<tr>
+				<td align="left">						
+					<ul id="mensajesInfo" style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;">
+					<s:if test="hasActionMessages()">
+						<s:iterator value="actionMessages">
+							<li><span><s:property /></span></li>
+						</s:iterator>
+					</s:if>
+					</ul>
+					
+						<ul id="mensajesError" style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;">
+					<s:if test="hasActionErrors()">
+						<s:iterator value="actionErrors">
+							<li><span><s:property /></span></li>
+						</s:iterator>
+					</s:if>	
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</s:if>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.gacn.es/CTIT/tipos" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.gacn.es/CTIT/tipos" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified">
+	<!--Tipos complejos-->
+	<!--Tipos simples-->
+	<xs:simpleType name="tipoVersionRegistro">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoHash">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"
+			/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTramite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CTI"/>
+			<xs:enumeration value="NOT"/>
+			<xs:enumeration value="ENT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTextoLegal">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

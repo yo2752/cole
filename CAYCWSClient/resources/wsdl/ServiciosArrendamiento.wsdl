@@ -1,0 +1,55 @@
+<wsdl:definitions targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices">
+	<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:schema>
+			<xsd:import schemaLocation="ServiciosArrendamiento.xsd2.xsd" namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="altaArrendamientoRequest">
+		<wsdl:part name="parameters" element="xsns:altaArrendamiento" xmlns:xsns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices"/>
+	</wsdl:message>
+	<wsdl:message name="altaArrendamientoResponse">
+		<wsdl:part name="parameters" element="xsns:altaArrendamientoResponse" xmlns:xsns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices"/>
+	</wsdl:message>
+	<wsdl:message name="modificacionArrendamientoRequest">
+		<wsdl:part name="parameters" element="xsns:modificacionArrendamiento" xmlns:xsns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices"/>
+	</wsdl:message>
+	<wsdl:message name="modificacionArrendamientoResponse">
+		<wsdl:part name="parameters" element="xsns:modificacionArrendamientoResponse" xmlns:xsns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices"/>
+	</wsdl:message>
+	<wsdl:portType name="ArrendamientoServicioWeb">
+		<wsdl:operation name="altaArrendamiento">
+			<wsdl:input name="altaArrendamientoRequest" message="ns0:altaArrendamientoRequest"/>
+			<wsdl:output name="altaArrendamientoResponse" message="ns0:altaArrendamientoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="modificacionArrendamiento">
+			<wsdl:input name="modificacionArrendamientoRequest" message="ns0:modificacionArrendamientoRequest"/>
+			<wsdl:output name="modificacionArrendamientoResponse" message="ns0:modificacionArrendamientoResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CaycArrendamientoSoapBinding" type="ns0:ArrendamientoServicioWeb">
+		<soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="altaArrendamiento">
+			<soap11:operation soapAction="altaArrendamiento" style="document"/>
+			<wsdl:input name="altaArrendamientoRequest">
+				<soap11:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="altaArrendamientoResponse">
+				<soap11:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="modificacionArrendamiento">
+			<soap11:operation soapAction="modificacionArrendamiento" style="document"/>
+			<wsdl:input name="modificacionArrendamientoRequest">
+				<soap11:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="modificacionArrendamientoResponse">
+				<soap11:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServiciosArrendamiento">
+		<wsdl:port name="CaycArrendamientoSoap" binding="ns0:CaycArrendamientoSoapBinding">
+			<soap11:address location="https://preapl-p3.trafico.es:8081/WS_CAYC/servicios/ServiciosArrendamiento"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

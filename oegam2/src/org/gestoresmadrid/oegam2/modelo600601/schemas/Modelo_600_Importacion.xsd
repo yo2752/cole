@@ -1,0 +1,2055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="remesa">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="modelo600" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>Modelo 600A1</xs:documentation>
+							</xs:annotation>
+							<xs:element name="lista_intervinientes">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="interviniente" type="intervinienteA2Type" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Detalle">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OficinaLiquidadora" type="OficinaLiquidadoraType"/>
+										<xs:element name="OficinaLiquidadoraDesc" type="OficinaLiquidadoraDescType"/>
+										<xs:element name="Num_Sujetos" type="digito2TypeO"/>
+										<xs:element name="Num_Transmitentes" type="digito2Type"/>
+										<xs:element name="FechaDevengo" type="fechaTypeO"/>
+										<xs:element name="DocPublico" type="boolObligatorioType"/>
+										<xs:element name="DocPrivado" type="boolObligatorioType"/>
+										<xs:element name="DocJudicial" type="boolObligatorioType"/>
+										<xs:element name="DocAdministrativo" type="boolObligatorioType"/>
+										<xs:element name="TextoDocJudAdmin" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodNotaria" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ApellidoNotario">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="80"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NombreNotario">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="80"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodNotario">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NumProtocolo" type="digito6Type"/>
+										<xs:element name="NumProtocoloBis" type="boolType"/>
+										<xs:element name="FechaDocumento" type="fechaType"/>
+										<xs:element name="ExpAbreviada" type="expAbreviadaType"/>
+										<xs:element name="Concepto" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Liquidacion">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ValorDeclarado" type="importe14_2Type"/>
+										<xs:element name="Prescrita" type="boolObligatorioType"/>
+										<xs:element name="Exento" type="boolObligatorioType"/>
+										<xs:element name="NoSujeto" type="boolObligatorioType"/>
+										<xs:element name="FundamentoLegal" type="fundamentoLegalType"/>
+										<xs:element name="FundamentoLegalDesc" type="xs:string"/>
+										<xs:element name="LiquidacionComplementaria" type="boolType"/>
+										<xs:element name="SegundaCopia" type="boolType" minOccurs="0"/>
+										<xs:element name="NumJustificantePrimeraLiquidacion" type="cifras13Type"/>
+										<xs:element name="Fecha" type="fechaType"/>
+										<xs:element name="OficinaDocumento" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="001"/>
+													<xs:enumeration value="002"/>
+													<xs:enumeration value="003"/>
+													<xs:enumeration value="004"/>
+													<xs:enumeration value="005"/>
+													<xs:enumeration value="006"/>
+													<xs:enumeration value="007"/>
+													<xs:enumeration value="008"/>
+													<xs:enumeration value="009"/>
+													<xs:enumeration value="010"/>
+													<xs:enumeration value="011"/>
+													<xs:enumeration value="012"/>
+													<xs:enumeration value="013"/>
+													<xs:enumeration value="014"/>
+													<xs:enumeration value="015"/>
+													<xs:enumeration value="016"/>
+													<xs:enumeration value="017"/>
+													<xs:enumeration value="018"/>
+													<xs:enumeration value="019"/>
+													<xs:enumeration value="020"/>
+													<xs:enumeration value="021"/>
+													<xs:enumeration value="022"/>
+													<xs:enumeration value="023"/>
+													<xs:enumeration value="024"/>
+													<xs:enumeration value=""/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="anoDocumento" type="cifras4Type"/>
+										<xs:element name="TipoImpuesto" type="impuestoType"/>
+										<xs:element name="NumDocumento" type="digito6Type"/>
+										<xs:element name="BaseImponible" type="importe14_2Type"/>
+										<xs:element name="Reduccion" type="porcentajeType"/>
+										<xs:element name="ReduccImporte" type="importe14_2Type"/>
+										<xs:element name="BaseLiquidable" type="importe14_2Type"/>
+										<xs:element name="Tipo" type="tipoImposivito600"/>
+										<xs:element name="Cuota" type="importe14_2Type"/>
+										<xs:element name="BonificacionCodigo" type="CodBonificacionType"/> 
+										<xs:element name="BonificacionDescripcion" type="DescBonificacionType"/> 
+										<xs:element name="BonificacionCuota" type="importe5_2Type"/>
+										<xs:element name="BonificacionCuotaImporte" type="importe14_2Type"/>
+										<xs:element name="Aingresar" type="importe14_2Type"/>
+										<xs:element name="Auxiliar1" type="importe14_2Type"/>
+										<xs:element name="Auxiliar2" type="importe14_2Type"/>
+										<xs:element name="TotalIngresar" type="importe14_2Type"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="lista_bienes_urbanos" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="bien_urbano" type="bien_urbanoTypeO" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="lista_bienes_rusticos" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="bien_rustico" type="bien_rusticoTypeO" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="codigo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="13"/>
+									<xs:maxLength value="13"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="modelo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="5"/>
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="version_xsd_modelo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5"/>
+									<xs:minLength value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="codigo" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fec_emision" type="fechaType" use="required"/>
+			<xs:attribute name="total_decl" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="version_xsd" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="versioncodigo" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="importe4_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?([0-9])?[0-9],[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe5_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])?[0-9])?[0-9],[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe5_4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe6_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?((([0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe7_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe9_4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((((([0-9]\.)?[0-9])?[0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?((((((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,4},[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe14_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,3},[0-9][0-9])?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_2TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,4},[0-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe12Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito3Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito5Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,5}|(S/N)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito6Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito10Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito12Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9])|((1|2)[0-9])|(3(0|1)))/((0[1-9])|(1[0-2]))/[1-9][0-9]{3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nifType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\d{8})([A-HJ-NP-TV-Z]))?"/>
+			<xs:pattern value="(([A-HJU-V])(\d{8}))?"/>
+			<xs:pattern value="(([A-GK-NP-SW-Z])(\d{7})([A-NP-TV-Z]))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mesType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0[1-9])|(1[0-2]))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="anioType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1000"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="boolType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(S|N)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="intervinienteType">
+		<xs:sequence>
+			<xs:element name="nif" type="nifTypeO"/>
+			<xs:element name="nombre_razonsocial">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="provincia" type="provinciaType"/>
+			<xs:element name="provinciaDesc" type="provinciaDescType"/>
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siglas" type="siglasType"/>
+			<xs:element name="siglasDesc" type="siglasDescType"/>
+			<xs:element name="nombre_via">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numero">
+				<xs:simpleType>
+					<xs:restriction base="digito4Type">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="portal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="escalera">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="piso">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="puerta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cp">
+				<xs:simpleType>
+					<xs:restriction base="cifras5Type">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telf" type="cifras9Type"/>
+			<xs:element name="partic_igual" type="boolType"/>
+			<xs:element name="grdo_partic" type="importe5_2Type"/>
+			<xs:element name="fec_nacimiento" type="fechaType"/>
+			<xs:element name="parentesco" type="xs:string"/>
+			<xs:element name="parentescoDesc" type="xs:string"/>
+			<xs:element name="titulo_sucesorio" type="tituloSucesorioType"/>
+			<xs:element name="titulo_sucesorioDesc" type="tituloSucesorioDescType"/>
+			<xs:element name="grupo" type="xs:string"/>
+			<xs:element name="grupoDesc" type="xs:string"/>
+			<xs:element name="patrimonio" type="xs:string"/>
+			<xs:element name="patrimonioDesc" type="xs:string"/>
+			<xs:element name="minusvalia" type="boolType"/>
+			<xs:element name="grdo_minusvalia" type="digito3Type"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="TipoIntervinienteType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="intervinienteA2Type">
+		<xs:sequence>
+			<xs:element name="nif" type="nifTypeO"/>
+			<xs:element name="nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="apellido1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="apellido2">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nombre_razonsocial">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="75"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="provincia" type="provinciaType"/>
+			<xs:element name="provinciaDesc" type="provinciaDescType"/>
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siglas" type="siglasType"/>
+			<xs:element name="siglasDesc" type="siglasDescType"/>
+			<xs:element name="nombre_via">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numero" type="NumeroType"/>
+			<xs:element name="escalera">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="piso">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="puerta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cp">
+				<xs:simpleType>
+					<xs:restriction base="cifras5Type">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telf" type="cifras9Type"/>
+			<xs:element name="partic_igual" type="boolType"/>
+			<xs:element name="grdo_partic" type="importe5_2Type"/>
+			<xs:element name="fec_nacimiento" type="fechaType"/>
+			<xs:element name="parentesco" type="parentescoType"/>
+			<xs:element name="parentescoDesc" type="parentescoDescType"/>
+			<xs:element name="titulo_sucesorio" type="tituloSucesorioType"/>
+			<xs:element name="titulo_sucesorioDesc" type="tituloSucesorioDescType"/>
+			<xs:element name="grupo" type="grupoType"/>
+			<xs:element name="patrimonio" type="patrimonioType"/>
+			<xs:element name="patrimonioDesc" type="xs:string"/>
+			<xs:element name="minusvalia" type="boolType"/>
+			<xs:element name="grdo_minusvalia" type="digito3Type"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="TipoIntervinienteType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="intervinienteA3Type">
+		<xs:sequence>
+			<xs:element name="nif" type="nifTypeO"/>
+			<xs:element name="nombre_razonsocial">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="provincia" type="provinciaType"/>
+			<xs:element name="provinciaDesc" type="provinciaDescType"/>
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siglas" type="siglasType"/>
+			<xs:element name="siglasDesc" type="siglasDescType"/>
+			<xs:element name="nombre_via">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numero">
+				<xs:simpleType>
+					<xs:restriction base="digito4Type">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="portal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="escalera">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="piso">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="puerta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cp">
+				<xs:simpleType>
+					<xs:restriction base="cifras5Type">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telf" type="cifras9Type"/>
+			<xs:element name="partic_igual" type="boolType"/>
+			<xs:element name="grdo_partic" type="importe5_2Type"/>
+			<xs:element name="fec_nacimiento" type="fechaType"/>
+			<xs:element name="parentesco" type="xs:string"/>
+			<xs:element name="parentescoDesc" type="xs:string"/>
+			<xs:element name="titulo_sucesorio" type="tituloSucesorioType"/>
+			<xs:element name="titulo_sucesorioDesc" type="tituloSucesorioDescType"/>
+			<xs:element name="grupo" type="xs:string"/>
+			<xs:element name="grupoDesc" type="xs:string"/>
+			<xs:element name="patrimonio" type="xs:string"/>
+			<xs:element name="patrimonioDesc" type="xs:string"/>
+			<xs:element name="minusvalia" type="boolType"/>
+			<xs:element name="grdo_minusvalia" type="digito3Type"/>
+		</xs:sequence>
+		<xs:attribute name="tipo" type="TipoIntervinienteType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="bien_urbanoTypeO">
+		<xs:sequence>
+			<xs:element name="Caracter" type="caracterType"/>
+			<xs:element name="Transmision">
+				<xs:simpleType>
+					<xs:restriction base="porcentajeType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tipo">
+				<xs:simpleType>
+					<xs:restriction base="tipoUrbanoType">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tipoDesc">
+				<xs:simpleType>
+					<xs:restriction base="tipoUrbanoDescType">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="via" type="siglasType"/>
+			<xs:element name="viaDesc" type="siglasDescType"/>
+			<xs:element name="NombreVia" type="xs:string"/>
+			<xs:element name="Numero" type="digito5Type"/>
+			<xs:element name="DupTrip" type="DuptripType"/>
+			<xs:element name="Escalera">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Planta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Puerta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2"/>
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NumLocal" type="digito3Type"/>
+			<xs:element name="provincia" type="provinciaTypeO"/>
+			<xs:element name="provinciaDesc" type="provinciaDescTypeO"/>
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codigoPostal">
+				<xs:simpleType>
+					<xs:restriction base="digito5Type">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SuperficieConstruida" type="importe17_2Type"/>
+			<xs:element name="anoConstruccion" type="digito4Type"/>
+			<xs:element name="Situacion" type="SituacionType"/>
+			<xs:element name="SituacionDesc" type="SituacionDescType"/>
+			<xs:element name="ReferenciaCatastral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Arrendamiento" type="boolObligatorioType"/>
+			<xs:element name="AnoContrato" type="digito4Type"/>
+			<xs:element name="VPO" type="boolObligatorioType"/>
+			<xs:element name="Descalificado" type="boolType"/>
+			<xs:element name="ViviendaHabitual" type="boolType"/>
+			<xs:element name="PrecioMaximoVenta" type="importe14_2Type"/>
+			<xs:element name="ValorDeclarado" type="importe14_2Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bien_rusticoTypeO">
+		<xs:sequence>
+			<xs:element name="Caracter" type="caracterType"/>
+			<xs:element name="Transmision">
+				<xs:simpleType>
+					<xs:restriction base="porcentajeType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tipo">
+				<xs:simpleType>
+					<xs:restriction base="tipoRusticoType">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tipoDesc">
+				<xs:simpleType>
+					<xs:restriction base="tipoRusticoDescType">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="provincia" type="provinciaTypeO"/>
+			<xs:element name="provinciaDesc" type="provinciaDescTypeO"/>
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codigoPostal">
+				<xs:simpleType>
+					<xs:restriction base="digito5Type">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="paraje">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="poligono">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="parcela">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="14"/>
+						<xs:minLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subparcela">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="superficie" type="importe17_2TypeO"/>
+			<xs:element name="UnidadSuperficie" type="unidadType"/>
+			<xs:element name="UnidadSuperficieDesc" type="unidadDescType"/>
+			<xs:element name="TipoGanaderia" type="ganaderiaType"/>
+			<xs:element name="TipoGanaderiaDesc" type="ganaderiaDescType"/>
+			<xs:element name="TipoCultivo" type="cultivoType"/>
+			<xs:element name="TipoCultivoDesc" type="cultivoDescType"/>
+			<xs:element name="TipoOtros" type="otrosType"/>
+			<xs:element name="TipoOtrosDesc" type="otrosDescType"/>
+			<xs:element name="ReferenciaCatastral">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ValorDeclarado" type="importe14_2Type"/>
+			<xs:element name="explotacion" type="explotacionType"/>
+			<xs:element name="explotacionDesc" type="explotacionDescType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IngresoTypeO">
+		<xs:sequence>
+			<xs:element name="Entidad" type="boolObligatorioType"/>
+			<xs:element name="Efectivo" type="boolObligatorioType"/>
+			<xs:element name="Cuenta" type="boolObligatorioType"/>
+			<xs:element name="Importe" type="importe14_2Type"/>
+			<xs:element name="CCC_Entidad" type="cifras4Type"/>
+			<xs:element name="CCC_Oficina" type="cifras4Type"/>
+			<xs:element name="CCC_DC" type="cifras2Type"/>
+			<xs:element name="CCC_Cuenta" type="cifras10Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="OficinaLiquidadoraType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="001"/>
+			<xs:enumeration value="002"/>
+			<xs:enumeration value="003"/>
+			<xs:enumeration value="004"/>
+			<xs:enumeration value="005"/>
+			<xs:enumeration value="006"/>
+			<xs:enumeration value="007"/>
+			<xs:enumeration value="008"/>
+			<xs:enumeration value="009"/>
+			<xs:enumeration value="010"/>
+			<xs:enumeration value="011"/>
+			<xs:enumeration value="012"/>
+			<xs:enumeration value="013"/>
+			<xs:enumeration value="014"/>
+			<xs:enumeration value="015"/>
+			<xs:enumeration value="016"/>
+			<xs:enumeration value="017"/>
+			<xs:enumeration value="018"/>
+			<xs:enumeration value="019"/>
+			<xs:enumeration value="020"/>
+			<xs:enumeration value="021"/>
+			<xs:enumeration value="022"/>
+			<xs:enumeration value="023"/>
+			<xs:enumeration value="024"/>
+			<xs:enumeration value="000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OficinaLiquidadoraDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="O.L. ALCALÁ DE HENARES"/>
+			<xs:enumeration value="O.L. ALCOBENDAS"/>
+			<xs:enumeration value="O.L. ALCORCÓN"/>
+			<xs:enumeration value="O.L. ALGETE"/>
+			<xs:enumeration value="O.L. ARANJUEZ"/>
+			<xs:enumeration value="O.L. ARGANDA DEL REY"/>
+			<xs:enumeration value="O.L. COLLADO VILLALBA"/>
+			<xs:enumeration value="O.L. COLMENAR VIEJO"/>
+			<xs:enumeration value="O.L. COSLADA"/>
+			<xs:enumeration value="O.L. FUENLABRADA"/>
+			<xs:enumeration value="O.L. GETAFE"/>
+			<xs:enumeration value="O.L. LAS ROZAS"/>
+			<xs:enumeration value="O.L. LEGANES"/>
+			<xs:enumeration value="O.L. MAJADAHONDA"/>
+			<xs:enumeration value="O.L. MOSTOLES"/>
+			<xs:enumeration value="O.L. NAVALCARNERO"/>
+			<xs:enumeration value="O.L. PARLA"/>
+			<xs:enumeration value="O.L. PINTO"/>
+			<xs:enumeration value="O.L. POZUELO DE ALARCON"/>
+			<xs:enumeration value="O.L. SAN FERNANDO DE HENARES"/>
+			<xs:enumeration value="O.L. SAN LORENZO DEL ESCORIAL"/>
+			<xs:enumeration value="O.L. SAN MARTIN VALDEIGLESIAS"/>
+			<xs:enumeration value="O.L. S. SEBASTIAN DE LOS REYES"/>
+			<xs:enumeration value="O.L. TORREJÓN DE ARDOZ"/>
+			<xs:enumeration value="MADRID - D. G. TRIBUTOS"/>
+			<xs:enumeration value="D.G. TRIBUTOS Y ORDENACIÓN Y GESTIÓN JUEGO"/>
+			<xs:enumeration value="MADRID CAPITAL (D.G. TRIBUTOS Y ORDENACIÓN Y GESTIÓN DEL JUEGO)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="boolObligatorioType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(S|N)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="unidadType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AA"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="HA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="unidadDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Area"/>
+			<xs:enumeration value="Centiárea"/>
+			<xs:enumeration value="Hectárea"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cultivoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CS"/>
+			<xs:enumeration value="EM"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="OL"/>
+			<xs:enumeration value="PD"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="VO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cultivoDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Labor regadío"/>
+			<xs:enumeration value="Labor secano"/>
+			<xs:enumeration value="Pasto / Erial / Monte bajo"/>
+			<xs:enumeration value="General / Resto"/>
+			<xs:enumeration value="Olivar"/>
+			<xs:enumeration value="Pradera secano"/>
+			<xs:enumeration value="Pradera regadío"/>
+			<xs:enumeration value="Viñedo"/>
+			<xs:enumeration value="Viñedo / Olivo"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ganaderiaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AV"/>
+			<xs:enumeration value="EQ"/>
+			<xs:enumeration value="GA"/>
+			<xs:enumeration value="OV"/>
+			<xs:enumeration value="PO"/>
+			<xs:enumeration value="VA"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ganaderiaDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Avestruces"/>
+			<xs:enumeration value="Equinos"/>
+			<xs:enumeration value="Gallinas"/>
+			<xs:enumeration value="Ganado ovino"/>
+			<xs:enumeration value="Ganado porcino"/>
+			<xs:enumeration value="Ganado vacuno"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="otrosType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="MO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="otrosDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALMACENES"/>
+			<xs:enumeration value="GRANEROS"/>
+			<xs:enumeration value="MOLINOS"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="expAbreviadaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AD0"/>
+			<xs:enumeration value="AR0"/>
+			<xs:enumeration value="AU0"/>
+			<xs:enumeration value="CA0"/>
+			<xs:enumeration value="DG0"/>
+			<xs:enumeration value="ED0"/>
+			<xs:enumeration value="FZ0"/>
+			<xs:enumeration value="ORO"/>
+			<xs:enumeration value="OS0"/>
+			<xs:enumeration value="PN0"/>
+			<xs:enumeration value="PO0"/>
+			<xs:enumeration value="SA1"/>
+			<xs:enumeration value="SB1"/>
+			<xs:enumeration value="SO0"/>
+			<xs:enumeration value="SO1"/>
+			<xs:enumeration value="SO2"/>
+			<xs:enumeration value="SO3"/>
+			<xs:enumeration value="SO5"/>
+			<xs:enumeration value="SO6"/>
+			<xs:enumeration value="SO7"/>
+			<xs:enumeration value="SO8"/>
+			<xs:enumeration value="SO9"/>
+			<xs:enumeration value="SX0"/>
+			<xs:enumeration value="SX1"/>
+			<xs:enumeration value="SX2"/>
+			<xs:enumeration value="SX3"/>
+			<xs:enumeration value="SX5"/>
+			<xs:enumeration value="SX6"/>
+			<xs:enumeration value="SX7"/>
+			<xs:enumeration value="SX8"/>
+			<xs:enumeration value="S10"/>
+			<xs:enumeration value="TI0"/>
+			<xs:enumeration value="TM0"/>
+			<xs:enumeration value="TM1"/>
+			<xs:enumeration value="TPG"/>
+			<xs:enumeration value="TP0"/>
+			<xs:enumeration value="TR0"/>
+			<xs:enumeration value="TR1"/>
+			<xs:enumeration value="TR2"/>
+			<xs:enumeration value="TR3"/>
+			<xs:enumeration value="TS0"/>
+			<xs:enumeration value="TS1"/>
+			<xs:enumeration value="TU0"/>
+			<xs:enumeration value="TU1"/>
+			<xs:enumeration value="TU2"/>
+			<xs:enumeration value="TU3"/>
+			<xs:enumeration value="TU4"/>
+			<xs:enumeration value="TU5"/>
+			<xs:enumeration value="TU6"/>
+			<xs:enumeration value="TU7"/>
+			<xs:enumeration value="TU8"/>
+			<xs:enumeration value="TU9"/>
+			<xs:enumeration value="TV0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaTypeO">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="88"/>
+			<xs:enumeration value="28"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaCYLTypeO">
+		<xs:union memberTypes="cadenaVacia provinciaTypeO"/>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaDescTypeO">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALAVA"/>
+			<xs:enumeration value="ALBACETE"/>
+			<xs:enumeration value="ALACANT/ALICANTE"/>
+			<xs:enumeration value="ALMERÍA"/>
+			<xs:enumeration value="AVILA"/>
+			<xs:enumeration value="BADAJOZ"/>
+			<xs:enumeration value="ILLES BALEARS"/>
+			<xs:enumeration value="BARCELONA"/>
+			<xs:enumeration value="BURGOS"/>
+			<xs:enumeration value="CÁCERES"/>
+			<xs:enumeration value="CÁDIZ"/>
+			<xs:enumeration value="CASTELLÓ/CASTELLÓN"/>
+			<xs:enumeration value="CIUDAD REAL"/>
+			<xs:enumeration value="CÓRDOBA"/>
+			<xs:enumeration value="CORUÑA, A"/>
+			<xs:enumeration value="CUENCA"/>
+			<xs:enumeration value="GIRONA"/>
+			<xs:enumeration value="GRANADA"/>
+			<xs:enumeration value="GUADALAJARA"/>
+			<xs:enumeration value="GUIPÚZCOA"/>
+			<xs:enumeration value="HUELVA"/>
+			<xs:enumeration value="HUESCA"/>
+			<xs:enumeration value="JAÉN"/>
+			<xs:enumeration value="LEÓN"/>
+			<xs:enumeration value="LLEIDA"/>
+			<xs:enumeration value="RIOJA, LA"/>
+			<xs:enumeration value="LUGO"/>
+			<xs:enumeration value="MÁLAGA"/>
+			<xs:enumeration value="MURCIA"/>
+			<xs:enumeration value="NAVARRA"/>
+			<xs:enumeration value="OURENSE"/>
+			<xs:enumeration value="ASTURIAS"/>
+			<xs:enumeration value="PALENCIA"/>
+			<xs:enumeration value="PALMAS, LAS"/>
+			<xs:enumeration value="PONTEVEDRA"/>
+			<xs:enumeration value="SALAMANCA"/>
+			<xs:enumeration value="SANTA CRUZ DE TENERIFE"/>
+			<xs:enumeration value="CANTABRIA"/>
+			<xs:enumeration value="SEGOVIA"/>
+			<xs:enumeration value="SEVILLA"/>
+			<xs:enumeration value="SORIA"/>
+			<xs:enumeration value="TARRAGONA"/>
+			<xs:enumeration value="TERUEL"/>
+			<xs:enumeration value="TOLEDO"/>
+			<xs:enumeration value="VALÈNCIA/VALENCIA"/>
+			<xs:enumeration value="VALLADOLID"/>
+			<xs:enumeration value="VIZCAYA"/>
+			<xs:enumeration value="ZAMORA"/>
+			<xs:enumeration value="ZARAGOZA"/>
+			<xs:enumeration value="CEUTA"/>
+			<xs:enumeration value="MELILLA"/>
+			<xs:enumeration value="DESCONOCIDA"/>
+			<xs:enumeration value="MADRID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaCYLDescTypeO">
+		<xs:union memberTypes="cadenaVacia provinciaDescTypeO"/>
+	</xs:simpleType>
+	<xs:simpleType name="SituacionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ABU"/>
+			<xs:enumeration value="BAI"/>
+			<xs:enumeration value="BAJ"/>
+			<xs:enumeration value="EXT"/>
+			<xs:enumeration value="INT"/>
+			<xs:enumeration value="ISE"/>
+			<xs:enumeration value="SEM"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SituacionDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Piso abuhardillado"/>
+			<xs:enumeration value="Planta baja interior"/>
+			<xs:enumeration value="Piso en planta baja o entreplanta"/>
+			<xs:enumeration value="Piso exterior o sobre patio manzana"/>
+			<xs:enumeration value="Piso interior (todos los huecos sobre patio luces)"/>
+			<xs:enumeration value="Piso Interior Semisotano"/>
+			<xs:enumeration value="Piso en planta semisótano"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fundamentoLegalType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="99"/>
+			<xs:enumeration value="A1"/>
+			<xs:enumeration value="A2"/>
+			<xs:enumeration value="A3"/>
+			<xs:enumeration value="A4"/>
+			<xs:enumeration value="C1"/>
+			<xs:enumeration value="C2"/>
+			<xs:enumeration value="C3"/>
+			<xs:enumeration value="C5"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoImposivito600">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(ESCALA|(((\-)?(([0-9])?[0-9])?[0-9],[0-9][0-9])?))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="motivoReduccionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAM"/>
+			<xs:enumeration value="MEN"/>
+			<xs:enumeration value="MIN"/>
+			<xs:enumeration value="VPO"/>
+			<xs:enumeration value="ME2"/>
+			<xs:enumeration value="JNR"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="motivoReduccionDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAMILIA NUMEROSA"/>
+			<xs:enumeration value="MENOR 35 AÑOS"/>
+			<xs:enumeration value="GRADO MINUSVALIA >= 65%"/>
+			<xs:enumeration value="VIVIENDA PROTEGIDA"/>
+			<xs:enumeration value="MENOR 36 AÑOS"/>
+			<xs:enumeration value="JOVEN NÚCLEO RURAL"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito10TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito2TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito4TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cadenaVacia">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoUrbanoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CT"/>
+			<xs:enumeration value="EI"/>
+			<xs:enumeration value="LC"/>
+			<xs:enumeration value="LO"/>
+			<xs:enumeration value="PG"/>
+			<xs:enumeration value="PI"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="SU"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="VH"/>
+			<xs:enumeration value="VU"/>
+			<xs:enumeration value="">
+				<xs:annotation>
+					<xs:documentation source="wasa"/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoUrbanoDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cuarto trastero"/>
+			<xs:enumeration value="Nave Industrial"/>
+			<xs:enumeration value="Local comercial"/>
+			<xs:enumeration value="Local de oficinas"/>
+			<xs:enumeration value="Plaza de garaje"/>
+			<xs:enumeration value="Parcela industrial"/>
+			<xs:enumeration value="Parcela residencial"/>
+			<xs:enumeration value="Suelo-solar"/>
+			<xs:enumeration value="Suelo Urbanizable"/>
+			<xs:enumeration value="Vivienda Colectiva"/>
+			<xs:enumeration value="Unifamiliar Adosada"/>
+			<xs:enumeration value="Unifamiliar Aislada"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoRusticoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RF"/>
+			<xs:enumeration value="">
+				<xs:annotation>
+					<xs:documentation source="wasa"/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoRusticoDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fincas rústicas"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="antiguedadType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="001"/>
+			<xs:enumeration value="002"/>
+			<xs:enumeration value="003"/>
+			<xs:enumeration value="004"/>
+			<xs:enumeration value="005"/>
+			<xs:enumeration value="006"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="antiguedadDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0-10 años"/>
+			<xs:enumeration value="10-20 años"/>
+			<xs:enumeration value="20-30 años"/>
+			<xs:enumeration value="30-60 años"/>
+			<xs:enumeration value="más 60 años"/>
+			<xs:enumeration value="En ruinas"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito3TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito5TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe9_4TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((((([0-9]\.)?[0-9])?[0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claseCultivoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CS"/>
+			<xs:enumeration value="EM"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="OL"/>
+			<xs:enumeration value="PD"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="VO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="claseCultivoTransDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Labor regadío"/>
+			<xs:enumeration value="Labor secano"/>
+			<xs:enumeration value="Pasto / Erial / Monte bajo"/>
+			<xs:enumeration value="General / Resto"/>
+			<xs:enumeration value="Olivar"/>
+			<xs:enumeration value="Pradera secano"/>
+			<xs:enumeration value="Pradera regadío"/>
+			<xs:enumeration value="Viñedo"/>
+			<xs:enumeration value="Viñedo / Olivo"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaTypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9])|((1|2)[0-9])|(3(0|1)))/((0[1-9])|(1[0-2]))/[1-9][0-9]{3})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nifTypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\d{8})([A-HJ-NP-TV-Z]))"/>
+			<xs:pattern value="(([A-HJU-V])(\d{8}))"/>
+			<xs:pattern value="(([A-GK-NP-SW-Z])(\d{7})([A-NP-TV-Z]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="siglasType">
+		<xs:restriction base="collapsedStringType">
+			<xs:enumeration value="ACCES"/>
+			<xs:enumeration value="ACUED"/>
+			<xs:enumeration value="AEROD"/>
+			<xs:enumeration value="AEROP"/>
+			<xs:enumeration value="ALAMD"/>
+			<xs:enumeration value="ALMAC"/>
+			<xs:enumeration value="ALTO"/>
+			<xs:enumeration value="APTO"/>
+			<xs:enumeration value="ARROY"/>
+			<xs:enumeration value="ARRY"/>
+			<xs:enumeration value="AUTOV"/>
+			<xs:enumeration value="AVDA"/>
+			<xs:enumeration value="BADA"/>
+			<xs:enumeration value="BAJD"/>
+			<xs:enumeration value="BARDA"/>
+			<xs:enumeration value="BARRA"/>
+			<xs:enumeration value="BARRO"/>
+			<xs:enumeration value="BASIL"/>
+			<xs:enumeration value="BLOQ"/>
+			<xs:enumeration value="BRANC"/>
+			<xs:enumeration value="BULEV"/>
+			<xs:enumeration value="BULV"/>
+			<xs:enumeration value="C.C.B"/>
+			<xs:enumeration value="C.CUL"/>
+			<xs:enumeration value="C.PUB"/>
+			<xs:enumeration value="C.SAN"/>
+			<xs:enumeration value="CALLE"/>
+			<xs:enumeration value="CAMPA"/>
+			<xs:enumeration value="CANAL"/>
+			<xs:enumeration value="CANTO"/>
+			<xs:enumeration value="CAÑAD"/>
+			<xs:enumeration value="CAR"/>
+			<xs:enumeration value="CASA"/>
+			<xs:enumeration value="CASER"/>
+			<xs:enumeration value="CASET"/>
+			<xs:enumeration value="CASIL"/>
+			<xs:enumeration value="CASTI"/>
+			<xs:enumeration value="CEMEN"/>
+			<xs:enumeration value="CERRO"/>
+			<xs:enumeration value="CETRO"/>
+			<xs:enumeration value="CIUDA"/>
+			<xs:enumeration value="CJTO"/>
+			<xs:enumeration value="CLLJA"/>
+			<xs:enumeration value="CLLON"/>
+			<xs:enumeration value="CMNO"/>
+			<xs:enumeration value="COL"/>
+			<xs:enumeration value="COLAD"/>
+			<xs:enumeration value="COLEG"/>
+			<xs:enumeration value="COMP."/>
+			<xs:enumeration value="CONJ"/>
+			<xs:enumeration value="CRRIL"/>
+			<xs:enumeration value="CSTAN"/>
+			<xs:enumeration value="CTRA"/>
+			<xs:enumeration value="CUSTA"/>
+			<xs:enumeration value="CHALE"/>
+			<xs:enumeration value="DEHES"/>
+			<xs:enumeration value="DESC"/>
+			<xs:enumeration value="DISEM"/>
+			<xs:enumeration value="DISPE"/>
+			<xs:enumeration value="E.PRO"/>
+			<xs:enumeration value="EDIFI"/>
+			<xs:enumeration value="ENLAC"/>
+			<xs:enumeration value="ES.OF"/>
+			<xs:enumeration value="ESCAL"/>
+			<xs:enumeration value="ESCUE"/>
+			<xs:enumeration value="ESTAC"/>
+			<xs:enumeration value="ESTAD"/>
+			<xs:enumeration value="EXPLA"/>
+			<xs:enumeration value="EXTRR"/>
+			<xs:enumeration value="F.B.D"/>
+			<xs:enumeration value="FABRI"/>
+			<xs:enumeration value="FACUL"/>
+			<xs:enumeration value="FEDES"/>
+			<xs:enumeration value="FFCC"/>
+			<xs:enumeration value="FINCA"/>
+			<xs:enumeration value="FUENT"/>
+			<xs:enumeration value="FUNDA"/>
+			<xs:enumeration value="G.V."/>
+			<xs:enumeration value="GALE"/>
+			<xs:enumeration value="GRUP"/>
+			<xs:enumeration value="GTA"/>
+			<xs:enumeration value="HIPOD"/>
+			<xs:enumeration value="HOSPI"/>
+			<xs:enumeration value="HOTEL"/>
+			<xs:enumeration value="I.F.P"/>
+			<xs:enumeration value="IGLES"/>
+			<xs:enumeration value="IN.PO"/>
+			<xs:enumeration value="INSTI"/>
+			<xs:enumeration value="JARDI"/>
+			<xs:enumeration value="LICEO"/>
+			<xs:enumeration value="LUGAR"/>
+			<xs:enumeration value="MANZ"/>
+			<xs:enumeration value="MANZA"/>
+			<xs:enumeration value="MATAD"/>
+			<xs:enumeration value="MERC"/>
+			<xs:enumeration value="MERCA"/>
+			<xs:enumeration value="METRO"/>
+			<xs:enumeration value="MINIS"/>
+			<xs:enumeration value="MONTE"/>
+			<xs:enumeration value="NUCLE"/>
+			<xs:enumeration value="PAB"/>
+			<xs:enumeration value="PALAC"/>
+			<xs:enumeration value="PARAJ"/>
+			<xs:enumeration value="PARCE"/>
+			<xs:enumeration value="PARTI"/>
+			<xs:enumeration value="PASEO"/>
+			<xs:enumeration value="PASO"/>
+			<xs:enumeration value="PATIO"/>
+			<xs:enumeration value="PATRO"/>
+			<xs:enumeration value="PISTA"/>
+			<xs:enumeration value="PLAZA"/>
+			<xs:enumeration value="PLZLA"/>
+			<xs:enumeration value="PNTE"/>
+			<xs:enumeration value="POBLA"/>
+			<xs:enumeration value="POLG"/>
+			<xs:enumeration value="POLID"/>
+			<xs:enumeration value="POLIG"/>
+			<xs:enumeration value="PORTO"/>
+			<xs:enumeration value="PQUE"/>
+			<xs:enumeration value="PROLG"/>
+			<xs:enumeration value="PRTA"/>
+			<xs:enumeration value="PRTO"/>
+			<xs:enumeration value="PSAJE"/>
+			<xs:enumeration value="PUEBL"/>
+			<xs:enumeration value="PUERT"/>
+			<xs:enumeration value="PZO"/>
+			<xs:enumeration value="RAMB"/>
+			<xs:enumeration value="RAMPA"/>
+			<xs:enumeration value="RCO"/>
+			<xs:enumeration value="RESID"/>
+			<xs:enumeration value="RIO"/>
+			<xs:enumeration value="RNADA"/>
+			<xs:enumeration value="RNCON"/>
+			<xs:enumeration value="RONDA"/>
+			<xs:enumeration value="ROTON"/>
+			<xs:enumeration value="RTDA"/>
+			<xs:enumeration value="SACRA"/>
+			<xs:enumeration value="SALID"/>
+			<xs:enumeration value="SE.SA"/>
+			<xs:enumeration value="SECT"/>
+			<xs:enumeration value="SENDA"/>
+			<xs:enumeration value="SITIO"/>
+			<xs:enumeration value="SUBES"/>
+			<xs:enumeration value="SUBID"/>
+			<xs:enumeration value="TANAT"/>
+			<xs:enumeration value="TRANS"/>
+			<xs:enumeration value="TRAS"/>
+			<xs:enumeration value="TRVA"/>
+			<xs:enumeration value="U.V.A"/>
+			<xs:enumeration value="URB"/>
+			<xs:enumeration value="VIA"/>
+			<xs:enumeration value="VIAS"/>
+			<xs:enumeration value="VREDA"/>
+			<xs:enumeration value="ZONA"/>
+			<xs:enumeration value="ZOOLO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="siglasDescType">
+		<xs:restriction base="collapsedStringType">
+			<xs:enumeration value="ACCESO"/>
+			<xs:enumeration value="ACUEDUCTO"/>
+			<xs:enumeration value="AERODROMO"/>
+			<xs:enumeration value="AEROPUERTO"/>
+			<xs:enumeration value="ALAMEDA"/>
+			<xs:enumeration value="ALMACEN"/>
+			<xs:enumeration value="ALTO"/>
+			<xs:enumeration value="APARTAMENTO"/>
+			<xs:enumeration value="ARROYO"/>
+			<xs:enumeration value="ARROYO"/>
+			<xs:enumeration value="AUTOVIA"/>
+			<xs:enumeration value="AVENIDA"/>
+			<xs:enumeration value="BARRIADA"/>
+			<xs:enumeration value="BAJADA"/>
+			<xs:enumeration value="BARRIADA"/>
+			<xs:enumeration value="BARRANCO"/>
+			<xs:enumeration value="BARRIO"/>
+			<xs:enumeration value="BASILICA"/>
+			<xs:enumeration value="BLOQUE"/>
+			<xs:enumeration value="BARRANCO"/>
+			<xs:enumeration value="BULEVAR"/>
+			<xs:enumeration value="BULEVAR"/>
+			<xs:enumeration value="CENTRO COMERCIAL BARRIO"/>
+			<xs:enumeration value="CENTRO CULTURAL"/>
+			<xs:enumeration value="CENTRO PUBLICO"/>
+			<xs:enumeration value="CENTRO SANITARIO"/>
+			<xs:enumeration value="CALLE"/>
+			<xs:enumeration value="CAMPAMENTO"/>
+			<xs:enumeration value="CANAL"/>
+			<xs:enumeration value="CANTON"/>
+			<xs:enumeration value="CAÑADA"/>
+			<xs:enumeration value="CARRERA"/>
+			<xs:enumeration value="CASA"/>
+			<xs:enumeration value="CASERIO"/>
+			<xs:enumeration value="CASETAS"/>
+			<xs:enumeration value="CASILLA"/>
+			<xs:enumeration value="CASTILLO"/>
+			<xs:enumeration value="CEMENTERIO"/>
+			<xs:enumeration value="CERRO"/>
+			<xs:enumeration value="CENTRO"/>
+			<xs:enumeration value="CIUDAD"/>
+			<xs:enumeration value="CONJUNTO"/>
+			<xs:enumeration value="CALLEJA"/>
+			<xs:enumeration value="CALLEJON"/>
+			<xs:enumeration value="CAMINO"/>
+			<xs:enumeration value="COLONIA"/>
+			<xs:enumeration value="COLAD"/>
+			<xs:enumeration value="COLEGIO"/>
+			<xs:enumeration value="COMPLEJO"/>
+			<xs:enumeration value="CONJUNTO"/>
+			<xs:enumeration value="CARRIL"/>
+			<xs:enumeration value="COSTANILLA"/>
+			<xs:enumeration value="CARRETERA"/>
+			<xs:enumeration value="CUESTA"/>
+			<xs:enumeration value="CHALET"/>
+			<xs:enumeration value="DEHESA"/>
+			<xs:enumeration value="DESCONOCIDO"/>
+			<xs:enumeration value="DISEMINADO"/>
+			<xs:enumeration value="DISPENSARIO"/>
+			<xs:enumeration value="ESCUELA PROFESIONAL"/>
+			<xs:enumeration value="EDIFICIO"/>
+			<xs:enumeration value="ENLACE"/>
+			<xs:enumeration value="ESCUELA OFICIAL"/>
+			<xs:enumeration value="ESCALINATA"/>
+			<xs:enumeration value="ESCUELA"/>
+			<xs:enumeration value="ESTACION"/>
+			<xs:enumeration value="ESTADIO"/>
+			<xs:enumeration value="EXPLANACION"/>
+			<xs:enumeration value="EXTRARRADIO"/>
+			<xs:enumeration value="FUNDACION BENEFICA DOCENTE"/>
+			<xs:enumeration value="FABRICA"/>
+			<xs:enumeration value="FACULTAD"/>
+			<xs:enumeration value="FERROCARRIL DESMANTELADO"/>
+			<xs:enumeration value="FERROCARRIL DESMANTELADO"/>
+			<xs:enumeration value="FINCA"/>
+			<xs:enumeration value="FUENTE"/>
+			<xs:enumeration value="FUNDACION"/>
+			<xs:enumeration value="GRAN VIA"/>
+			<xs:enumeration value="GALERIA"/>
+			<xs:enumeration value="GRUPO"/>
+			<xs:enumeration value="GLORIETA"/>
+			<xs:enumeration value="HIPODROMO"/>
+			<xs:enumeration value="HOSPITAL"/>
+			<xs:enumeration value="HOTEL"/>
+			<xs:enumeration value="INSTITUTO FORMACION PROFESIONA"/>
+			<xs:enumeration value="IGLESIA"/>
+			<xs:enumeration value="INSTITUTO POLITECNICO"/>
+			<xs:enumeration value="INSTITUTO"/>
+			<xs:enumeration value="JARDIN"/>
+			<xs:enumeration value="LICEO"/>
+			<xs:enumeration value="LUGAR"/>
+			<xs:enumeration value="MANZANA"/>
+			<xs:enumeration value="MANZANA"/>
+			<xs:enumeration value="MATADERO"/>
+			<xs:enumeration value="MERCADO"/>
+			<xs:enumeration value="MERCADO"/>
+			<xs:enumeration value="ESTACION DE METRO"/>
+			<xs:enumeration value="MINISTERIO"/>
+			<xs:enumeration value="MONTE"/>
+			<xs:enumeration value="NUCLEO"/>
+			<xs:enumeration value="PABELLON"/>
+			<xs:enumeration value="PALACIO"/>
+			<xs:enumeration value="PARAJE"/>
+			<xs:enumeration value="PARCELA"/>
+			<xs:enumeration value="PARTICULAR"/>
+			<xs:enumeration value="PASEO"/>
+			<xs:enumeration value="PASO ELEVADO"/>
+			<xs:enumeration value="PATIO"/>
+			<xs:enumeration value="PATRONATO"/>
+			<xs:enumeration value="PISTA"/>
+			<xs:enumeration value="PLAZA"/>
+			<xs:enumeration value="PLAZUELA"/>
+			<xs:enumeration value="PUENTE"/>
+			<xs:enumeration value="POBLADO"/>
+			<xs:enumeration value="POLIGONO"/>
+			<xs:enumeration value="POLIDEPORTIVO"/>
+			<xs:enumeration value="POLIGONO"/>
+			<xs:enumeration value="PUERTO"/>
+			<xs:enumeration value="PARQUE"/>
+			<xs:enumeration value="PROLONGACION"/>
+			<xs:enumeration value="PUERTA"/>
+			<xs:enumeration value="PUERTO"/>
+			<xs:enumeration value="PASAJE"/>
+			<xs:enumeration value="PUEBLO"/>
+			<xs:enumeration value="PUERTA"/>
+			<xs:enumeration value="PASADIZO"/>
+			<xs:enumeration value="RAMBLA"/>
+			<xs:enumeration value="RAMPA"/>
+			<xs:enumeration value="RINCON"/>
+			<xs:enumeration value="RESIDENCIAL"/>
+			<xs:enumeration value="RIO"/>
+			<xs:enumeration value="RINCONADA"/>
+			<xs:enumeration value="RINCON"/>
+			<xs:enumeration value="RONDA"/>
+			<xs:enumeration value="ROTONDA"/>
+			<xs:enumeration value="ROTONDA"/>
+			<xs:enumeration value="SACRAMENTAL"/>
+			<xs:enumeration value="SALIDA"/>
+			<xs:enumeration value="SERVICIO DE SALUD"/>
+			<xs:enumeration value="SECTOR"/>
+			<xs:enumeration value="SENDA"/>
+			<xs:enumeration value="SITIO"/>
+			<xs:enumeration value="SUBESTACION"/>
+			<xs:enumeration value="SUBIDA"/>
+			<xs:enumeration value="TANATORIO"/>
+			<xs:enumeration value="TRANSVERSAL"/>
+			<xs:enumeration value="TRASERA"/>
+			<xs:enumeration value="TRAVESIA"/>
+			<xs:enumeration value="U.V.A."/>
+			<xs:enumeration value="URBANIZACION"/>
+			<xs:enumeration value="VIA"/>
+			<xs:enumeration value="VIAS"/>
+			<xs:enumeration value="VEREDA"/>
+			<xs:enumeration value="ZONA"/>
+			<xs:enumeration value="ZOOLOGICO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="parentescoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="HI"/>
+			<xs:enumeration value="NI"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="UH"/>
+			<xs:enumeration value="HE"/>
+			<xs:enumeration value="HJ"/>
+			<xs:enumeration value="HT"/>
+			<xs:enumeration value="NY"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="SU"/>
+			<xs:enumeration value="TI"/>
+			<xs:enumeration value="OT"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="AB"/>
+			<xs:enumeration value="PD"/>
+			<xs:enumeration value="MD"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="TA"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="parentescoDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Hijo/a"/>
+			<xs:enumeration value="Nieto/a"/>
+			<xs:enumeration value="Cónyuge"/>
+			<xs:enumeration value="Madre"/>
+			<xs:enumeration value="Padre"/>
+			<xs:enumeration value="Unión de hecho"/>
+			<xs:enumeration value="Hermano/a"/>
+			<xs:enumeration value="Hijastro/a"/>
+			<xs:enumeration value="Hermanastro/a"/>
+			<xs:enumeration value="Nuera/Yerno"/>
+			<xs:enumeration value="Sobrino/a"/>
+			<xs:enumeration value="Sobrino/a por consanguinidad"/>
+			<xs:enumeration value="Suegro/a"/>
+			<xs:enumeration value="Tío/a"/>
+			<xs:enumeration value="Tío/a por consanguinidad"/>
+			<xs:enumeration value="Otro"/>
+			<xs:enumeration value="Primo/a"/>
+			<xs:enumeration value="Abuelo/a"/>
+			<xs:enumeration value="Padrastro"/>
+			<xs:enumeration value="Madrastra"/>
+			<xs:enumeration value="Sobrino/a por afinidad"/>
+			<xs:enumeration value="Tío/a por afinidad"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tituloSucesorioType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="SV"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="explotacionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AP"/>
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="DI"/>
+			<xs:enumeration value="OT"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="explotacionDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Explotación por aparecería"/>
+			<xs:enumeration value="Explotación por arrendamiento"/>
+			<xs:enumeration value="Explotación Directa"/>
+			<xs:enumeration value="Otros sistemas de explotación"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="grupoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patrimonioType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patrimonioDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="4º Tramo: de más de 4.021.000 euros"/>
+			<xs:enumeration value="3er Tramo: de más de 2.008.000 euros a 4.021.000 euros"/>
+			<xs:enumeration value="2º Tramo: de más de 403.000 euros a 2.008.000 euros"/>
+			<xs:enumeration value="1er Tramo: de 0 a 403.000 euros"/>
+			<xs:enumeration value="4º Tramo: de más de 4.020.770,99 euros"/>
+			<xs:enumeration value="3er Tramo: de más de 2.007.380,44 euros a 4.020.770,99 euros"/>
+			<xs:enumeration value="2º Tramo: de más de 402.678,12 euros a 2.007.380,44 euros"/>
+			<xs:enumeration value="1er Tramo: de 0 a 402.678,12 euros"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tituloSucesorioDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LEGATARIO"/>
+			<xs:enumeration value="HEREDERO"/>
+			<xs:enumeration value="BENEFICIARIO DE SEGURO DE VIDA NO HEREDERO"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{4})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{2})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras10Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{10})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras5Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{5})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{9})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras13Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{13})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="collapsedStringType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numeroPresentacionType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d\d\d\dT[0-9]{6})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="porcentajeType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([0-9]?[0-9],[0-9]{2})|(100,00))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoIntervinienteType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sujeto Pasivo"/>
+			<xs:enumeration value="Transmitente"/>
+			<xs:enumeration value="Otro Adquirente"/>
+			<xs:enumeration value="Donante"/>
+			<xs:enumeration value="Cónyuge del Donante"/>
+			<xs:enumeration value="Cónyuge del Sujeto Pasivo"/>
+			<xs:enumeration value="Presentador"/>
+			<xs:enumeration value="Representante"/>
+			<xs:enumeration value="Causante"/>
+			<xs:enumeration value="Causante/Donante"/>
+			<xs:enumeration value="Usufructuario"/>
+			<xs:enumeration value="Declarante"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DuptripType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="T"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="88"/>
+			<xs:enumeration value="28"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaDescType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALAVA"/>
+			<xs:enumeration value="ALBACETE"/>
+			<xs:enumeration value="ALACANT/ALICANTE"/>
+			<xs:enumeration value="ALMERÍA"/>
+			<xs:enumeration value="AVILA"/>
+			<xs:enumeration value="BADAJOZ"/>
+			<xs:enumeration value="ILLES BALEARS"/>
+			<xs:enumeration value="BARCELONA"/>
+			<xs:enumeration value="BURGOS"/>
+			<xs:enumeration value="CÁCERES"/>
+			<xs:enumeration value="CÁDIZ"/>
+			<xs:enumeration value="CASTELLÓ/CASTELLÓN"/>
+			<xs:enumeration value="CIUDAD REAL"/>
+			<xs:enumeration value="CÓRDOBA"/>
+			<xs:enumeration value="CORUÑA, A"/>
+			<xs:enumeration value="CUENCA"/>
+			<xs:enumeration value="GIRONA"/>
+			<xs:enumeration value="GRANADA"/>
+			<xs:enumeration value="GUADALAJARA"/>
+			<xs:enumeration value="GUIPÚZCOA"/>
+			<xs:enumeration value="HUELVA"/>
+			<xs:enumeration value="HUESCA"/>
+			<xs:enumeration value="JAÉN"/>
+			<xs:enumeration value="LEÓN"/>
+			<xs:enumeration value="LLEIDA"/>
+			<xs:enumeration value="RIOJA, LA"/>
+			<xs:enumeration value="LUGO"/>
+			<xs:enumeration value="MÁLAGA"/>
+			<xs:enumeration value="MURCIA"/>
+			<xs:enumeration value="NAVARRA"/>
+			<xs:enumeration value="OURENSE"/>
+			<xs:enumeration value="ASTURIAS"/>
+			<xs:enumeration value="PALENCIA"/>
+			<xs:enumeration value="PALMAS, LAS"/>
+			<xs:enumeration value="PONTEVEDRA"/>
+			<xs:enumeration value="SALAMANCA"/>
+			<xs:enumeration value="SANTA CRUZ DE TENERIFE"/>
+			<xs:enumeration value="CANTABRIA"/>
+			<xs:enumeration value="SEGOVIA"/>
+			<xs:enumeration value="SEVILLA"/>
+			<xs:enumeration value="SORIA"/>
+			<xs:enumeration value="TARRAGONA"/>
+			<xs:enumeration value="TERUEL"/>
+			<xs:enumeration value="TOLEDO"/>
+			<xs:enumeration value="VALÈNCIA/VALENCIA"/>
+			<xs:enumeration value="VALLADOLID"/>
+			<xs:enumeration value="VIZCAYA"/>
+			<xs:enumeration value="ZAMORA"/>
+			<xs:enumeration value="ZARAGOZA"/>
+			<xs:enumeration value="CEUTA"/>
+			<xs:enumeration value="MELILLA"/>
+			<xs:enumeration value="DESCONOCIDA"/>
+			<xs:enumeration value="MADRID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="caracterType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="impuestoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="T"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodBonificacionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>			
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DescBonificacionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CORREDOR DEL HENARES"/>
+			<xs:enumeration value="INSTITUCIONES INVERSION COLECTIVA"/>
+			<xs:enumeration value="SOCIEDADES LABORALES"/>
+			<xs:enumeration value="SOCIMI"/>
+			<xs:enumeration value="ADQUISICION VIVIENDA HABITUAL"/>
+			<xs:enumeration value="ADQUISICION BIENES MUEBLES"/>
+			<xs:enumeration value="ADQUISICION VIVIENDA HABITUAL FAMILIA NUMEROSA"/>
+			<xs:enumeration value="NOVACION Y SUBROGACION"/>
+            <xs:enumeration value="ARRENDAMIENTOS DESTINADOS A VIVIENDA"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>	
+</xs:schema>

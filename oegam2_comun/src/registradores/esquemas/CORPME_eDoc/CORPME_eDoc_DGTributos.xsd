@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Datos_DGTributos">
+		<xs:annotation>
+			<xs:documentation>Conexión DGT - Registros según Modelo 2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Id_Documentos" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bloque para indicar los documentos a consultar</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id_Documento" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Identificación de un documento a consultar</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Localizador">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:length value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:choice>
+											<xs:element name="Doc_Notariales">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Codigo_Notario" type="xs:string"/>
+														<xs:element name="Nombre_Notario" type="xs:string" minOccurs="0"/>
+														<xs:element name="Fecha_Documento" minOccurs="0">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Numero_Protocolo" type="xs:string"/>
+														<xs:element name="Anyo_Protocolo" type="xs:integer"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Doc_Judiciales">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Codigo_Juzgado" type="xs:string" minOccurs="0"/>
+														<xs:element name="Nombre_Juzgado" type="xs:string"/>
+														<xs:element name="Numero_Juicio" type="xs:string"/>
+														<xs:element name="Anyo_Juicio" type="xs:integer"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Doc_Administrativos">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Codigo_Admin" type="xs:string" minOccurs="0"/>
+														<xs:element name="Nombre_Admin" type="xs:string"/>
+														<xs:element name="Fecha_Documento">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Numero_Documento" type="xs:string"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Doc_Privados">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Fecha_Documento">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Numero_Documento" type="xs:string" minOccurs="0"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_documentos" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Autoliquidaciones" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bloque con las Declaraciones-Liquidaciones de hechos imponibles derivados de acto u operacion.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id_Expediente" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Identificador del expediente asociado a las autoliquidaciones. Puede constituir el justificante de presentación de dichas autoliquidaciones.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Autoliquidacion" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Declaracion-Liquidacion de hechos imponibles derivados de acto u operacion.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Id_Autoliquidacion" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Identificador de la autoliquidación. Puede constituir el justificante de presentación de la autoliquidación.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Importe_Ingresado" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Importe ingresado por la autoliquidacion. Diez dígitos parte entera y dos dígitos parte decimal separados por una coma. NNNNNNNNNN,NN</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{1,10},\d{1,2}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Id_ingreso" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Identificador del ingreso</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Autoliquidaciones" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="optional"/>
+			<xs:attribute name="Enviar_Documento" use="optional" default="S">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="N"/>
+						<xs:enumeration value="S"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Enviar_Carta_Pago" type="xs:string" use="optional" default="S"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

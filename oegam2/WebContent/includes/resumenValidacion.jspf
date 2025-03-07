@@ -1,0 +1,94 @@
+<div align="center">
+
+<s:if test="hasActionErrors() || hasActionMessages()">
+  	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td>Resumen de la validación:</td>
+			<td><img alt="Imprimir" src="img/impresora.png" style="height: 23px; cursor:pointer;" onclick="return imprimirId('estadisticasValidacion',false,null);" /></td>
+		</tr>
+	</table>
+	
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la validación" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+   		<tr>
+   			<th>Tipo de trámite </th>
+   			<th>Validados PDF </th>
+   			<th>Validados Telemáticamente </th>
+   			<th>Fallidos </th>
+		</tr>
+		<s:iterator value="resumen" var="tramite">
+		<tr>
+  			  <s:if test="%{tipoTramite.equals('TOTAL')}"><td style="font-weight:bold;"><s:property value="tipoTramite"/></td></s:if>
+   				  <s:else><td><s:property value="tipoTramite"/></td></s:else>
+   			  <s:if test="%{numValidadosPDF != 0}"><td style="color:green;font-weight:bold;"><s:property value="numValidadosPDF"/>
+   			  
+   			  	<s:if test="%{tipoTramite.equals('TOTAL')}">
+					<img id="despValidadoPDF"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueValidadosPDF();" />
+	   			 </s:if>
+   			  
+   			  </td></s:if>
+	   			  <s:else><td style="color:green;"><s:property value="numValidadosPDF"/>	   			  
+	   			  </td></s:else>
+  			  <s:if test="%{numValidadosTele != 0}"><td style="color:green;font-weight:bold;"><s:property value="numValidadosTele"/>
+  			  
+				<s:if test="%{tipoTramite.equals('TOTAL')}">
+  					<img id="despValidadoTelematicamente" alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueValidadosTelematicamente();" />
+	   			</s:if>
+  			  
+  			  </td></s:if>
+    			  <s:else><td style="color:green;"><s:property value="numValidadosTele"/></td></s:else>
+     		  <s:if test="%{numFallidos != 0}"><td style="color:red;font-weight:bold;"><s:property value="numFallidos"/>
+     		  
+     		  	<s:if test="%{tipoTramite.equals('TOTAL')}">
+   	   					<img alt="Mostrar" src="img/plus.gif"  id="despFallido" onclick="return mostrarBloqueFallidos();" />
+	   			</s:if>
+     		  
+     		  </td></s:if>
+    			  <s:else><td style="color:red;"><s:property value="numFallidos"/></td></s:else>
+		</tr>
+		</s:iterator>
+ 	</table>
+ </s:if>
+ 		
+<div id="bloqueValidadosTelematicamente" style="display:none;width:100%;font-size:11px;">
+	<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+	<tr>
+		<td  style="width:100%;text-align:center;">Detalle de Trámites Validados Telematicamente</td>
+	</tr>
+	</table>						
+		<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="mensajesValidadoTelematicamente">
+				<li><span style="text-align: left;"><s:property /></span></li>	
+			</s:iterator>
+		</ul>		
+</div>		
+
+<div id="bloqueValidadosPDF" style="display:none;width:100%;font-size:11px;">
+	<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+	<tr>
+		<td  style="width:100%;text-align:center;">Detalle de Trámites Validados PDF</td>
+	</tr>
+	</table>						
+		<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="mensajesValidadoPDF">
+				<li><span><s:property /></span></li>	
+			</s:iterator>
+		</ul>		
+</div>	
+
+<div id="bloqueFallidos" style="display:none;width:100%;font-size:11px;">
+	<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+		<tr>
+			<td  style="width:100%;text-align:center;">Detalle de Trámites Fallidos</td>
+		</tr>
+	</table>	
+		<s:if test="hasActionErrors()">
+			<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="actionErrors">
+				<li><span><s:property /></span></li>
+				
+			</s:iterator>
+		</ul>
+		</s:if>	
+</div> 		
+ 		
+</div> 		

@@ -1,0 +1,13 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>Control de cambios del proyecto MATW</title>
+		<author email="santiago.cuenca@globaltms.es">Santiago Cuenca Lizcano</author>
+	</properties>
+	<body>
+		<release version="1.0" date="2013-01-01" description="Primera versión estable">
+			<action dev="ruben.diaz" type="update" issue="0002556">
+				Publicada la primera versión estable.
+			</action>
+		</release>
+	</body>
+</document>

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by TEAM ViRiLiTY (VRL) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:element name="Datos_CGN">
+		<xs:annotation>
+			<xs:documentation>Datos necesarios cuando envía el CGN. Tipo_Entidad = 1 y Codigo_Entidad =1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Sociedades">
+					<xs:annotation>
+						<xs:documentation>Bloque para indicar las sociedades o empresarios individuales. Obligatorio si Tipo_Registro = 1</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Sociedad" type="SociedadType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Bloque para indicar una sociedad o empresario</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Sociedades" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BienesInmuebles">
+					<xs:annotation>
+						<xs:documentation>Bloque para indicar los bienes inmuebles. Obligatorio si Tipo_Registro = 2</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Bien_Inmueble" type="Bien_InmuebleType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Bloque para indicar un bien inmueble</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Inmuebles" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Número de bienes inmuebles</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BienesMuebles">
+					<xs:annotation>
+						<xs:documentation>Bloque para indicar los bienes muebles. Obligatorio si Tipo_Registro = 3</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Bien_Mueble" type="Bien_MuebleType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Bloque para indicar un bien mueble</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Muebles" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Número de bienes muebles incluidos. Debe coincidir con el número de bloques incluidos de Biene_Mueble</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Datos_Jura">
+					<xs:annotation>
+						<xs:documentation>Datos necesarios para la consulta y remisión de la jura o promesa ante notario</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="Solicitud_Datos_Jura">
+								<xs:annotation>
+									<xs:documentation>Nodo utilizado para la remisión de los datos de la jura cuando el tipo mensaje = SDJ</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="Solicitud">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="Datos_Expediente" type="Datos_Expediente2Type" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Datos del expediente promotor</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Promotor" type="Promotor2Type"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Solilcitud_CSV">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CSV" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Respuesta">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Datos_Expediente" type="Datos_ExpedienteType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Datos del expediente promotor</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Promotor" type="PromotorType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Recepcion_Datos_Jura">
+								<xs:annotation>
+									<xs:documentation>Nodo utilizado para la recepcion del acta de jura cuando el tipo de mensaje = RDJ</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor" type="PromotorType"/>
+										<xs:element name="Jura" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Opciones del promotor al realizar la jura o promesa que deberán incluirse tanto en el PDF de acta de jura como en codigo_valor</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="JuraPromesa" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Indica si se ha realizado Jura o Promesa. 1 = Jura, 2=Promesa</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="1"/>
+																<xs:enumeration value="2"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="NombreApellidosElegidosPromotor" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>nombre y apellidos por los que opta el promotor  aún manteniendolos</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Nombre">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Apellido1">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Apellido2">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:minLength value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="VecindadCivil" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Vecindad Civil por la que opta el promotor por la que opta. Si se informa se considerá que opta a la vecindad civil informada.</xs:documentation>
+															<xs:documentation>V001=ALAVESA;V002=ARAGONESA;V003=BALEAR;V004=CATALANA;V005=EXTREMEÑA DEL FUERO DE BAYLIO;V006=GALLEGA;V007=NAVARRA;V008=VASCA;V009=VALENCIANA;V010=VIZCAÍNA;V011=GUIPUZCOANA;V099=COMÚN</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="V001"/>
+																<xs:enumeration value="V002"/>
+																<xs:enumeration value="V003"/>
+																<xs:enumeration value="V004"/>
+																<xs:enumeration value="V005"/>
+																<xs:enumeration value="V006"/>
+																<xs:enumeration value="V007"/>
+																<xs:enumeration value="V008"/>
+																<xs:enumeration value="V009"/>
+																<xs:enumeration value="V010"/>
+																<xs:enumeration value="V011"/>
+																<xs:enumeration value="V099"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="RenunciaNacionalidadAnterior" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Se informará si el promotor renuncia a la nacionalidad anterior. Informado como Si = 1 o No = 0</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\c{1}"/>
+																<xs:enumeration value="1"/>
+																<xs:enumeration value="0"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DobleNacionalidad" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Sólo posible si RenunciaNacionalidadAnterior = 0</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Segunda_Nacionalidad" type="xs:int">
+																	<xs:annotation>
+																		<xs:documentation>Nacionalidad distinta de española por la que mantiene la doble nacionalidad.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Anulacion_Acta_Jura">
+								<xs:annotation>
+									<xs:documentation>Nodo utilizado para la anulación de un acta remitida con errores, cuando el tipo_mensaje = AAJ</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor" type="Promotor2Type"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Notificacion_Error_CGN">
+								<xs:annotation>
+									<xs:documentation>Notificación desde el CGN de errores en la documentación aportada para la jura que afecten a su ejecución cuando el tipo de mensaje = NEDCGN</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Promotor2Type">
+														<xs:sequence>
+															<xs:element name="Observaciones" type="xs:string">
+																<xs:annotation>
+																	<xs:documentation>Observaciones sobre los errores detectados de un expediente para su corrección por la DGRN. La Jura quedará en suspenso hasta recibir el NREE.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Notificacion_Error_CORPME">
+								<xs:annotation>
+									<xs:documentation>Notificación desde GEN de errores en la documentación aportada para la jura que afecten a su ejecución cuando el tipo de mensaje = NEDGEN</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Promotor2Type">
+														<xs:sequence>
+															<xs:element name="Observaciones" type="xs:string">
+																<xs:annotation>
+																	<xs:documentation>Observaciones sobre los errores detectados de un expediente para su corrección por la CORPME. La Jura quedará en suspenso hasta recibir el NREE.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Notificacion_Correccion">
+								<xs:annotation>
+									<xs:documentation>Notificación de la subsanación de errores para la reanudación de la jura Cuando el tipo de mensaje = NREE.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor" type="Promotor2Type"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Notificacion_Error_Jura">
+								<xs:annotation>
+									<xs:documentation>Notificación desde GEN de errores en la Jura recibida que requieran de una subsanación.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Datos_Expediente" type="Datos_Expediente2Type">
+											<xs:annotation>
+												<xs:documentation>Datos del expediente promotor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Promotor">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="Promotor2Type">
+														<xs:sequence>
+															<xs:element name="Observaciones" type="xs:string">
+																<xs:annotation>
+																	<xs:documentation>Observaciones sobre los errores detectados de un expediente para su corrección por la CORPME. La Jura quedará en suspenso hasta recibir el NREE.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Datos_Acuerdo_Extrajudicial">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Deudor">
+								<xs:annotation>
+									<xs:documentation>Datos del deudor vinculado al acuerdo extrajudicial</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdentidadDeudor" type="NombreDenoType"/>
+										<xs:element name="Identificacion" type="IdentificacionType"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="NumeroExpediente" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Número del expediente</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DatosAcuerdos">
+								<xs:annotation>
+									<xs:documentation>Datos asociados a cata tipo publicación asociada al acuerdo extrajudicial</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="SolicitudAcuerdoPagos">
+											<xs:annotation>
+												<xs:documentation>Solicitud de acuerdo extrajudicial de pagos</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FecSolicitudAcuerdo">
+														<xs:annotation>
+															<xs:documentation>Fecha de la solicitud del acuerdo Formato MM/DD/YYY</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FecAperturaExpediente">
+														<xs:annotation>
+															<xs:documentation>Fecha de la apertura del expediente. Formato MM/DD/YYYY</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Observaciones" type="xs:string" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ActoNombramientoMediador">
+											<xs:annotation>
+												<xs:documentation>Acto del nombramiento del mediador del acuerdo</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CorreoElectronico" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Correo electrónico del mediador</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="FecAceptacion">
+														<xs:annotation>
+															<xs:documentation>Fecha de aceptación del mediador. Formato MM/DD/YYYY</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d{2}/\d{2}/\d{4}
+"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Mediador">
+														<xs:annotation>
+															<xs:documentation>Datos del mediador del acuerdo extrajudicial</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="IdentidadMediador" type="NombreDenoType"/>
+																<xs:element name="Identificacion" type="IdentificacionType"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ActoAcuerdoPagos">
+											<xs:annotation>
+												<xs:documentation>Acto del acuerdo de pagos</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FecCierreExpediente">
+														<xs:annotation>
+															<xs:documentation>Fecha cierre del expediente. formato MM/DD/YYYY</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d{2}/\d{2}/\d{4}
+"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Observaciones" type="xs:string" minOccurs="0"/>
+													<xs:element name="Registrador">
+														<xs:annotation>
+															<xs:documentation>Datos del registrador</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NombreApellidos"/>
+																<xs:element name="Identificacion" type="IdentificacionType"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AceptaPlanPagos">
+														<xs:annotation>
+															<xs:documentation>Indica si acepta el plan de pagos: 0 No acepta 1 Acepta            </xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d{1}"/>
+																<xs:enumeration value="0"/>
+																<xs:enumeration value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="IncumplimientoAcuerdo">
+											<xs:annotation>
+												<xs:documentation>Incumplimiento del acuerdo</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TextoActaMediador" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>Acta del mediador nombrado</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Tipo_Acuerdo_Extrajudicial">
+							<xs:annotation>
+								<xs:documentation>0 Solicitud de Acuerdos extrajudicial de pagos                                         1 Acto de Nombramiento de Mediador Concursal                                        2 Acto de Acuerdo de Extrajudicial de Pagos                                             3 Inclumplimiento del Acuerdo</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Version" type="xs:string" use="optional"/>
+			<xs:attribute name="Codigo_Notaria" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Codigo notaria según codificacion CGN</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Notario" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Código del notario según codificacion CGN</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Anyo_Protocolo">
+				<xs:annotation>
+					<xs:documentation>Año protocolo</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:pattern value="\d{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Protocolo">
+				<xs:annotation>
+					<xs:documentation>Número de protocolo</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Fecha_Documento">
+				<xs:annotation>
+					<xs:documentation>Fecha documento</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Notario_Presentante" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Código del notario que presenta, según codificación CGN. Será obligatorio si el presentante es un notario. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NifCif_Presentante" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Nif/Cif del presentante</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Nombre_Presentante" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Nombre presentante</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Apellidos_Presentante" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Apellidos del presentante. Obligatorio si se trata de una persona física</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

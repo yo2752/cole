@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://servicioWeb.matriculasWS.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://servicioWeb.matriculasWS.com" xmlns:intf="http://servicioWeb.matriculasWS.com" xmlns:tns1="http://beans.matriculasWS.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://servicioWeb.matriculasWS.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://beans.matriculasWS.com"/>
+   <element name="consultaMatriculas">
+    <complexType>
+     <sequence>
+      <element name="authUser" type="xsd:string"/>
+      <element name="authPass" type="xsd:string"/>
+      <element name="datosEntrada" type="tns1:DatosEntrada"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="consultaMatriculasResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaMatriculasReturn" type="tns1:DatosSalida"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_ResultadoWS">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:ResultadoWS"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://beans.matriculasWS.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://servicioWeb.matriculasWS.com"/>
+   <complexType name="TipoFecha">
+    <sequence>
+     <element name="dia" nillable="true" type="xsd:int"/>
+     <element name="mes" nillable="true" type="xsd:int"/>
+     <element name="anio" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatosEntrada">
+    <sequence>
+     <element name="fechaInicio" nillable="true" type="tns1:TipoFecha"/>
+     <element name="fechaFin" nillable="true" type="tns1:TipoFecha"/>
+     <element name="listaAutoliquidaciones" nillable="true" type="impl:ArrayOf_xsd_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CodigoResultado">
+    <sequence>
+     <element name="codigo" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="resultado" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResultadoWS">
+    <sequence>
+     <element name="bastidor" nillable="true" type="xsd:string"/>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+     <element name="matricula" nillable="true" type="xsd:string"/>
+     <element name="numAutoliquidacion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatosSalida">
+    <sequence>
+     <element name="codigoResultado" nillable="true" type="tns1:CodigoResultado"/>
+     <element name="listaResultados" nillable="true" type="impl:ArrayOf_tns1_ResultadoWS"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="consultaMatriculasRequest">
+
+      <wsdl:part element="impl:consultaMatriculas" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMatriculasResponse">
+
+      <wsdl:part element="impl:consultaMatriculasResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ObtenerMatriculasWS">
+
+      <wsdl:operation name="consultaMatriculas">
+
+         <wsdl:input message="impl:consultaMatriculasRequest" name="consultaMatriculasRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultaMatriculasResponse" name="consultaMatriculasResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ObtenerMatriculasWSSoapBinding" type="impl:ObtenerMatriculasWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultaMatriculas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaMatriculasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaMatriculasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ObtenerMatriculasWSService">
+
+      <wsdl:port binding="impl:ObtenerMatriculasWSSoapBinding" name="ObtenerMatriculasWS">
+
+         <wsdlsoap:address location="http://localhost:8080/MatriculasWS/services/ObtenerMatriculasWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

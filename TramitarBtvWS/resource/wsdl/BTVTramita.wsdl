@@ -1,0 +1,106 @@
+<definitions name="BTVService" targetNamespace="http://blackbox.gescogroup.com/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://blackbox.gescogroup.com/">
+    <types>
+        <xs:schema targetNamespace="http://blackbox.gescogroup.com/" version="1.0"
+                   xmlns:tns="http://blackbox.gescogroup.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="tramitarBTV" type="tns:tramitarBTV"/>
+            <xs:element name="tramitarBTVRespuesta" type="tns:tramitarBTVRespuesta"/>
+            <xs:complexType name="btvsoapPeticion">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="doi_gestor" type="xs:string"/>
+                    <xs:element minOccurs="1" name="doi_gestoria" type="xs:string"/>
+                    <xs:element minOccurs="1" name="doi_plataforma" type="xs:string"/>
+                    <xs:element minOccurs="1" name="num_expediente_propio" type="xs:string"/>
+                    <xs:element minOccurs="1" name="historico" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="fecha_primera_matriculacion" type="tns:tipoFechaAAAAMMDD"/>
+                    <xs:element minOccurs="0" name="fecha_caducidad_ITV" type="tns:tipoFechaAAAAMMDD"/>
+                    <xs:element minOccurs="0" name="siniestro_total" type="xs:boolean"/>
+                    <xs:element minOccurs="1" name="xmlB64" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="btvCodigoDescripcion">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codigo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="tramitarBTV">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:btvsoapPeticion"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="tramitarBTVRespuesta">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:btvsoapTramitaRespuesta"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="btvsoapTramitaRespuesta">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultado_codigo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultado_descripcion" type="xs:string"/>
+                    <xs:element minOccurs="0" name="num_expediente_gestor" type="xs:string"/>
+                    <xs:element minOccurs="0" name="num_expediente" type="xs:string"/>
+                    <xs:element minOccurs="0" name="avisos" type="tns:listaAvisos"/>
+                    <xs:element minOccurs="0" name="impedimentos" type="tns:listaImpedimentos"/>
+                    <xs:element minOccurs="0" name="errores" type="tns:listaErrores"/>
+                    <xs:element minOccurs="0" name="informe" type="xs:string"/>
+                    <xs:element minOccurs="0" name="registro_entrada" type="xs:string"/>
+                    <xs:element minOccurs="0" name="registro_salida" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="listaAvisos">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="aviso" nillable="true"
+                                type="tns:btvCodigoDescripcion"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="listaImpedimentos">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="impedimento"
+                                nillable="true" type="tns:btvCodigoDescripcion"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="listaErrores">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="error" nillable="true"
+                                type="tns:btvCodigoDescripcion"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="tipoFechaAAAAMMDD">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </types>
+    <message name="BTVWS_tramitarBTVRespuesta">
+        <part element="tns:tramitarBTVRespuesta" name="tramitarBTVRespuesta"/>
+    </message>
+    <message name="BTVWS_tramitarBTV">
+        <part element="tns:tramitarBTV" name="tramitarBTV"/>
+    </message>
+    <portType name="BTVWS">
+        <operation name="tramitarBTV" parameterOrder="tramitarBTV">
+            <input message="tns:BTVWS_tramitarBTV"/>
+            <output message="tns:BTVWS_tramitarBTVRespuesta"/>
+        </operation>
+    </portType>
+    <binding name="BTVWSBinding" type="tns:BTVWS">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="tramitarBTV">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="BTVTramita">
+        <port binding="tns:BTVWSBinding" name="BTVTramita">
+            <soap:address location="https://pysea.gescolabs.com/bbws/BTVTramita"/>
+        </port>
+    </service>
+</definitions>

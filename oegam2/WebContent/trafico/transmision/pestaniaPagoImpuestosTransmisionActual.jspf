@@ -1,0 +1,127 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Pago de impuestos</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">IMPUESTO DE TRANSMISIONES PATRIMONIALES (ITP)</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="right" nowrap="nowrap" width="25%">
+				<label for="cetItp">Código electrónico transmisión: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.cetItp"
+					id="cetItp" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="9" maxlength="8"/>
+			</td>
+
+			<td align="right" nowrap="nowrap">
+				<label for="idCema">Código Electrónico de Matriculacion Agrícola (CEMA)</label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idCema" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.cema"
+				onblur="this.className='input2';" onfocus="this.className='inputfocus';" size="8" maxlength="8"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" nowrap="nowrap" width="25%">
+				<label for="idProvinciaCET">Provincia del CET:</label>
+			</td>
+
+		<td align="left" nowrap="nowrap">
+			<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasCet()"
+				headerKey="-1"
+				headerValue="Seleccione Provincia"
+				disabled="%{flagDisabled}"
+				name="tramiteTraficoTransmisionBean.provinciaCet.idProvincia"
+				listKey="idProvincia" listValue="nombre"
+				id="idProvinciaCET"
+				cssStyle="width:170px;"
+				onblur="this.className='input2';"
+				onfocus="this.className='inputfocus';"/>
+			</td>
+
+		</tr>
+	</table>
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">OTROS DATOS FISCALES</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="right" nowrap="nowrap" width="25%">
+				<label for="nFactura">Nº factura: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.factura"
+					id="nFactura"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="cambioFacturaActual()"
+					onchange="cambioFacturaActual()"
+					size="9" maxlength="20"/>
+			</td>
+		</tr>
+	</table>
+
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button"
+					   class="boton"
+					   name="bGuardar9"
+					   id="bGuardar9"
+					   value="Consultar / Guardar"
+					   onClick="return guardarAltaTramiteTransmisionActual('PagoImpuestos');"
+					   onKeyPress="this.onClick"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage9" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+		</tr>
+	</table>
+	</s:if>
+	<script>
+		habilitarCEMA();
+		// JMC: Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+		if (document.getElementById("permisoEspecial").value == "false") {
+			cambioFacturaActual();
+
+			if (document.getElementById("exentoItp") != null && document.getElementById("exentoItp").checked) {
+				document.getElementById("exento620").checked="true";
+				cambioExento();
+			}
+			if (document.getElementById("noSujetoItp") != null && document.getElementById("noSujetoItp").checked) {
+				document.getElementById("noSujeto620").checked="true";
+				cambioNoSujeto();
+			}
+		}
+		// JMC: Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+		if (document.getElementById("permisoEspecial").value == "true") {
+			document.getElementById("cetItp").disabled = true;
+		}
+	</script>
+</div>

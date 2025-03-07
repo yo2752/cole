@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:element name="FORMATO_OEGAM2_BAJA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CABECERA" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="BAJA" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="FechaCreacion" type="xs:string" use="optional"/>
+			<xs:attribute name="Plataforma" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CABECERA">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DATOS_GESTORIA"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="DATOS_GESTORIA">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="NIF"/>
+				<xs:element ref="NOMBRE"/>
+				<xs:element ref="PROFESIONAL"/>
+				<xs:element ref="PROVINCIA"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="BAJA">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="NUMERO_EXPEDIENTE" minOccurs="0"/>
+				<xs:element ref="REFERENCIA_PROPIA" minOccurs="0"/>
+				<xs:element ref="PROFESIONAL" minOccurs="0"/>
+				<xs:element ref="FECHA_CREACION" minOccurs="0"/>
+				<xs:element ref="OBSERVACIONES" minOccurs="0"/>
+				<xs:element ref="MOTIVO_BAJA" minOccurs="0"/>
+				<xs:element ref="PERMISO_CIRCULACION" minOccurs="0"/>
+				<xs:element ref="TARJETA_INSPECCION_TECNICA" minOccurs="0"/>
+				<xs:element ref="DECLARACION_JURADA_EXTRAVIO" minOccurs="0"/>
+				<xs:element ref="BAJA_IMVTM" minOccurs="0"/>
+				<xs:element ref="JUSTIFICANTE_DENUNCIA" minOccurs="0"/>
+				<xs:element ref="DOCUMENTO_PROPIEDAD" minOccurs="0"/>
+				<xs:element ref="JUSTIFICANTE_IMVTM" minOccurs="0"/>
+				<xs:element ref="DATOS_VEHICULO" minOccurs="0"/>
+				<xs:element ref="DATOS_TITULAR" minOccurs="0"/>
+				<xs:element ref="DATOS_REPRESENTANTE" minOccurs="0"/>				
+				<xs:element ref="DATOS_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="DATOS_PAGO_PRESENTACION" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="DATOS_VEHICULO">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="MATRICULA" minOccurs="0"/>
+				<xs:element ref="FECHA_MATRICULACION" minOccurs="0"/>
+				<xs:element ref="PROVINCIA_VEHICULO" minOccurs="0"/>
+				<xs:element ref="MUNICIPIO_VEHICULO" minOccurs="0"/>
+				<xs:element ref="PUEBLO_VEHICULO" minOccurs="0"/>
+				<xs:element ref="CODIGO_POSTAL_VEHICULO" minOccurs="0"/>
+				<xs:element ref="TIPO_VIA_VEHICULO" minOccurs="0"/>
+				<xs:element ref="CALLE_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="NUMERO_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="LETRA_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="ESCALERA_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="PISO_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="PUERTA_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="BLOQUE_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="KM_DIRECCION_VEHICULO" minOccurs="0"/>
+				<xs:element ref="HM_DIRECCION_VEHICULO" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	<xs:element name="DATOS_TITULAR">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DNI_TITULAR" minOccurs="0"/>
+				<xs:element ref="SEXO_TITULAR" minOccurs="0"/>
+				<xs:element ref="APELLIDO1_RAZON_SOCIAL_TITULAR" minOccurs="0"/>
+				<xs:element ref="APELLIDO2_TITULAR" minOccurs="0"/>
+				<xs:element ref="NOMBRE_TITULAR" minOccurs="0"/>
+				<xs:element ref="PROVINCIA_TITULAR" minOccurs="0"/>
+				<xs:element ref="MUNICIPIO_TITULAR" minOccurs="0"/>
+				<xs:element ref="PUEBLO_TITULAR" minOccurs="0"/>
+				<xs:element ref="CODIGO_POSTAL_TITULAR" minOccurs="0"/>
+				<xs:element ref="TIPO_VIA_TITULAR" minOccurs="0"/>
+				<xs:element ref="CALLE_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="NUMERO_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="LETRA_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="ESCALERA_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="PISO_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="PUERTA_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="BLOQUE_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="KM_DIRECCION_TITULAR" minOccurs="0"/>
+				<xs:element ref="HM_DIRECCION_TITULAR" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	<xs:element name="DATOS_REPRESENTANTE">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DNI_REPRESENTANTE" minOccurs="0"/>
+				<xs:element ref="SEXO_REPRESENTANTE" minOccurs="0"/>
+				<xs:element ref="APELLIDO1_RAZON_SOCIAL_REPRESENTANTE" minOccurs="0"/>
+				<xs:element ref="APELLIDO2_REPRESENTANTE" minOccurs="0"/>
+				<xs:element ref="NOMBRE_REPRESENTANTE" minOccurs="0"/>				
+				<xs:element ref="CONCEPTO_REPRESENTANTE" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	<xs:element name="DATOS_ADQUIRIENTE">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DNI_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="SEXO_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="APELLIDO1_RAZON_SOCIAL_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="APELLIDO2_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="NOMBRE_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="FECHA_NACIMIENTO_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="PROVINCIA_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="MUNICIPIO_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="PUEBLO_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="CODIGO_POSTAL_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="TIPO_VIA_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="CALLE_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="NUMERO_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="LETRA_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="ESCALERA_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="PISO_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="PUERTA_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="BLOQUE_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="KM_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+				<xs:element ref="HM_DIRECCION_ADQUIRIENTE" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="DATOS_PAGO_PRESENTACION">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="CODIGO_TASA" minOccurs="0"/>
+				<xs:element ref="JEFATURA_PROVINCIAL" minOccurs="0"/>
+				<xs:element ref="FECHA_PRESENTACION" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<xs:element name="NIF" type="tipoNIF"/>
+	<xs:element name="NOMBRE" type="alfa50"/>
+	<xs:element name="PROFESIONAL" type="alfa4"/>
+	<xs:element name="PROVINCIA" type="alfa2"/>
+	
+	<xs:element name="NUMERO_EXPEDIENTE" type="alfa50"/>
+	<xs:element name="REFERENCIA_PROPIA" type="alfa50"/>
+	<xs:element name="FECHA_CREACION" type="tipoFecha"/>
+	<xs:element name="OBSERVACIONES" type="alfa255"/>
+	<xs:element name="MOTIVO_BAJA" type="motivoBaja"/>
+	<xs:element name="PERMISO_CIRCULACION" type="tipoSiNo"/>
+	<xs:element name="TARJETA_INSPECCION_TECNICA" type="tipoSiNo"/>
+	<xs:element name="DECLARACION_JURADA_EXTRAVIO" type="tipoSiNo"/>
+	<xs:element name="BAJA_IMVTM" type="tipoSiNo"/>
+	<xs:element name="JUSTIFICANTE_DENUNCIA" type="tipoSiNo"/>
+	<xs:element name="DOCUMENTO_PROPIEDAD" type="tipoSiNo"/>
+	<xs:element name="JUSTIFICANTE_IMVTM" type="tipoSiNo"/>
+	
+	<xs:element name="MATRICULA" type="alfa9"/>
+	<xs:element name="FECHA_MATRICULACION" type="tipoFecha"/>
+	<xs:element name="PROVINCIA_VEHICULO" type="alfa2"/>
+	<xs:element name="MUNICIPIO_VEHICULO" type="alfa3"/>
+	<xs:element name="PUEBLO_VEHICULO" type="alfa50"/>
+	<xs:element name="CODIGO_POSTAL_VEHICULO" type="alfa5"/>
+	<xs:element name="TIPO_VIA_VEHICULO" type="tipoVia"/>
+	<xs:element name="CALLE_DIRECCION_VEHICULO" type="alfa50"/>
+	<xs:element name="NUMERO_DIRECCION_VEHICULO" type="alfa4"/>
+	<xs:element name="LETRA_DIRECCION_VEHICULO" type="alfa2"/>
+	<xs:element name="ESCALERA_DIRECCION_VEHICULO" type="alfa2"/>
+	<xs:element name="PISO_DIRECCION_VEHICULO" type="alfa2"/>
+	<xs:element name="PUERTA_DIRECCION_VEHICULO" type="alfa2"/>
+	<xs:element name="BLOQUE_DIRECCION_VEHICULO" type="alfa2"/>
+	<xs:element name="KM_DIRECCION_VEHICULO" type="alfa3"/>
+	<xs:element name="HM_DIRECCION_VEHICULO" type="alfa3"/>
+	
+	<xs:element name="DNI_TITULAR" type="tipoNIF"/>
+	<xs:element name="SEXO_TITULAR" type="tipoSexo"/>
+	<xs:element name="APELLIDO1_RAZON_SOCIAL_TITULAR" type="alfa50"/>
+	<xs:element name="APELLIDO2_TITULAR" type="alfa50"/>
+	<xs:element name="NOMBRE_TITULAR" type="alfa50"/>
+	<xs:element name="PROVINCIA_TITULAR" type="alfa2"/>
+	<xs:element name="MUNICIPIO_TITULAR" type="alfa3"/>
+	<xs:element name="PUEBLO_TITULAR" type="alfa50"/>
+	<xs:element name="CODIGO_POSTAL_TITULAR" type="alfa5"/>
+	<xs:element name="TIPO_VIA_TITULAR" type="tipoVia"/>
+	<xs:element name="CALLE_DIRECCION_TITULAR" type="alfa50"/>
+	<xs:element name="NUMERO_DIRECCION_TITULAR" type="alfa4"/>
+	<xs:element name="LETRA_DIRECCION_TITULAR" type="alfa2"/>
+	<xs:element name="ESCALERA_DIRECCION_TITULAR" type="alfa2"/>
+	<xs:element name="PISO_DIRECCION_TITULAR" type="alfa2"/>
+	<xs:element name="PUERTA_DIRECCION_TITULAR" type="alfa2"/>
+	<xs:element name="BLOQUE_DIRECCION_TITULAR" type="alfa2"/>
+	<xs:element name="KM_DIRECCION_TITULAR" type="alfa3"/>
+	<xs:element name="HM_DIRECCION_TITULAR" type="alfa3"/>
+	
+	<xs:element name="DNI_REPRESENTANTE" type="tipoNIF"/>
+	<xs:element name="SEXO_REPRESENTANTE" type="tipoSexo"/>
+	<xs:element name="APELLIDO1_RAZON_SOCIAL_REPRESENTANTE" type="alfa50"/>
+	<xs:element name="APELLIDO2_REPRESENTANTE" type="alfa50"/>
+	<xs:element name="NOMBRE_REPRESENTANTE" type="alfa50"/>
+	<xs:element name="CONCEPTO_REPRESENTANTE" type="conceptoRepresentante"/>
+	
+	<xs:element name="DNI_ADQUIRIENTE" type="tipoNIF"/>
+	<xs:element name="SEXO_ADQUIRIENTE" type="tipoSexo"/>
+	<xs:element name="APELLIDO1_RAZON_SOCIAL_ADQUIRIENTE" type="alfa50"/>
+	<xs:element name="APELLIDO2_ADQUIRIENTE" type="alfa50"/>
+	<xs:element name="NOMBRE_ADQUIRIENTE" type="alfa50"/>
+	<xs:element name="FECHA_NACIMIENTO_ADQUIRIENTE" type="tipoFecha"/>
+	<xs:element name="PROVINCIA_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="MUNICIPIO_ADQUIRIENTE" type="alfa3"/>
+	<xs:element name="PUEBLO_ADQUIRIENTE" type="alfa50"/>
+	<xs:element name="CODIGO_POSTAL_ADQUIRIENTE" type="alfa5"/>
+	<xs:element name="TIPO_VIA_ADQUIRIENTE" type="tipoVia"/>
+	<xs:element name="CALLE_DIRECCION_ADQUIRIENTE" type="alfa50"/>
+	<xs:element name="NUMERO_DIRECCION_ADQUIRIENTE" type="alfa4"/>
+	<xs:element name="LETRA_DIRECCION_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="ESCALERA_DIRECCION_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="PISO_DIRECCION_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="PUERTA_DIRECCION_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="BLOQUE_DIRECCION_ADQUIRIENTE" type="alfa2"/>
+	<xs:element name="KM_DIRECCION_ADQUIRIENTE" type="alfa3"/>
+	<xs:element name="HM_DIRECCION_ADQUIRIENTE" type="alfa3"/>
+	
+	<xs:element name="CODIGO_TASA" type="alfa12"/>
+	<xs:element name="JEFATURA_PROVINCIAL" type="alfa2"/>
+	<xs:element name="FECHA_PRESENTACION" type="tipoFecha"/>
+	
+	
+	
+	
+	<xs:simpleType name="alfa2">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="alfa3">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa4">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="alfa5">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa9">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoFecha">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|[1-2][0-9]|30|31)/(0[1-9]|10|11|12)/([1-9][0-9][0-9][0-9])|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="tipoSiNo">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="Si"/>
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="si"/>
+			<xs:enumeration value="no"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="motivoBaja">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="-1"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="conceptoRepresentante">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:maxLength value="24"/>
+			<xs:enumeration value="TUTELA O PATRIA POTESTAD"/>
+			<xs:enumeration value="ADMINISTRADOR"/>
+			<xs:enumeration value="APODERADO"/>
+			<xs:enumeration value="REPRESENTANTE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="alfa255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="tipoSexo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="tipoVia">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="-1"/>
+			<xs:enumeration value="ACCES"/>
+			<xs:enumeration value="ALAM"/>
+			<xs:enumeration value="ALDEA"/>
+			<xs:enumeration value="ALTO"/>
+			<xs:enumeration value="APTOS"/>
+			<xs:enumeration value="ARRAL"/>
+			<xs:enumeration value="ARRY"/>
+			<xs:enumeration value="ATAJO"/>
+			<xs:enumeration value="AUTO"/>
+			<xs:enumeration value="AVIA"/>
+			<xs:enumeration value="AVDA"/>
+			<xs:enumeration value="BJADA"/>
+			<xs:enumeration value="BRANC"/>
+			<xs:enumeration value="BARDA"/>
+			<xs:enumeration value="BARRO"/>
+			<xs:enumeration value="."/>
+			<xs:enumeration value="BLQUE"/>
+			<xs:enumeration value="BULEV"/>
+			<xs:enumeration value="CALLE"/>
+			<xs:enumeration value="CLLJA"/>
+			<xs:enumeration value="CLLON"/>
+			<xs:enumeration value="CJLA"/>
+			<xs:enumeration value="CZADA"/>
+			<xs:enumeration value="CAMI"/>
+			<xs:enumeration value="CAMIN"/>
+			<xs:enumeration value="CMNO"/>
+			<xs:enumeration value="CAMPA"/>
+			<xs:enumeration value="CANAL"/>
+			<xs:enumeration value="CÑADA"/>
+			<xs:enumeration value="CRA"/>
+			<xs:enumeration value="CTRA"/>
+			<xs:enumeration value="CTRIN"/>
+			<xs:enumeration value="CRRIL"/>
+			<xs:enumeration value="CSRIO"/>
+			<xs:enumeration value="CERRO"/>
+			<xs:enumeration value="CINT"/>
+			<xs:enumeration value="C.H."/>
+			<xs:enumeration value="C.N."/>
+			<xs:enumeration value="C.V."/>
+			<xs:enumeration value="COL"/>
+			<xs:enumeration value="COMPJ"/>
+			<xs:enumeration value="CJTO"/>
+			<xs:enumeration value="CRRAL"/>
+			<xs:enumeration value="CRRLO"/>
+			<xs:enumeration value="CRRDE"/>
+			<xs:enumeration value="CRRDO"/>
+			<xs:enumeration value="CRTJO"/>
+			<xs:enumeration value="COSTA"/>
+			<xs:enumeration value="CSTAN"/>
+			<xs:enumeration value="CUSTA"/>
+			<xs:enumeration value="ENTD"/>
+			<xs:enumeration value="ESCA"/>
+			<xs:enumeration value="ESCAL"/>
+			<xs:enumeration value="EXPLA"/>
+			<xs:enumeration value="EXTRM"/>
+			<xs:enumeration value="EXTRR"/>
+			<xs:enumeration value="FINCA"/>
+			<xs:enumeration value="GALE"/>
+			<xs:enumeration value="GTA"/>
+			<xs:enumeration value="G.V."/>
+			<xs:enumeration value="GRUPO"/>
+			<xs:enumeration value="GRUP"/>
+			<xs:enumeration value="JDIN"/>
+			<xs:enumeration value="LDERA"/>
+			<xs:enumeration value="LUGAR"/>
+			<xs:enumeration value="MALEC"/>
+			<xs:enumeration value="MIRAD"/>
+			<xs:enumeration value="MONTE"/>
+			<xs:enumeration value="MUELL"/>
+			<xs:enumeration value="PAGO"/>
+			<xs:enumeration value="PRAJE"/>
+			<xs:enumeration value="PARKE"/>
+			<xs:enumeration value="PQUE"/>
+			<xs:enumeration value="PARC"/>
+			<xs:enumeration value="PARTI"/>
+			<xs:enumeration value="PTDA"/>
+			<xs:enumeration value="PZO"/>
+			<xs:enumeration value="PSAJE"/>
+			<xs:enumeration value="PASEO"/>
+			<xs:enumeration value="PSLLO"/>
+			<xs:enumeration value="PISTA"/>
+			<xs:enumeration value="PLCET"/>
+			<xs:enumeration value="PLAZA"/>
+			<xs:enumeration value="PZTA"/>
+			<xs:enumeration value="PLZLA"/>
+			<xs:enumeration value="PBDO"/>
+			<xs:enumeration value="POLIG"/>
+			<xs:enumeration value="PTLLO"/>
+			<xs:enumeration value="PRAZA"/>
+			<xs:enumeration value="PROL"/>
+			<xs:enumeration value="PNTE"/>
+			<xs:enumeration value="PTO"/>
+			<xs:enumeration value="RAMAL"/>
+			<xs:enumeration value="RBLA"/>
+			<xs:enumeration value="RBRA"/>
+			<xs:enumeration value="RCON"/>
+			<xs:enumeration value="RCDA"/>
+			<xs:enumeration value="RONDA"/>
+			<xs:enumeration value="RTDA"/>
+			<xs:enumeration value="SECT"/>
+			<xs:enumeration value="SENDA"/>
+			<xs:enumeration value="SEND"/>
+			<xs:enumeration value="SBIDA"/>
+			<xs:enumeration value="TRAS"/>
+			<xs:enumeration value="TRVA"/>
+			<xs:enumeration value="TRAV"/>
+			<xs:enumeration value="URB"/>
+			<xs:enumeration value="VALLE"/>
+			<xs:enumeration value="VEGA"/>
+			<xs:enumeration value="VREDA"/>
+			<xs:enumeration value="VIA"/>
+			<xs:enumeration value="VCTO"/>
+			<xs:enumeration value="VIAL"/>
+			<xs:enumeration value="ZONA"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	
+</xs:schema>
+	
+	
+	

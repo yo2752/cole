@@ -1,0 +1,39 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+
+
+	<script type="text/javascript">
+		$(function() {
+			$("#displayTagDiv").displayTagAjax();
+		})
+	</script>
+	<div id="displayTagDiv" class="divScroll">
+		<div
+			style="display: none; margin-top: auto; margin-left: auto; margin-right: auto;">
+			<%@include file="../../includes/bloqueLoading.jspf"%>
+		</div>
+		
+		<display:table name="listaAcciones" excludedParams="*"
+			requestURI="navegarAcciones.action?numExpediente=${numExpediente}&resultadosPorPagina=${resultadosPorPagina}" class="tablacoin"
+			summary="Listado de Acciones" cellspacing="0" cellpadding="0"
+			uid="listaAccionesTable" >
+
+			<display:column property="id.accion" title="Acción" sortable="true" sortProperty="id.accion"
+				headerClass="sortable" defaultorder="descending" style="width:4%" />
+
+			<display:column property="id.fechaInicio" title="Fecha Inicio"
+				headerClass="sortable" sortable="true" defaultorder="descending"
+				format="{0,date,dd-MM-yyyy HH:mm:ss}"  style="width:4%" />
+
+			<display:column property="fechaFin" title="Fecha Fin" sortable="true"
+				headerClass="sortable" defaultorder="descending"
+				format="{0,date,dd-MM-yyyy HH:mm:ss}" style="width:4%" />
+
+			<display:column property="usuario.apellidosNombre" title="Usuario"
+				sortable="true" headerClass="sortable" defaultorder="descending" style="width:4%" />
+
+			<display:column property="respuesta" title="Respuesta"
+				sortable="true" defaultorder="descending" style="width:4%" />
+		</display:table>
+	</div>

@@ -1,0 +1,808 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+ <div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td colspan="3">Datos del transmitente
+			</td>
+		</tr>
+	</table>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">TRANSMITENTE</span>
+				<s:set var="identificacion" value="tramiteTraficoTransmisionBean.transmitenteBean.persona.nif"/>
+				<s:set var="colegiado" value="tramiteTraficoTransmisionBean.transmitenteBean.numColegiado"/>
+				<s:if test="%{(#identificacion!='' && #identificacion!=null) && (#colegiado!='' && #colegiado!=null)}">
+					<img title="Ver evolución" onclick="consultaEvolucionPersona('<s:property value="tramiteTraficoTransmisionBean.transmitenteBean.persona.nif"/>','<s:property value="tramiteTraficoTransmisionBean.transmitenteBean.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+				</s:if>
+			</td>
+		</tr>
+	</table>
+	
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNifTransmitente">NIF / CIF: <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" width="24%" >
+       	    	<table >
+					<tr>
+						<td align="left" nowrap="nowrap" >
+			       			<s:if test="%{tramiteTraficoTransmisionBean.transmitenteBean.nifInterviniente != null && !tramiteTraficoTransmisionBean.transmitenteBean.nifInterviniente.equals('')}">
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.nif" 
+				       				id="idNifTransmitente" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				onchange="limpiarFormularioTransmitenteTransmision()"
+				       				size="9" maxlength="9"/>
+				       		</s:if>
+				       		<s:else>
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.nif" 
+				       				id="idNifTransmitente" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				size="9" maxlength="9"/>
+				       		</s:else>
+       					</td>	
+						<td align="left" nowrap="nowrap">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteTransmisionActual('Transmitente','Transmitente')"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+       	    </td>			
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="tipoPersonaTransmitente">Tipo de persona: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaTransmitente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						value="%{tramiteTraficoTransmisionBean.transmitenteBean.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"
+						cssStyle="disabled:true; readonly:true;"/>
+       		</td>
+       	</tr>
+       	<s:hidden name="tramiteTraficoTransmisionBean.transmitenteBean.persona.tipoPersona"></s:hidden>
+       	
+       	<tr>	        	
+       		<td align="left" nowrap="nowrap">
+       			<label for="sexoTransmitente">Sexo: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+						id="sexoTransmitente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.transmitenteBean.persona.sexo"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						disabled="%{flagDisabled}"
+						title="Sexo Persona"
+						headerKey="-1" headerValue="-"/>
+       		</td>	
+       			
+    	   	<td align="left" nowrap="nowrap">
+       			<label for="idApellidoRazonSocialTransmitente">Apellido o Razón Social: <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.apellido1RazonSocial" 
+       				id="idApellidoRazonSocialTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="50" maxlength="70"/>
+       		</td>
+       	</tr>
+		
+		<tr>	
+			<td align="left" nowrap="nowrap">
+       			<label for="idApellido2Transmitente">Segundo Apellido: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.apellido2" 
+       				id="idApellido2Transmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNombreTransmitente">Nombre: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.nombre" 
+       				id="idNombreTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       	</tr>
+       	<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="idAnagramaTransmitente">Anagrama</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.anagrama" 
+       				id="idAnagramaTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="5" maxlength="5"
+       				readonly="true"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="idCodigoMandatoTransmitente">Código de Mandato</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<span class="formspan"><s:property value="tramiteTraficoTransmisionBean.transmitenteBean.persona.codigoMandato" /></span>
+       		</td>
+       		
+       	</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaNacTransmitente">Fecha de Nacimiento: </label>
+			</td>
+		
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.fechaNacimientoBean.dia" 
+					id="diaNacTransmitente"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.fechaNacimientoBean.mes" 
+					id="mesNacTransmitente"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.fechaNacimientoBean.anio" 
+					id="anioNacTransmitente"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="3%">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioNacTransmitente, document.formData.mesNacTransmitente, document.formData.diaNacTransmitente);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idTelefonoTransmitente">Teléfono: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.telefonos" 
+					id="idTelefonoTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="9" maxlength="9"/>
+			</td>
+		</tr>
+	</table>
+	
+	<s:if test="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.idDireccion != null " >
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" style="100%">
+			<tr>
+				<td align="left" nowrap="nowrap" width="100%">
+					<table  style="align:left;">
+						<tr>
+							<td  align="left" style="vertical-align:middle" width="10%">
+								<label>Seleccionar Dirección</label>
+							</td>
+							<td align="left" nowrap="nowrap" width="90%">
+								<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+									<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+										onclick="javascript:consultaDireccion('<s:property value="tramiteTraficoTransmisionBean.transmitenteBean.persona.nif"/>','<s:property value="tramiteTraficoTransmisionBean.transmitenteBean.numColegiado"/>','<s:property value="tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente"/>','TransmitenteTransmisionActual');"/>
+								</s:if>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>					
+		</table>
+	</s:if>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+				
+       		
+       		<td align="left" nowrap="nowrap">
+				<label for="idProvinciaTransmitente">Provincia: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasTransmitente()"
+					headerKey="-1"
+	           		headerValue="Seleccione Provincia"
+					name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.municipio.provincia.idProvincia" 
+					listKey="idProvincia" listValue="nombre"
+					disabled="%{flagDisabled}"
+					id="idProvinciaTransmitente"
+					onchange="cargarListaMunicipios(this,'idMunicipioTransmitente','municipioSeleccionadoTransmitente');
+					cargarListaTipoVia(this,'tipoViaTransmitente','tipoViaSeleccionadaTransmitente');
+					inicializarTipoVia('tipoViaTransmitente','viaTransmitente',viaTransmitenteTransmision);
+					borrarComboPueblo('idPuebloTransmitente');"
+					cssStyle="width:170px;"
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"/>	
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="idMunicipioTransmitente">Municipio: <span class="naranja">*</span></label>	
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">			
+				<select id="idMunicipioTransmitente" 
+					onchange="cargarListaPueblos('idProvinciaTransmitente', this, 'idPuebloTransmitente', 'puebloSeleccionadoTransmitente');
+					seleccionarCampo('municipioSeleccionadoTransmitente','idMunicipioTransmitente');
+					obtenerCodigoPostalPorMunicipio('idProvinciaTransmitente', this, 'codPostalTransmitente');
+					inicializarTipoVia('tipoViaTransmitente','viaTransmitente',viaTransmitenteTransmision);" 
+					onblur="this.className='input2';" 
+					${stringDisabled}
+					onfocus="this.className='inputfocus';" >
+					<option value="-1">Seleccione Municipio</option>
+				</select>						  
+		    	<s:hidden id="municipioSeleccionadoTransmitente" 
+		    		name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.municipio.idMunicipio"/>
+			</td>
+		</tr>
+		
+		<tr>	
+				
+			<td align="left" nowrap="nowrap">
+				<label for="codPostalTransmitente">Código Postal: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+	        	<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.codPostal" 
+	        		id="codPostalTransmitente" 
+	        		maxlength="5" size="5" 
+	            	onblur="this.className='input';"
+	               	onkeypress="return validarNumerosEnteros(event)"
+	            	onfocus="this.className='inputfocus';"/>
+			</td>								
+			<td align="left" nowrap="nowrap">
+				<label for="idPuebloTransmitente">Pueblo: </label>			
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">				
+				<select id="idPuebloTransmitente" onchange="seleccionarCampo('puebloSeleccionadoTransmitente','idPuebloTransmitente');"
+						onblur="this.className='input2';"
+						${stringDisabled}
+						onfocus="this.className='inputfocus';"
+						style="width:200px;" >
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+			   	<s:hidden id="puebloSeleccionadoTransmitente" 
+			   		name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.pueblo"/>
+			</td>				
+		</tr>
+		
+		<tr>			
+      
+      		<td align="left" nowrap="nowrap">
+       			<label for="tipoViaTransmitente">Tipo de vía: <span class="naranja">*</span></label>
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+         	
+	         	<select id="tipoViaTransmitente" 
+						onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';"
+						${stringDisabled}
+						onchange="seleccionarCampo('tipoViaSeleccionadaTransmitente','tipoViaTransmitente');
+						cargarListaNombresVia('idProvinciaTransmitente', 'municipioSeleccionadoTransmitente', this, 'viaTransmitente',viaTransmitenteTransmision);" >
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+		    	<s:hidden id="tipoViaSeleccionadaTransmitente" 
+		    		name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.tipoVia.idTipoVia"/>
+         	
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="viaTransmitente">Nombre v&iacute;a: <span class="naranja">*</span></label>
+			</td>				        		
+       		
+			<td align="left" nowrap="nowrap" colspan="2">
+	       			<s:textfield disabled="%{flagDisabled}" id="viaTransmitente" 
+	       				onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.nombreVia"
+		       			cssStyle="width:200px;position:relative;" size="40" maxlength="120" autocomplete="off"/>
+						
+       		</td>        
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>	
+			<td align="left" nowrap="nowrap">
+				<label for="numeroTransmitente">N&uacute;mero: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.numero" 
+					id="numeroTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarSN2(event,this)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="letraTransmitente">Letra: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.letra" 
+					id="letraTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="escaleraTransmitente">Escalera: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.escalera" 
+					id="escaleraTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="pisoTransmitente">Piso: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.planta" 
+					id="pisoTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="puertaTransmitente">Puerta: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.puerta" 
+					id="puertaTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="bloqueTransmitente">Bloque: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.bloque" 
+					id="bloqueTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="kmTransmitente">Km: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.puntoKilometrico" 
+					id="kmTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="hmTransmitente">Hm: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.transmitenteBean.persona.direccion.hm" 
+					id="hmTransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+		<tr>
+		
+
+			<td align="left" nowrap="nowrap">
+				<label for="autonomo">Autónomo </label>
+			</td>	
+				<td align="left" nowrap="nowrap" width="5%">
+				<s:checkbox
+					id="autonomoIdTransmitente"
+					disabled="%{flagDisabled}"
+					name="tramiteTraficoTransmisionBean.transmitenteBean.autonomo"				
+					onclick="" 
+					onkeypress="this.onClick" 
+					onchange="habilitarAutonomo('autonomoIdTransmitente','codigoIAETransmitente');"
+					>
+				</s:checkbox>
+			</td>
+	
+	
+			<td align="left" nowrap="nowrap">
+				<label for="epigrafe">IAE</label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select name="tramiteTraficoTransmisionBean.transmitenteBean.codigoIAE" 
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCodigosIAE()"
+					headerKey="-1"
+	           		headerValue="Seleccione Código" 
+					listKey="Codigo_IAE" 
+					listValue="descripcion"
+					id="codigoIAETransmitente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					style="width:250px"
+					/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="epigrafe">N&uacute;mero de titulares</label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select name="tramiteTraficoTransmisionBean.numTitulares" 
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboNumeroTitulares()"
+					id="numTitulares"
+					listKey="indice" 
+					listValue="descripcion"
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					/>
+			</td>
+			
+			
+		</tr>
+	</table>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">REPRESENTANTE DEL TRANSMITENTE</span>
+				<s:set var="identificacion" value="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif"/>
+				<s:set var="colegiado" value="tramiteTraficoTransmisionBean.representanteTransmitenteBean.numColegiado"/>
+				<s:if test="%{(#identificacion!='' && #identificacion!=null) && (#colegiado!='' && #colegiado!=null)}">
+					<img title="Ver evolución" onclick="consultaEvolucionPersona('<s:property value="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif"/>','<s:property value="tramiteTraficoTransmisionBean.representanteTransmitenteBean.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+				</s:if>
+			</td>
+		</tr>
+	</table>
+	
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+       		<td align="left" nowrap="nowrap" style="width:10%;">
+       			<label for="nifRepresentanteTransmitente">NIF / CIF:</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" width="24%" colspan="6">
+       	    	<table >
+					<tr>
+						<td align="left" nowrap="nowrap" >
+			       			<s:if test="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.nifInterviniente != null && !tramiteTraficoTransmisionBean.representanteTransmitenteBean.nifInterviniente.equals('')}">
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif" 
+				       				id="nifRepresentanteTransmitente" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				onchange="limpiarFormularioRepresentanteTransmitenteTransmision('Representante')"
+				       				size="9" maxlength="9"/>
+				       		</s:if>
+				       		<s:else>
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif" 
+				       				id="nifRepresentanteTransmitente" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				size="9" maxlength="9"/>
+				       		</s:else>
+       					</td>	
+						<td align="left" nowrap="nowrap">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteTransmisionActual('Representante Transmitente','Transmitente')"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+       	    </td>
+		</tr>
+		<tr>
+       	    
+       	    <td align="left" nowrap="nowrap">
+       			<label for="sexoTransmitente">Sexo: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+						id="sexoTransmitente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="%{flagDisabled}"
+						name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.sexo"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Sexo Persona"
+						headerKey="-1" headerValue="-"/>
+       		</td>   
+       	    
+    		<td align="left" nowrap="nowrap">
+       			<label for="apellido1RepresentanteTransmitente">Apellido o Razón Social:</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" colspan="3">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.apellido1RazonSocial" 
+       				id="apellido1RepresentanteTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="35" maxlength="100"/>
+       		</td>
+       	</tr>
+		
+		<tr>	
+			<td align="left" nowrap="nowrap">
+       			<label for="apellido2RepresentanteTransmitente">Segundo Apellido: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.apellido2" 
+       				id="apellido2RepresentanteTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNombreRepresentanteTransmitente">Nombre: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nombre" 
+       				id="idNombreRepresentanteTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       	</tr>	
+       	<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="conceptoRepresentanteTransmitente">Concepto: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getConceptoTutela()"
+						id="conceptoRepresentanteTransmitente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.conceptoRepre"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						disabled="%{flagDisabled}"
+						title="Concepto tutela"
+						headerKey="-1" headerValue="-"
+						onchange="cambioConceptoRepreTransmitente('conceptoRepresentanteTransmitente','motivoRepresentanteTransmitente')"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="motivoRepresentanteTransmitente">Motivo: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposTutela()"
+						id="motivoRepresentanteTransmitente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.idMotivoTutela"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Concepto tutela"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+       	</tr>
+       	<tr>
+       		<td align="left" nowrap="nowrap" colspan="3">
+       			<label for="datosAcrediteRepresentanteTransmitente">Datos del documento que acredite la facultad para actuar en nombre del transmitente: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.datosDocumento" 
+       				id="datosAcrediteRepresentanteTransmitente" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       	</tr>
+       	<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="diaInicioRepresentanteTransmitente">Fecha inicio Tutela: </label>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="20">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaInicio.dia" 
+					id="diaInicioRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="2"
+					maxlength="2"
+					cssClass="izq input2" />
+				
+				<span class="izq">&nbsp;/&nbsp;</span>
+				
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaInicio.mes" 
+					id="mesInicioRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="2"
+					maxlength="2"
+					cssClass="izq input2" />
+				
+				<span class="izq">&nbsp;/&nbsp;</span>
+				
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaInicio.anio" 
+					id="anioInicioRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="4"
+					maxlength="4"
+					cssClass="izq input2" />
+					
+				<span class="izq">&nbsp;&nbsp;</span>
+
+	    		<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioInicioRepresentanteTransmitente, document.formData.mesInicioRepresentanteTransmitente, document.formData.diaInicioRepresentanteTransmitente);return false;" 
+	    			title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="diaFinRepresentanteTransmitente">Fecha fin Tutela: </label>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="20">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaFin.dia" 
+					id="diaFinRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="2"
+					maxlength="2"
+					cssClass="izq input2" />
+				
+				<span class="izq">&nbsp;/&nbsp;</span>
+				
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaFin.mes" 
+					id="mesFinRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="2"
+					maxlength="2"
+					cssClass="izq input2" />
+				
+				<span class="izq">&nbsp;/&nbsp;</span>
+				
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteTransmitenteBean.fechaFin.anio" 
+					id="anioFinRepresentanteTransmitente"
+					onblur="this.className='izq input2';"
+					onfocus="this.className='izq inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="4"
+					maxlength="4"
+					cssClass="izq input2" />
+				
+				<span class="izq">&nbsp;&nbsp;</span>
+				
+	    		<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioFinRepresentanteTransmitente, document.formData.mesFinRepresentanteTransmitente, document.formData.diaFinRepresentanteTransmitente);return false;" 
+	    			title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+		</tr>
+	</table>
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" 
+					   class="boton" 
+					   name="bGuardar3" 
+					   id="bGuardar3" 
+					   value="Consultar / Guardar" 
+					   onClick="return guardarAltaTramiteTransmisionActual('Transmitente');" 
+					   onKeyPress="this.onClick"/>				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage3" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+		</tr>
+	</table>
+	</s:if>
+	<script>
+		//JMC : Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+		if (document.getElementById("permisoEspecial").value == "false") {	 
+			habilitarAutonomo('autonomoIdTransmitente','codigoIAETransmitente');
+		}
+		var viaTransmitenteTransmision = new BasicContentAssist(document.getElementById('viaTransmitente'), [], null, true);
+		recargarComboMunicipios('idProvinciaTransmitente','idMunicipioTransmitente','municipioSeleccionadoTransmitente');
+		recargarComboTipoVia('idProvinciaTransmitente','tipoViaTransmitente','tipoViaSeleccionadaTransmitente');
+		recargarComboPueblos('idProvinciaTransmitente','municipioSeleccionadoTransmitente','idPuebloTransmitente', 'puebloSeleccionadoTransmitente');
+		cambioConceptoRepreTransmitente('conceptoRepresentanteTransmitente','motivoRepresentanteTransmitente');
+		recargarNombreVias('idProvinciaTransmitente', 'municipioSeleccionadoTransmitente', 'tipoViaSeleccionadaTransmitente','viaTransmitente',viaTransmitenteTransmision);
+		cambioAutonomoTransmitente(); //Si el check de autónomo está marcado, el campo Codigo IAE debe estar habilitado
+	</script>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by c (c) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="RBM_Protocolo_Tipos.xsd"/>
+	<xs:element name="RBM_Operacion_Registral">
+		<xs:annotation>
+			<xs:documentation>formato XML operaciones realizadas sobre documentos enviados de forma electrónica </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Identificacion_Documento" type="Identificacion_DocumentoType">
+					<xs:annotation>
+						<xs:documentation>identificar el documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Operacion_Registral" type="Operacion_RegistralType">
+					<xs:annotation>
+						<xs:documentation>datos operación en el registro</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" default="4.0.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

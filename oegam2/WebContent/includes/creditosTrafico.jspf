@@ -1,0 +1,61 @@
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+<table class="subtitulo" cellSpacing="0" cellspacing="0">
+	<tr>
+		<td>Créditos</td>
+	</tr>
+</table>
+
+<div class="divCreditos">	
+	<table border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+			<td class="left disponibles" align="left">Créditos Disponibles</td>		
+			<td class="right" nowrap="nowrap">
+				<s:hidden id="idContrato" name="idContratoSession" />
+				<!--
+				<s:hidden id="idContrato" name="idContratoTramites" /> 	
+				-->
+				
+				<s:hidden id="numCreditosDisp" name="imprimirTramiteTraficoDto.numCreditosDisponibles" />
+				<s:label cssClass="disponibles" value="%{imprimirTramiteTraficoDto.numCreditosDisponibles}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="left totales" align="left">Créditos Totales</td>		
+			<td class="right" nowrap="nowrap">
+				<s:label cssClass="totales" value="%{imprimirTramiteTraficoDto.numCreditosTotales}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="left bloqueados" align="left">
+				Créditos Bloqueados
+				&nbsp;
+				<!-- Mantis 12975. David Sierra: Mostrar texto emergente -->
+				<img id="info_creditos_bloqueados" src="img/botonDameInfo.gif" alt="Info - Créditos Bloqueados" onmouseover="dameInfoSinAjax('mostrar', this.id, 'creditosBloqueados')" onmouseout="dameInfoSinAjax('ocultar', this.id, '')" class="botonesInfo" />
+				<!-- Fin mantis 12975  -->
+			</td>		
+			<td class="right" nowrap="nowrap">
+				<s:label cssClass="bloqueados" value="%{imprimirTramiteTraficoDto.numCreditosBloqueados}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="left solicitados">Créditos Solicitados</td>		
+			<td class="right" nowrap="nowrap">
+				<s:textfield cssClass="solicitados" name="numCreditosSolicitados" id="numCreditosSolicitados" value="0" readonly="true" maxlength="4" />
+			</td>
+		</tr>
+	</table>
+</div>
+	
+<s:if test="%{(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso('OT3I'))}">
+	<s:hidden id="OT3I" value="true"></s:hidden>
+</s:if>
+<s:else></s:else>
+
+<br></br>
+<s:if test="%{(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso('OT2I'))}">
+	<s:hidden id="OT2I" value="true"></s:hidden>
+</s:if>
+<s:else></s:else>

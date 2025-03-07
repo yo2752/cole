@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" xmlns:ns1="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido/respuesta" version="1.0" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido">
+
+  <xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido/respuesta" schemaLocation="ServicioInformesReducidoIntv_schema1.xsd"></xs:import>
+
+  <xs:element name="obtenerInformeReducido" type="tns:obtenerInformeReducido"></xs:element>
+
+  <xs:element name="obtenerInformeReducidoResponse" type="tns:obtenerInformeReducidoResponse"></xs:element>
+
+  <xs:complexType name="obtenerInformeReducido">
+    <xs:sequence>
+      <xs:element name="solicitudInforme" type="tns:inInformeReducido" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inInformeReducido">
+    <xs:complexContent>
+      <xs:extension base="tns:inServicioINTV">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="inServicioINTV" abstract="true">
+    <xs:sequence>
+      <xs:element name="bastidor" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="doi" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="matricula" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="nive" type="xs:string" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="obtenerInformeReducidoResponse">
+    <xs:sequence>
+      <xs:element ref="ns1:ResultadoInformeReducido" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="outInformeReducido">
+    <xs:complexContent>
+      <xs:extension base="tns:outServicioINTV">
+        <xs:sequence>
+          <xs:element name="bastidor" type="xs:string" minOccurs="0"></xs:element>
+          <xs:element name="combustible" type="xs:string" minOccurs="0"></xs:element>
+          <xs:element name="estadoVerificacion" type="tns:resultadoVerificacionVehiculo" minOccurs="0"></xs:element>
+          <xs:element name="fechaPrimeraMatricula" type="xs:dateTime" minOccurs="0"></xs:element>
+          <xs:element name="fechaSolicitud" type="xs:dateTime" minOccurs="0"></xs:element>
+          <xs:element name="marca" type="xs:string" minOccurs="0"></xs:element>
+          <xs:element name="matricula" type="xs:string" minOccurs="0"></xs:element>
+          <xs:element name="modelo" type="xs:string" minOccurs="0"></xs:element>
+          <xs:element name="nive" type="xs:string" minOccurs="0"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="outServicioINTV" abstract="true">
+    <xs:sequence>
+      <xs:element name="resultadoComunicacion" type="tns:resultadoComunicacion" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resultadoComunicacion">
+    <xs:sequence>
+      <xs:element name="codigoError" type="xs:int" minOccurs="0"></xs:element>
+      <xs:element name="descripcionError" type="xs:string" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="resultadoVerificacionVehiculo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SIN_INCIDENCIAS"></xs:enumeration>
+      <xs:enumeration value="CON_INCIDENCIAS"></xs:enumeration>
+      <xs:enumeration value="CON_AVISOS"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

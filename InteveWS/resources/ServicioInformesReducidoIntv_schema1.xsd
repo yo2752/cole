@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" version="1.0" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido/respuesta">
+
+  <xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" schemaLocation="ServicioInformesReducidoIntv_schema2.xsd"></xs:import>
+
+  <xs:element name="ResultadoInformeReducido" type="ns1:outInformeReducido"></xs:element>
+</xs:schema>

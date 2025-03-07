@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="SociedadType">
+		<xs:sequence>
+			<xs:element name="Denominacion_Social" type="xs:string"/>
+			<xs:element name="CIF" type="xs:string" minOccurs="0"/>
+			<xs:element name="Seccion" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obligatorio si se informa de hoja</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoja" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obligatorio si se informa de sección</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoja_Bis" type="xs:string" minOccurs="0"/>
+			<xs:element name="IUS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identificador único de sujeto</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:pattern value="\d{15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Identificacion_SujetoType">
+		<xs:sequence>
+			<xs:element name="Tipo_Personalidad">
+				<xs:annotation>
+					<xs:documentation>Tipo de persona. 
+1=Física
+2=Jurídica Pública
+3=Jurídica Privada </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Nombre" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Nombre o denominación. Nombre para personas físicas y denominación para jurídicas públicas o privadas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Apellidos" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Apellidos. Obligatorio si Tipo_Personalidad = 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador_Administrativo">
+				<xs:annotation>
+					<xs:documentation>Identificador administrativo; DNI, CIF, NIF o  Pasaporte </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Tipo">
+							<xs:annotation>
+								<xs:documentation>Tipo de documento administrativo. 
+1=DNI
+2=CIF
+3=NIF
+4=PASAPORTE</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Numero_Documento" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Número de DNI, CIF, NIF o  Pasaporte</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Reunion_ConsejoType">
+		<xs:sequence>
+			<xs:element name="LugaryFecha_Celebracion" type="LugaryFechaType">
+				<xs:annotation>
+					<xs:documentation>Lugar y fecha celebración</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Asistentes" type="AsistentesType">
+				<xs:annotation>
+					<xs:documentation>Relacionar los asistentes al Consejo de Administración</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Reunion_JuntaType">
+		<xs:sequence>
+			<xs:element name="LugaryFecha_Celebracion" type="LugaryFechaType">
+				<xs:annotation>
+					<xs:documentation>Lugar y fecha celebración</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tipo" type="Tipo_JuntaType" >
+				<xs:annotation>
+					<xs:documentation>Tipo de junta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Caracter" type="Caracter_JuntaType">
+				<xs:annotation>
+					<xs:documentation>Carácter de la junta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NombramientoType">
+		<xs:sequence>
+			<xs:element name="Identificacion" type="Identificacion_SujetoType">
+				<xs:annotation>
+					<xs:documentation>Identificación del nombramiento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cargo" type="CargoType">
+				<xs:annotation>
+					<xs:documentation>Tipo de cargo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Duracion_Cargo" type="Duracion_CargoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Duración del cargo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Circustancias_Personales" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Circustancias personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Facultades_Delegadas" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Facultades delegadas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Aceptacion_Cargo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indica si acepta el cargo en la misma junta o con posterioridad</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EN LA MISMA JUNTA"/>
+						<xs:enumeration value="CON POSTERIORIDAD"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NombramientosType">
+		<xs:sequence>
+			<xs:element name="Nombramiento" type="NombramientoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada uno de los nombramientos</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AcuerdosType">
+		<xs:sequence>
+			<xs:element name="Nombramientos" type="NombramientosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicar los nombramientos acordados</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ceses" type="CesesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicar los ceses acordados</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Acuerdos2Type">
+		<xs:sequence>
+			<xs:element name="Porcentaje_Capital_Acuerdo" type="PorcentajeType">
+				<xs:annotation>
+					<xs:documentation>En %, esta cifra es el porcentaje de capital que vote a favor del acuerdo respecto del capital asistente a la Junta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Porcentaje_Sociosl_Acuerdo" type="PorcentajeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Si los Estatutos exigieren el voto favorable de un determinado porcentaje de socios para la válida adopción de acuerdos, deberá indicarse el porcentaje de socios que votan a favor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nombramientos" type="NombramientosType">
+				<xs:annotation>
+					<xs:documentation>Indicar los nombramientos acordados</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ceses" type="CesesType">
+				<xs:annotation>
+					<xs:documentation>Indicar los ceses acordados</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Duracion_CargoType">
+		<xs:choice>
+			<xs:element name="Indefinida" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>true=Indefinida</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Duracion" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Si la duración no es indefinida.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:annotation>
+								<xs:documentation>Duración</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Meses" type="xs:integer">
+								<xs:annotation>
+									<xs:documentation>Número de meses</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Años" type="xs:integer">
+								<xs:annotation>
+									<xs:documentation>Número de años</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Periodo">
+								<xs:annotation>
+									<xs:documentation>Intervalo de fechas</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Inicio">
+											<xs:annotation>
+												<xs:documentation>Fecha de inicio. DD/MM/AAAA</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Fin">
+											<xs:annotation>
+												<xs:documentation>Fecha fin. DD/MM/AAAA</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:element name="Ejercicios" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Ejercicios que comprende el cargo</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Ejercicio" type="xs:string" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Cada uno de los ejercicios</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CeseType">
+		<xs:sequence>
+			<xs:element name="Identificacion" type="Identificacion_SujetoType">
+				<xs:annotation>
+					<xs:documentation>Identificación del nombramiento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cargo" type="CargoType">
+				<xs:annotation>
+					<xs:documentation>Tipo de cargo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CesesType">
+		<xs:sequence>
+			<xs:element name="Cese" type="CeseType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada uno de los ceses</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CertificantesType">
+		<xs:sequence>
+			<xs:element name="Certificante" type="CertificanteType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada uno de los certificantes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CertificanteType">
+		<xs:sequence>
+			<xs:element name="Identificacion" type="Identificacion_SujetoType">
+				<xs:annotation>
+					<xs:documentation>Identificación del certificante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cargo" type="CargoType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModeloType">
+		<xs:sequence>
+			<xs:element name="Codigo">
+				<xs:annotation>
+					<xs:documentation>Código de Modelo</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Descripcion">
+				<xs:annotation>
+					<xs:documentation>Descripción del modelo</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO"/>
+						<xs:enumeration value="SOCIEDADES ANÓNIMAS Y LIMITADAS. ACEPTACIÓN DE NOMBRAMIENTO"/>
+						<xs:enumeration value="SOCIEDADES ANÓNIMAS. CESE Y NOMBRAMIENTO"/>
+						<xs:enumeration value="SOCIEDADES LIMITADAS. CESE Y NOMBRAMIENTO"/>
+						<xs:enumeration value="SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO Y DELEGACIÓN DE FACULTADES"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConsejoType">
+		<xs:sequence>
+			<xs:element name="Reunion_Consejo" type="Reunion_ConsejoType">
+				<xs:annotation>
+					<xs:documentation>Información sobre la reunion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="JuntaType">
+		<xs:sequence>
+			<xs:element name="Reunion_Junta" type="Reunion_JuntaType">
+				<xs:annotation>
+					<xs:documentation>Información sobre la reunion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Convocatoria" type="ConvocatoriaType">
+				<xs:annotation>
+					<xs:documentation>Indicar como fue convocada la junta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Junta2Type">
+		<xs:sequence>
+			<xs:element name="Reunion_Junta" type="Reunion_JuntaType">
+				<xs:annotation>
+					<xs:documentation>Información sobre la reunion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contenido_Convocatoria" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Transcripción del contenido integro de la convocatoria</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Convocatoria" type="ConvocatoriaType">
+				<xs:annotation>
+					<xs:documentation>Indicar como fue convocada la junta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Aprobacion_ActaType">
+		<xs:sequence>
+			<xs:element name="Fecha">
+				<xs:annotation>
+					<xs:documentation>Fecha en que se aprobó el acta</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Forma" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Forma de aprobación</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConvocatoriaType">
+		<xs:sequence>
+			<xs:element name="Medios" type="MediosType">
+				<xs:annotation>
+					<xs:documentation>Debe indicarse la forma en que la Junta fue convocada, de acuerdo con la escritura social</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Numero_Convocatoria">
+				<xs:annotation>
+					<xs:documentation>Numero de convocatoria en la que se celebró la junta</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="PRIMERA"/>
+						<xs:enumeration value="SEGUNDA"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Porcentaje_Capital_Asistente" type="PorcentajeType">
+				<xs:annotation>
+					<xs:documentation>En %, esta cifra es el porcentaje de capital asistente en relación al total capital suscrito con derecho a voto</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Porcentaje_Socios_Asistentes" type="PorcentajeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Si los Estatutos exigiesen un quorum personalista para la válida constitución de la Junta, deberá indicarse el porcentaje de socios asistentes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MediosType">
+		<xs:choice>
+			<xs:element name="Medio_Publicacion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada uno de los medios de publicación</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Descripcion" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Descripción del medio de publicación</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Fecha">
+							<xs:annotation>
+								<xs:documentation>Fecha publicación. DD/MM/AAAA</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Otros_Medios" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Otros medios para indicar la convocatoria</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AsistentesType">
+		<xs:sequence>
+			<xs:element name="Asistente" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Cada uno de los asistentes</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Identificacion" type="Identificacion_SujetoType">
+							<xs:annotation>
+								<xs:documentation>Identificación</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Cargo" type="CargoType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LugaryFechaType">
+		<xs:sequence>
+			<xs:element name="Lugar" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Lugar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fecha">
+				<xs:annotation>
+					<xs:documentation>Fecha. DD/MM/AAAA</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CargoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADMINISTRADOR MANCOMUNADO"/>
+			<xs:enumeration value="ADMINISTRADOR SOLIDARIO"/>
+			<xs:enumeration value="ADMINISTRADOR UNICO"/>
+			<xs:enumeration value="AUDITOR CUENTAS"/>
+			<xs:enumeration value="CONSEJERO"/>
+			<xs:enumeration value="CONSEJERO DELEGADO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO DELEGADO MANCOMUNADO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO DELEGADO MANCOMUNADO Y SOLIDARIO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO DELEGADO SOLIDARIO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO DELEGADO SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO INDEPENDIENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="CONSEJERO SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="COPRESIDENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="PRESIDENTE DE LA JUNTA"/>
+			<xs:enumeration value="PRESIDENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="PRESIDENTE EJECUTIVO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="PRESIDENTE HONORIFICO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="PRESIDENTE SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="SECRETARIO DE LA JUNTA"/>
+			<xs:enumeration value="SECRETARIO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="SECRETARIO SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="SECRETARIO SUPLENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="TESORERO DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="VICEPRESIDENTE DEL CONSEJO DE ADMINISTRACION"/>
+			<xs:enumeration value="VICESECRETARIO DEL CONSEJO DE ADMINISTRACION"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Clausula_LOPDType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Declaro que los datos aportados son correctos y completos a efectos de la solicitud por mí realizada, y de acuerdo con el Art. 6 y 11 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, autorizo la utilización de la información contenida en el/los documentos remitidos, a efectos de su almacenamiento electrónico y utilización para los fines del Registro Mercantil"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Tipo_JuntaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="ORDINARIA"/>
+			<xs:enumeration value="EXTRAORDINARIA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Caracter_JuntaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="UNIVERSAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PorcentajeType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="S?|(\d{1,3}(,\d{1,10}))|\d{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

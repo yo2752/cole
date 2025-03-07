@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CTITService" targetNamespace="http://sega.gestores.net/ctit" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sega.gestores.net/ctit" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <types>
+  <xs:schema targetNamespace="http://sega.gestores.net/ctit" version="1.0" xmlns:tns="http://sega.gestores.net/ctit" xmlns:tipos="http://sega.gestores.net/ctit/tipos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://sega.gestores.net/ctit/tipos" schemaLocation="./CTITTipos.xsd" />
+      
+   <xs:element name="fullCTIT" type="tipos:ctitRequest"/>
+   <xs:element name="fullCTITResponse" type="tipos:ctitResponse"/>
+   <xs:element name="notificationCTIT" type="tipos:ctitRequest"/>
+   <xs:element name="notificationCTITResponse" type="tipos:ctitResponse"/>
+   <xs:element name="tradeCTIT" type="tipos:ctitRequest"/>
+   <xs:element name="tradeCTITResponse" type="tipos:ctitResponse"/>
+  
+  </xs:schema>
+ </types>
+ 
+ <message name="CTITWS_notificationCTITResponse">
+  <part element="tns:notificationCTITResponse" name="notificationCTITResponse"></part>
+ </message>
+ <message name="CTITWS_tradeCTIT">
+  <part element="tns:tradeCTIT" name="tradeCTIT"></part>
+ </message>
+ <message name="CTITWS_fullCTITResponse">
+  <part element="tns:fullCTITResponse" name="fullCTITResponse"></part>
+ </message>
+ <message name="CTITWS_fullCTIT">
+  <part element="tns:fullCTIT" name="fullCTIT"></part>
+ </message>
+ 
+ <message name="CTITWS_notificationCTIT">
+  <part element="tns:notificationCTIT" name="notificationCTIT"></part>
+ </message>
+ <message name="CTITWS_tradeCTITResponse">
+  <part element="tns:tradeCTITResponse" name="tradeCTITResponse"></part>
+ </message>
+ <portType name="CTITWS">
+
+  <operation name="fullCTIT" parameterOrder="fullCTIT">
+   <input message="tns:CTITWS_fullCTIT"></input>
+   <output message="tns:CTITWS_fullCTITResponse"></output>
+  </operation>
+  <operation name="notificationCTIT" parameterOrder="notificationCTIT">
+   <input message="tns:CTITWS_notificationCTIT"></input>
+   <output message="tns:CTITWS_notificationCTITResponse"></output>
+  </operation>
+  <operation name="tradeCTIT" parameterOrder="tradeCTIT">
+   <input message="tns:CTITWS_tradeCTIT"></input>
+   <output message="tns:CTITWS_tradeCTITResponse"></output>
+  </operation>
+ </portType>
+ <binding name="CTITWSBinding" type="tns:CTITWS">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ 
+  <operation name="fullCTIT">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="notificationCTIT">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="tradeCTIT">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="CTITService">
+  <port binding="tns:CTITWSBinding" name="CTITService">
+   <soap:address location="https://217.130.244.72:8484/sega/CTITService"/>
+  </port>
+ </service>
+</definitions>

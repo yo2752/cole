@@ -1,0 +1,86 @@
+<definitions name='MATWService' targetNamespace='http://blackbox.gescogroup.com' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://blackbox.gescogroup.com' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://blackbox.gescogroup.com' version='1.0' xmlns:tns='http://blackbox.gescogroup.com' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='sendMATW' type='tns:sendMATW'/>
+   <xs:element name='sendMATWResponse' type='tns:sendMATWResponse'/>
+   <xs:complexType name='sendMATW'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:matwRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='matwRequest'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='agencyFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='codeITV' type='xs:string'/>
+     <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='externalSystemFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='firstMatriculationDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='fiscalRepresentantBirthDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='form05Key' type='xs:string'/>
+     <xs:element minOccurs='0' name='form06ExcemptionType' type='xs:string'/>
+     <xs:element minOccurs='0' name='form06ExcemptionValue' type='xs:string'/>
+     <xs:element minOccurs='0' name='hasForm05' type='xs:boolean'/>
+     <xs:element minOccurs='0' name='hasForm06' type='xs:boolean'/>
+     <xs:element minOccurs='0' name='hasForm576' type='xs:boolean'/>
+     <xs:element minOccurs='0' name='itvCardType' type='xs:string'/>
+     <xs:element minOccurs='0' name='kmUsed' type='xs:int'/>
+     <xs:element minOccurs='0' name='serialCardITV' type='xs:string'/>
+     <xs:element minOccurs='0' name='serialNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='vehicleKind' type='xs:string'/>
+     <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='sendMATWResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:matwResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='matwResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='coc' type='xs:string'/>
+     <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+     <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errorCodes' nillable='true' type='tns:matwError'/>
+     <xs:element minOccurs='0' name='itvCard' type='xs:string'/>
+     <xs:element minOccurs='0' name='license' type='xs:string'/>
+     <xs:element minOccurs='0' name='plateNumber' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='matwError'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='key' type='xs:string'/>
+     <xs:element minOccurs='0' name='message' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='MATWWS_sendMATW'>
+  <part element='tns:sendMATW' name='sendMATW'></part>
+ </message>
+ <message name='MATWWS_sendMATWResponse'>
+  <part element='tns:sendMATWResponse' name='sendMATWResponse'></part>
+ </message>
+ <portType name='MATWWS'>
+  <operation name='sendMATW' parameterOrder='sendMATW'>
+   <input message='tns:MATWWS_sendMATW'></input>
+   <output message='tns:MATWWS_sendMATWResponse'></output>
+  </operation>
+ </portType>
+ <binding name='MATWWSBinding' type='tns:MATWWS'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='sendMATW'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='MATWService'>
+  <port binding='tns:MATWWSBinding' name='MATWService'>
+   <soap:address location='https://testmatw.gescolabs.com/bbws/MATWService'/>
+  </port>
+ </service>
+</definitions>

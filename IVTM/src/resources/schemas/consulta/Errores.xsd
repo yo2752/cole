@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.iam.munimadrid.es" xmlns:ns1="http://ws.iam.munimadrid.es" xmlns:ns2="http://www.map.es/scsp/esquemas/datosespecificos">
+<xs:import namespace="http://www.map.es/scsp/esquemas/datosespecificos"
+	 schemaLocation="EsquemaRespuestaConsultaDeudaIVTM.xsd"/>
+	 
+	 <xs:element name="mensaje" type="xs:string" />	 
+	 <xs:element name="errores" type="ns1:erroresType"/>
+		<xs:complexType name="erroresType">
+	 	<xs:sequence>
+	 		<xs:element ref="ns1:linerr" />
+			<xs:element ref="ns1:menserr" />
+			<xs:element ref="ns1:nivelerr" />
+			<xs:element ref="ns1:numerr" />
+			<xs:element ref="ns1:progerr" />
+			<xs:element ref="ns1:sqlerr" />
+	 	</xs:sequence>
+	 </xs:complexType>
+	 <xs:element name="linerr" type="xs:string" />
+	 <xs:element name="menserr" type="xs:string" />
+	 <xs:element name="nivelerr" type="xs:string" />
+	 <xs:element name="numerr" type="xs:string" />
+	 <xs:element name="progerr" type="xs:string" />
+	 <xs:element name="sqlerr" type="xs:string" />
+</xs:schema>

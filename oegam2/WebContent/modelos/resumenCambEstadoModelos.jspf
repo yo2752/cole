@@ -1,0 +1,72 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<div align="center">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td>Resumen de cambio de estado:</td>
+		</tr>
+	</table>
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la validación" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+		<tr>
+			<th>Tipo de Modelo</th>
+			<th>Correctos</th>
+			<th>Fallidos</th>
+		</tr>
+		<tr>
+			<td>Modelo 600</td>
+			<td>
+				<s:label style="color:green;" value="%{resumen.numOk600}"/>
+			</td>
+			<td style="color:red;">
+				<s:label style="color:red;" value="%{resumen.numFallidos600}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Modelo 601</td>
+			<td>
+				<s:label style="color:green;" value="%{resumen.numOk601}"/>
+			</td>
+			<td>
+				<s:label style="color:red;" value="%{resumen.numFallidos601}"/>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold;">TOTAL</td>
+			<td>
+				<s:label style="color:green" value="%{resumen.totalOk}"/>
+				<s:if test="%{resumen.totalOk != 0}">
+					<img id="despValidado"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueValidados();" />
+				</s:if>
+			</td>
+			<td>
+				<s:label style="color:red" value="%{resumen.totalFallidos}"/>
+				<s:if test="%{resumen.totalFallidos != 0}">
+					<img id="despFallidos"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueFallidos();" />
+				</s:if>	
+			</td>
+		</tr>
+	</table>
+	<div id="bloqueValidados" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;">
+		<tr>
+			<td style="width:100%;text-align:center;">Detalle de los Cambios de estados Correctos</td>
+		</tr>
+		</table>
+			<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+				<s:iterator value="resumen.listaMensajesOk">
+					<li><span style="text-align: left;"><s:property /></span></li>
+				</s:iterator>
+			</ul>
+	</div>
+	<div id="bloqueFallidos" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;">
+			<tr>
+				<td style="width:100%;text-align:center;">Detalle de los Cambios de Estados Fallidos</td>
+			</tr>
+		</table>
+		<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="resumen.listaMensajesErrores">
+				<li><span><s:property /></span></li>
+			</s:iterator>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="EITVQueryService" targetNamespace="http://sega.gestores.net/eitv" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sega.gestores.net/eitv" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <types>
+  <xs:schema targetNamespace="http://sega.gestores.net/eitv" version="1.0" xmlns:tns="http://sega.gestores.net/eitv" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="getDataEITV" type="tns:eitvRequest"/>
+   <xs:element name="getDataEITVResponse" type="tns:eitvResponse"/>
+   <xs:complexType name="eitvRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="tns:eitvArgument"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eitvArgument">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="agencyFiscalId" type="xs:string"/>
+     <xs:element minOccurs="0" name="agentFiscalId" type="xs:string"/>
+     <xs:element minOccurs="0" name="customDossierNumber" type="xs:string"/>
+     <xs:element minOccurs="0" name="externalSystemFiscalId" type="xs:string"/>
+     <xs:element minOccurs="0" name="nive" type="xs:string"/>
+     <xs:element minOccurs="0" name="vin" type="xs:string"/>
+     <xs:element minOccurs="0" name="xmlB64" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eitvResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tns:eitvReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eitvReturn">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="codeHG" type="xs:string"/>
+     <xs:element minOccurs="0" name="dossierNumber" type="xs:string"/>
+     <xs:element maxOccurs="unbounded" minOccurs="0" name="errorCodes" nillable="true" type="tns:eitvError"/>
+     <xs:element minOccurs="0" name="xmldata" type="xs:string"/>
+     <xs:element minOccurs="0" name="ficha" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="eitvError">
+      <xs:sequence>
+       <xs:element minOccurs="0" name="key" type="xs:string"/>
+       <xs:element minOccurs="0" name="message" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name="EITVQueryWS_getDataEITV">
+  <part element="tns:getDataEITV" name="getDataEITV"/>
+ </message>
+ <message name="EITVQueryWS_getDataEITVResponse">
+  <part element="tns:getDataEITVResponse" name="getDataEITVResponse"/>
+ </message>
+ <portType name="EITVQueryWS">
+  <operation name="getDataEITV" parameterOrder="getDataEITV">
+   <input message="tns:EITVQueryWS_getDataEITV"/>
+   <output message="tns:EITVQueryWS_getDataEITVResponse"/>
+  </operation>
+ </portType>
+ <binding name="EITVQueryWSBinding" type="tns:EITVQueryWS">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="getDataEITV">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="EITVQueryService">
+  <port binding="tns:EITVQueryWSBinding" name="EITVQueryService">
+   <soap:address location="https://217.130.244.72:8484/sega/EITVQueryService"/>
+  </port>
+ </service>
+</definitions>

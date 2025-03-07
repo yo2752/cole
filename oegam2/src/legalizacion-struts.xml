@@ -1,0 +1,51 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="legalizacion" extends="default">	
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="*AltaLegalizacion" method="{1}" class="org.icogam.legalizacion.actions.AltaLegalizacionAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="stackInterceptores" />
+				<result name="listadoPeticiones" type="tiles">consultaLegalizacion</result>
+				<result name="success" type="tiles">altaLegalizacion</result>
+				<result name="descargarDocumentos" type="stream">
+					<param name="contentType">application/x-zip-compressed</param>
+					<param name="inputName">inputStream</param>
+					<param name="contentDisposition">attachment;filename=${fileName}</param>
+					<param name="allowCaching">false</param>
+				</result>
+		</action>
+
+		<action name="*ConsultaLegalizacion" method="{1}" class="org.icogam.legalizacion.actions.ConsultaLegalizacionAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">200000</param>
+			</interceptor-ref>
+			<interceptor-ref name="stackInterceptores" />
+				<result name="success" type="tiles">consultaLegalizacion</result>
+				<result name="descargarDocumentos" type="stream">
+				<param name="contentType">application/x-zip-compressed</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+		<action name="AbrirPopUpLegalizacion">
+			<result>
+	legalizacion/seleccionEstado.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified">
+	<xs:include schemaLocation="RBM_Protocolo_Tipos.xsd"/>
+	<xs:element name="RBM_Documento_Cancelacion">
+		<xs:annotation>
+			<xs:documentation>Definición del protocolo en formato XML para realizar la transmisión de cancelaciones de limitaciones inscritas en los Registros de Bienes Muebles</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Modelo" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Modelo de documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Titulo_Documento" type="xs:string" default="CANCELACIÓN TELEMATICA DE TITULARIDADES DOMINICALES, LIMITACIONES, RESERVAS DE DOMINIO Y PROHIBICIONES DE DISPONER INSCRITAS EN EL REGISTRO DE BIENES MUEBLES, A INSTANCIA DEL TITULAR O BENEFICIARIO DE DICHAS SITUACIONES JURÍDICAS.">
+					<xs:annotation>
+						<xs:documentation>Titulo del documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Solicitante_Cancelacion" type="Solicitante_CancelacionType">
+					<xs:annotation>
+						<xs:documentation>Solicitante de la cancelación</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Identificacion_Bien" type="Identificacion_Bien_CancelacionType">
+					<xs:annotation>
+						<xs:documentation>Describir el bien</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Situacion_Juridica_Cancelada" type="Tipificacion_Situacion_JuridicaType" maxOccurs="3">
+					<xs:annotation>
+						<xs:documentation>Situaciones jurídicas que se cancelan. Tipificación 27. Situaciones jurídicas</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Identificacion_Contrato_Inscrito" type="Identificacion_Contrato_InscritoType">
+					<xs:annotation>
+						<xs:documentation>Identificación del contrato a cancelar</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Causa_Cancelacion" type="Tipificacion_Causa_CancelacionType">
+					<xs:annotation>
+						<xs:documentation>Causa de la cancelación. Tipificación 28.Causas Cancelación.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Importe_Comision_Cancelacion" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Importe comisión cancelación</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="ImporteType"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Clausula_LOPD" type="Clausula_LOPDType" default="Declaro que los datos aportados son correctos y completos a efectos de la solicitud por mí realizada, y de acuerdo con el Art. 6 y 11 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, autorizo la utilización de la información contenida en el/los documentos remitidos, a efectos de su almacenamiento electrónico y utilización para los fines del Registro de Bienes Muebles.">
+					<xs:annotation>
+						<xs:documentation>Texto fijo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Firma_Solicitante" type="Firma_SolicitanteType"/>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

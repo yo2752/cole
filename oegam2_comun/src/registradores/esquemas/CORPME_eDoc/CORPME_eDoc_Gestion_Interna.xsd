@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+    <xs:element name="Datos_GI_CORPME">
+        <xs:annotation>
+            <xs:documentation>Datos de gestión interna CORPME</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0">
+                <xs:element name="Aviso_Contenido" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Obligatorio cuando Tipo_Mensaje = "ACR".</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Notificacion" type="AvisoType">
+                                <xs:annotation>
+                                    <xs:documentation>Datos del aviso de notificación. Tipo_Contenido = 1</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Comunicacion" type="AvisoType">
+                                <xs:annotation>
+                                    <xs:documentation>Datos del aviso de comunicación. Tipo_Contenido = 2</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Minuta" type="MinutaType">
+                                <xs:annotation>
+                                    <xs:documentation>Datos del aviso de minuta Tipo_Contenido = 3</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Factura" type="FacturaType">
+                                <xs:annotation>
+                                    <xs:documentation>Datos del aviso de factura. Tipo_Contenido = 4</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="Tipo_Contenido" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Tipo de contenido. 1 = Notificación fehaciente, 2 = Comunicacion Registral, 3 = Minuta, 4 = Factura, 5 = Notificaciones sin envio de correo electronico</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:enumeration value="1"/>
+                                    <xs:enumeration value="2"/>
+                                    <xs:enumeration value="3"/>
+                                    <xs:enumeration value="4"/>
+                                    <xs:enumeration value="5"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Identificador_Contenido" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Identificador único del contenido</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Id_Tramite_Origen">
+                            <xs:annotation>
+                                <xs:documentation>Sirve para asociar una notificación libre con un trámite iniciado telemáticamente</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Peticion_Contenido" type="Peticion_ContenidoType" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Obligatorio cuando Tipo_Mensaje = "PCR"</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="Version" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Versión del subesquema</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Tipo_Mensaje" use="required">
+                <xs:annotation>
+                    <xs:documentation>Tipo de mensaje. ACR = Aviso contenido desde registro, PCR = Petición del contenido al registro, PDDR = Petición del documento por parte del registro al CORPME, RNR = Redirección notificación, AC = Aviso contenido </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ACR"/>
+                        <xs:enumeration value="PCR"/>
+                        <xs:enumeration value="PDDR"/>
+                        <xs:enumeration value="RNR"/>
+                        <xs:enumeration value="AC"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Tipo_Entidad_Destinatario">
+                <xs:annotation>
+                    <xs:documentation>Tipo de entidad a la que se redirige el mensaje. 1=Administración Pública, 2=Privada</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Codigo_Entidad_Destinatario" type="EntidadType">
+                <xs:annotation>
+                    <xs:documentation>Código de entidad a la que se redirige el mensaje. 1=Notariado, 2=TGSS, 3=AEAT, 4=CGPJ, ...</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

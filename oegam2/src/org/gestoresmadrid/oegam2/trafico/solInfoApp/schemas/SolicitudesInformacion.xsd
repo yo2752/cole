@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+ 
+	<xs:element name="FormatoOegam2SolInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Cabecera" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="SolicitudesInformacion" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="FechaCreacion"/>
+	      	<xs:attribute type="xs:string" name="Plataforma"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Cabecera">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="Datos_Gestoria"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Datos_Gestoria">
+    	<xs:complexType>
+        	<xs:sequence>
+            	<xs:element ref="nif"/>
+                <xs:element ref="nombre"/>
+                <xs:element ref="profesional"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="SolicitudesInformacion">
+		<xs:complexType>
+        	<xs:sequence>
+            	<xs:element type="xs:string" name="DatosSolicitudes"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="nif" type="tipoNIF"/>
+	<xs:element name="nombre" type="alfa50"/>
+	<xs:element name="profesional" type="alfa4"/>
+	
+	
+	<xs:simpleType name="alfa4">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

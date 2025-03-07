@@ -1,0 +1,58 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">Datos de la Factura</span>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="tablaformbasica" cellSpacing="1" cellPadding="5">	
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="codFactura">Numero Factura: </label>
+			</td>		
+       		<td align="left" nowrap="nowrap" >
+				<s:textfield name="datosCliente.NumFactura" 
+        					id="idNumFactura" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					size="5" maxLength="9" disabled="false"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="fechaFactura">Fecha Factura: </label>
+			</td>
+	        <td align="left" nowrap="nowrap" colspan="2">
+				<s:textfield name="datosCliente.FechaFactura" 
+        					id="idFechaFactura" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					size="10" maxLength="10" disabled="false"/>				
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="numSerie">Numero de Serie: </label>
+			</td>		
+       		<td align="left" nowrap="nowrap" >
+				<s:textfield name="datosCliente.NumSerie" 
+        					id="idNumSerie" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					size="5" maxLength="9" disabled="false"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="numCodigo">Numero de Codigo: </label>
+			</td>   	       			
+	        <td align="left" nowrap="nowrap" colspan="2">
+				<s:textfield name="datosCliente.NumCodigo" 
+        					id="idNumCodigo" 
+        					onblur="this.className='input2';" 
+        					onfocus="this.className='inputfocus';"
+        					size="5" maxLength="9" disabled="false"/>
+			</td>
+		</tr>
+	</table>

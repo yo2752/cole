@@ -1,0 +1,377 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<script src="js/tabs.js" type="text/javascript"></script>
+<script src="js/contrato.js" type="text/javascript"></script>
+<script src="js/validaciones.js" type="text/javascript"></script>
+<script src="js/genericas.js" type="text/javascript"></script>
+<script src="js/trafico/comunes.js" type="text/javascript"></script>
+<script  type="text/javascript"></script>
+
+ <div class="contentTabs" id="Cliente" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">
+ 
+	<div class="contenido">		
+		<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+			<tr>
+				<td class="tabular">
+					<span class="titulo">Datos del Cliente</span>		
+				</td>
+			</tr>
+		</table>
+		
+		<table cellSpacing="2" class="tablaformbasica" cellPadding="0" align="left" border="0">		
+			<tr>
+				<td align="left" nowrap="nowrap" >
+					<label for="nifCliente">NIF / CIF: <span class="naranja">*</span></label>
+				</td>
+				<td align="left" nowrap="nowrap" width="24%">
+	       	    	<table style="align:left;">
+						<tr>
+							<td align="left" nowrap="nowrap">
+							<s:textfield name="datosCliente.factura.persona.id.nif" 
+			       				id="nifTitular" 
+			       				onblur="this.className='input2';calculaLetraNIF(this)" 
+		       					onfocus="this.className='inputfocus';" 
+		       					onchange="limpiarFormularioClienteFacturacion()"
+		       					size="9" maxlength="9"
+		       				/>
+							</td>
+							<td align="left" nowrap="nowrap">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteFacturacion('Cliente','Cliente');"/>
+							</td>
+						</tr>
+					</table>
+	       	    </td>
+	       	    
+	       	    <td align="left" nowrap="nowrap">
+       			<label for="tipoPersonaTitular">Tipo de persona: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaTitular"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="datosCliente.factura.persona.tipoPersona"
+						value="%{datosCliente.factura.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+	       	    
+	       	</tr>
+	       
+	    	<tr> 
+	    		<td align="left" nowrap="nowrap">
+	       			<label for="sexoCliente">Sexo: </label>
+	       		</td>
+	         	<td align="left" nowrap="nowrap">
+		         	     	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+							id="sexoCliente"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"
+							name="datosCliente.factura.persona.sexo"
+							listValue="nombreEnum"
+							listKey="valorEnum"
+							title="Sexo Persona"
+							headerKey="-" headerValue="-"/>
+	       		</td>   			
+	    		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialCliente">Primer Apellido / Razón Social: <span class="naranja">*</span></label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield id="apellido1RazonSocialCliente" name="datosCliente.factura.persona.apellido1RazonSocial" size="20" maxlength="100"/>
+			    </td>
+	       	</tr>
+		
+			<tr>			
+	       		<td align="left" nowrap="nowrap">
+	       			<label for="apellido2Cliente">Segundo Apellido: </label>
+	       		</td>				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield id="apellido2Cliente" name="datosCliente.factura.persona.apellido2" size="20" maxlength="100"/>
+	       		</td>
+	       		  <td align="left" nowrap="nowrap">
+	       			<label for="nombreCliente">Nombre: <span class="naranja">*</span></label>
+	       		</td>				        		       	       			
+	       		<td align="left" nowrap="nowrap">
+	       			<s:textfield id="nombreCliente" name="datosCliente.factura.persona.nombre" size="20" maxlength="100"/>
+	       		</td>
+	       		
+	       		
+	  		</tr>
+	  		
+	  		<tr>
+       		
+	       		<td align="left" nowrap="nowrap">
+	       			<label for="nombreTitular">Anagrama <span class="naranja">*</span></label>
+	       		</td>				        		
+	       	       			
+	       		<td align="left" nowrap="nowrap">
+	       			<s:textfield 
+	       				name="datosCliente.factura.persona.anagrama" 
+	       				id="anagramaTitular" 
+	       				onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';" 
+	       				size="5" maxlength="4"
+	       				readOnly="true"/>
+	       		</td>
+	       		
+	       		<td align="left" nowrap="nowrap">
+	       			<s:hidden id="idDireccion" name="datosCliente.factura.persona.direccionActual.idDireccion"/>
+	       		</td>
+	       		
+       	</tr>       		
+	
+			<tr>
+
+				<td align="left" nowrap="nowrap" width="17%">
+					<label for="idFechaNacimientoTitular">Fecha de Nacimiento: </label>
+				</td>
+			<td align="left" nowrap="nowrap" >
+				<table>
+					<tr>
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield name="datosCliente.factura.persona.fnacimiento.dia" 
+								id="diaNacTitular"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 								
+								size="2" maxlength="2"/>
+						</td>
+						
+						<td width="1%">/</td>
+						
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield name="datosCliente.factura.persona.fnacimiento.mes" 
+								id="mesNacTitular"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';"								
+								size="2" maxlength="2"/>
+						</td>
+						
+						<td width="1%">/</td>
+						
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield name="datosCliente.factura.persona.fnacimiento.anio" 
+								id="anioNacTitular"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 								
+								size="4" maxlength="4"/>
+						</td>
+						
+						<td align="left" nowrap="nowrap" >
+				    		<a href="javascript:;" 
+				    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioNacTitular, document.formData.mesNacTitular, document.formData.diaNacTitular);return false;" 
+				    				title="Seleccionar fecha">
+				    			<img class="PopcalTrigger" 
+				    				align="left" 
+				    				src="img/ico_calendario.gif" 
+				    				width="15" height="16" 
+				    				border="0" alt="Calendario"/>
+				    		</a>
+						</td>
+					</tr>
+				</table>
+			</td>			
+				
+				<td align="left" nowrap="nowrap">
+       			<label for="estadoCivilTitular">Estado Civil: </label>
+       		</td>				        	       	       			
+       					
+			<td align="left" nowrap="nowrap">
+				<s:select  
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="datosCliente.factura.persona.estadoCivil" 
+       				id="estadoCivilTitular" 					
+					list="@escrituras.utiles.UtilesVista@getInstance().getComboEstadosCivil()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey="-"
+		    	    headerValue="Estado Civil"/>							
+			</td>
+				
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="telefonoCliente">Teléfono: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap" >
+					<s:textfield id="telefonoCliente" name="datosCliente.factura.persona.telefonos" size="9" maxlength="9"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="correoElectronicoCliente">Correo Electrónico: </label>
+				</td>   	       			
+		        <td align="left" nowrap="nowrap" colspan="2">
+					<s:textfield id="correoElectronicoCliente" name="datosCliente.factura.persona.correoElectronico" size="20" maxlength="30"/>
+				</td>
+			</tr>	
+		</table>
+	
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="idProvinciaPersonaFacturacion">Provincia: <span class="naranja">*</span></label>
+				</td>   
+				    	       			
+	       		<td align="left" nowrap="nowrap">
+				<s:select cssStyle="width:150px;" list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasCliente()"
+					headerKey="-1" headerValue="Seleccione Provincia" 
+	           		onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+					name="datosCliente.factura.persona.direccionActual.municipio.provincia.idProvincia" 
+					listKey="idProvincia" listValue="nombre"
+					id="idProvinciaPersonaFacturacion"
+					onchange="cargarListaMunicipios(this,'idMunicipioPersonaFacturacion','municipioSeleccionadoPersonaFacturacion');
+					cargarListaTipoVia(this,'tipoViaDireccionPersonaFacturacion','tipoViaSeleccionadaPersonaFacturacion');
+					inicializarTipoVia('tipoViaDireccionPersonaFacturacion','nombreViaPersonaFacturacion',viaPersonaFacturacion);
+					borrarComboPueblo('idPuebloPersonaFacturacion');"/>					
+			</td>
+		
+				<td align="left" nowrap="nowrap">
+					<label for="idMunicipioCliente">Municipio: <span class="naranja">*</span></label>	
+				</td>
+	       		<td align="left" nowrap="nowrap">			
+					<select id="idMunicipioPersonaFacturacion"  
+						onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';"
+						onchange="cargarListaPueblos('idProvinciaPersonaFacturacion', this, 'idPuebloPersonaFacturacion', 'puebloSeleccionadoPersonaFacturacion');
+						seleccionarCampo('municipioSeleccionadoPersonaFacturacion','idMunicipioPersonaFacturacion');						
+						obtenerCodigoPostalPorMunicipio('idProvinciaPersonaFacturacion', this, 'codPostalClienteFacturacion');
+						inicializarTipoVia('tipoViaDireccionPersonaFacturacion','nombreViaPersonaFacturacion',viaPersonaFacturacion);" >						
+						<option value="-1">Seleccione Municipio</option>
+					</select>						  
+			    	<s:hidden id="municipioSeleccionadoPersonaFacturacion" name="datosCliente.factura.persona.direccionActual.municipio.id.idMunicipio"/>
+				</td>
+			</tr>
+			
+			<tr>									
+				<td align="left" nowrap="nowrap">
+					<label for="idPuebloCliente">Pueblo: </label>			
+				</td>
+				<td align="left" nowrap="nowrap">				
+					<select id="idPuebloPersonaFacturacion" onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('puebloSeleccionadoPersonaFacturacion','idPuebloPersonaFacturacion');
+						document.getElementById('idPuebloIVTM').value=this.options[this.selectedIndex].text;"
+						style="width:200px;" >
+						<option value="-1">Seleccione Pueblo</option>
+					</select>						  
+				   	<s:hidden id="puebloSeleccionadoPersonaFacturacion" name="datosCliente.factura.persona.direccionActual.pueblo"/>
+				</td>						
+				
+				<td align="left" nowrap="nowrap">
+					<label for="codPostalClienteFacturacion">Código Postal: <span class="naranja">*</span></label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+		        	<s:textfield id="codPostalClienteFacturacion" name="datosCliente.factura.persona.direccionActual.codPostal" size="5" maxlength="5"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="tipoViaDireccionCliente">Tipo vía: <span class="naranja">*</span></label>
+				</td>				        		
+	       	    
+	       	    <td align="left" nowrap="nowrap">         	
+		         	<select id="tipoViaDireccionPersonaFacturacion" 
+		         			name="factura.persona.direccionActual.tipoVia"
+							onblur="this.className='input2';" 
+							onfocus="this.className='inputfocus';"
+							onchange="seleccionarCampo('tipoViaSeleccionadaPersonaFacturacion','tipoViaDireccionPersonaFacturacion');
+									cargarListaNombresVia('idProvinciaPersonaFacturacion', 'municipioSeleccionadoPersonaFacturacion', this, 'nombreViaPersonaFacturacion',viaPersonaFacturacion);" >
+							<option value="-1">Seleccione Tipo Via</option>
+					</select>
+					<s:hidden id="tipoViaSeleccionadaPersonaFacturacion" 
+		    		name="datosCliente.factura.persona.direccionActual.idTipoVia"/>
+	       		</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="nombreViaPersonaFacturacion">Nombre vía: <span class="naranja">*</span></label>
+				</td>		
+				<td align="left" nowrap="nowrap" colspan="3">
+		       		<s:textfield id="nombreViaPersonaFacturacion" cssStyle="width:200px;position:relative;" name="datosCliente.factura.persona.direccionActual.nombreVia" size="40" maxlength="100" />
+	       		</td>        
+	       		
+			</tr>
+		</table>
+		
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+			<tr>	
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="numeroDireccionCliente">N&uacute;mero: <span class="naranja">*</span></label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="numeroDireccionCliente" name="datosCliente.factura.persona.direccionActual.numero" size="2" maxlength="3"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="letraDireccionCliente">Letra: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="letraDireccionCliente" name="datosCliente.factura.persona.direccionActual.letra" size="2" maxlength="3"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="escaleraDireccionCliente">Escalera: </label>
+				</td>				        		
+	       	       			
+	       		<td align="left" nowrap="nowrap">
+	       			<s:textfield id="escaleraDireccionCliente" name="datosCliente.factura.persona.direccionActual.escalera" size="7" maxlength="10"/>				
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="pisoDireccionCliente">Piso: </label>
+				</td>				        		
+	       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="pisoDireccionCliente" name="datosCliente.factura.persona.direccionActual.planta" size="2" maxlength="3"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="puertaDireccionCliente">Puerta: </label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="puertaDireccionCliente" name="datosCliente.factura.persona.direccionActual.puerta" size="2" maxlength="5"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="bloqueDireccionCliente">Bloque: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="bloqueDireccionCliente" name="datosCliente.factura.persona.direccionActual.bloque" size="2" maxlength="3"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="kmDireccionCliente">Km: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="kmDireccionCliente" name="datosCliente.factura.persona.direccionActual.km" size="2" maxlength="3"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="hmDireccionCliente">Hm: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield id="hmDireccionCliente" name="datosCliente.factura.persona.direccionActual.hm" size="2" maxlength="3"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script>
+	var viaPersonaFacturacion = new BasicContentAssist(document.getElementById('nombreViaPersonaFacturacion'), [], null, true);
+	recargarComboMunicipios('idProvinciaPersonaFacturacion','idMunicipioPersonaFacturacion','municipioSeleccionadoPersonaFacturacion');
+	recargarComboTipoVia('idProvinciaPersonaFacturacion','tipoViaDireccionPersonaFacturacion','tipoViaSeleccionadaPersonaFacturacion');
+	recargarComboPueblos('idProvinciaPersonaFacturacion','municipioSeleccionadoPersonaFacturacion','idPuebloPersonaFacturacion', 'puebloSeleccionadoPersonaFacturacion');
+	recargarNombreVias('idProvinciaPersonaFacturacion', 'municipioSeleccionadoPersonaFacturacion', 'tipoViaSeleccionadaPersonaFacturacion','nombreViaPersonaFacturacion',viaPersonaFacturacion);
+</script>

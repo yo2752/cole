@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+      
+    <mapping>
+  		<class-a>org.gestoresmadrid.core.ivtmMatriculacion.model.beans.IvtmDatosEntradaMatriculasWS</class-a>
+  		<class-b>com.matriculasIvtmWS.integracion.bean.IvtmDatosEntradaMatriculasWS</class-b>
+
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>com.matriculasIvtmWS.integracion.bean.IvtmResultadoWSMatriculasWS</class-a>
+  		<class-b>org.gestoresmadrid.core.ivtmMatriculacion.model.beans.IvtmResultadoWSMatriculasWS</class-b> 
+		  	<field>
+			  	<a>numAutoliquidacion</a>
+			  	<b>numAutoliquidacion</b>
+			</field>
+			<field>
+			  	<a>matricula</a>
+			  	<b>matricula</b>
+			</field>
+			<field>
+			  	<a>bastidor</a>
+			  	<b>bastidor</b>
+			</field>
+			<field>
+			  	<a>descripcion</a>
+			  	<b>descripcion</b>
+			</field>
+  	</mapping>
+</mappings>
+
+

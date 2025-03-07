@@ -1,0 +1,693 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Modelo 620</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">MODELO 620</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idEstado620">Estado 620:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select id="idEstado620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getEstados620()"
+					headerKey="-1"
+					headerValue="Iniciado"
+					name="tramiteTraficoTransmisionBean.estado620"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="true"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="oficinaLiquidadora">Oficina liquidadora: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select id="oficinaLiquidadora"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getOficinasLiquidadoras()"
+					headerKey="-1"
+					headerValue="-"
+					name="tramiteTraficoTransmisionBean.oficinaLiquidadora620.oficinaLiquidadora"
+					listKey="oficinaLiquidadora"
+					listValue="nombreOficinaLiq"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="true"/>
+				<s:hidden name="tramiteTraficoTransmisionBean.oficinaLiquidadora620.provincia.idProvincia"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoVehiculo620">Tipo de vehículo: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select id="tipoVehiculo620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposVehiculoCam()"
+					headerKey="-1"
+					headerValue="Seleccione Tipo"
+					name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.tipVehi"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					disabled="%{flagDisabled}"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="limpiarDatosVehiculo620();cargarListaMarcas('tipoVehiculo620','anioDevengo','idMarcaCam','marcaCamSeleccionada'); desahabilitarCampos620Automaticos();"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="diaDevengo">Fecha de Devengo: <span class="naranja">*</span></label>
+			</td>
+
+			<td>
+				<table>
+					<tr>
+						<td align="left" nowrap="nowrap">
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.fechaDevengoItp620.dia"
+								id="diaDevengo"
+								onblur="this.className='input2';"
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';"
+								onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();"
+								size="2" maxlength="2"/>
+						</td>
+
+						<td>/</td>
+
+						<td align="left" nowrap="nowrap">
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.fechaDevengoItp620.mes"
+								id="mesDevengo"
+								onblur="this.className='input2';"
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';"
+								onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();"
+								size="2" maxlength="2"/>
+						</td>
+
+						<td>/</td>
+
+						<td align="left" nowrap="nowrap">
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.fechaDevengoItp620.anio"
+								id="anioDevengo"
+								onblur="this.className='input2';"
+								onkeypress="return validarNumerosEnteros(event)"
+								onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();cargarListaMarcas('tipoVehiculo620','anioDevengo','idMarcaCam','marcaCamSeleccionada');"
+								onfocus="this.className='inputfocus';"
+								size="4" maxlength="4"/>
+						</td>
+
+						<td align="left" nowrap="nowrap">
+							<a href="javascript:;"
+								onClick="self.gfPop.calendarioSeleccionado = 'top.calcularPorcentajeReduccionAnual();top.cargarListaMarcas(\'tipoVehiculo620\',\'anioDevengo\',\'idMarcaCam\',\'marcaCamSeleccionada\')';if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioDevengo, document.formData.mesDevengo, document.formData.diaDevengo);return false;"
+									title="Seleccionar fecha">
+								<img class="PopcalTrigger"
+									align="middle" 
+									src="img/ico_calendario.gif" ${displayDisabled}
+									width="15" height="16"
+									border="0" alt="Calendario"/>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="diaPrimeraMatriculacion">Fecha 1ª matriculación: <span class="naranja">*</span></label>
+			</td>
+
+			<td>
+				<table>
+					<tr>
+					<td align="left" nowrap="nowrap">
+						<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.dia"
+							id="diaPrimeraMatriculacion"
+							onblur="this.className='input2';"
+							onkeypress="return validarNumerosEnteros(event)"
+							onfocus="this.className='inputfocus';"
+							onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();"
+							size="2" maxlength="2"/>
+					</td>
+
+					<td>/</td>
+
+					<td align="left" nowrap="nowrap">
+						<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.mes"
+							id="mesPrimeraMatriculacion"
+							onblur="this.className='input2';"
+							onkeypress="return validarNumerosEnteros(event)"
+							onfocus="this.className='inputfocus';"
+							onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();"
+							size="2" maxlength="2"/>
+					</td>
+
+					<td>/</td>
+
+					<td align="left" nowrap="nowrap">
+						<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.anio"
+							id="anioPrimeraMatriculacion"
+							onblur="this.className='input2';"
+							onkeypress="return validarNumerosEnteros(event)"
+							onfocus="this.className='inputfocus';"
+							onchange="calcularPorcentajeReduccionAnual();calcularReduccion620();"
+							size="4" maxlength="4"/>
+					</td>
+
+					<td align="left" nowrap="nowrap">
+						<a href="javascript:;"
+							onClick="self.gfPop.calendarioSeleccionado = 'top.calcularPorcentajeReduccionAnual()';if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioPrimeraMatriculacion, document.formData.mesPrimeraMatriculacion, document.formData.diaPrimeraMatriculacion);return false;"
+								title="Seleccionar fecha">
+							<img class="PopcalTrigger"
+								align="middle"
+								src="img/ico_calendario.gif" ${displayDisabled}
+								width="15" height="16"
+								border="0" alt="Calendario"/>
+						</a>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idMarcaCam">Marca (Comunidad Autónoma de Madrid): <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="65%">
+				<select id="idMarcaCam"
+					onchange="seleccionarCampo('marcaCamSeleccionada','idMarcaCam');
+					cargarListaModelos(this,'tipoVehiculo620','anioDevengo','idModeloCam','modeloCamSeleccionado');calcularReduccion620();"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					${stringDisabled}
+					style="width:250px;display:none">
+					<option value="-1">Seleccione marca</option>
+				</select>
+
+				<s:textfield disabled="%{flagDisabled}"
+					id="idMarcaCamText"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="30"
+					maxlength="30"
+					style="width:250px;display:none"
+					onchange="seleccionarCampo('marcaCamSeleccionada','idMarcaCamText');" />
+
+				<s:hidden id="marcaCamSeleccionada"
+					name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.cdMarca"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idModeloCam">Modelo (Comunidad Autónoma de Madrid): <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="65%">
+				<select id="idModeloCam"
+					onchange="seleccionarCampo('modeloCamSeleccionado','idModeloCam');
+					cargarDatosVehiculo620('tipoVehiculo620','anioDevengo','marcaCamSeleccionada','modeloCamSeleccionado');"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					${stringDisabled}
+					style="width:250px;display:none">
+					<option value="-1">Seleccione modelo</option>
+				</select>
+				<s:textfield disabled="%{flagDisabled}"
+					id="idModeloCamText"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="80" 
+					maxlength="80"
+					style="width:250px;display:none"
+					onchange="seleccionarCampo('modeloCamSeleccionado','idModeloCamText');" />
+
+				<s:hidden id="modeloCamSeleccionado"
+					name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.cdModVeh"/>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="procedencia620">Procedencia Vehículo: </label>
+			</td>
+ 			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select id="procedencia620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTipoProcedencia620()"
+					headerKey=""
+					headerValue="Seleccione procedencia"
+					name="tramiteTraficoTransmisionBean.procedencia"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="subasta620">Subasta: </label><span class="naranja">*</span>
+			</td>
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:checkbox name="tramiteTraficoTransmisionBean.subasta" id="subasta620" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoMotor">Tipo Motor: <span class="naranja">*</span></label>
+			</td>
+			<td>
+				<s:select id="tipoMotor"
+					name="tramiteTraficoTransmisionBean.tipoMotor.idTipoMotor"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposMotor()"
+					listKey="idTipoMotor"
+					listValue="descripcion"
+					disabled="%{flagDisabled}"
+					headerKey=""
+					headerValue="Seleccione tipo motor"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="potenciaFiscal620">Potencia fiscal (CV): </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.potenciaFiscal"
+					id="potenciaFiscal620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="10"
+					readonly="true"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="cilindrada620">Cilindrada (cm<sup>3</sup>):</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.cilindrada"
+					id="cilindrada620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="calcularValorDeclaradoMoto();calcularReduccion620();"
+					pattern="((\-)?(((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9])?"
+					size="5" maxlength="5"
+					readonly="true"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="nCilindros620">Nº cilindros: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.numCilindros"
+					id="nCilindros620"
+					onblur="this.className='input2';"
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';"
+					size="4" maxlength="4"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="caracteristicas620">Características: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.caracteristicas"
+					id="caracteristicas620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="25" maxlength="50"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="carburante620">Carburante: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select id="carburante620"
+					name="tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.carburanteBean.idCarburante"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCarburantes()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					disabled="%{flagDisabled}"
+					headerKey="-1"
+					headerValue="Seleccione carburante"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<br/>
+				<label for="exento620">Exento: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label>&nbsp;</label>
+				<s:checkbox disabled="%{flagDisabled}"
+					name="tramiteTraficoTransmisionBean.exento620" id="exento620"
+					onclick="cambioExento()" />
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="fundamentoExencion620">Fundamento legal de la Exención: </label>
+				<s:select id="fundamentoExencion620"
+					name="tramiteTraficoTransmisionBean.fundamentoExencion620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getFundamentosExencion()"
+					listKey="fundamentoExencion"
+					listValue="descFundamentoExe"
+					headerKey="-1"
+					headerValue="-"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="true"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<br/>
+				<label for="noSujeto620">No sujeto: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label>&nbsp;</label>
+				<s:checkbox disabled="%{flagDisabled}"
+					name="tramiteTraficoTransmisionBean.noSujeto620" id="noSujeto620"
+					onclick="cambioNoSujeto()" />
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="fundamentoNoSujeccion620">Fundamento legal de la No Sujeción:</label>
+				<s:select id="fundamentoNoSujeccion620"
+					name="tramiteTraficoTransmisionBean.fundamentoNoSujeccion620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getFundamentosNoSujeto()"
+					listKey="fundamentoExencion"
+					listValue="descFundamentoExe"
+					headerKey="-1"
+					headerValue="-"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="true"/>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="porcentajeReduccionAnual">Porcentaje reducción anual: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.porcentajeReduccionAnual620"
+					id="porcentajeReduccionAnual"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="calcularReduccion620();"
+					size="5" maxlength="10"
+					readonly="true"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="valorDeclarado620">Valor declarado: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="true" name="tramiteTraficoTransmisionBean.valorDeclarado620"
+					id="valorDeclarado620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="calcularReduccion620();"
+					size="5" maxlength="10"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="idPorcentajeAdquisicion620">Porcentaje adquisición: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.porcentajeAdquisicion620"
+					id="idPorcentajeAdquisicion620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5"
+					value='100'
+					maxlength="10"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="reduccionCodigo620">Tipo de reducción: </label>
+			</td>
+			<td>
+				<s:select id="reduccionCodigo620"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposReduccion()"
+					headerKey=""
+					headerValue="-"
+					name="tramiteTraficoTransmisionBean.reduccionCodigo.tipoReduccion"
+					listKey="idTipoReduccion"
+					listValue="descripcion"
+					onblur="this.className='input2';"
+					onchange="cargarPorcentajeReduccion('reduccionCodigo620','reduccionPorcentaje620');"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="reduccionPorcentaje620" class="datoReduccion">Porcentaje reducción: </label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.reduccionCodigo.porcentajeReduccion"
+					id="reduccionPorcentaje620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="10"
+					class="datoReduccion"
+					readonly='true'/>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<label for="reduccionImporte620" class="datoReduccion">Importe de reducción: </label>
+			</td>
+			<td>
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.reduccionImporte"
+					id="reduccionImporte620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="10"
+					class="datoReduccion"
+					readonly='true'/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="baseImponible620">Base imponible: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="true" name="tramiteTraficoTransmisionBean.baseImponible620"
+					id="baseImponible620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="calcularCuotaTributaria()"
+					size="5" maxlength="10"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="tipoGravamen620">Tipo gravamen (%): </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tipoGravamen620"
+					id="tipoGravamen620"
+					onblur="this.className='input2';"
+					nfocus="this.className='inputfocus';"
+					onchange="calcularCuotaTributaria()"
+					size="5" maxlength="10"
+					readonly="true"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="cuotaTributaria620">Cuota tributaria: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.cuotaTributaria620"
+					id="cuotaTributaria620"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="30" readonly='true'/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" colspan="7">
+				<span style="color: #A52642; font-weight: bold; font-size: 1.1em;">DECLARACIÓN DE RESPONSABILIDAD</span>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" colspan="7">
+				<label for="checkValorManual">
+					<b>El Gestor Administrativo Colegiado manifiesta bajo su responsabilidad<br>
+					que conoce que el valor introducido puede ser objeto de comprobación administrativa</b>
+					<span class="naranja">*</span>
+				</label>
+				<s:checkbox id="checkValorManual" name="tramiteTraficoTransmisionBean.check620ValorManual" onclick="cambioValorManual()" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label align="left" for="direccionDistintaAdquiriente620">Dirección distinta para el Adquiriente ó Poseedor: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox name="tramiteTraficoTransmisionBean.direccionDistintaAdquiriente620" id="direccionDistintaAdquiriente620"
+					disabled="true" />
+			</td>
+		</tr>
+	</table>
+
+	<table class="acciones">
+		<tr>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmision(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td align="center" style="size: 100%; text-align: center;list-style:none;">
+					<input type="button"
+						   class="boton"
+						   name="bGuardar8"
+						   id="bGuardar8"
+						   value="Consultar / Guardar"
+						   onClick="sinPermiso();return guardarAltaTramiteTransmision('Modelo620');"
+						   onKeyPress="this.onClick"/>
+				</td>
+			</s:if>
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso(@org.gestoresmadrid.oegamComun.acceso.service.impl.UtilesColegiado@PERMISO_GENERACION_620) &&
+					!(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial())}">
+
+				<td align="right" style="size: 100%; text-align: center; list-style:none;">
+					<input type="button"
+						   class="boton"
+						   name="bValidar620"
+						   id="bValidar620"
+						   value="Validar 620"
+						   onClick="return validar620('Modelo620');"
+						   onKeyPress="this.onClick"/>
+				</td>
+
+				<s:if test="%{ tramiteTraficoTransmisionBean.estado620.valorEnum==2 &&
+					tramiteTraficoTransmisionBean.adquirienteBean.persona.direccion.municipio.idMunicipio != null }">
+					<td align="right" style="size: 100%; text-align: center;list-style:none;">
+						<input type="button"
+							   class="boton"
+							   name="bGenerarXML"
+							   id="bGenerarXML"
+							   value="Generar XML"
+							   onClick="return generarXML('Modelo620');"
+							   onKeyPress="this.onClick"/>
+					</td>
+				</s:if>
+			</s:if>
+		</tr>
+		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmision(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+			<tr>
+				<td>
+					<img id="loadingImage8" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+				</td>
+				<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso(@org.gestoresmadrid.oegamComun.acceso.service.impl.UtilesColegiado@PERMISO_GENERACION_620)}">
+					<td>
+						<img id="loadingImage11" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+					</td>
+					<s:if test="%{tramiteTraficoTransmisionBean.estado620.valorEnum==2}">
+						<td>
+							<img id="loadingImage13" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+						</td>
+					</s:if>
+				</s:if>
+			</tr>
+		</s:if>
+	</table>
+
+	<s:if test="%{ficheroXML620}">
+		<script type="text/javascript">obtenerDocumentoActual620("Modelo620");</script>
+	</s:if>
+
+	<script>
+		if (document.getElementById('checkValorManual').checked == true) {
+			document.getElementById('valorDeclarado620').disabled = false;
+		}
+
+		var tipoVehiculo = $('#tipoVehiculo620').val();
+		if (tipoVehiculo != "A" && tipoVehiculo != "B") {
+			habilitarCampos620Automaticos();
+		}
+
+		cargarMarcaModelo();
+
+		recargarComboMarcas('tipoVehiculo620','anioDevengo','idMarcaCam','marcaCamSeleccionada');
+
+		if ($("#porcentajeReduccionAnual").val() == "") {
+			$("#porcentajeReduccionAnual").val("100");
+		}
+		if ($("#tipoGravamen620").val() == "") {
+			$("#tipoGravamen620").val("4.00");
+		}
+		if ($("#cuotaTributaria620").val("")) {
+			$("#cuotaTributaria620").val("0");
+		}
+		if ($("#reduccionCodigo620").val() == -1) {
+			$(".datoReduccion").hide();
+			$("#reduccionPorcentaje620").hide();
+			$("#reduccionImporte620").hide();
+		}
+		calcularReduccion620(); // Se calcula Reducción, por si no está guardado en base de datos
+		cambioDireccionVehiculo();
+		cargarOficinaLiquidadora620(); // Cargamos la oficina liquidadora a partir del municipio del adquiriente
+		calcularPorcentajeReduccionAnual();
+		calcularCuotaTributaria(); // Calculamos la cuota tributaria
+
+		//JMC: Incidencia Mantis 3020 3187 - Usuario Especial necesita tener deshabilitado todo
+		if ($("#permisoEspecial").val() == "true") {
+			document.getElementById("fundamentoExencion620").disabled = true;
+			document.getElementById("fundamentoNoSujeccion620").disabled = true;
+		}
+
+		// ATC: Incidencia 3038 - Solo si se marca el check de aceptación se considera la dirección del vehículo distinta del adquiriente.
+		if (!document.getElementById('idResponsabilidadLocalizacion').checked) {
+			document.getElementById("direccionDistintaAdquiriente620").checked = false;
+		}
+	</script>
+</div>

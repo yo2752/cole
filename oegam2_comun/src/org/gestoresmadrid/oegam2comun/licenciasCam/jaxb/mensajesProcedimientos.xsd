@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema targetNamespace="http://licencias/mensajes" xmlns:ns2="http://licencias/mensajes"
+	xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<complexType name="LIC_ALSO">
+		<sequence>
+			<element name="id_solicitud" type="ns2:string13type" />
+			<element name="fecha" type="ns2:dateType" />
+			<element name="num_cc_relacionado" type="ns2:string13type" minOccurs="0" />
+			<element name="interesado_principal" type="ns2:persona" />
+			<element name="otros_interesados" type="ns2:persona" minOccurs="0" maxOccurs="unbounded" />
+			<element name="representante" type="ns2:persona" minOccurs="0" />
+			<element name="notificacion" type="ns2:persona" minOccurs="0" />
+			<element name="emplazamiento_actuacion" type="ns2:emplazamiento" />
+			<element name="descripcion" type="ns2:string600type" />
+		</sequence>
+	</complexType>
+
+	<complexType name="LIC_EMCC">
+		<sequence>
+			<element name="id_solicitud" type="ns2:string13type" />
+			<element name="datos_comunicacion_solicitud" type="ns2:datos_comunicacion_solicitud"/>
+			<element name="interesado_principal" type="ns2:persona" />
+			<element name="otros_interesados" type="ns2:persona" minOccurs="0" maxOccurs="unbounded" />
+			<element name="representante" type="ns2:persona" minOccurs="0" />
+			<element name="notificacion" type="ns2:notificacion" minOccurs="0" />
+			<element name="emplazamiento_actuacion" type="ns2:emplazamiento_lic" />
+			<element name="tipo_actuacion" type="ns2:string2type" />
+			<element name="datos_actuacion" type="ns2:datos_actuacion_slim" minOccurs="0" />
+			<element name="solicitud_conjunta_autorizaciones" type="ns2:solicitud_conjunta_autorizaciones" />
+			<element name="datos_obra" type="ns2:datos_obra_LIC" />
+			<element name="descripcion" type="ns2:string600type" />
+			<element name="otros_datos_actuacion" type="ns2:otros_datos_actuacion_lic" />
+			<element name="parametros_edificacion_alta" type="ns2:parametros_edificacion_alta_lic" minOccurs="0" />
+			<element name="parametros_edificacion_baja" type="ns2:parametros_edificacion_baja_lic" minOccurs="0" />
+			<!-- Se ha eliminado el bloque de equipos de instalación relevante de la maqueta, por lo que no nos va a venir informado -->
+			<element name="equipos_inst_relevantes" type="ns2:equipos_inst_relevantes_ordinario" minOccurs="0" />
+			<element name="ventilacion_forzada" type="ns2:ventilacion_forzada" />
+			<element name="agua_caliente_sanitaria" type="ns2:agua_caliente_sanitaria" />
+			<element name="instalaciones_calefaccion" type="ns2:instalaciones_calefaccion" />
+			<element name="climatizacion_aire_acondicionado" type="ns2:climatizacion_aire_acondicionado" />
+			<element name="captacion_energia_solar" type="ns2:captacion_energia_solar" />
+			<element name="informacion_local" type="ns2:informacion_local_lic" minOccurs="0"/>
+			<element name="autoliquidaciones" type="ns2:autoliquidaciones_lic" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="notificacion">
+		<sequence>
+			<element name="tipo_sujeto" type="ns2:string1type" />
+			<element name="apellido_1" type="ns2:string25type" minOccurs="0" />
+			<element name="apellido_2" type="ns2:string25type" minOccurs="0" />
+			<element name="nombre" type="ns2:string20type" minOccurs="0" />
+			<element name="tipo_documento" type="ns2:string1type" minOccurs="0" />
+			<element name="num_documento" type="ns2:string10type" minOccurs="0" />
+			<element name="razon_social" type="ns2:string70type" minOccurs="0" />
+			<element name="num_telefono_1" type="ns2:string15type" minOccurs="0" />
+			<element name="num_telefono_2" type="ns2:string15type" minOccurs="0" />
+			<element name="num_fax" type="ns2:string15type" minOccurs="0" />
+			<element name="correo_electronico" type="ns2:string50type" minOccurs="0" />
+			<element name="direccion" type="ns2:direccion_completa" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="emplazamiento_lic">
+		<sequence>
+			<element name="direccion_emplazamiento_principal" type="ns2:direccion_lic" minOccurs="0"/>
+			<element name="emplazamiento_no_normalizado" type="ns2:direccion_no_normalizada" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="direccion_lic">
+		<sequence>
+			<element name="clase_vial" type="ns2:string24type" />
+			<element name="nombre_vial" type="ns2:string48type" />
+			<element name="tipo_numeracion" type="ns2:string3type" />
+			<element name="num_calle" type="ns2:int5type" />
+			<element name="cod_postal" type="ns2:int5type" minOccurs="0" />
+			<element name="clase_direccion" type="ns2:string1type" minOccurs="0" />
+			<element name="cod_direccion" type="ns2:int8type" minOccurs="0" />
+			<element name="calificador" type="ns2:string2type" minOccurs="0" />
+			<element name="escalera" type="ns2:string4type" minOccurs="0" />
+			<element name="planta" type="ns2:string4type" minOccurs="0" />
+			<element name="puerta" type="ns2:string4type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="direccion_no_normalizada">
+		<sequence>
+			<element name="emplazamiento_no_normalizado" type="ns2:string210type"/>
+			<element name="ambito" type="ns2:string48type" minOccurs="0"/>
+			<element name="distrito" type="ns2:string48type" minOccurs="0"/>
+			<element name="referencia_catastral" type="ns2:string48type" minOccurs="0"/>
+			<element name="coordenada_x" type="ns2:string48type" minOccurs="0"/>
+			<element name="coordenada_y" type="ns2:string48type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_actuacion_slim">
+		<complexContent>
+			<extension base="ns2:datos_actuacion_ordinario">
+				<sequence>
+					<element name="num_expediente_cedula" type="ns2:string14type" minOccurs="0" />
+					<element name="num_expediente_parcelacion" type="ns2:string14type" minOccurs="0" />
+					<element name="num_expediente_modificar" type="ns2:string14type" minOccurs="0" />
+					<element name="solicita_ayuda_rehabilitacion" type="ns2:string1type" minOccurs="0" />
+					<element name="modifica_actividad" type="ns2:int1type" minOccurs="0" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="datos_actuacion_ordinario">
+		<sequence>
+			<element minOccurs="0" name="num_expediente_consulta" type="ns2:string14type" />
+			<element minOccurs="0" name="num_expediente_licencia" type="ns2:string14type" />
+			<element minOccurs="0" name="num_cc_licencia" type="ns2:string13type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="solicitud_conjunta_autorizaciones">
+		<sequence>
+			<element name="solicita_otra_autorizacion" type="ns2:string1type" />
+			<element name="ocupacion_viario" type="ns2:string10type" />
+			<element name="otra" type="ns2:string60type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_obra_LIC">
+		<sequence>
+			<element name="tipo_obra" type="ns2:string2type" maxOccurs="unbounded" />
+			<element name="descripcion_obra" type="ns2:string600type" />
+			<element name="presupuesto_total" type="ns2:decimal102type" />
+			<element name="plazo_inicio" type="ns2:int3type" minOccurs="0" />
+			<element name="plazo_ejecucion" type="ns2:int3type" minOccurs="0" />
+			<element name="superficie_afectada" type="ns2:decimal102type" />
+			<element name="ocupacion_via_publica" type="ns2:string1type" />
+			<element name="andamios" type="ns2:string1type" minOccurs="0" />
+			<element name="vallas" type="ns2:string1type" minOccurs="0" />
+			<element name="instalacion_grua" type="ns2:string1type" minOccurs="0" />
+			<element name="contenedor_via_publica" type="ns2:string1type" minOccurs="0" />
+			<element name="duracion_andamios_meses" type="ns2:int4type" minOccurs="0" />
+			<element name="duracion_vallas_meses" type="ns2:int4type" minOccurs="0" />
+			<element name="duracion_grua_meses" type="ns2:int4type" minOccurs="0" />
+			<element name="duracion_contenedor_meses" type="ns2:int4type" minOccurs="0" />
+			<element name="parte" type="ns2:parte_autonoma" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="parte_autonoma">
+		<sequence>
+			<element name="numero" type="ns2:int3type" />
+			<element name="descripcion" type="ns2:string100type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="otros_datos_actuacion_lic">
+		<sequence>
+			<element name="norma_zonal_figura_ordenacion" type="ns2:string20type" />
+			<element name="nivel_proteccion" type="ns2:string3type" />
+			<element name="dotacional_transporte" type="ns2:string1type" />
+			<element name="gestionado_admin_publica" type="ns2:string1type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="parametros_edificacion_alta_lic">
+		<sequence>
+			<element name="datos_edificacion" type="ns2:datos_edificacion_alta" />
+			<element name="datos_aparcamiento" type="ns2:datos_aparcamiento_alta" minOccurs="0" />
+			<element name="proyecto_garaje_aparcamiento" type="ns2:proyecto_garaje_aparcamiento_alta" />
+			<element name="info_edificio" type="ns2:info_edificio_alta_lic" maxOccurs="unbounded" />
+			<element name="resumen_edificacion" type="ns2:resumen_edificacion" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_aparcamiento_alta">
+		<sequence>
+			<element name="en_edificio" type="ns2:tipos_aparcamiento" minOccurs="0" />
+			<element name="en_superficie" type="ns2:tipos_aparcamiento" minOccurs="0" />
+			<element name="discapacitados" type="ns2:tipos_aparcamiento" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="tipos_aparcamiento">
+		<sequence>
+			<element name="dotacional" type="ns2:int5type" minOccurs="0" />
+			<element name="libre_disposicion" type="ns2:int5type" minOccurs="0" />
+			<element name="total" type="ns2:int5type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="proyecto_garaje_aparcamiento_alta">
+		<sequence>
+			<element name="supera_seismil" type="ns2:string1type" minOccurs="0" />
+			<element name="supera_docemil" type="ns2:string1type" minOccurs="0" />
+			<element name="exp_plan_especial_urbanistico" type="ns2:string14type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_edificacion_alta">
+		<sequence>
+			<element name="num_edificios" type="ns2:int2type" />
+			<element name="descripcion" type="ns2:string300type" />
+			<element name="tipologia" type="ns2:string2type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="info_edificio_alta_lic">
+		<sequence>
+			<element name="direccion_edificio" type="ns2:direccion_lic" />
+			<element name="num_portales" type="ns2:int3type" minOccurs="0" />
+			<element name="portal" type="ns2:datos_portal_alta" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_portal_alta">
+		<sequence>
+			<element name="nombre_portal" type="ns2:string2type" minOccurs="0" />
+			<element name="bajo_rasante" type="ns2:datos_superficie_portal" minOccurs="0" />
+			<element name="sobre_rasante" type="ns2:datos_superficie_portal" />
+			<element name="planta" type="ns2:datos_plantas_alta_lic" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_plantas_alta_lic">
+		<sequence>
+			<element name="tipo_planta" type="ns2:string4type" />
+			<element name="num_planta" type="ns2:string4type" />
+			<element name="altura_libre" type="ns2:decimal42type" />
+			<element name="altura_piso" type="ns2:decimal42type" />
+			<element name="uso_planta" type="ns2:string5type" />
+			<element name="num_unidades" type="ns2:int4type" />
+			<element name="sup_construida" type="ns2:decimal103type" />
+			<element name="sup_computable" type="ns2:decimal103type" />
+			<element name="superficie_no_computable" type="ns2:superficie_no_computable_planta" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>	
+	
+	<complexType name="superficie_no_computable_planta">
+		<sequence>
+			<element name="tipo" type="ns2:int4type" />
+			<element name="tamano" type="ns2:decimal103type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_superficie_portal">
+		<sequence>
+			<element name="unidades" type="ns2:int5type" />
+			<element name="superficie_construida" type="ns2:decimal103type" />
+			<element name="superficie_computable" type="ns2:decimal103type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="resumen_edificacion">
+		<sequence>
+			<element name="viviendas" type="ns2:resumen_edificacion_tipo" />
+			<element name="locales" type="ns2:resumen_edificacion_tipo" />
+			<element name="garajes" type="ns2:resumen_edificacion_tipo" />
+			<element name="trasteros" type="ns2:resumen_edificacion_tipo" />
+			<element name="total" type="ns2:resumen_edificacion_tipo" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="resumen_edificacion_tipo">
+		<sequence>
+			<element name="bajo_rasante" type="ns2:resumen_edificacion_valor" />
+			<element name="sobre_rasante" type="ns2:resumen_edificacion_valor" />
+			<element name="total" type="ns2:resumen_edificacion_valor" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="resumen_edificacion_valor">
+		<sequence>
+			<element name="num_unidades" type="ns2:int5type" />
+			<element name="sup_construida" type="ns2:decimal103type" />
+			<element name="sup_computable" type="ns2:decimal103type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_plantas_baja">
+		<sequence>
+			<element name="tipo_planta" type="ns2:string4type" />
+			<element name="sup_construida" type="ns2:decimal103type" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="info_edificio_baja_lic">
+		<sequence>
+			<element name="num_edificio" type="ns2:int2type" />
+			<element name="num_plantas" type="ns2:int5type" />
+			<element name="direccion_edificio" type="ns2:direccion_lic" />
+			<element name="datos_plantas" type="ns2:datos_plantas_baja" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="parametros_edificacion_baja_lic">
+		<sequence>
+			<element name="tipo_demolicion" type="ns2:string1type" />
+			<element name="industrial" type="ns2:string1type" />
+			<element name="num_edificios" type="ns2:int2type" />
+			<element name="info_edificio" type="ns2:info_edificio_baja_lic" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="equipos_inst_relevantes_ordinario">
+		<complexContent>
+			<extension base="ns2:equipos_inst_relevantes">
+				<sequence>
+					<element name="potencia_total" type="ns2:decimal103type" minOccurs="0" />
+					<element name="potencia_centro_transformador" type="ns2:decimal103type" minOccurs="0" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="equipos_inst_relevantes">
+		<sequence>
+			<element name="hay_instalaciones_relevantes" type="ns2:string1type" />
+			<element name="equipos_inst_radioactivas" type="ns2:string2type" minOccurs="0" />
+			<element name="equipos_rayos_uva" type="ns2:string2type" minOccurs="0" />
+			<element name="equipos_rayos_laser" type="ns2:string2type" minOccurs="0" />
+			<element name="potencia_equipos_rayos_laser" type="ns2:decimal103type" minOccurs="0" />
+			<element name="equipos_audiovisuales" type="ns2:string2type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="ventilacion_forzada">
+		<sequence>
+			<element name="ventilacion_forzada" type="ns2:string2type" />
+			<element name="caudal" type="ns2:decimal42type" minOccurs="0" />
+			<element name="evacuacion_fachada" type="ns2:string1type" minOccurs="0" />
+			<element name="evacuacion_cubierta" type="ns2:string1type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="agua_caliente_sanitaria">
+		<sequence>
+			<element name="agua_caliente_sanitaria" type="ns2:string2type" />
+			<element name="tipo_combustible" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_agua_caliente" type="ns2:decimal103type" minOccurs="0" />
+			<element name="acumulador_calor" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_acumulador" type="ns2:decimal103type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="instalaciones_calefaccion">
+		<sequence>
+			<element name="instalaciones_calefaccion" type="ns2:string2type" />
+			<element minOccurs="0" name="tipo_combustible" type="ns2:string1type" />
+			<element name="potencia_calefaccion" type="ns2:decimal103type" minOccurs="0" />
+			<element name="instalaciones_general_edificio" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_calorifica_inst_gen" type="ns2:decimal103type" minOccurs="0" />
+			<element name="equipo_centralizado_local" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_calorifica_eq_centr" type="ns2:decimal103type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="climatizacion_aire_acondicionado">
+		<sequence>
+			<element name="climatizacion_aire_acondicionado" type="ns2:string2type" />
+			<element name="instalaciones_general_edificio" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_calorifica_inst_gen" type="ns2:decimal103type" minOccurs="0" />
+			<element name="potencia_frigorifica_inst_gen" type="ns2:decimal103type" minOccurs="0" />
+			<element name="equipo_centralizado_local" type="ns2:string1type" minOccurs="0" />
+			<element name="potencia_calorifica_eq_centr" type="ns2:decimal103type" minOccurs="0" />
+			<element name="potencia_frigorifica_eq_centr" type="ns2:decimal103type" minOccurs="0" />
+			<element name="hay_equipos_autonomos" type="ns2:string1type" minOccurs="0" />
+			<element name="equipos_autonomos" type="ns2:int4type" minOccurs="0" />
+			<element name="potencia_calorifica_eq_autonomos" type="ns2:decimal103type" minOccurs="0" />
+			<element name="potencia_frigorifica_eq_autonomos" type="ns2:decimal103type" minOccurs="0" />
+			<element name="hay_enfriadores_evaporativos" type="ns2:string1type" minOccurs="0" />
+			<element name="enfriadores_evaporativos" type="ns2:int4type" minOccurs="0" />
+			<element name="potencia_calorifica_enfriadores" type="ns2:decimal103type" minOccurs="0" />
+			<element name="potencia_frigorifica_enfriadores" type="ns2:decimal103type" minOccurs="0" />
+			<element name="condensacion_aire_salida_fachada" type="ns2:string1type" minOccurs="0" />
+			<element name="caudal_salida_fachada" type="ns2:decimal42type" minOccurs="0" />
+			<element name="condensacion_aire_salida_chimenea" type="ns2:string1type" minOccurs="0" />
+			<element name="caudal_salida_cubierta" type="ns2:decimal42type" minOccurs="0" />
+			<element name="condensador_situado_cubierta" type="ns2:string1type" minOccurs="0" />
+			<element name="caudal_condensador_cubierta" type="ns2:decimal42type" minOccurs="0" />
+			<element name="torre_refrigeracion" type="ns2:string1type" minOccurs="0" />
+			<element name="num_torres_refrigeracion" type="ns2:int2type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="captacion_energia_solar">
+		<sequence>
+			<element name="captacion_energia_solar" type="ns2:string2type" />
+			<element name="equipos_uso_termico" type="ns2:string2type" minOccurs="0" />
+			<element name="num_equipos_uso_termico" type="ns2:int3type" minOccurs="0" />
+			<element name="superficie_captacion_equipos_uso_termico" type="ns2:decimal102type" minOccurs="0" />
+			<element name="equipos_fotovoltaicos" type="ns2:string2type" minOccurs="0" />
+			<element name="num_equipos_fotovoltaicos" type="ns2:int3type" minOccurs="0" />
+			<element name="superficie_captacion_equipos_fotovoltaicos" type="ns2:decimal102type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="informacion_local_lic">
+		<sequence>
+			<element name="acceso_principal_igual" type="ns2:string1type" />
+			<element name="direccion_act" type="ns2:direccion_corta" minOccurs="0" />
+			<element name="localizacion" type="ns2:string1type" />
+			<element name="cod_local" type="ns2:string8type" minOccurs="0" />
+			<element name="nombre_agrupacion" type="ns2:string50type" minOccurs="0" />
+			<element name="planta" type="ns2:string4type" minOccurs="0" />
+			<element name="num_local" type="ns2:string5type" minOccurs="0" />
+			<element name="escalera" type="ns2:string4type" minOccurs="0" />
+			<element name="puerta" type="ns2:string4type" minOccurs="0" />
+			<element name="referencia_catastral" type="ns2:string20type"  minOccurs="0" />
+			<element name="superficie_util_local" type="ns2:decimal102type" />
+			<element name="superficie_util_uso_publico" type="ns2:decimal102type" />
+			<element name="presupuesto_obra_actividad" type="ns2:decimal102type" minOccurs="0" />
+			<element name="potencia_nominal" type="ns2:decimal103type" minOccurs="0" />
+			<element name="kwa" type="ns2:decimal103type" minOccurs="0" />
+			<element name="descripcion_actividad" type="ns2:string600type" />
+			<element name="solicita_rotulo" type="ns2:string1type" />
+			<element name="rotulo_solicitado" type="ns2:string70type" minOccurs="0" />
+			<element name="epigrafes" type="ns2:datos_epigrafe_lic" maxOccurs="unbounded" minOccurs="0" />
+			<element name="actividad_anterior" type="ns2:string70type" minOccurs="0" />
+			<element name="expediente_actividad_anterior" type="ns2:string14type" minOccurs="0" />
+			<element name="sujeta_a_otros" type="ns2:string1type" />
+			<element name="desc_otros" type="ns2:string600type" minOccurs="0" />
+			<element name="id_local" type="ns2:int17type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="datos_epigrafe_lic">
+		<sequence>
+			<element name="seccion" type="ns2:string1type" minOccurs="0" />
+			<element name="epigrafe" type="ns2:string10type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="autoliquidaciones_lic">
+		<sequence>
+			<element name="num_autoliquidacion_pagada" type="ns2:string17type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="persona">
+		<sequence>
+			<element name="tipo_sujeto" type="ns2:string1type" />
+			<element name="apellido_1" type="ns2:string25type" minOccurs="0" />
+			<element name="apellido_2" type="ns2:string25type" minOccurs="0" />
+			<element name="nombre" type="ns2:string20type" minOccurs="0" />
+			<element name="tipo_documento" type="ns2:string1type" />
+			<element name="num_documento" type="ns2:string10type" />
+			<element name="razon_social" type="ns2:string70type" minOccurs="0" />
+			<element name="num_telefono_1" type="ns2:string15type" />
+			<element name="num_telefono_2" type="ns2:string15type" minOccurs="0" />
+			<element name="num_fax" type="ns2:string15type" minOccurs="0" />
+			<element name="correo_electronico" type="ns2:string50type" minOccurs="0" />
+			<element name="direccion" type="ns2:direccion_completa" />
+		</sequence>
+	</complexType>
+		
+	<complexType name="emplazamiento">
+		<sequence>
+			<element name="direccion_emplazamiento_principal" type="ns2:direccion_corta" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="direccion_corta">
+		<sequence>
+			<element name="clase_vial" type="ns2:string24type"/>
+			<element name="nombre_vial" type="ns2:string48type" />
+			<element name="tipo_numeracion" type="ns2:string3type" />
+			<element name="num_calle" type="ns2:int5type" />
+			<element name="calificador" type="ns2:string2type" minOccurs="0" />
+			<element name="clase_direccion" type="ns2:string1type" minOccurs="0" />
+			<element name="cod_direccion" type="ns2:int8type" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="direccion_completa">
+		<complexContent>
+			<extension base="ns2:direccion_corta">
+				<sequence>
+					<element name="cod_local" type="ns2:int9type" minOccurs="0" />
+					<element name="escalera" type="ns2:string4type" minOccurs="0" />
+					<element name="planta" type="ns2:string4type" minOccurs="0" />
+					<element name="puerta" type="ns2:string4type" minOccurs="0" />
+					<element name="local" type="ns2:string4type" minOccurs="0" />
+					<element name="codigo_postal" type="ns2:int5type" />
+					<element name="poblacion" type="ns2:string70type" />
+					<element name="municipio" type="ns2:string70type" minOccurs="0" />
+					<element name="provincia" type="ns2:string25type" />
+					<element name="pais" type="ns2:string26type" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="datos_comunicacion_solicitud">
+		<sequence>
+			<element name="telefono" type="ns2:string15type" minOccurs="0"/>
+			<element name="correo_electronico" type="ns2:string50type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+	<simpleType name="int2type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="2" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int3type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="3" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="negint3type">
+		<restriction base="int">
+			<totalDigits value="3" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int4type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="4" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int5type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="5" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int8type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="8" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int9type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="9" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int17type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="17" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string1type">
+		<restriction base="ns2:minstring">
+			<maxLength value="1" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string2type">
+		<restriction base="ns2:minstring">
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>	
+	
+	<simpleType name="string3type">
+		<restriction base="ns2:minstring">
+			<maxLength value="3" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string4type">
+		<restriction base="ns2:minstring">
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string5type">
+		<restriction base="ns2:minstring">
+			<maxLength value="5" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string8type">
+		<restriction base="ns2:minstring">
+			<maxLength value="8" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string10type">
+		<restriction base="ns2:minstring">
+			<maxLength value="10" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string13type">
+		<restriction base="ns2:minstring">
+			<maxLength value="13" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string14type">
+		<restriction base="ns2:minstring">
+			<maxLength value="14" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string15type">
+		<restriction base="ns2:minstring">
+			<maxLength value="15" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string17type">
+		<restriction base="ns2:minstring">
+			<maxLength value="17" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string20type">
+		<restriction base="ns2:minstring">
+			<maxLength value="20" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string24type">
+		<restriction base="ns2:minstring">
+			<maxLength value="24" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string25type">
+		<restriction base="ns2:minstring">
+			<maxLength value="25" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string26type">
+		<restriction base="ns2:minstring">
+			<maxLength value="26" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string48type">
+		<restriction base="ns2:minstring">
+			<maxLength value="48" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string50type">
+		<restriction base="ns2:minstring">
+			<maxLength value="50" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string60type">
+		<restriction base="ns2:minstring">
+			<maxLength value="60" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string70type">
+		<restriction base="ns2:minstring">
+			<maxLength value="70" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string100type">
+		<restriction base="ns2:minstring">
+			<maxLength value="100" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string210type">
+		<restriction base="ns2:minstring">
+			<maxLength value="210" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string300type">
+		<restriction base="ns2:minstring">
+			<maxLength value="300" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="string600type">
+		<restriction base="ns2:minstring">
+			<maxLength value="600" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="decimal42type">
+		<restriction base="decimal">
+			<minInclusive value="0" />
+			<totalDigits value="4" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="decimal102type">
+		<restriction base="decimal">
+			<minInclusive value="0" />
+			<totalDigits value="10" />
+			<fractionDigits value="2" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="decimal103type">
+		<restriction base="decimal">
+			<minInclusive value="0" />
+			<totalDigits value="10" />
+			<fractionDigits value="3" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="dateType">
+		<restriction base="date" />
+	</simpleType>
+	
+	<simpleType name="minstring">
+		<restriction base="string">
+			<minLength value="1" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="id_envio">
+		<restriction base="string">
+			<length value="23" />
+		</restriction>
+	</simpleType>
+	<simpleType name="id_envio_foliado">
+		<restriction base="string">
+			<maxLength value="23" />
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="int1type">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="1" />
+		</restriction>
+	</simpleType>
+		
+</schema>

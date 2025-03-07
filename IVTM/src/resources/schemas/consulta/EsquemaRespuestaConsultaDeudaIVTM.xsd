@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema targetNamespace="http://www.map.es/scsp/esquemas/datosespecificos"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns2="http://ws.iam.munimadrid.es" xmlns:ns3="http://www.map.es/scsp/esquemas/V2/respuesta">
+	<xs:import namespace="http://ws.iam.munimadrid.es"
+	 schemaLocation="Errores.xsd"/>
+	<xs:element name="DatosEspecificos"
+		type="ns1:DatosEspecificosConsultaDeudaIVTMRes" />
+	<xs:complexType name="DatosEspecificosConsultaDeudaIVTMRes">
+		<xs:sequence>
+			<xs:element ref="ns1:mensaje" />
+			<xs:element ref="ns1:errores" />
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

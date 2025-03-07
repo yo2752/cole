@@ -1,0 +1,1747 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contentTabs" id="Vehiculo" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">
+
+<s:set var="flagDisabledFichaTecnica" value="false"></s:set>
+
+	<div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos del Veh&iacute;culo</td>
+			<td align="right"><img title="Ver evolución" onclick="consultaEvolucionVehiculo('idVehiculo','<s:property value="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png"></td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DEL VEHÍCULO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idBastidor">Bastidor:</label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idBastidor"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.bastidor"  
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarBastidor(event);"
+					size="22" maxlength="21"/>
+			</td>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idSubasta">Revisado: <span></span></label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<s:checkbox id="idRevisado" disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.revisado"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idCodigoItv">C&oacute;digo ITV</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<table>
+					<tr>
+						<td>
+							<s:textfield disabled="%{flagDisabled}" id="idCodigoItv"
+								name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.codItv" 
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';"
+								size="12" maxlength="9"/>
+						</td>
+						<td style="border: 0px;vertical-align:top">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<img src="img/mostrar.gif" alt="Consulta CodigoITV" style="height:20px;width:20px;cursor:pointer;" 
+									onclick="buscarCodigoITVMatw();" title="Consulta CodigoITV"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<!-- INICIO MANTIS 0012672: mostramos idVehiculo para el Admin -->
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()}">
+				<td align="left" nowrap="nowrap" style="vertical-align: middle;">
+					<label for="idVehiculoLabel">Id Vehículo: </label>
+				</td>
+
+				<td align="left" nowrap="nowrap">
+					<s:textfield id="idVehiculoText"
+						name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.idVehiculo" onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';" size="5" maxlength="10" disabled="true" />
+				</td>
+			</s:if>
+			<!-- FIN MANTIS 0012672 -->
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="codigoMarca">Marca: <span id ="idAsteriscoCodigoMarca" class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="codigoMarca" 
+					name="codigoMarca" 
+					onblur="this.className='input2'; validarMarca(this, document.getElementById('idMarca'), marcaVehiculoMatriculacion, document.getElementById('checkCodigoMarca'), 'MATW'); cargarFabricantesMarca();" 
+					onfocus="this.className='inputfocus';"
+					onchange="document.getElementById('idFabricante').value='';"
+					size="23"
+					maxlength="22"
+					autocomplete="off"
+					cssStyle="position:relative; float:left;" />
+				&nbsp;
+				<span id="checkCodigoMarca"></span>
+
+				<s:hidden id="idMarca" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.marcaBean.codigoMarca" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="codigoMarcaBase">Marca Base: <span id ="idAsteriscoCodigoMarcaBase" class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield id="codigoMarcaBase"
+					name="codigoMarcaBase"
+      				onblur="this.className='input2'; validarMarca(this, document.getElementById('idMarcaBase'), marcaBaseVehiculoMatriculacion, document.getElementById('checkCodigoMarcaBase'), 'MATW'); cargarFabricantesMarcaBase();" 
+      				onfocus="this.className='inputfocus';"
+      				onchange="document.getElementById('idFabricanteBase').value='';"
+      				size="23"
+      				maxlength="22"
+      				autocomplete="off"
+      				cssStyle="position:relative; float:left;"
+      				disabled="%{flagDisabled}"/>
+      			&nbsp;
+      			<span id="checkCodigoMarcaBase"></span>
+
+      			<s:hidden id="idMarcaBase" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.marcaBaseBean.codigoMarca" />
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="modelo">Modelo: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="modelo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.modelo" 
+      				onblur="this.className='input2';"
+      				onfocus="this.className='inputfocus';"
+      				size="23" maxlength="22"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idNiveLabel">NIVE:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idNive" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.nive" 
+					onblur="this.className='input2'; eliminarAsteriscosObligatorios();"
+					onmouseout ="eliminarAsteriscosObligatorios();"
+					size="33" maxlength="32"/>
+   			</td>
+		</tr>
+	    <tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idTipoVehiculo">Tipo de Vehículo: <span id ="idAsteriscoTipoVehiculo" class="naranja">*</span></label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<s:select id="idTipoVehiculo"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					onchange="cargarCriteriosConstruccion(this.value); cargarCriteriosUtilizacion(this.value);"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposVehiculo('T1')"
+					headerKey=""
+					headerValue="Seleccione Tipo"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tipoVehiculoBean.tipoVehiculo" 
+					listKey="tipoVehiculo" 
+					listValue="descripcion"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idFichaTecnicaRD750">Ficha técnica RD 750/2010: </label>
+			</td>
+			<td align="left" nowrap="nowrap">
+       			<s:checkbox disabled="%{flagDisabledFichaTecnica}" id="idFichaTecnicaRD750" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fichaTecnicaRD750"/>
+       			<img id="info_Ficha_tecnica" src="img/botonDameInfo.gif"
+								onmouseover="dameInfoSinAjax('mostrar', this.id, 'fichaTecnicaRD750')" 
+								onmouseout="dameInfoSinAjax('ocultar', this.id, '')" class="botonesInfo" />
+
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS TÉCNICOS</span>
+			</td>
+		</tr>
+	</table>
+
+	<table width="50%" cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idClasificacionCriteriosConstruccion">Criterio de construcci&oacute;n: <span id="idAsteriscoClasificacionCriteriosConstruccion" class="naranja">*</span></label>
+			</td>
+
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idClasificacionCriteriosConstruccion" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.criterioConstruccionBean.idCriterioConstruccion"
+					onchange="cargarListaHomologaciones(this.value)"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getClasificacionesCriterioConstruccion()"
+					listKey="idCriterioConstruccion"
+					listValue="descripcion"
+					headerKey="-1"
+			        headerValue="Criterio de Construcción"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idClasificacionCriteriosUtilizacion">Criterio de utilizaci&oacute;n: <span id="idAsteriscoClasificacionCriteriosUtilizacion" class="naranja">*</span></label>
+			</td>
+
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idClasificacionCriteriosUtilizacion" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.criterioUtilizacionBean.idCriterioUtilizacion"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getClasificacionesCriterioUtilizacion()"
+					listKey="idCriterioUtilizacion"
+					listValue="descripcion"
+					headerKey="-1"
+			        headerValue="Criterio de Utilización"/>
+			</td>
+       	</tr>
+       	<tr>
+                    <td align="left" nowrap="nowrap" style="vertical-align:middle;">
+                           <label for="idClasificacionItvPrever">Clasificaci&oacute;n: </label>
+                    </td>
+
+                    <td align="left" nowrap="nowrap">
+                    <s:textfield disabled="%{flagDisabled}" id="idClasificacionItvPrever" 
+                           name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.clasificacionItv" 
+                           onblur="this.className='input2';" 
+                           onfocus="this.className='inputfocus';" 
+                           size="9" maxlength="9"/>
+                    </td>
+		</tr>
+       	<tr>
+                    <td align="left" nowrap="nowrap" style="vertical-align:middle;">
+                           <label for="idColor">Color: <span id="idAsteriscoColor" class="naranja">*</span></label>
+                    </td>                      
+                    <td align="left" nowrap="nowrap">
+                           <s:select id="idColor" 
+                                  onblur="this.className='input2';"
+                                  onfocus="this.className='inputfocus';"
+                                  disabled="%{flagDisabled}"
+                                  name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.colorBean"
+                                  list="@trafico.utiles.UtilesVistaTrafico@getInstance().getColores_MATW()"
+                                  listKey="valorEnum"
+                                  listValue="nombreEnum"
+                                  headerKey="-"/>                                             
+                    </td>
+             </tr>
+      	<tr>
+      		<td align="left" nowrap="nowrap" style="vertical-align:middle">
+       			<label for="idEpigrafe">Ep&iacute;grafe: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:select id="idEpigrafe" 
+       				onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.epigrafeBean.idEpigrafe"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getEpigrafes()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey="-1"
+			        headerValue="Epigrafe"/>
+      		</td>
+      	</tr>
+      	<tr>
+      		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idFabricante">Fabricante: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idFabricante" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fabricante" 
+      				onblur="this.className='input2'; validarFabricante(this.value, fabricanteVehiculoMatriculacion,'checkCodigoFabricante');obtenerFabricantesInactivos(fabricanteVehiculoMatriculacion,'idFabricante','checkCodigoFabricante');" 
+      				onfocus="this.className='inputfocus'; cargarFabricantesMarca();"
+      				size="55"
+      				maxlength="52"
+      				autocomplete="off"
+      				cssStyle="position:relative; float:left;" />
+      				&nbsp;
+      				<span id="checkCodigoFabricante"></span>
+      		
+   			</td>
+ 
+      	</tr> 
+      	<tr>
+      		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idFabricanteBase">Fabricante Base: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield id="idFabricanteBase" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fabricanteBase" 
+      				onblur="this.className='input2'; validarFabricante(this.value, fabricanteBaseVehiculoMatriculacion,'checkCodigoFabricanteBase');obtenerFabricantesInactivos(fabricanteBaseVehiculoMatriculacion,'idFabricanteBase','checkCodigoFabricanteBase');" 
+      				onfocus="this.className='inputfocus'; cargarFabricantesMarca();"
+      				size="55"
+      				maxlength="52"
+      				autocomplete="off"
+      				cssStyle="position:relative; float:left;" 
+      				disabled="%{flagDisabled}"/>
+      				&nbsp;
+      				<span id="checkCodigoFabricanteBase"></span>
+   			</td>
+      	</tr> 
+      	
+      	<tr>
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="idNumSerie">Nº de Serie: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idNumSerie" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.numSerie" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="12" maxlength="12"/>
+       		</td>
+       	</tr>
+        <tr>
+       		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="idNumHomologacion">Nº de homologaci&oacute;n: </label>
+       		</td>    	
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idNumHomologacion" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.numHomologacion" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="35" maxlength="50"/>
+  			</td>
+  			
+  		</tr>
+  		<tr>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="idNumHomologacionBase">Nº de homologaci&oacute;n Base: </label>
+       		</td>    	
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield id="idNumHomologacionBase" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.numHomologacionBase" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"  
+       				disabled="%{flagDisabled}"
+       				size="35" maxlength="50"/>
+  			</td>
+		</tr>
+			<tr>	
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idComboFabricacion">País fabricación: <span id="idAsteriscoComboFabricacion" class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idComboFabricacion" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.paisFabricacionBean.idPaisFabricacion"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getPaisesFabricacion()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey=""
+			        headerValue="País fabricación"/>							
+			</td>	
+		</tr>
+		<tr>			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idServicioTrafico">Servicio: <span class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idServicioTrafico" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.servicioTraficoBean.idServicio"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getServiciosTrafico('T1')"
+					listKey="idServicio"
+					listValue="descripcion"
+					headerKey="-1"
+		    	    headerValue="Servicio"
+		    	    onchange="habilitarCEMA();"/>							
+			</td>
+		</tr> 
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idTipo">Tipo Industria: </label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idTipo" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tipoIndustria" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="5" maxlength="4"/>
+  			</td>	
+		</tr>
+        <tr>
+
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idVariante">Variante: </label>
+      		</td>
+
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idVariante"
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.variante" 
+      				onblur="this.className='input2';"
+      				onfocus="this.className='inputfocus';"
+      				size="26" maxlength="25"/>
+  			</td>
+   		</tr>
+  		<tr>
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idVarianteBase">Variante Base: </label>
+      		</td>
+
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield id="idVarianteBase"
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.varianteBase" 
+      				onblur="this.className='input2';"
+      				onfocus="this.className='inputfocus';"
+      				disabled="%{flagDisabled}"
+      				size="26" maxlength="25"/>
+  			</td>
+		</tr>
+        <tr>
+        	<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idVersion">Versi&oacute;n: </label>
+      		</td>
+
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idVersion" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.version" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+       				size="36" maxlength="35"/>
+   			</td>
+   		</tr>
+  		<tr>
+        	<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idVersionBase">Versi&oacute;n Base: </label>
+      		</td>
+
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield id="idVersionBase"
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.versionBase" 
+       				onblur="this.className='input2';"
+       				onfocus="this.className='inputfocus';"
+       				disabled="%{flagDisabled}"
+       				size="36" maxlength="35"/>
+   			</td>
+        </tr>
+   	</table>
+
+   	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">CARACTERÍSTICAS</span>
+			</td>
+		</tr>
+	</table>
+
+	<table width="50%" cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td nowrap="nowrap" style="vertical-align:middle;" width="10%">
+				<label for="idComboCategoriaEU">Categor&iacute;a EU: <span id= "idAsteriscoComboCategoriaEU" class="naranja">*</span></label>
+			</td>
+			<td align="left" nowrap="nowrap">
+				<table>
+					<tr>
+					<td>
+					<s:select id="idComboCategoriaEU"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="%{flagDisabled}"
+						name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.homologacionBean.idHomologacion"
+						list="@trafico.utiles.UtilesVistaTrafico@getInstance().getListaDirectivasCEE(traficoTramiteMatriculacionBean.tramiteTraficoBean)"
+						listKey="idDirectivaCEE"
+						listValue="idDirectivaCEE"
+						headerKey=""
+						headerValue="Categoría EU"/>
+						<!-- onchange="return activarCheckDocumentacion();" -->
+					</td>
+					<td style="display:none">
+						<s:select id="idComboCategoriaEUOculto"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						list="@trafico.utiles.UtilesVistaTrafico@getInstance().getListaDirectivasCEE(traficoTramiteMatriculacionBean.tramiteTraficoBean)"
+						listKey="idDirectivaCEE"
+						listValue="descripcion"
+						headerKey="-1"
+						headerValue="Homologación UE"/>
+						<!-- onchange="return activarCheckDocumentacion();"-->
+					</td>
+				</tr>
+			</table>
+
+			</td>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idComboCarroceria">Carroceria: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select id="idComboCarroceria"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.carroceriaBean.idCarroceria"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCarrocerias()"
+					listKey="idCarroceria"
+					listValue="descripcion"
+					headerKey=""
+					headerValue="Carroceria"
+					cssStyle="position:relative; width:20em;" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idNcilindros">Cilindrada: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idNcilindros"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.cilindrada"  
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="9" maxlength="8" onkeypress="return validarDecimal(event, 2)"/>
+			</td>
+
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="idCo2">CO2: </label>
+       		</td>
+
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idCo2" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.co2" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="8" maxlength="7" onkeypress="return validarDecimal(event, 3)"/>
+   			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idCodigoEco">Código ECO: </label>
+  			</td>
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idCodigoEco"
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.codigoEco" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';"
+      				size="11" maxlength="10"/>
+ 			</td>
+ 			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idConsumo">Consumo: </label>
+  			</td>
+
+ 			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idConsumo"
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.consumo" 
+      				onblur="this.className='input2';"
+      				onfocus="this.className='inputfocus';"
+      				onkeypress="return validarNumerosEnteros(event)"
+      				size="5" maxlength="4"/>
+   			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idDistanciaEntreEjes">Distancia entre ejes: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idDistanciaEntreEjes"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.distanciaEntreEjes" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="4"
+					onkeypress="return validarNumerosEnteros(event)"/>
+			</td>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idEcoInnovacion">ECO innovación: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select
+					id="idEcoInnovacion"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.ecoInnovacion"
+					list="#{'Si':'Si', 'No':'No'}"
+					headerKey=""
+					headerValue="Eco innovación" disabled="%{flagDisabled}"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idPotenciaFiscal">Potencia Fiscal: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idPotenciaFiscal"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.potenciaFiscal"
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					onchange="document.getElementById('idPotenciaFiscalInfo').value=document.getElementById('idPotenciaFiscal').value"
+					size="14" maxlength="13" onkeypress="return validarDecimal(event, 2)"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idMom">MOM:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="idMom"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.mom" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="8" maxlength="7"
+					onkeypress="return validarNumerosEnteros(event)"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idMomBase">MOM Base:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield id="idMomBase"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.momBase" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+      				size="8" maxlength="7" 
+      				disabled="%{flagDisabled}"
+      				onkeypress="return validarNumerosEnteros(event)"/>
+   			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+        		<label for="idMma">MMA: </label>
+        	</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+        		<s:textfield disabled="%{flagDisabled}" id="idMma" 
+        			name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.pesoMma" 
+        			onblur="this.className='input2';" 
+        			onfocus="this.className='inputfocus';" 
+        			size="7" maxlength="6" onkeypress="return validarNumerosEnteros(event)"/>
+        	</td>
+        	<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idMtaMma">MTA/MMA: </label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idMtaMma" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.mtmaItv" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="7" maxlength="6" onkeypress="return validarNumerosEnteros(event)"/>
+  			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idNivelEmisiones">Nivel emisiones: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idNivelEmisiones" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.nivelEmisiones" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="16" maxlength="15"/>
+   			</td>
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="idPlazas">Nº plazas de asiento: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idPlazas" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.plazas" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="4" maxlength="3" onkeypress="return validarNumerosEnteros(event)"/>
+   			</td>
+   		</tr>
+   		<!-- tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idNivelEmisiones">Documentación Homologación </label>
+  			</td>        			
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox id="idDocHomologacion" disabled="true" name="prueba" onClick="return checkDocHomologacion()" />
+			</td>
+   		
+   		</tr-->
+   		<tr>        		        			
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idPlazasPie">Nº plazas de pie: </label>
+     		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idPlazasPie" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.numPlazasPie" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="4" maxlength="3"
+      				onkeypress="return validarNumerosEnteros(event)"/>
+  			</td>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">				
+				<label for="idSubasta">Origen subasta: <span></span></label>
+			</td>			
+				<td align="left" nowrap="nowrap">
+				<s:checkbox id="idSubasta" disabled="%{flagDisabled}" 
+				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.subasta"/>
+			</td>
+  		</tr>
+  		<tr>   			
+       		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idPotenciaNeta">Potencia Neta (Kw): </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idPotenciaNeta" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.potenciaNeta" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="14" maxlength="13"
+      				onkeypress="return validarDecimal(event, 3)"/>
+   			</td> 			
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="idPotenciaPeso">Potencia/Peso: </label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idPotenciaPeso" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.potenciaPeso" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="8" maxlength="7"
+      				onkeypress="return validarDecimal(event, 4)"/>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idReduccionEco">Reducción ECO: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idReduccionEco" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.reduccionEco" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';"
+      				onkeypress="return validarNumerosEnteros(event)" 
+      				size="5" maxlength="4"/>
+   			</td>	        			
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+	   			<label for="idtara">Tara: </label>
+	   			<img id="info_carburante" src="img/botonDameInfo.gif"
+					onmouseover="dameInfo('mostrar', this.id, 'textoInfoTara')" onmouseout="dameInfoSinAjax('ocultar', this.id, '')" class="botonesInfo" />
+	   		</td>    
+			<td align="left" nowrap="nowrap">
+    			<s:textfield disabled="%{flagDisabled}" id="idtara" 
+    				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tara" 
+    				onblur="this.className='input2';" 
+    				onfocus="this.className='inputfocus';" 
+    				size="8" maxlength="7" onkeypress="return validarNumerosEnteros(event)">
+    			</s:textfield>
+    		</td>
+    	</tr>
+    	<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle">
+       			<label for="idComboAlimentacion">Tipo alimentación: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:select id="idComboAlimentacion" 
+       				onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.alimentacionBean.idAlimentacion"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposAlimentacion()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey=""
+			        headerValue="Tipo alimentación"/>						
+      		</td>
+      		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idCarburanteVehiculo">Tipo de Carburante: <span id="idAsteriscoCarburanteVehiculo" class="naranja">*</span></label>
+				<img id="info_carburante" src="img/botonDameInfo.gif"
+					onmouseover="dameInfo('mostrar', this.id, 'textoInfoCombustible')" onmouseout="dameInfoSinAjax('ocultar', this.id, '')" class="botonesInfo" />
+			</td>   	
+       		<td align="left" nowrap="nowrap">
+				<s:select id="idCarburanteVehiculo" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.carburanteBean.idCarburante"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCarburantes()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey=""
+			        headerValue="Carburante" 
+			        onchange="habilitarCamposElectrico(this.value, document.getElementById('flagDisabledHidden').value);"/>
+			        <!-- onchange="comprobacionCo2(event)"  -->						
+			</td>			
+       	</tr>
+       	<tr>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idCategoriaElectrica">Categoría eléctrica: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      				<s:select id="idCategoriaElectrica" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.categoriaElectricaBean.idCategoriaElectrica"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCategoriaElectrica()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey=""
+			        headerValue="Categoria Electrica" 
+			        disabled="%{flagDisabled}"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idAutonomiaElectrica">Autonomía eléctrica: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield id="idAutonomiaElectrica" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.autonomiaElectrica" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="7" maxlength="6"
+      				onkeypress="return validarNumerosEnteros(event)" 
+      				disabled="%{flagDisabled}"/>
+   			</td>
+		</tr>
+       	<tr>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idViaAnterior">Via anterior: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idViaAnterior" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.viaAnterior" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="5" maxlength="4"
+      				onkeypress="return validarNumerosEnteros(event)"/>
+   			</td>
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+     			<label for="idViaPosterior">Via posterior: </label>
+  			</td>        			
+
+   			<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="idViaPosterior" 
+      				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.viaPosterior" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="5" maxlength="4"
+      				onkeypress="return validarNumerosEnteros(event)"/>
+   			</td>
+		</tr>
+	</table>
+		
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LA INSPECCIÓN TÉCNICA (ITV)</span>
+			</td>
+		</tr>
+	</table>
+	
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		
+		<tr>
+			<td align="left" nowrap="nowrap">
+   				<label for="esSiniestro">Es siniestro total: </label>
+   			</td>
+			<td>
+				<s:checkbox name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.esSiniestro" ></s:checkbox>
+			</td>
+			<td align="left" nowrap="nowrap" width="140" style="vertical-align:middle;">
+      			<label for="diaCaducidadTarjetaITV">Fecha caducidad ITV: </label>
+      		</td>    
+        	<td>
+        		<table border="0">
+        			<tr>
+			  			<td align="left" nowrap="nowrap" width="1%">
+							<s:textfield disabled="%{flagDisabled}" id="diaCaducidadTarjetaITV" 
+								name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaItv.dia" 
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="2" maxlength="2"/>
+						</td>		
+						<td width="1%">/</td>			
+						<td align="left" nowrap="nowrap" width="1%">
+							<s:textfield disabled="%{flagDisabled}" id="mesCaducidadTarjetaITV" 
+								name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaItv.mes" 
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="2" maxlength="2"/>
+						</td>						
+						<td width="1%">/</td>						
+						<td align="left" nowrap="nowrap" width="1%">
+							<s:textfield disabled="%{flagDisabled}" id="anioCaducidadTarjetaITV" 
+								name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaItv.anio" 
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="4" maxlength="4"/>
+						</td>			
+						<td id="calendarioVehiculo" align="left" nowrap="nowrap">
+				    		<a href="javascript:;" 
+				    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioCaducidadTarjetaITV, document.formData.mesCaducidadTarjetaITV, document.formData.diaCaducidadTarjetaITV);return false;" 
+				    				title="Seleccionar fecha">
+				    			<img class="PopcalTrigger" 
+				    				align="middle" 
+				    				src="img/ico_calendario.gif" ${displayDisabled} 
+				    				width="15" height="16" 
+				    				border="0" alt="Calendario"/>
+				    		</a>
+						</td></tr></table></td>
+						<td align="left">
+							<s:checkbox id="idFechaCaducidadITV" disabled="%{flagDisabled}" 								
+								name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.checkFechaCaducidadITV"/>
+							<img id="info_Fecha_Caducidad_ITV" src="img/botonDameInfo.gif"
+								onmouseover="dameInfoSinAjax('mostrar', this.id, 'calcularFechaCaducidadITV')" onmouseout="dameInfoSinAjax('ocultar', this.id, '')" class="botonesInfo" />
+							
+						</td>
+					</tr>
+					
+					<tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idTipoInspeccionItv">Tipo inspección ITV: <span class="naranja">*</span></label>
+			</td>
+
+				<td align="left" nowrap="nowrap" width="5%">
+				
+				<!-- Mantis 15845. DSE:  Actualmente este campo puede ser: M: Previa Matriculacion o E: Exento ITV -->				
+				 <s:select name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.motivoBean.idMotivo"
+					id="motivosITV" disabled="%{flagDisabled}"
+					onblur="this.className='input2';" onfocus="this.className='inputfocus';" 
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposInspeccionITVMatriculacion()"
+					listKey="valorEnum" listValue="nombreEnum" 
+					headerValue="Seleccione motivo ITV" headerKey="-1"
+					onchange="exentoItV();"/> 
+
+				</td>
+		</tr>
+		<tr>		
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="tipoItv">Tipo ITV: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="tipoItv" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tipoItv" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="26" maxlength="25"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="tipoItvBase">Tipo ITV Base: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="tipoItvBase" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tipoItvBase" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+       				size="26" maxlength="25"/>
+       		</td>
+					
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idTipoTarjetaITV">Tipo tarjeta ITV: <span class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:select id="idTipoTarjetaITV" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.tipoTarjetaItvBean.idTipoTarjetaItv"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposTarjetaITV()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey="-1"
+			        headerValue="-" 
+			        onchange=" editarFechaCaducidad(this.value); habilitarCamposBase(this.value, document.getElementById('flagDisabledHidden').value);"/>
+			</td>
+			
+		</tr>	        		
+	</table>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS VEHÍCULO USADO </span>				
+			</td>
+			<td class="tabular">
+				<s:checkbox id="idUsado" disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.vehiUsado" onchange="desbloquearUsado(this.checked);"/>
+			</td>
+		</tr>
+	</table>
+	
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">        		  		       		
+	 	        	
+        <tr>	
+     		<td align="left" nowrap="nowrap" width="140" style="vertical-align:middle;">
+      			<label for="diaPrimMatri">Fecha de Primera Matriculación: </label>
+      		</td>    
+        		
+  			<td align="left" nowrap="nowrap" width="1%">
+  				<table><tr><td>
+				<s:textfield id="diaPrimMatri" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.dia" 
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" disabled="true"/>
+			</td>
+			
+			<td width="1%">/</td>
+						
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield id="mesPrimMatri" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.mes" 
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" disabled="true"/>
+			</td>
+			
+			<td width="1%">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield id="anioPrimMatri" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaPrimMatri.anio" 
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4" disabled="true"/>
+			</td>
+						
+			<td align="left" nowrap="nowrap">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioPrimMatri, document.formData.mesPrimMatri, document.formData.diaPrimMatri);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"
+	    				id="imgCalendarFechaPrimeraMatriculacion" />
+	    		</a>
+	    		</td></tr></table>
+			</td>	
+     	</tr>
+         <tr> 
+
+			<td align="left" nowrap="nowrap" width="20%" style="vertical-align:middle;">
+       			<label for="idMatriculaOrigen">Matr&iacute;cula Origen: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield id="idMatriculaOrigen" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.matriculaOrigen" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				onkeypress="return validarMatricula(event)"
+       				onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)" 
+       				size="10" maxlength="9" disabled="true"/>
+       		</td>
+		</tr>  	
+        	        		
+   		<tr>
+      		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="kmUso">nº kilometros de uso: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield id="kmUso" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.kmUso" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				onkeypress="return validarNumerosEnteros(event)"
+       				size="7" maxlength="6" disabled="true"/>
+       		</td>
+
+       		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="horasUso">Horas de Uso: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield id="horasUso" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.horasUso" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="7" maxlength="6" 
+       				onkeypress="return validarNumerosEnteros(event)" disabled="true"/>
+       		</td>
+       		</tr>
+       		<tr>
+       		<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idImportado">Importado:</label>
+			</td>  
+				
+	       	<td align="left" nowrap="nowrap" width="10%">
+				<s:checkbox id="idImportado" disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.importado"
+					onchange="desbloquearImportado(this.checked);"/>
+			</td>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;" width="10%">
+				<label for="idLabelProcedencia">Procedencia: <span class="naranja">*</span></label>
+			</td> 
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select id="idComboProcedencia" disabled="%{flagDisabled}" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.procedencia"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProcedencias()"
+					listKey="valorEnum"
+					listValue="nombreEnum"
+					headerKey=""
+			        headerValue="Procedencia"/>
+			</td>
+				
+				
+			<td align="left" nowrap="nowrap" width="20%" style="vertical-align:middle;">
+       			<label for="idMatriculaOrigenExtranjero">Matr&iacute;cula Origen Extranjero: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idMatriculaOrigenExtranjero" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.matriculaOrigExtr" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				onkeypress="return validarMatricula(event)"
+       				onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)" 
+       				size="10" maxlength="9" />
+       		</td>	
+					
+			
+					
+  		</tr>
+    </table>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">INTRODUCTOR DEL VEHÍCULO EN ESPAÑA</span>
+			</td>
+		</tr>
+	</table>
+	
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	        		
+   		<tr>
+       		<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+      			<label for="idNifIntegrador">NIF</label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="idNifIntegrador" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.integradorBean.nif" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="9" maxlength="9"/>
+      		</td>    
+        		
+        	<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+       			<label for="nombreIntroductor">Nombre: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="nombreIntroductor" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.integradorBean.nombre" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="25" maxlength="25"/>
+      		</td>  
+      	</tr>
+      	<tr>
+      		<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+       			<label for="apellido1Introductor">Apellido o raz&oacute;n social: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="apellido1Introductor" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.integradorBean.apellido1RazonSocial" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="25" maxlength="25"/>
+      		</td>  
+        		
+      		<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+       			<label for="nombreIntroductor">Segundo apellido: </label>
+       		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="nombreIntroductor" 
+       				name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.integradorBean.apellido2" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="25" maxlength="25"/>
+      		</td>    
+   		</tr>
+	</table>
+		
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">LOCALIZACIÓN DEL VEHÍCULO (Si es distinta a la del titular)</span>
+			</td>
+		</tr>
+	</table>
+		
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<s:if test="@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()">
+			<tr>
+				<td>
+					<label>ID direccion Vehiculo</label>
+					<span><s:textfield cssClass="campo_disabled" id="id_direccV" name="idDireccion_admin_vehiculo" readonly="true" value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.idDireccion}"></s:textfield> </span>
+				</td>
+				<td>
+					<label>ID direccion Titular</label>
+					<span><s:textfield cssClass="campo_disabled" id="id_direccT" name="idDireccion_admin_titular" readonly="true" value="%{traficoTramiteMatriculacionBean.titularBean.persona.direccion.idDireccion}"></s:textfield> </span>
+				</td>
+			</tr>
+		</s:if>
+	
+		<tr>
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idProvinciaVehiculo">Provincia: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select cssStyle="width:150px;" list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasTitular()"
+					headerKey="-1"
+	           		headerValue="Seleccione Provincia"
+	           		disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.municipio.provincia.idProvincia" 
+					listKey="idProvincia" 
+					listValue="nombre"
+					id="idProvinciaVehiculo"
+					onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+					onchange="cargarListaMunicipios(this,'idMunicipioVehiculo','municipioSeleccionadoVehiculo');
+					cargarListaTipoVia(this,'tipoViaVehiculo','tipoViaSeleccionadaVehiculo');
+					inicializarTipoVia('tipoViaVehiculo','nombreViaDireccionVehiculo',viaVehiculoMatriculacion);
+					borrarComboPueblo('idPuebloVehiculo');"/>	
+			</td>
+			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idMunicipioVehiculo">Municipio: <span class="naranja">*</span></label>	
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">			
+				<select id="idMunicipioVehiculo" onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+       				${stringDisabled}
+					onchange="cargarListaPueblosDGT('idProvinciaVehiculo', this, 'idPuebloVehiculo', 'puebloSeleccionadoVehiculo');
+						seleccionarCampo('municipioSeleccionadoVehiculo','idMunicipioVehiculo');
+						inicializarTipoVia('tipoViaVehiculo','nombreViaDireccionVehiculo',viaVehiculoMatriculacion);" > 
+					<option value="-1">Seleccione Municipio</option>
+				</select>						  
+		    	<s:hidden id="municipioSeleccionadoVehiculo" 
+		    		name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.municipio.idMunicipio"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idPuebloVehiculo">Pueblo: </label>			
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">				
+				<select id="idPuebloVehiculo" 
+				onblur="this.className='input2';" 
+       			onfocus="this.className='inputfocus';"
+       			${stringDisabled}
+       			style="width:200px;"
+				onchange="seleccionarCampo('puebloSeleccionadoVehiculo','idPuebloVehiculo');">
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+			   	<s:hidden id="puebloSeleccionadoVehiculo" 
+			   		name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.puebloCorreos"/>
+			</td>			
+									
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="codPostalVehiculo">Código Postal: <span class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+           		<s:textfield disabled="%{flagDisabled}" id="codPostalVehiculo" 
+           			onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.codPostalCorreos"
+	           		onkeypress="return validarNumerosEnteros(event)"
+	           		maxlength="5" size="5"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+   				<label for="tipoViaVehiculo">Tipo de vía: </label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" >
+   				<select id="tipoViaVehiculo" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					${stringDisabled}
+					onchange="seleccionarCampo('tipoViaSeleccionadaVehiculo','tipoViaVehiculo');
+							 cargarListaNombresVia('idProvinciaVehiculo', 'municipioSeleccionadoVehiculo', this, 'nombreViaDireccionVehiculo',viaVehiculoMatriculacion);">
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+		    	<s:hidden id="tipoViaSeleccionadaVehiculo"
+		    		name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.tipoVia.idTipoVia"/>
+       		</td>
+   			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="nombreViaDireccionVehiculo">Nombre vía: <span class="naranja">*</span></label>
+			</td>    
+        		
+			<td align="left" nowrap="nowrap" colspan="3">
+	       			<s:textfield disabled="%{flagDisabled}" id="nombreViaDireccionVehiculo"
+	       				onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.nombreVia"
+		       			cssStyle="width:200px;position:relative;"
+						size="40" maxlength="50" autocomplete="off"/>						
+       		</td>       
+		</tr>
+	</table>
+			
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="numeroDireccionVehiculo">Número: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="numeroDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.numero" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="letraDireccionVehiculo">Letra/Puerta: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="letraDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.letra" 
+					onblur="this.className='input2';" 
+					
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="escaleraDireccionVehiculo">Escalera: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="escaleraDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.escalera" 
+					
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+				
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="pisoDireccionVehiculo">Piso: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="pisoDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.planta" 
+					
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="puertaDireccionVehiculo">Portal: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="puertaDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.puerta" 
+					
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="bloqueDireccionVehiculo">Bloque: </label>
+			</td>    
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="bloqueDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.bloque" 
+					onblur="this.className='input2';" 
+					
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="kmDireccionVehiculo">Km: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="kmDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.puntoKilometrico" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="hmDireccionVehiculo">Hm: </label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" id="hmDireccionVehiculo" 
+					name="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.direccionBean.hm" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)" 
+					size="8" maxlength="7"/>
+			</td>	
+		</tr>		        	
+	</table>				
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">PROGRAMA PREVER (MODELO 576)</span>
+			</td>
+		</tr>
+	</table>
+	
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+  			<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+      			<label for="bastidorPrever">N&uacute;mero de Bastidor: </label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" id="bastidorPrever" 
+       				name="traficoTramiteMatriculacionBean.vehiculoPreverBean.bastidor" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="19" maxlength="17"/>
+   			</td>	
+        			        			
+   			<td align="left" nowrap="nowrap" width="10%" style="vertical-align:middle;">
+      			<label for="matriculaPrever">Matr&iacute;cula: </label>
+   			</td>
+
+  			<td align="left" nowrap="nowrap"> 
+      			<s:textfield disabled="%{flagDisabled}" id="matriculaPrever" 
+      				name="traficoTramiteMatriculacionBean.vehiculoPreverBean.matricula" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				onkeypress="return validarMatricula(event)"
+      				onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)" 
+      				size="9" maxlength="9"/>
+   			</td>	
+       	</tr>
+
+		<tr>	
+   			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="codigoMarcaPrever">Marca: <span class="naranja">*</span></label>
+			</td>
+
+  			<td align="left" nowrap="nowrap"> 
+				<s:textfield disabled="%{flagDisabled}" id="codigoMarcaPrever" 
+      				name="codigoMarcaPrever" 
+      				onblur="this.className='input2'; validarMarca(this, document.getElementById('marcaPrever'), marcaVehiculoPreverMatriculacion, document.getElementById('checkCodigoMarcaPrever'), 'MATW');" 
+      				onfocus="this.className='inputfocus';"
+      				size="23"
+      				maxlength="22"
+      				autocomplete="off"
+      				cssStyle="position:relative; float:left;" />	
+      			&nbsp;
+      			<span id="checkCodigoMarcaPrever"></span>				
+      			<s:hidden id="marcaPrever" name="traficoTramiteMatriculacionBean.vehiculoPreverBean.marcaBean.codigoMarca" />
+			</td>
+				
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+       			<label for="modeloPrever">Modelo: </label>
+ 			</td>
+
+  			<td align="left" nowrap="nowrap"> 
+      			<s:textfield disabled="%{flagDisabled}" id="modeloPrever" 
+      				name="traficoTramiteMatriculacionBean.vehiculoPreverBean.modelo" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="9" maxlength="9"/>
+   			</td>	
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idClasificacionCriteriosConstruccionVehiculoPrever">Criterios de construcci&oacute;n Prever: <span class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idClasificacionCriteriosConstruccionPrever" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.vehiculoPreverBean.criterioConstruccionBean.idCriterioConstruccion"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getClasificacionesCriterioConstruccion()"
+					listKey="idCriterioConstruccion"
+					listValue="descripcion"
+					headerKey="-1"
+			        headerValue="Criterio de Construcción" />							
+			</td>
+		</tr>
+
+		<tr>	
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idClasificacionCriteriosUtilizacionPrever">Criterios de Utilizaci&oacute;n Prever: <span class="naranja">*</span></label>
+			</td>    
+        		
+       		<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idClasificacionCriteriosUtilizacionPrever" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					disabled="%{flagDisabled}"
+					name="traficoTramiteMatriculacionBean.vehiculoPreverBean.criterioUtilizacionBean.idCriterioUtilizacion"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getClasificacionesCriterioUtilizacion()"
+					listKey="idCriterioUtilizacion"
+					listValue="descripcion"
+					headerKey="-1"
+			        headerValue="Criterio de Utilización" />
+			</td>
+		</tr>
+		<tr>
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+    			<label for="clasificacionITVPrever">Clasificaci&oacute;n ITV: </label>
+    		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="clasificacionITVPrever" 
+      				name="traficoTramiteMatriculacionBean.vehiculoPreverBean.clasificacionItv" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="9" maxlength="9"/>
+   			</td>	
+        			
+  			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+      			<label for="tipoItvPrever">Tipo Itv: </label>
+      		</td>    
+        		
+       		<td align="left" nowrap="nowrap">
+      			<s:textfield disabled="%{flagDisabled}" id="tipoItvPrever" 
+      				name="traficoTramiteMatriculacionBean.vehiculoPreverBean.tipoItv" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="15" maxlength="25"/>
+   			</td>	
+		</tr>     			 			
+	</table>			
+
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableMATW(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardarVehiculo" value="Consultar / Guardar" onClick="return guardarAltaMatriculacionMatw('Vehiculo');" onKeyPress="this.onClick"/>
+				</td>
+			</tr>
+		</table>
+	</s:if>
+
+	<s:if test="%{((traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente) &&
+		!(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial())  && @trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableEitv(traficoTramiteMatriculacionBean.tramiteTraficoBean))}">	
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center">
+					<s:if test="%{ @trafico.utiles.UtilesVistaTrafico@getInstance().esConsultaTarjetaEitvAntigua()}">
+						<input id="bConsultaTarjetaEitv" 
+							type="button" class="boton" name="bConsultaTarjetaEitv" value="Consulta Tarjeta Eitv" 
+							onClick="consultarTarjetaEitvMatw('Vehiculo')" onkeyPress="this.onClick"/>
+					</s:if>
+					<s:else>
+						<input id="bConsultaTarjetaEitv" 
+							type="button" class="boton" name="bConsultaTarjetaEitv" value="Consulta Tarjeta Eitv" 
+							onClick="consultarTarjetaEitvMatwNuevo('Vehiculo')" onkeyPress="this.onClick"/>
+					</s:else>
+					
+				</td>
+			</tr>
+		</table>
+	</s:if>
+	
+	<s:if test="habilitarBastidor">
+		<script type="text/javascript">
+			var habilitarBastidor = true;
+		</script>
+	</s:if>
+	<s:else>
+		<script type="text/javascript">
+			var habilitarBastidor = false;
+		</script>
+	</s:else>
+
+	<script type="text/javascript">
+
+		var esElectrico = true;
+		var esNoElectrico = false;
+	
+		if(!habilitarBastidor){
+     	   deshabilitaBasti();
+		}
+	
+		var viaVehiculoMatriculacion = new BasicContentAssist(document.getElementById('nombreViaDireccionVehiculo'), [], null, true);
+		var fabricanteVehiculoMatriculacion = new BasicContentAssist(document.getElementById('idFabricante'), [], null, true);
+		var fabricanteBaseVehiculoMatriculacion = new BasicContentAssist(document.getElementById('idFabricanteBase'), [], null, true);
+		var marcaVehiculoMatriculacion = new BasicContentAssist(document.getElementById('codigoMarca'), [], null, true);
+		var marcaVehiculoPreverMatriculacion = new BasicContentAssist(document.getElementById('codigoMarcaPrever'), [], null, true);
+		var marcaBaseVehiculoMatriculacion = new BasicContentAssist(document.getElementById('codigoMarcaBase'), [], null, true);
+		recargarComboMunicipios('idProvinciaVehiculo','idMunicipioVehiculo','municipioSeleccionadoVehiculo');
+		recargarComboTipoVia('idProvinciaVehiculo','tipoViaVehiculo','tipoViaSeleccionadaVehiculo');
+		recargarComboLocalidadesDGT('idProvinciaVehiculo','municipioSeleccionadoVehiculo','idPuebloVehiculo', 'puebloSeleccionadoVehiculo');
+		recargarNombreVias('idProvinciaVehiculo', 'municipioSeleccionadoVehiculo', 'tipoViaSeleccionadaVehiculo','nombreViaDireccionVehiculo', viaVehiculoMatriculacion);
+	
+		var listasMarcas = new Array(marcaVehiculoMatriculacion, marcaVehiculoPreverMatriculacion);
+		var listasMarcasBase = new Array(marcaBaseVehiculoMatriculacion, marcaVehiculoPreverMatriculacion);
+		var camposMarcas = new Array('codigoMarca', 'codigoMarcaPrever');
+		var camposMarcasBase = new Array('codigoMarcaBase');
+		var hiddenMarcas = new Array('idMarca', 'marcaPrever');
+		var hiddenMarcasBase = new Array('idMarcaBase', 'marcaPrever');
+	
+		for(var i = 0; i < camposMarcas.length; i++){
+			cargarListaMarcasVehiculo(listasMarcas[i], camposMarcas[i], hiddenMarcas[i], "true");
+		}
+
+		for(var i = 0; i < camposMarcasBase.length; i++){
+			cargarListaMarcasVehiculo(listasMarcasBase[i], camposMarcasBase[i], hiddenMarcasBase[i], "true");
+		}
+
+		//JMC : Incidencia Mantis 3020 3187 Usuario Especial necesita tener deshabilitado todo
+		if (document.getElementById("permisoEspecial").value == "false") {			
+			//bloquearITVCamposITV(document.getElementById('idNive').value);
+			desbloquearUsado(document.getElementById("idUsado").checked);
+			desbloquearImportado(document.getElementById("idImportado").checked);
+			actualizarTitlesHomologacion();
+			// comprobacionCo2();						 
+		}
+
+		function cargarFabricantesMarca(){
+			cargarListaFabricantes('idMarca', 'idFabricante', fabricanteVehiculoMatriculacion);
+		}
+
+		function cargarFabricantesMarcaBase(){
+			cargarListaFabricantes('idMarcaBase', 'idFabricanteBase', fabricanteBaseVehiculoMatriculacion);
+		}
+
+		$( document ).ready(function() {
+			deshabilitaCarroceriaParents();
+		});
+
+		desbloquearUsado(document.getElementById("idUsado").checked);
+		var idTipoTarjetaITV = document.getElementById("idTipoTarjetaITV").value;
+		var carburante = document.getElementById("idCarburanteVehiculo").value;
+		var flagDisabledHidden = document.getElementById("flagDisabledHidden").value;
+		habilitarCamposBase(idTipoTarjetaITV, flagDisabledHidden);
+		habilitarCamposElectrico(carburante, flagDisabledHidden);
+		
+		// Mantis 14557. DS: Cuando se rellena el NIVE completo dejan de aparecer como obligatorios los campos 
+		// que no son necesarios en la matriculacion con NIVE
+		function eliminarAsteriscosObligatorios() {		
+			if (document.getElementById("idNive").value.length == 32) {				
+				 document.getElementById("idAsteriscoCodigoMarca").innerHTML = "";
+				 document.getElementById("idAsteriscoCodigoMarcaBase").innerHTML = "";
+				 document.getElementById("idAsteriscoTipoVehiculo").innerHTML = "";
+				 document.getElementById("idAsteriscoClasificacionCriteriosConstruccion").innerHTML = "";			
+				 document.getElementById("idAsteriscoClasificacionCriteriosUtilizacion").innerHTML = "";
+				 document.getElementById("idAsteriscoColor").innerHTML = "";
+				 document.getElementById("idAsteriscoComboFabricacion").innerHTML = "";
+				 document.getElementById("idAsteriscoComboCategoriaEU").innerHTML = "";											
+			} else {
+				 document.getElementById("idAsteriscoCodigoMarca").innerHTML = "*";
+				 document.getElementById("idAsteriscoCodigoMarcaBase").innerHTML = "*";
+				 document.getElementById("idAsteriscoTipoVehiculo").innerHTML = "*";
+				 document.getElementById("idAsteriscoClasificacionCriteriosConstruccion").innerHTML = "*";			
+				 document.getElementById("idAsteriscoClasificacionCriteriosUtilizacion").innerHTML = "*";
+				 document.getElementById("idAsteriscoColor").innerHTML = "*";
+				 document.getElementById("idAsteriscoComboFabricacion").innerHTML = "*";
+				 document.getElementById("idAsteriscoComboCategoriaEU").innerHTML = "*";		
+			}
+		}
+		// Vaciar y desahabilitar fechaItv cuando se selecciona exento en motivoItv
+		function exentoItV(){
+			var motivoItv = document.getElementById("motivosITV").value;
+			var diafechaItv = document.getElementById("diaCaducidadTarjetaITV");
+			var mesfechaItv = document.getElementById("mesCaducidadTarjetaITV");
+			var aniofechaItv = document.getElementById("anioCaducidadTarjetaITV");
+			if (motivoItv == "E") {
+				diafechaItv.value="";
+				diafechaItv.disabled = true;
+				mesfechaItv.value="";
+				mesfechaItv.disabled = true;
+				aniofechaItv.value="";
+				aniofechaItv.disabled = true;
+			} else {
+				diafechaItv.disabled = false;
+				mesfechaItv.disabled = false;
+				aniofechaItv.disabled = false;
+			}
+		}	
+		
+		
+	</script>						
+	
+	</div>		
+</div>

@@ -1,0 +1,26 @@
+<s:if test="hasActionErrors() || hasActionMessages()">
+	<div id="divError">
+		<table class="tablaformbasica" width="100%">
+			<tr>
+				<td align="left">
+					<s:if test="hasActionErrors()">
+						<!--<s:actionerror cssStyle="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;"/>-->
+						<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;">
+							<s:iterator value="actionErrors">
+								<li><span><s:property /></span></li>							
+							</s:iterator>
+						</ul>
+					</s:if>		
+					<s:if test="hasActionMessages()">
+						<!--<s:actionmessage cssStyle="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;"/>-->						
+						<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;">
+							<s:iterator value="actionMessages">
+								<li><span><s:property /></span></li>							
+							</s:iterator>
+						</ul>
+					</s:if>
+				</td>
+			</tr>
+		</table>
+	</div>
+</s:if>

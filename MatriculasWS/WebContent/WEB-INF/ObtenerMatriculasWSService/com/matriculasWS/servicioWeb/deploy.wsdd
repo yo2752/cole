@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ObtenerMatriculasWSService WSDL service -->
+
+  <service name="ObtenerMatriculasWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://servicioWeb.matriculasWS.com"/>
+      <parameter name="wsdlServiceElement" value="ObtenerMatriculasWSService"/>
+      <parameter name="schemaQualified" value="http://beans.matriculasWS.com,http://servicioWeb.matriculasWS.com"/>
+      <parameter name="wsdlServicePort" value="ObtenerMatriculasWS"/>
+      <parameter name="className" value="com.matriculasWS.servicioWeb.ObtenerMatriculasWS"/>
+      <parameter name="wsdlPortType" value="ObtenerMatriculasWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://servicioWeb.matriculasWS.com" xmlns:retNS="http://servicioWeb.matriculasWS.com" xmlns:rtns="http://beans.matriculasWS.com" name="consultaMatriculas" qname="operNS:consultaMatriculas" returnQName="retNS:consultaMatriculasReturn" returnType="rtns:DatosSalida" soapAction="">
+        <parameter xmlns:pns="http://servicioWeb.matriculasWS.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:authUser" type="tns:string"/>
+        <parameter xmlns:pns="http://servicioWeb.matriculasWS.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:authPass" type="tns:string"/>
+        <parameter xmlns:pns="http://servicioWeb.matriculasWS.com" xmlns:tns="http://beans.matriculasWS.com" qname="pns:datosEntrada" type="tns:DatosEntrada"/>
+      </operation>
+      <parameter name="allowedMethods" value="consultaMatriculas"/>
+
+      <typeMapping xmlns:ns="http://beans.matriculasWS.com" qname="ns:ResultadoWS" type="java:com.matriculasWS.beans.ResultadoWS" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://beans.matriculasWS.com" qname="ns:DatosSalida" type="java:com.matriculasWS.beans.DatosSalida" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://beans.matriculasWS.com" qname="ns:CodigoResultado" type="java:com.matriculasWS.beans.CodigoResultado" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://beans.matriculasWS.com" qname="ns:DatosEntrada" type="java:com.matriculasWS.beans.DatosEntrada" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://servicioWeb.matriculasWS.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://servicioWeb.matriculasWS.com" xmlns:cmp-ns="http://beans.matriculasWS.com" qname="ns:ArrayOf_tns1_ResultadoWS" type="java:com.matriculasWS.beans.ResultadoWS[]" innerType="cmp-ns:ResultadoWS" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://beans.matriculasWS.com" qname="ns:TipoFecha" type="java:com.matriculasWS.beans.TipoFecha" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

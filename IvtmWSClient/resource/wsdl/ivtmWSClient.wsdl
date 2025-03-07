@@ -1,0 +1,36 @@
+<definitions xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://sbintopexterna.sbae.iam.es" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="InteroperabilidadExternaService" targetNamespace="http://sbintopexterna.sbae.iam.es">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://sbintopexterna.sbae.iam.es" schemaLocation="InteroperabilidadExternaService_schema1.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="realizaPeticionResponse">
+		<part name="resultadoPeticion" element="tns:resultadoPeticion"/>
+	</message>
+	<message name="realizaPeticion">
+		<part name="peticionExterna" element="tns:peticionExterna"/>
+	</message>
+	<portType name="InteroperabilidadExterna">
+		<operation name="realizaPeticion">
+			<input message="tns:realizaPeticion" wsam:Action="http://sbintopexterna.sbae.iam.es/InteroperabilidadExterna/realizaPeticionRequest"/>
+			<output message="tns:realizaPeticionResponse" wsam:Action="http://sbintopexterna.sbae.iam.es/InteroperabilidadExterna/realizaPeticionResponse"/>
+		</operation>
+	</portType>
+	<binding name="InteroperabilidadExternaPortBinding" type="tns:InteroperabilidadExterna">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="realizaPeticion">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="InteroperabilidadExternaService">
+		<port name="InteroperabilidadExternaPort" binding="tns:InteroperabilidadExternaPortBinding">
+			<soap:address location="https://test.munimadrid.es:444/INTOP_SBExterna/InteroperabilidadExterna"/>
+		</port>
+	</service>
+</definitions>

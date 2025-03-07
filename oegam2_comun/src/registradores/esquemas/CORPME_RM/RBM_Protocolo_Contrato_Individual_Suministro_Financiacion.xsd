@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="RBM_Protocolo_Tipos.xsd"/>
+    <xs:element name="RBM-Contrato-Individual-Suministro-Financiacion">
+        <xs:annotation>
+            <xs:documentation>Formato XML para realizar la transmisión de los contratos individuales de suministro con financiación a los Registros de Bienes Muebles</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Identificacion" type="Identificacion_Contrato2Type">
+                    <xs:annotation>
+                        <xs:documentation>para identificar el contrato</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Compradores">
+                    <xs:annotation>
+                        <xs:documentation>indicar los compradores</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Comprador" type="IntervinienteType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información comprador</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Financiadores">
+                    <xs:annotation>
+                        <xs:documentation>información financiadores</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Financiador" type="IntervinienteType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información financiador</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Vendedores">
+                    <xs:annotation>
+                        <xs:documentation>información vendedores/Intermediarios financieros</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Vendedor" type="IntervinienteType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información vendedor/Intermediario Financiero</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Vehiculos_Objeto_Contrato">
+                    <xs:annotation>
+                        <xs:documentation>Vehículos objeto del contrato</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Vehiculo" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>Cada uno de los vehículos</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Numero_Pedido" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>Número de pedido</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Identificacion" type="Vehiculo2Type">
+                                            <xs:annotation>
+                                                <xs:documentation>Identificación del vehículo</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Valor" type="ValorType">
+                                            <xs:annotation>
+                                                <xs:documentation>Valor al contado</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Condiciones_Particulares" type="Condiciones_Particulares2Type" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>indicar los pactos establecidos entre los intervinientes</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Condiciones_Generales" type="Condiciones_GeneralesType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>condiciones generales</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Firmas">
+                    <xs:annotation>
+                        <xs:documentation>describir la información sobre las firmas realizadas sobre el contrato por los intervinientes</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Firma" type="Firma2Type" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>para indicar una firma</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Clausula_LOPD" type="xs:string" default="Declaro que los datos aportados son correctos y completos a efectos de la solicitud por mí realizada, y de acuerdo con el Art. 6 y 11 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, autorizo la utilización de la información contenida en el/los documentos remitidos, a efectos de su almacenamiento electrónico y utilización para los fines del Registro de Bienes Muebles">
+                    <xs:annotation>
+                        <xs:documentation>Contenido de la claúsula de la ley de protección de datos</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Version" default="1.0.0"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

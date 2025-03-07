@@ -1,0 +1,135 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.pruebas.wscn.infra.gi.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WSCNPruebasService" targetNamespace="http://ws.pruebas.wscn.infra.gi.org/">
+<types>
+<xsd:schema>
+<xsd:import namespace="http://ws.pruebas.wscn.infra.gi.org/" schemaLocation="WSCNPruebasService_schema1.xsd"/>
+</xsd:schema>
+</types>
+<message name="verNotificacionAceptada">
+<part element="tns:verNotificacionAceptada" name="parameters"></part>
+</message>
+<message name="verNotificacionAceptadaResponse">
+<part element="tns:verNotificacionAceptadaResponse" name="parameters"></part>
+</message>
+<message name="solicitarPoderdantesResponse">
+<part element="tns:solicitarPoderdantesResponse" name="parameters"></part>
+</message>
+<message name="solicitarAcuseNotificacionResponse">
+<part element="tns:solicitarAcuseNotificacionResponse" name="parameters"></part>
+</message>
+<message name="WSCNPruebasExcepcionSistema">
+<part element="tns:WSCNPruebasExcepcionSistema" name="fault"></part>
+</message>
+<message name="enviarAcuseNotificacion">
+<part element="tns:enviarAcuseNotificacion" name="parameters"></part>
+</message>
+<message name="consultarListadoNotificacionesResponse">
+<part element="tns:consultarListadoNotificacionesResponse" name="parameters"></part>
+</message>
+<message name="enviarAcuseNotificacionResponse">
+<part element="tns:enviarAcuseNotificacionResponse" name="parameters"></part>
+</message>
+<message name="solicitarAcuseNotificacion">
+<part element="tns:solicitarAcuseNotificacion" name="parameters"></part>
+</message>
+<message name="solicitarPoderdantes">
+<part element="tns:solicitarPoderdantes" name="parameters"></part>
+</message>
+<message name="consultarListadoNotificaciones">
+<part element="tns:consultarListadoNotificaciones" name="parameters"></part>
+</message>
+<portType name="WSCNPruebas">
+<operation name="consultarListadoNotificaciones">
+<input message="tns:consultarListadoNotificaciones" wsam:Action="urn:consultarListadoNotificaciones"></input>
+<output message="tns:consultarListadoNotificacionesResponse" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/consultarListadoNotificacionesResponse"></output>
+<fault message="tns:WSCNPruebasExcepcionSistema" name="WSCNPruebasExcepcionSistema" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/consultarListadoNotificaciones/Fault/WSCNPruebasExcepcionSistema"></fault>
+</operation>
+<operation name="solicitarAcuseNotificacion">
+<input message="tns:solicitarAcuseNotificacion" wsam:Action="urn:solicitarAcuseNotificacion"></input>
+<output message="tns:solicitarAcuseNotificacionResponse" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/solicitarAcuseNotificacionResponse"></output>
+<fault message="tns:WSCNPruebasExcepcionSistema" name="WSCNPruebasExcepcionSistema" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/solicitarAcuseNotificacion/Fault/WSCNPruebasExcepcionSistema"></fault>
+</operation>
+<operation name="enviarAcuseNotificacion">
+<input message="tns:enviarAcuseNotificacion" wsam:Action="urn:enviarAcuseNotificacion"></input>
+<output message="tns:enviarAcuseNotificacionResponse" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/enviarAcuseNotificacionResponse"></output>
+<fault message="tns:WSCNPruebasExcepcionSistema" name="WSCNPruebasExcepcionSistema" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/enviarAcuseNotificacion/Fault/WSCNPruebasExcepcionSistema"></fault>
+</operation>
+<operation name="verNotificacionAceptada">
+<input message="tns:verNotificacionAceptada" wsam:Action="urn:verNotificacionAceptada"></input>
+<output message="tns:verNotificacionAceptadaResponse" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/verNotificacionAceptadaResponse"></output>
+<fault message="tns:WSCNPruebasExcepcionSistema" name="WSCNPruebasExcepcionSistema" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/verNotificacionAceptada/Fault/WSCNPruebasExcepcionSistema"></fault>
+</operation>
+<operation name="solicitarPoderdantes">
+<input message="tns:solicitarPoderdantes" wsam:Action="urn:solicitarPoderdantes"></input>
+<output message="tns:solicitarPoderdantesResponse" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/solicitarPoderdantesResponse"></output>
+<fault message="tns:WSCNPruebasExcepcionSistema" name="WSCNPruebasExcepcionSistema" wsam:Action="http://ws.pruebas.wscn.infra.gi.org/WSCNPruebas/solicitarPoderdantes/Fault/WSCNPruebasExcepcionSistema"></fault>
+</operation>
+</portType>
+<binding name="WSCNPruebasPortBinding" type="tns:WSCNPruebas">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="consultarListadoNotificaciones">
+<soap:operation soapAction="urn:consultarListadoNotificaciones"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="WSCNPruebasExcepcionSistema">
+<soap:fault name="WSCNPruebasExcepcionSistema" use="literal"/>
+</fault>
+</operation>
+<operation name="solicitarAcuseNotificacion">
+<soap:operation soapAction="urn:solicitarAcuseNotificacion"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="WSCNPruebasExcepcionSistema">
+<soap:fault name="WSCNPruebasExcepcionSistema" use="literal"/>
+</fault>
+</operation>
+<operation name="enviarAcuseNotificacion">
+<soap:operation soapAction="urn:enviarAcuseNotificacion"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="WSCNPruebasExcepcionSistema">
+<soap:fault name="WSCNPruebasExcepcionSistema" use="literal"/>
+</fault>
+</operation>
+<operation name="verNotificacionAceptada">
+<soap:operation soapAction="urn:verNotificacionAceptada"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="WSCNPruebasExcepcionSistema">
+<soap:fault name="WSCNPruebasExcepcionSistema" use="literal"/>
+</fault>
+</operation>
+<operation name="solicitarPoderdantes">
+<soap:operation soapAction="urn:solicitarPoderdantes"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="WSCNPruebasExcepcionSistema">
+<soap:fault name="WSCNPruebasExcepcionSistema" use="literal"/>
+</fault>
+</operation>
+</binding>
+<service name="WSCNPruebasService">
+<port binding="tns:WSCNPruebasPortBinding" name="WSCNPruebasPort">
+<soap:address location="https://ws.seg-social.gob.es/INFRWSCN_Pruebas/WSCNPruebasService"/>
+</port>
+</service>
+</definitions>

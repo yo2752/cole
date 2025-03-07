@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xs:import namespace="http://www.gacn.es/CTIT/tipos" />
+	<xs:element name="Vehiculo">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="general" />
+				<xs:element ref="trafico" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="general" type="tipoGeneral"/>
+	<xs:element name="trafico" type="tipoTrafico"/>
+
+	<xs:complexType name="tipoTrafico">
+		<xs:all>
+			<xs:element name="matricula" type="alfa100" />
+			<xs:element name="comunidad" type="alfa100" />
+			<xs:element name="servicio" type="alfa100" />
+			<xs:element name="fabricante" type="tipoFabricante" />
+			<xs:element name="caracteristicas" type="tipoCaracteristicas"/>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="tipoFabricante">
+		<xs:all>
+			<xs:element name="numcertificado" type="alfa100" />
+			<xs:element name="numerovin" type="alfa100" />
+			<xs:element name="controlvin" type="alfa100" />
+			<xs:element name="codigoitv" type="alfa100" />
+			<xs:element name="clasificacion" type="alfa100" />
+			<xs:element name="criterioutilizacion" type="alfa100" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="tipoGeneral">
+		<xs:all>
+			<xs:element name="tipodoc" type="alfa100" />
+			<xs:element name="docfabricante" type="alfa100" />
+			<xs:element name="nomfabricante" type="alfa100" />
+			<xs:element name="dirfabricante" type="alfa100" />
+			<xs:element name="serieindustria" type="alfa100" />
+			<xs:element name="tipotarjeta" type="alfa100" />
+			<xs:element name="estado" type="alfa100" />
+			<xs:element name="fechaestado" type="alfa100" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="tipoCaracteristicas">
+		<xs:all>
+			<xs:element name="marca" type="alfa100" />
+			<xs:element name="tipo" type="alfa100" />
+			<xs:element name="variante" type="alfa100" />
+			<xs:element name="version" type="alfa100" />
+			<xs:element name="denominacion" type="alfa100" />
+			<xs:element name="categoria" type="alfa100" />
+			<xs:element name="numejes" type="alfa100" />
+			<xs:element name="numruedas" type="alfa100" />
+			<xs:element name="ejesmotores" type="alfa100" />
+			<xs:element name="posicejesmotores" type="alfa100" />
+			<xs:element name="intconxejesmotores" type="alfa100" />
+			<xs:element name="numejruedagemela" type="alfa100" />
+			<xs:element name="posejruedagemela" type="alfa100" />
+			<xs:element name="numejesdireccion" type="alfa100" />
+			<xs:element name="posicejesdireccion" type="alfa100" />
+			<xs:element name="distanejes" type="alfa100" />
+			<xs:element name="distanciaeje23" type="alfa100" />
+			<xs:element name="distanciaeje34" type="alfa100" />
+			<xs:element name="distanciamax5rueda" type="alfa100" />
+			<xs:element name="distanciamin5rueda" type="alfa100" />
+			<xs:element name="distanbordedelant" type="alfa100" />
+			<xs:element name="distanbordetraser" type="alfa100" />
+			<xs:element name="longzonacarga" type="alfa100" />
+			<xs:element name="viaejedireccion" type="alfa100" />
+			<xs:element name="viaotrosejes" type="alfa100" />
+			<xs:element name="viaeje1" type="alfa100" />
+			<xs:element name="viaeje2" type="alfa100" />
+			<xs:element name="viaeje3" type="alfa100" />
+			<xs:element name="viaeje4" type="alfa100" />
+			<xs:element name="longitud" type="alfa100" />
+			<xs:element name="anchura" type="alfa100" />
+			<xs:element name="altura" type="alfa100" />
+			<xs:element name="voladizo" type="alfa100" />
+			<xs:element name="masamarcha" type="alfa100" />
+			<xs:element name="tara" type="alfa100" />
+			<xs:element name="mma" type="alfa100" />
+			<xs:element name="mmta" type="alfa100" />
+			<xs:element name="distmmtaeje1" type="alfa100" />
+			<xs:element name="distmmtaeje2" type="alfa100" />
+			<xs:element name="distmasamarchaeje1" type="alfa100" />
+			<xs:element name="distmasamarchaeje2" type="alfa100" />
+			<xs:element name="distmasamarchaeje3" type="alfa100" />
+			<xs:element name="distmasamarchaeje4" type="alfa100" />
+			<xs:element name="mmaeje1" type="alfa100" />
+			<xs:element name="mmaeje2" type="alfa100" />
+			<xs:element name="mmaeje3" type="alfa100" />
+			<xs:element name="mmaeje4" type="alfa100" />
+			<xs:element name="mmtagrupoeje1" type="alfa100" />
+			<xs:element name="mmtagrupoeje2" type="alfa100" />
+			<xs:element name="mmtagrupoeje3" type="alfa100" />
+			<xs:element name="mmtagrupoeje4" type="alfa100" />
+			<xs:element name="mmtaptoacop" type="alfa100" />
+			<xs:element name="mmtaremtrac" type="alfa100" />
+			<xs:element name="mmtasemirem" type="alfa100" />
+			<xs:element name="mmtaremejcentr" type="alfa100" />
+			<xs:element name="mmtasrf" type="alfa100" />
+			<xs:element name="mmrcf" type="alfa100" />
+			<xs:element name="mmrsf" type="alfa100" />
+			<xs:element name="mmconjunto" type="alfa100" />
+			<xs:element name="mmconjcateg" type="alfa100" />
+			<xs:element name="mmamatrinternac" type="alfa100" />
+			<xs:element name="mmamatr" type="alfa100" />
+			<xs:element name="mmamatreje1" type="alfa100" />
+			<xs:element name="mmamatreje2" type="alfa100" />
+			<xs:element name="mmamatreje3" type="alfa100" />
+			<xs:element name="mmamatreje4" type="alfa100" />
+			<xs:element name="mmamatreje12" type="alfa100" />
+			<xs:element name="mmamatreje23" type="alfa100" />
+			<xs:element name="mmamatreje34" type="alfa100" />
+			<xs:element name="mmaconjuntomatr" type="alfa100" />
+			<xs:element name="maxcargav" type="alfa100" />
+			<xs:element name="fabmotor" type="alfa100" />
+			<xs:element name="codmotor" type="alfa100" />
+			<xs:element name="potenciaPeso" type="alfa100" />
+			<xs:element name="nummotor" type="alfa100" />
+			<xs:element name="prifuncion" type="alfa100" />
+			<xs:element name="electricopuro" type="alfa100" />
+			<xs:element name="vehielectricohib" type="alfa100" />
+			<xs:element name="numcilindros" type="alfa100" />
+			<xs:element name="discilindros" type="alfa100" />
+			<xs:element name="cilindrada" type="alfa100" />
+			<xs:element name="carburante" type="alfa100" />
+			<xs:element name="monobiflex" type="alfa100" />
+			<xs:element name="potenciamax" type="alfa100" />
+			<xs:element name="potenciarpm" type="alfa100" />
+			<xs:element name="potencianominal" type="alfa100" />
+			<xs:element name="tipocaja" type="alfa100" />
+			<xs:element name="reltrans1" type="alfa100" />
+			<xs:element name="reltrans2" type="alfa100" />
+			<xs:element name="reltrans4" type="alfa100" />
+			<xs:element name="reltrans5" type="alfa100" />
+			<xs:element name="reltrans6" type="alfa100" />
+			<xs:element name="reltrans7" type="alfa100" />
+			<xs:element name="neueje1" type="alfa100" />
+			<xs:element name="neueje2" type="alfa100" />
+			<xs:element name="ruedaeje1" type="alfa100" />
+			<xs:element name="tipocarroc" type="alfa100" />
+			<xs:element name="color" type="alfa100" />
+			<xs:element name="numpuertas" type="alfa100" />
+			<xs:element name="dispuertas" type="alfa100" />
+			<xs:element name="numasientos" type="alfa100" />
+			<xs:element name="asientosparado" type="alfa100" />
+			<xs:element name="plazasentados" type="alfa100" />
+			<xs:element name="plazasentadosinf" type="alfa100" />
+			<xs:element name="plazasentadosup" type="alfa100" />
+			<xs:element name="plazasaccesible" type="alfa100" />
+			<xs:element name="disasientos" type="alfa100" />
+			<xs:element name="numplazaspie" type="alfa100" />
+			<xs:element name="volumenbodega" type="alfa100" />
+			<xs:element name="clase" type="alfa100" />
+			<xs:element name="cinseguridad" type="alfa100" />
+			<xs:element name="marcadiseng" type="alfa100" />
+			<xs:element name="vcaract" type="alfa100" />
+			<xs:element name="velmaxima" type="alfa100" />
+			<xs:element name="nrvarensayo" type="alfa100" />
+			<xs:element name="nrparadodba" type="alfa100" />
+			<xs:element name="nrparadorpm" type="alfa100" />
+			<xs:element name="nrmarcha" type="alfa100" />
+			<xs:element name="nemisioneseuro" type="alfa100" />
+			<xs:element name="numactoregl" type="alfa100" />
+			<xs:element name="eep1varensayo" type="alfa100" />
+			<xs:element name="eep1co" type="alfa100" />
+			<xs:element name="eep1hc" type="alfa100" />
+			<xs:element name="eep1nox" type="alfa100" />
+			<xs:element name="eep1hcno" type="alfa100" />
+			<xs:element name="eep1coabs" type="alfa100" />
+			<xs:element name="eep1part" type="alfa100" />
+			<xs:element name="eet1" type="alfa100" />
+			<xs:element name="eet1co" type="alfa100" />
+			<xs:element name="eet1nmhc" type="alfa100" />
+			<xs:element name="eet1nox" type="alfa100" />
+			<xs:element name="eet1thc" type="alfa100" />
+			<xs:element name="eet1partmasa" type="alfa100" />
+			<xs:element name="eepeet1partnum" type="alfa100" />
+			<xs:element name="eep2varensayo" type="alfa100" />
+			<xs:element name="eep2co" type="alfa100" />
+			<xs:element name="eep2nox" type="alfa100" />
+			<xs:element name="eep2hcnm" type="alfa100" />
+			<xs:element name="eep2hct" type="alfa100" />
+			<xs:element name="eep2ch4" type="alfa100" />
+			<xs:element name="eep2part" type="alfa100" />
+			<xs:element name="eep2hc" type="alfa100" />
+			<xs:element name="nivelemisiones" type="alfa100" />
+			<xs:element name="eco2curb" type="alfa100" />
+			<xs:element name="eco2ccarr" type="alfa100" />
+			<xs:element name="eco2cmixto" type="alfa100" />
+			<xs:element name="eco2mixcargado" type="alfa100" />
+			<xs:element name="conelectrica" type="alfa100" />
+			<xs:element name="autonoelectrica" type="alfa100" />
+			<xs:element name="concurb" type="alfa100" />
+			<xs:element name="concnurb" type="alfa100" />
+			<xs:element name="conccomb" type="alfa100" />
+			<xs:element name="concmixto" type="alfa100" />
+			<xs:element name="potencfiscal" type="alfa100" />
+			<xs:element name="kilometraje" type="alfa100" />
+			<xs:element name="homolmercpelig" type="alfa100" />
+			<xs:element name="añoseriecorta" type="alfa100" />
+			<xs:element name="numorden" type="alfa100" />
+			<xs:element name="opciones" type="alfa100" />
+			<xs:element name="observaciones" type="alfa100" />
+			<xs:element name="certificacion" type="alfa100" />
+			<xs:element name="autorizado" type="alfa100" />
+			<xs:element name="contraseña" type="alfa100" />
+			<xs:element name="lugarfirma" type="alfa100" />
+			<xs:element name="fechafirma" type="alfa100" />
+			<xs:element name="firmante" type="alfa100" />
+			<xs:element name="sociedadinscrita" type="alfa100" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:simpleType name="alfa100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+</xs:schema>

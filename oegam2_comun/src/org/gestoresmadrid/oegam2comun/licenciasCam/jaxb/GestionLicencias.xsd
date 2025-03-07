@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://licencias/peticionGenerica"
+	xmlns:ns2="http://licencias/mensajes" targetNamespace="http://licencias/peticionGenerica"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://licencias/mensajes" schemaLocation="mensajesProcedimientos.xsd"/>
+
+
+	<xs:element name="AtributosRegistro" type="ns1:AtributosRegistro"/>
+
+	<xs:complexType name="AtributosRegistro">
+		<xs:sequence>
+			<xs:element name="id_eclu" nillable="true" type="ns2:minstring"/>
+			<xs:element name="id_solicitud" nillable="true" type="ns2:minstring"/>
+			<xs:element name="num_cc" nillable="true" type="ns2:minstring"/>
+			<xs:element name="id_proceso" type="ns2:string3type"/>
+			<xs:element name="id_etapa" type="ns2:string4type"/>
+			<xs:any namespace="http://www.w3.org/2000/09/xmldsig#" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CodigoError">
+		<xs:sequence>
+			<xs:element name="campo" nillable="true" type="ns2:minstring"/>
+			<xs:element name="codigo_respuesta" nillable="true" type="ns2:minstring"/>
+			<xs:element name="descripcion" nillable="true" type="ns2:minstring"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultadoRegistro">
+		<xs:sequence>
+			<xs:element name="atributos" nillable="true" type="ns1:AtributosRegistro"/>
+			<xs:element name="b64_certificado" nillable="true" type="ns2:minstring"/>
+			<xs:element name="b64_solicitud" nillable="true" type="ns2:minstring"/>
+			<xs:element name="codigos_error" nillable="true" type="ns1:CodigoError"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:element name="Peticion">
+		<xs:complexType>
+			<xs:all>
+				<!-- COMENTADO YA QUE NO LO DEBEN ENVIAR la pone RSSSISTAYTO<xs:element name="atributos" type="ns1:atributos"/> -->
+				<xs:element name="mensaje" type="ns1:mensaje"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Respuesta">
+		<xs:sequence>
+			<xs:element name="peticion" type="ns1:peticion_respuesta"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="atributos">
+		<xs:all>
+			<xs:element name="id_envio" type="ns2:id_envio"/>
+			<xs:element name="id_eclu" type="ns1:id_eclu"/>
+			<xs:element name="id_proceso" type="ns1:id_proceso"/>
+			<xs:element name="id_etapa" type="ns1:id_etapa"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="atributosFoliado">
+		<xs:all>
+			<xs:element name="id_envio" type="ns2:id_envio_foliado"/>
+			<xs:element name="id_eclu" type="ns1:id_eclu"/>
+			<xs:element name="id_proceso" type="ns1:id_proceso"/>
+			<xs:element name="id_etapa" type="ns1:id_etapa"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="id_eclu">
+		<xs:restriction base="xs:int">
+			<xs:totalDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="id_proceso">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LIC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="id_etapa">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALSO"/>
+			<xs:enumeration value="EMCC"/>
+			<xs:enumeration value="VALI"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="mensaje">
+		<xs:choice>
+			<xs:element name="LIC_ALSO" type="ns2:LIC_ALSO"/>
+			<xs:element name="LIC_EMCC" type="ns2:LIC_EMCC"/>
+			<xs:element name="LIC_VALI" type="ns2:LIC_EMCC"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="Foliado">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="atributos" type="ns1:atributosFoliado"/>
+				<xs:element name="total_documentos" type="ns1:total_documentos"/>
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element name="documento" type="ns1:documento" minOccurs="0"/>
+				</xs:sequence>
+				<xs:any namespace="http://www.w3.org/2000/09/xmldsig#" 
+					processContents="lax" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="total_documentos">
+		<xs:restriction base="xs:int">
+			<xs:totalDigits value="3"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="documento">
+		<xs:all>
+			<xs:element name="nombre" type="ns1:nombre"/>
+			<xs:element name="tipo" type="ns1:tipo"/>
+			<xs:element name="huella" type="ns1:huella"/>
+			<xs:element name="firma" type="ns1:nombre" minOccurs="0"/>
+			<xs:element name="huella_firma" type="ns1:huella" minOccurs="0"/>
+			<xs:element name="tipo_firma" type="ns2:int1type"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="nombre">
+		<xs:restriction base="ns2:minstring">
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipo">
+		<xs:restriction base="xs:int">
+			<xs:totalDigits value="3"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="huella">
+		<xs:restriction base="ns2:minstring">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Resultado_Validacion">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="peticiones" type="ns1:Respuesta"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="peticion_respuesta">
+		<xs:all>
+			<xs:element name="atributos" type="ns1:atributos"/>
+			<xs:element name="codigos_error" type="ns1:codigos_error"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="codigos_error">
+		<xs:sequence>
+			<xs:element name="codigo" type="ns1:codigo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="codigo">
+		<xs:all>
+			<xs:element name="codigo_respuesta" type="ns1:codigo_respuesta"/>
+			<xs:element name="campo" type="ns1:campo"/>
+			<xs:element name="descripcion" type="ns1:descripcion"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="codigo_respuesta">
+		<xs:restriction base="ns2:minstring">
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="campo">
+		<xs:restriction base="ns2:minstring"/>
+	</xs:simpleType>
+	<xs:simpleType name="descripcion">
+		<xs:restriction base="ns2:minstring">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+ 

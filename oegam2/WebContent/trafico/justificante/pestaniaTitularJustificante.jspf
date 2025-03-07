@@ -1,0 +1,483 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<!-- Evitamos que se pierdan la caducidad de la documentación  -->
+<s:hidden name="titular.persona.fechaCaducidadNif.dia" />
+<s:hidden name="titular.persona.fechaCaducidadNif.mes" />
+<s:hidden name="titular.persona.fechaCaducidadNif.anio" />
+<s:hidden name="titular.persona.tipoDocumentoAlternativo" />
+<s:hidden name="titular.persona.fechaCaducidadAlternativo.dia" />
+<s:hidden name="titular.persona.fechaCaducidadAlternativo.mes" />
+<s:hidden name="titular.persona.fechaCaducidadAlternativo.anio" />
+
+<!-- Fin de evitar que se pierda la caducidad de la documentación  -->
+
+<script src="js/trafico/transmision.js" type="text/javascript"></script>
+<script src="js/trafico/justificantes.js" type="text/javascript"></script>
+
+<div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td colspan="3">Datos del titular
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">TITULAR</span>
+				<s:set var="identificacion" value="titular.persona.nif"/>
+				<s:set var="colegiado" value="titular.numColegiado"/>
+				<s:if test="%{(#identificacion!='' && #identificacion!=null) && (#colegiado!='' && #colegiado!=null)}">
+					<img title="Ver evolución" onclick="consultaEvolucionPersona('<s:property value="titular.persona.nif"/>','<s:property value="titular.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+				</s:if>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idNifAdquiriente">NIF / CIF: <span class="naranja">*</span></label>
+			</td>
+			<td align="left" nowrap="nowrap" width="24%">
+				<table>
+					<tr>
+						<td  align="left" nowrap="nowrap" width="24%">
+							<s:if test="%{titular.nifInterviniente != null && !titular.nifInterviniente.equals('')}">
+								<s:textfield name="titular.persona.nif"
+									id="idNifAdquiriente"
+									onblur="this.className='input2';calculaLetraNIF(this)"
+									onfocus="this.className='inputfocus';"
+									onchange="limpiarFormularioAdquirienteTransmision()"
+									size="9" maxlength="9"/>
+							</s:if>
+							<s:else>
+								<s:textfield name="titular.persona.nif"
+									id="idNifAdquiriente"
+									onblur="this.className='input2';calculaLetraNIF(this)"
+									onfocus="this.className='inputfocus';"
+									size="9" maxlength="9"/>
+							</s:else>
+						</td>
+						<td align="left" nowrap="nowrap">
+							<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+								onclick="javascript:buscarIntervinienteJustificante('Adquiriente','Titular')"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<label for="tipoPersonaAdquiriente">Tipo de persona: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaAdquiriente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						value="%{titular.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+			</td>
+		</tr>
+		<s:hidden name="titular.persona.tipoPersona"></s:hidden>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="sexoAdquiriente">Sexo: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+						id="sexoAdquiriente"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="titular.persona.sexo"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Sexo Persona"
+						headerKey="-1" headerValue="-"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<label for="idApellidoRazonSocialAdquiriente">Apellido o Razón Social: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.apellido1RazonSocial"
+					id="idApellidoRazonSocialAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="40" maxlength="100"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idApellido2Adquiriente">Segundo Apellido: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.apellido2"
+					id="idApellido2Adquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="20" maxlength="100"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<label for="idNombreAdquiriente">Nombre: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.nombre"
+					id="idNombreAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="20" maxlength="18"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idAnagramaAdquiriente">Anagrama</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.anagrama"
+					id="idAnagramaAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="5"
+					readonly="true"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox name="checkIdFuerzasArmadas" id="idCheckFa" onchange="checkFA()"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label id="idLabelFa" for="idFa" style="color:#6E6E6E">Identificador Fuerzas Armadas.FA:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.fa"
+					id="idFa"
+					size="7" maxlength="6" disabled="true"
+					onkeypress="return validarNumerosEnteros(event)"/>
+
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaNacAdquiriente">Fecha de Nacimiento: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield name="titular.persona.fechaNacimientoBean.dia"
+					id="diaNacAdquiriente"
+					onblur="this.className='input2';"
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';"
+					size="2" maxlength="2"/>
+			</td>
+
+			<td width="2">/</td>
+
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield name="titular.persona.fechaNacimientoBean.mes"
+					id="mesNacAdquiriente"
+					onblur="this.className='input2';"
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+
+			<td width="2">/</td>
+
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield name="titular.persona.fechaNacimientoBean.anio"
+					id="anioNacAdquiriente"
+					onblur="this.className='input2';"
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';"
+					size="4" maxlength="4"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="3%">
+				<a href="javascript:;" 
+					onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioNacAdquiriente, document.formData.mesNacAdquiriente, document.formData.diaNacAdquiriente);return false;" 
+						title="Seleccionar fecha">
+					<img class="PopcalTrigger"
+						align="middle"
+						src="img/ico_calendario.gif"
+						width="15" height="16"
+						border="0" alt="Calendario"/>
+				</a>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idTelefonoAdquiriente">Teléfono: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.telefonos"
+					id="idTelefonoAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)"
+					size="9" maxlength="9"/>
+			</td>
+		</tr>
+	</table>
+
+	<s:if test="titular.persona.direccion.idDireccion != null " >
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" style="100%">
+			<tr>
+				<td align="left" nowrap="nowrap" width="100%">
+					<table style="align:left;">
+						<tr>
+							<td align="left" style="vertical-align:middle" width="10%">
+								<label>Seleccionar Dirección</label>
+							</td>
+							<td align="left" nowrap="nowrap" width="90%">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+										onclick="javascript:consultaDireccion('<s:property value="titular.persona.nif"/>','<s:property value="titular.numColegiado"/>','<s:property value="tramiteTraficoBean.numExpediente"/>','TitularJustificante');"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</s:if>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+
+			<td align="left" nowrap="nowrap">
+				<label for="idProvinciaAdquiriente">Provincia:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasAdquiriente()"
+					headerKey="-1"
+					headerValue="Seleccione Provincia"
+					name="titular.persona.direccion.municipio.provincia.idProvincia"
+					listKey="idProvincia" listValue="nombre"
+					id="idProvinciaAdquiriente"
+					onchange="cargarListaMunicipios(this,'idMunicipioAdquiriente','municipioSeleccionadoAdquiriente');
+					cargarListaTipoVia(this,'tipoViaAdquiriente','tipoViaSeleccionadaAdquiriente');
+					inicializarTipoVia('tipoViaAdquiriente','viaAdquiriente',viaAdquirienteTransmision);
+					borrarComboPueblo('idPuebloAdquiriente');"
+					cssStyle="width:170px;"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="idMunicipioAdquiriente">Municipio: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<select id="idMunicipioAdquiriente"
+					onchange="cargarListaPueblos('idProvinciaAdquiriente', this, 'idPuebloAdquiriente', 'puebloSeleccionadoAdquiriente');
+					seleccionarCampo('municipioSeleccionadoAdquiriente','idMunicipioAdquiriente');
+					obtenerCodigoPostalPorMunicipio('idProvinciaAdquiriente', this, 'codPostalAdquiriente');
+					inicializarTipoVia('tipoViaAdquiriente','viaAdquiriente',viaAdquirienteTransmision);"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';">
+					<option value="-1">Seleccione Municipio</option>
+				</select>
+				<s:hidden id="municipioSeleccionadoAdquiriente" 
+					name="titular.persona.direccion.municipio.idMunicipio"/>
+			</td>
+		</tr>
+
+		<tr>
+
+			<td align="left" nowrap="nowrap">
+				<label for="idPuebloAdquiriente">Pueblo: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<select id="idPuebloAdquiriente" onchange="seleccionarCampo('puebloSeleccionadoAdquiriente','idPuebloAdquiriente');"
+					style="width:200px;" onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';">
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+				<s:hidden id="puebloSeleccionadoAdquiriente" 
+					name="titular.persona.direccion.pueblo"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="codPostalAdquiriente">Código Postal: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.codPostal"
+					id="codPostalAdquiriente"
+					maxlength="5" size="5"
+					onblur="this.className='input';"
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoViaAdquiriente">Tipo de vía: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+
+				<select id="tipoViaAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onchange="seleccionarCampo('tipoViaSeleccionadaAdquiriente','tipoViaAdquiriente');
+					cargarListaNombresVia('idProvinciaAdquiriente', 'municipioSeleccionadoAdquiriente', this, 'viaAdquiriente',viaAdquirienteTransmision);">
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+				<s:hidden id="tipoViaSeleccionadaAdquiriente"
+					name="titular.persona.direccion.tipoVia.idTipoVia"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="viaAdquiriente">Nombre v&iacute;a: <span class="naranja">*</span></label>
+			</td>
+
+
+			<td align="left" nowrap="nowrap" colspan="6">
+				<s:textfield id="viaAdquiriente" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					name="titular.persona.direccion.nombreVia"
+					cssStyle="width:200px;position:relative;" autocomplete="off"/>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="numeroAdquiriente">N&uacute;mero: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.numero"
+					id="numeroAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarSN2(event,this)"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="letraAdquiriente">Letra: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.letra"
+					id="letraAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="escaleraAdquiriente">Escalera: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.escalera" 
+					id="escaleraAdquiriente" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="pisoAdquiriente">Piso: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.planta"
+					id="pisoAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="puertaAdquiriente">Puerta: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.puerta"
+					id="puertaAdquiriente"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="bloqueAdquiriente">Bloque: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.bloque" 
+					id="bloqueAdquiriente" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="kmAdquiriente">Km: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.puntoKilometrico"
+					id="kmAdquiriente" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="hmAdquiriente">Hm: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield name="titular.persona.direccion.hm"
+					id="hmAdquiriente" 
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+	</table>
+
+	<script>
+		var viaAdquirienteTransmision = new BasicContentAssist(document.getElementById('viaAdquiriente'), [], null, true); 
+		recargarComboMunicipios('idProvinciaAdquiriente','idMunicipioAdquiriente','municipioSeleccionadoAdquiriente');
+		recargarComboTipoVia('idProvinciaAdquiriente','tipoViaAdquiriente','tipoViaSeleccionadaAdquiriente');
+		recargarComboPueblos('idProvinciaAdquiriente','municipioSeleccionadoAdquiriente','idPuebloAdquiriente', 'puebloSeleccionadoAdquiriente');
+		recargarNombreVias('idProvinciaAdquiriente', 'municipioSeleccionadoAdquiriente', 'tipoViaSeleccionadaAdquiriente','viaAdquiriente',viaAdquirienteTransmision);
+		faConValor();
+	</script>
+</div>

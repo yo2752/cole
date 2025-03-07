@@ -1,0 +1,103 @@
+/*--------------------------------------------------------------------------------------------------------
+----------- DETALLE
+--------------------------------------------------------------------------------------------------------*/
+  PROCEDURE DETALLE (ROWID_TRAMITE IN OUT UROWID,
+                  P_ID_CONTRATO IN OUT TRAMITE_REGISTRO.ID_CONTRATO%TYPE,
+                  P_ID_TRAMITE_REGISTRO IN OUT TRAMITE_REGISTRO.ID_TRAMITE_REGISTRO%TYPE,
+                  P_TIPO_TRAMITE IN OUT TRAMITE_REGISTRO.TIPO_TRAMITE%TYPE,
+                  P_CIF OUT PERSONA.NIF%TYPE,
+                  P_RAZON_SOCIAL OUT PERSONA.APELLIDO1_RAZON_SOCIAL%TYPE,
+                  P_TELEFONOS OUT PERSONA.TELEFONOS%TYPE,
+                  P_TIPO_PERSONA  OUT PERSONA.TIPO_PERSONA%TYPE,
+                  P_SUBTIPO OUT PERSONA.SUBTIPO%TYPE,
+                  P_SECCION OUT PERSONA.SECCION%TYPE,
+                  P_HOJA OUT PERSONA.HOJA%TYPE,
+                  P_HOJA_BIS OUT PERSONA.HOJA_BIS%TYPE,
+                  P_IUS OUT PERSONA.IUS%TYPE,
+                  P_CORREO_ELECTRONICO OUT PERSONA.CORREO_ELECTRONICO%TYPE,
+                  P_ESTADO OUT TRAMITE_REGISTRO.ESTADO%TYPE,
+                  P_FECHA_CREACION OUT TRAMITE_REGISTRO.FECHA_CREACION%TYPE,
+                  P_FECHA_CERTIF OUT TRAMITE_REGISTRO.FECHA_CERTIF%TYPE,
+                  P_LUGAR OUT  TRAMITE_REGISTRO.LUGAR%TYPE,
+                  P_ID_FIRMA_DOC OUT TRAMITE_REGISTRO.ID_FIRMA_DOC%TYPE,
+                  P_FECHA_ENVIO OUT TRAMITE_REGISTRO.FECHA_ENVIO%TYPE,
+                  P_RESPUESTA OUT TRAMITE_REGISTRO.RESPUESTA%TYPE,
+                  P_FECHA_ULT_ESTADO OUT TRAMITE_REGISTRO.FECHA_ULT_ESTADO%TYPE,
+                  P_ID_REGISTRO OUT TRAMITE_REGISTRO.ID_REGISTRO%TYPE,
+                  P_ID_REUNION OUT REUNION.ID_REUNION%TYPE, 
+                  P_TIPO_REUNION OUT REUNION.TIPO_REUNION%TYPE,
+                  P_LUGAR_REUNION OUT REUNION.LUGAR%TYPE,
+                  P_FECHA_REUNION OUT REUNION.FECHA%TYPE, 
+                  P_AMBITO OUT REUNION.AMBITO%TYPE,
+                  P_CARACTER OUT REUNION.CARACTER%TYPE,
+                  P_FECHA_APRO_ACTA OUT REUNION.FECHA_APRO_ACTA%TYPE,
+                  P_FORMA_APRO_ACTA OUT REUNION.FORMA_APRO_ACTA%TYPE,
+                  P_CONTENIDO_CONVO OUT REUNION.CONTENIDO_CONVO%TYPE,
+                  P_REF_PROPIA OUT TRAMITE_REGISTRO.REF_PROPIA%TYPE,
+                  P_N_ENVIOS OUT TRAMITE_REGISTRO.N_ENVIOS%TYPE,
+                  P_HORA_ENTRADA_REG OUT TRAMITE_REGISTRO.HORA_ENTRADA_REG%TYPE,
+                  P_LIBRO_REG OUT TRAMITE_REGISTRO.LIBRO_REG%TYPE,
+                  P_ANIO_REG OUT TRAMITE_REGISTRO.ANIO_REG%TYPE,
+                  P_NUM_REG OUT TRAMITE_REGISTRO.NUM_REG%TYPE,
+                  P_PORCENTAJE_CAPITAL OUT REUNION.PORCENTAJE_CAPITAL%TYPE,
+                  P_PORCENTAJE_SOCIOS OUT REUNION.PORCENTAJE_SOCIOS%TYPE,
+                  P_CODE OUT NUMBER,
+                  P_SQLERRM OUT VARCHAR2) AS
+                  
+      w_id_contrato tramite_registro.id_contrato%type;
+  BEGIN
+      if rowid_tramite is not null
+      then
+        select t.id_contrato, t.id_tramite_registro, t.tipo_tramite,
+              t.cif, p.apellido1_razon_social, p.telefonos, p.tipo_persona, p.subtipo, p.seccion, p.hoja, p.hoja_bis, p.ius, p.correo_electronico,
+              t.estado, t.fecha_creacion, t.lugar, t.fecha_envio, t.respuesta, t.fecha_ult_estado, t.fecha_certif, t.id_firma_doc, t.ref_propia,
+              t.N_ENVIOS, t.hora_entrada_reg, t.libro_reg, t.anio_reg, t.num_reg, t.ID_REGISTRO,
+              r.id_reunion, r.tipo_reunion, r.lugar lugar_reunion, r.fecha fecha_reunion, 
+              r.ambito, r.caracter, r.fecha_apro_acta, r.forma_apro_acta, r.contenido_convo, r.porcentaje_capital, r.porcentaje_socios
+         into w_id_contrato, p_id_tramite_registro, p_tipo_tramite,
+              p_cif, p_razon_social, p_telefonos, p_tipo_persona, p_subtipo, p_seccion, p_hoja, p_hoja_bis, p_ius, p_correo_electronico,
+              p_estado, p_fecha_creacion, p_lugar, p_fecha_envio, p_respuesta, p_fecha_ult_estado, p_fecha_certif, p_id_firma_doc, p_ref_propia,
+              P_N_ENVIOS, p_hora_entrada_reg, p_libro_reg, p_anio_reg, p_num_reg, P_ID_REGISTRO,
+              p_id_reunion, p_tipo_reunion, p_lugar_reunion, p_fecha_reunion, 
+              p_ambito, p_caracter, p_fecha_apro_acta, p_forma_apro_acta, p_contenido_convo, p_porcentaje_capital, p_porcentaje_socios
+          from tramite_registro t, persona p, reunion r
+          where p.nif = t.cif
+            and p.num_colegiado = t.num_colegiado
+            and r.id_tramite_registro(+) = t.id_tramite_registro
+            and t.id_contrato = nvl(p_id_contrato,t.id_contrato)
+            and t.rowid = rowid_tramite;
+      else 
+       select t.rowid, t.id_contrato, t.tipo_tramite,
+              t.cif, p.apellido1_razon_social, p.telefonos, p.tipo_persona, p.subtipo, p.seccion, p.hoja, p.hoja_bis, p.ius, p.correo_electronico,
+              t.estado, t.fecha_creacion, t.lugar, t.fecha_envio, t.respuesta, t.fecha_ult_estado, t.fecha_certif, t.id_firma_doc, t.ref_propia,
+              t.N_ENVIOS, t.hora_entrada_reg, t.libro_reg, t.anio_reg, t.num_reg, t.ID_REGISTRO,
+              r.id_reunion, r.tipo_reunion, r.lugar lugar_reunion, r.fecha fecha_reunion, 
+              r.ambito, r.caracter, r.fecha_apro_acta, r.forma_apro_acta, r.contenido_convo, r.porcentaje_capital, r.porcentaje_socios
+         into rowid_tramite, w_id_contrato, p_tipo_tramite,
+              p_cif, p_razon_social, p_telefonos, p_tipo_persona, p_subtipo, p_seccion, p_hoja, p_hoja_bis, p_ius, p_correo_electronico,
+              p_estado, p_fecha_creacion, p_lugar, p_fecha_envio, p_respuesta, p_fecha_ult_estado, p_fecha_certif, p_id_firma_doc, p_ref_propia,
+              P_N_ENVIOS, p_hora_entrada_reg, p_libro_reg, p_anio_reg, p_num_reg, P_ID_REGISTRO,
+              p_id_reunion, p_tipo_reunion, p_lugar_reunion, p_fecha_reunion, 
+              p_ambito, p_caracter, p_fecha_apro_acta, p_forma_apro_acta, p_contenido_convo, p_porcentaje_capital, p_porcentaje_socios
+          from tramite_registro t, persona p, reunion r
+          where p.nif = t.cif
+            and p.num_colegiado = t.num_colegiado
+            and r.id_tramite_registro(+) = t.id_tramite_registro
+            and t.id_contrato = nvl(p_id_contrato,t.id_contrato)
+            and t.id_tramite_registro = P_id_tramite_registro;
+      end if;
+      
+      p_id_contrato := w_id_contrato;
+      
+          P_Code := 0;
+          P_SQLERRM := 'Correcto';
+  EXCEPTION
+   WHEN PARAR THEN
+        return;
+   When No_data_found then
+      p_code := 212;
+      p_sqlerrm := 'No existe el tramite';
+   When others then
+      P_Code := SQLCODE;
+      P_SQLERRM := SQlERRM;
+  END DETALLE;

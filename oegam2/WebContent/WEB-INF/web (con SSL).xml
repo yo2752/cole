@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+  <display-name>Oegam2</display-name>
+  
+  <context-param>
+    <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+    <param-value>/WEB-INF/tiles.xml</param-value>
+  </context-param>
+  
+  <context-param>
+  	<description>
+  		Si toma el valor viafirma, se autentificará al usuario mediante certificado con viafirma.
+  		Si toma el valor false, la aplicación se saltará dicha autentificación.
+  	</description>
+    <param-name>AutenticacionSISTEMA</param-name>
+    <param-value>viafirma</param-value>
+  </context-param>
+  
+  <context-param>
+    <description>
+		API de inicialización del cliente de viafirma.
+		Posibles valores : ws y rest
+	</description>
+    <param-name>apiClienteViafirma</param-name>
+    <param-value>ws</param-value>
+  </context-param>
+  
+  <context-param>
+    <description>
+		Si toma el valor applet, el dpr lo firma el usuario con el applet
+		y si toma el valor servidor, el dpr se firma en servidor
+	</description>
+    <param-name>firmaDPR</param-name>
+    <param-value>applet</param-value>
+  </context-param>
+  
+  <context-param>
+    <description>
+		Si toma el valor applet, el dpr del acuse lo firma el usuario con el applet
+		y si toma el valor servidor, el dpr del acuse se firma en servidor
+	</description>
+    <param-name>firmaAcuse</param-name>
+    <param-value>applet</param-value>
+  </context-param>
+  
+  <context-param>
+    <description>
+		Si toma el valor real, se invoca al web service
+		y si toma el valor simulacion, no.
+	</description>
+    <param-name>modoEnvio</param-name>
+    <param-value>real</param-value>
+  </context-param>
+  
+  <context-param>
+    <description>
+		Comprueba si o no que el firmante del trámite es la
+		personalidad que figura como presentante del mismo.
+	</description>
+    <param-name>comprobarFirmante</param-name>
+    <param-value>No</param-value>
+  </context-param>
+   	
+   <listener>
+   		<listener-class>colas.servlet.ColasServletContextListener</listener-class>
+   </listener>
+   
+  <listener>
+    	<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+  </listener>
+  
+  <listener>
+    	<listener-class>net.sf.navigator.menu.MenuContextListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <servlet-name>viafirmaClientResponseServlet</servlet-name>
+    <servlet-class>viafirma.servlet.ViafirmaClientResponseServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>viafirmaClientResponseServlet</servlet-name>
+    <url-pattern>/viafirmaClientResponseServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>viafirmaClientResponseServletMate</servlet-name>
+    <servlet-class>viafirma.servlet.ViafirmaClientResponseServletMate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>viafirmaClientResponseServletMate</servlet-name>
+    <url-pattern>/viafirmaClientResponseServletMate</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>filtro.struts2.dispatcher.FiltroStruts2</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+  
+  </error-page>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
+  
+  
+  <resource-ref>
+  <description>
+    Resource reference a un origen de datos de conexiones java.sql.Connection a bbdd,
+    para el proyecto Escrituras,     
+    que debe estar configurado en el servidor de aplicaciones en su context.xml
+  </description>
+  <res-ref-name>
+    jdbc/oegamEscrituras
+  </res-ref-name>
+  <res-type>
+    oracle.jdbc.pool.OracleDataSource
+  </res-type>
+  <res-auth>
+    Container
+  </res-auth>
+</resource-ref>
+
+
+ <resource-ref>
+  <description>
+    Resource reference a un origen de datos de conexiones java.sql.Connection a bbdd,
+    para el proyecto administradores,     
+    que debe estar configurado en el servidor de aplicaciones en su context.xml
+  </description>
+  <res-ref-name>
+    jdbc/oegamAdmin
+  </res-ref-name>
+  <res-type>
+    oracle.jdbc.pool.OracleDataSource
+  </res-type>
+  <res-auth>
+    Container
+  </res-auth>
+</resource-ref>
+
+
+<resource-ref>
+  <description>
+    Resource reference a un origen de datos de conexiones java.sql.Connection a bbdd,
+    para el proyecto registradores,     
+    que debe estar configurado en el servidor de aplicaciones en su context.xml
+  </description>
+  <res-ref-name>
+    jdbc/oegamRegistradores
+  </res-ref-name>
+  <res-type>
+    oracle.jdbc.pool.OracleDataSource
+  </res-type>
+  <res-auth>
+    Container
+  </res-auth>
+</resource-ref>
+
+<security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Security page</web-resource-name>
+		<url-pattern>/*</url-pattern>
+		<http-method>GET</http-method>
+		<http-method>POST</http-method>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+</security-constraint>
+  
+</web-app>

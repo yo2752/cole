@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/peticion" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/peticion">
+	<xs:complexType name="DatosArrendamiento">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="doi" type="xs:string"/>
+			<xs:element minOccurs="0" name="fechaNacimiento" type="xs:date"/>
+			<xs:element minOccurs="0" name="fechaIni" type="xs:dateTime"/>
+			<xs:element minOccurs="0" name="fechaFin" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosConductorHabitual">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="doi" type="xs:string"/>
+			<xs:element minOccurs="0" name="fechaNacimiento" type="xs:date"/>
+			<xs:element minOccurs="0" name="fechaIni" type="xs:dateTime"/>
+			<xs:element minOccurs="0" name="fechaFin" type="xs:dateTime"/>
+			<xs:element minOccurs="0" name="existeConsentimiento" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosPersonaCompleta">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="doi" type="xs:string"/>
+			<xs:element minOccurs="0" name="fechaNacimiento" type="xs:date"/>
+			<xs:element minOccurs="0" name="nombre" type="xs:string"/>
+			<xs:element minOccurs="0" name="primerApellido" type="xs:string"/>
+			<xs:element minOccurs="0" name="segundoApellido" type="xs:string"/>
+			<xs:element minOccurs="0" name="razonSocial" type="xs:string"/>
+			<xs:element minOccurs="0" name="sexo" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosDomicilio">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="tipoVia" type="xs:string"/>
+			<xs:element minOccurs="1" name="via" type="xs:string"/>
+			<xs:element minOccurs="1" name="numero" type="xs:string"/>
+			<xs:element minOccurs="0" name="hm" type="xs:string"/>
+			<xs:element minOccurs="0" name="escalera" type="xs:string"/>
+			<xs:element minOccurs="0" name="km" type="xs:string"/>
+			<xs:element minOccurs="0" name="planta" type="xs:string"/>
+			<xs:element minOccurs="0" name="portal" type="xs:string"/>
+			<xs:element minOccurs="0" name="puerta" type="xs:string"/>
+			<xs:element minOccurs="1" name="cp" type="xs:string"/>
+			<xs:element minOccurs="1" name="provincia" type="xs:string"/>
+			<xs:element minOccurs="1" name="municipio" type="xs:string"/>
+			<xs:element minOccurs="0" name="localidad" type="xs:string"/>
+			<xs:element minOccurs="0" name="bloque" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosVehiculo">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="doiTitular" type="xs:string"/>
+			<xs:element minOccurs="1" name="matricula" type="xs:string"/>
+			<xs:element minOccurs="1" name="bastidor">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

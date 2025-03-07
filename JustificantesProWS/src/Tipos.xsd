@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.sea.es/profProof/tipos"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.sea.es/profProof/tipos"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:complexType name="tipoDatoNombre">
+		<xs:sequence>
+			<xs:element name="Razon_Social" type="alfa70" minOccurs="0" />
+			<xs:element name="Nombre" type="alfa18" minOccurs="0" />
+			<xs:element name="Primer_Apellido" type="alfa26" minOccurs="0" />
+			<xs:element name="Segundo_Apellido" type="alfa26" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="tipoVersionRegistro">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoHash">
+		<xs:restriction base="xs:base64Binary" />
+	</xs:simpleType>
+	<xs:simpleType name="tipoFechaAAAAMMDD">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoNIF_Colegio">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[psP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoMatricula">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[ a-zA-Z0-9]*" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoFA">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[F][A][0-9]{6}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoDocumentos">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOTIFICACIÓN VENTA" />
+			<xs:enumeration value="CAMBIO TITULAR" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa18">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="18" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa21">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="21" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa22">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="22" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa23">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="23" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa26">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="26" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa70">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="70" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTipoTramite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TRANSFERENCIA" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="motivo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOI001" />
+			<xs:enumeration value="DOI002" />
+			<xs:enumeration value="DOI003" />
+			<xs:enumeration value="DOI004" />
+			<xs:enumeration value="FAC001" />
+			<xs:enumeration value="FAC002" />
+			<xs:enumeration value="FAC003" />
+			<xs:enumeration value="FAC004" />
+			<xs:enumeration value="IMP001" />
+			<xs:enumeration value="IMP002" />
+			<xs:enumeration value="IMP003" />
+			<xs:enumeration value="IMP004" />
+			<xs:enumeration value="DOM001" />
+			<xs:enumeration value="CAL001" />
+			<xs:enumeration value="CAL002" />
+			<xs:enumeration value="CAL003" />
+			<xs:enumeration value="CAL004" />
+			<xs:enumeration value="CAL005" />
+			<xs:enumeration value="VA001" />
+			<xs:enumeration value="VA002" />
+			<xs:enumeration value="VA003" />
+			<xs:enumeration value="OT001" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

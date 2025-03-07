@@ -1,0 +1,425 @@
+<definitions name='ProfessionalProofService' targetNamespace='http://blackbox.gescogroup.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://blackbox.gescogroup.com/' version='1.0' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='getProfessionalProof' type='tns:getProfessionalProof'/>
+   <xs:element name='getProfessionalProofResponse' type='tns:getProfessionalProofResponse'/>
+   <xs:element name='issueProfessionalProof' type='tns:issueProfessionalProof'/>
+   <xs:element name='issueProfessionalProofResponse' type='tns:issueProfessionalProofResponse'/>
+   <xs:element name='verifyProfessionalProof' type='tns:verifyProfessionalProof'/>
+   <xs:element name='verifyProfessionalProofResponse' type='tns:verifyProfessionalProofResponse'/>
+   <xs:complexType name='issueProfessionalProof'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg1' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg2' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='issueProfessionalProofResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:professionalProofResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='professionalProofResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errors' nillable='true' type='tns:professionalProofError'/>
+     <xs:element minOccurs='0' name='professionalProofPdf' type='xs:base64Binary'/>
+     <xs:element minOccurs='0' name='proofNumber' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='professionalProofError'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='code' type='xs:string'/>
+     <xs:element minOccurs='0' name='message' type='xs:string'/>
+     <xs:element minOccurs='0' name='profProofRequest' type='tns:professionalProofRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='professionalProofRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='errorMessage' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystemFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='professionalOrderFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='status' type='tns:professionalProofStatus'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='abstractEntity'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='userLabels' nillable='true' type='tns:userLabel'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='userLabel'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='bgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='fgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='label' type='xs:string'/>
+       <xs:element minOccurs='0' name='owner' type='tns:user'/>
+       <xs:element name='shared' type='xs:boolean'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='users' nillable='true' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='user'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element minOccurs='0' name='creationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='defaultLanguage' type='xs:string'/>
+       <xs:element minOccurs='0' name='dropOutDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='emailAddress' type='xs:string'/>
+       <xs:element minOccurs='0' name='enabled' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='nif' type='xs:string'/>
+       <xs:element minOccurs='0' name='observations' type='xs:string'/>
+       <xs:element minOccurs='0' name='role' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname2' type='xs:string'/>
+       <xs:element minOccurs='0' name='telephoneNumber' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userRptProfiles' nillable='true' type='tns:userRPTProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='address'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='customStreet' type='xs:string'/>
+       <xs:element minOccurs='0' name='door' type='xs:string'/>
+       <xs:element minOccurs='0' name='floor' type='xs:string'/>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='postalCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='stair' type='xs:string'/>
+       <xs:element minOccurs='0' name='street' type='tns:street'/>
+       <xs:element minOccurs='0' name='streetNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='municipality'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='dgtName' type='xs:string'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='province' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='mlString'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element name='translations'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='entry'>
+         <xs:complexType>
+          <xs:sequence>
+           <xs:element minOccurs='0' name='key' type='xs:string'/>
+           <xs:element minOccurs='0' name='value' type='tns:translation'/>
+          </xs:sequence>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='translation'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='languageId' type='xs:string'/>
+     <xs:element minOccurs='0' name='mlString' type='tns:mlString'/>
+     <xs:element minOccurs='0' name='mlStringId' type='xs:int'/>
+     <xs:element minOccurs='0' name='value' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='province'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='provinceGroup' type='tns:provinceGroup'/>
+       <xs:element minOccurs='0' name='region' type='tns:region'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='region'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='provinces' nillable='true' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='street'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='streetName' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='streetType'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='profile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='servicePermissions' nillable='true' type='tns:servicePermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='uiPermissions' nillable='true' type='tns:uiPermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='servicePermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='uiPermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='read' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='write' type='xs:boolean'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userRPTProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='rptProfile' type='tns:rptProfile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='report'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='details' type='tns:rptDetails'/>
+       <xs:element minOccurs='0' name='group' type='tns:rptGroup'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='reportType' type='tns:reportType'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='rptProfiles' nillable='true' type='tns:rptProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptDetails'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='jrbin' type='xs:string'/>
+       <xs:element minOccurs='0' name='jrxml' type='xs:string'/>
+       <xs:element minOccurs='0' name='paramxml' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptGroup'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='getProfessionalProof'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg1' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg2' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getProfessionalProofResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:professionalProofResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='verifyProfessionalProof'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='verifyProfessionalProofResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:professionalProofVerificationResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='professionalProofVerificationResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errors' nillable='true' type='tns:professionalProofError'/>
+     <xs:element name='verificationSuccessful' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name='professionalProofStatus'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='ERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='provinceGroup'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENINSULA'/>
+     <xs:enumeration value='CANARIES'/>
+     <xs:enumeration value='CEUTAMELILLA'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='reportType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='REPORT'/>
+     <xs:enumeration value='STAT'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='ProfessionalProofWS_verifyProfessionalProofResponse'>
+  <part element='tns:verifyProfessionalProofResponse' name='verifyProfessionalProofResponse'></part>
+ </message>
+ <message name='ProfessionalProofWS_getProfessionalProof'>
+  <part element='tns:getProfessionalProof' name='getProfessionalProof'></part>
+ </message>
+ <message name='ProfessionalProofWS_verifyProfessionalProof'>
+  <part element='tns:verifyProfessionalProof' name='verifyProfessionalProof'></part>
+ </message>
+ <message name='ProfessionalProofWS_issueProfessionalProofResponse'>
+  <part element='tns:issueProfessionalProofResponse' name='issueProfessionalProofResponse'></part>
+ </message>
+ <message name='ProfessionalProofWS_getProfessionalProofResponse'>
+  <part element='tns:getProfessionalProofResponse' name='getProfessionalProofResponse'></part>
+ </message>
+ <message name='ProfessionalProofWS_issueProfessionalProof'>
+  <part element='tns:issueProfessionalProof' name='issueProfessionalProof'></part>
+ </message>
+ <portType name='ProfessionalProofWS'>
+  <operation name='getProfessionalProof' parameterOrder='getProfessionalProof'>
+   <input message='tns:ProfessionalProofWS_getProfessionalProof'></input>
+   <output message='tns:ProfessionalProofWS_getProfessionalProofResponse'></output>
+  </operation>
+  <operation name='issueProfessionalProof' parameterOrder='issueProfessionalProof'>
+   <input message='tns:ProfessionalProofWS_issueProfessionalProof'></input>
+   <output message='tns:ProfessionalProofWS_issueProfessionalProofResponse'></output>
+  </operation>
+  <operation name='verifyProfessionalProof' parameterOrder='verifyProfessionalProof'>
+   <input message='tns:ProfessionalProofWS_verifyProfessionalProof'></input>
+   <output message='tns:ProfessionalProofWS_verifyProfessionalProofResponse'></output>
+  </operation>
+ </portType>
+ <binding name='ProfessionalProofWSBinding' type='tns:ProfessionalProofWS'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='getProfessionalProof'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='issueProfessionalProof'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='verifyProfessionalProof'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='ProfessionalProofService'>
+  <port binding='tns:ProfessionalProofWSBinding' name='ProfessionalProofService'>
+   <soap:address location='https://www.gacn.es/bbws/ProfessionalProofService'/>
+  </port>
+ </service>
+</definitions>

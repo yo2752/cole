@@ -1,0 +1,68 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<http use-expressions="true" entry-point-ref="authenticationEntryPoint">
+		<custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
+		<custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
+
+		<session-management session-authentication-strategy-ref="sessionAuthenticationStrategy" />
+		<access-denied-handler ref="oegamAccessDeniedHandler"/>
+
+		<intercept-url pattern="/*Login.action" access="permitAll()" />
+		<intercept-url pattern="/*Logout.action" access="permitAll()" />
+		<intercept-url pattern="/*Security.action"  filters="none" />
+		<intercept-url pattern="/updateNotificacionesAjax.action" filters="none" />
+		<intercept-url pattern="/eliminarRegistrar.action" access="isAuthenticated()" />
+		<intercept-url pattern="/*Registrar.action" access="permitAll()" />
+		<intercept-url pattern="/*.action" access="isAuthenticated()" />
+
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="oegamAuthenticationProvider" />
+	</authentication-manager>
+
+	<beans:bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+	</beans:bean>
+
+	<beans:bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<beans:property name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="expiredUrl" value="/excededAllowedSessionSecurity.action" />
+	</beans:bean>
+
+	<beans:bean id="oegamAuthenticationProvider" class="org.gestoresmadrid.oegam2.controller.security.authentication.OegamAuthenticationProvider" />
+
+	<beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/expiredSessionSecurity.action" />
+	</beans:bean>
+
+	<beans:bean id="sessionAuthenticationStrategy" class="org.gestoresmadrid.oegam2.controller.security.session.OegamSessionControlStrategy">
+		<beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="maximumSessions" value="1" />
+	</beans:bean>
+  	<beans:bean id="sessionRegistry" class="org.gestoresmadrid.oegam2.controller.security.session.OegamSessionRegistry" />
+
+	<beans:bean id="oegamAccessDeniedHandler" class="org.gestoresmadrid.oegam2.controller.security.OegamAccessDeniedHandler" />
+
+    <task:annotation-driven  />
+    <beans:bean id="sessionSynchronizer" class="org.gestoresmadrid.oegam2.controller.security.task.SessionSynchronizer" />
+	<task:scheduled-tasks>
+		<task:scheduled ref="sessionSynchronizer" method="run" fixed-delay="60000" />
+	</task:scheduled-tasks>
+</beans:beans>
+
+
+
+<!-- 
+================================================================================================
+Configuraciones
+===================
+ 	<global-method-security secured-annotations="enabled" /> >>> con esto se añade la notación @Secured("ROLE_ASDF") @Secured("IS_AUTHENTICATED..." en el metodo de la clase o interfaz, y listo
+	<global-method-security pre-post-annotations="enabled" />  >>> parecido al anterior, pero @PreAuthorize("isAnonymous()") o @PreAuthorize("hasAuthority('ROLE_TELLER')")
+ -->

@@ -1,0 +1,3288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+     <mapping map-null="false">
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.CORPMEEDoc</class-b>
+		<field>
+			<a>version</a>
+			<b>datosPRIVADO.version</b>
+		</field>
+		<field>
+			<a>presentador</a>
+			<b>datosPRIVADO.envioTramite.identificacionPresentante</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.fechaDocumento</b>
+		</field>
+		<field>
+			<a>idTramiteRegistro</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.numeroDocumento</b>
+		</field>
+		<field>
+			<a>tipoEntrada</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.tipo</b>
+		</field>
+		<field>
+			<a>codigoNotaria</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.codigoNotaria</b>
+		</field>
+		<field>
+			<a>codigoNotario</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.codigoNotario</b>
+		</field>
+		<field>
+			<a>anioProtocolo</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.anyoProtocolo</b>
+		</field>
+		<field>
+			<a>protocolo</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.protocolo</b>
+		</field>
+		<field>
+			<a>destinatario</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion</b>
+		</field>
+		<field>
+			<a>formaPago</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.tipoFormaPago</b>
+		</field>
+		
+		<field>
+			<a>datosBancarios.iban</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.iban</b>
+		</field>
+		<field>
+			<a>datosBancarios.entidad</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.codigoEntidad</b>
+		</field>
+		<field>
+			<a>datosBancarios.oficina</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.codigoSucursal</b>
+		</field>
+		<field>
+			<a>datosBancarios.dc</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.digitoControl</b>
+		</field>
+		<field>
+			<a>datosBancarios.numeroCuentaPago</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.numeroCuenta</b>
+		</field>
+	
+		<field>
+			<a>identificacionCorpme</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.usuarioAbonadoCorpme</b>
+		</field>
+		<field>
+			<a>datosBancarios.nombreTitular</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.nombreTitular</b>
+		</field>
+		<field>
+			<a>datosBancarios.idProvincia</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.localidadTitular.codigoProvincia</b>
+		</field>
+		<field>
+			<a>datosBancarios.idMunicipio</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.cuentaBancaria.localidadTitular.codigoMunicipio</b>
+		</field>
+		<field>
+			<a>aplicarIrpf</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.irpf.aplicarIRPF</b>
+		</field>
+		<field>
+			<a>porcentajeIrpf</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.irpf.porcentajeIRPF</b>
+		</field>
+		<field>
+			<a>numSociedades</a>
+			<b>datosPRIVADO.envioTramite.objetos.sociedades.numeroSociedades</b>
+		</field>
+		<field>
+			<a>numInmuebles</a>
+			<b>datosPRIVADO.envioTramite.objetos.bienesInmuebles.numeroInmuebles</b>
+		</field>
+		<field>
+			<a>inmuebles</a>
+			<b is-accessible="true">datosPRIVADO.envioTramite.objetos.bienesInmuebles.bienInmueble</b>
+		</field>
+	</mapping>
+	
+	
+	
+    <mapping>
+  		<class-a>org.gestoresmadrid.oegamComun.persona.view.dto.PersonaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.IdentificacionPresentanteType</class-b>
+		<field>
+  			<a>nombre</a>
+  			<b>presentante.nombre</b>
+  		</field>
+  		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>presentante.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>presentante.apellidos</b>
+  		</field>
+		<field>
+  			<a>tipoDocumento</a>
+  			<b>presentante.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>nif</a>
+  			<b>presentante.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+	</mapping>
+	
+	<mapping>
+  		<class-a>org.gestoresmadrid.oegamComun.persona.view.dto.PersonaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.DatosFacturacionType</class-b>
+  		<field>
+  			<a>nombre</a>
+  			<b>destinatario.nombre</b>
+  		</field>
+  		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>destinatario.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>destinatario.apellidos</b>
+  		</field>
+  		<field>
+  			<a>tipoDocumento</a>
+  			<b>destinatario.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>nif</a>
+  			<b>destinatario.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+  		<field>
+  			<a>direccionDto</a>
+  			<b>domicilio</b>
+  		</field>
+	</mapping>
+	
+	<mapping wildcard="false">
+  		<class-a>org.gestoresmadrid.oegamComun.direccion.view.dto.DireccionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.DomicilioType</class-b>
+		<field>
+			<a>idProvincia</a>
+			<b>codProvincia</b>
+		</field>
+		<field>
+			<a>idMunicipio</a>
+			<b>codMunicipio</b>
+		</field>
+		<field>
+			<a>idTipoVia</a>
+			<b>codTipoVia</b>
+		</field>
+		<field>
+			<a>nombreVia</a>
+			<b>nombreVia</b>
+		</field>
+		<field>
+			<a>numero</a>
+			<b>numero</b>
+		</field>
+		<field>
+			<a>codPostal</a>
+			<b>codigoPostal</b>
+		</field>
+		<field>
+			<a>pais</a>
+			<b>pais</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.InmuebleDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.BienInmuebleType</class-b>
+		<field>
+			<a>bien.direccion.idProvincia</a>
+			<b>codigoProvinciaINE</b>
+		</field>
+		<field>
+			<a>bien.direccion.idMunicipio</a>
+			<b>codigoMunicipioCORPME</b>
+		</field>
+		<field>
+			<a>bien.numeroFinca</a>
+			<b>numeroFinca</b>
+		</field>
+		<field>
+			<a>bien.numFincaDupl</a>
+			<b>numeroFincaDup</b>
+		</field>
+		<field>
+			<a>bien.seccion</a>
+			<b>seccionRegistral</b>
+		</field>
+		<field>
+			<a>bien.subnumFinca</a>
+			<b>subNumeroFinca</b>
+		</field>
+		<field>
+			<a>bien.idufir</a>
+			<b>idufir</b>
+		</field>
+  	</mapping>
+	
+  	<mapping map-null="false">
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CORPMERMCeseNombramiento.Modelo1</class-b>
+		<field>
+			<a>reunion</a>
+			<b>reunionJunta</b>
+		</field>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFechaCertificacion.lugar</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>lugaryFechaCertificacion.fecha</b>
+		</field>
+		<field>
+  			<a>certificantes</a>
+  			<b is-accessible="true">certificantes.certificante</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CORPMERMCeseNombramiento.Modelo2</class-b>
+		<field>
+			<a>reunion</a>
+			<b>reunionJunta</b>
+		</field>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFecha.lugar</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>lugaryFecha.fecha</b>
+		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CORPMERMCeseNombramiento.Modelo3</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFechaCertificacion.lugar</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>lugaryFechaCertificacion.fecha</b>
+		</field>
+		<field>
+  			<a>certificantes</a>
+  			<b is-accessible="true">certificantes.certificante</b>
+  		</field>
+  		<field>
+			<a>reunion.porcentajeCapital</a>
+			<b>acuerdos.porcentajeCapitalAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion.porcentajeSocios</a>
+			<b>acuerdos.porcentajeSocioslAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion.porcentajeSocios</a>
+			<b>acuerdos.porcentajeSocioslAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion</a>
+			<b>juntaAccionistas.reunionJunta</b>
+		</field>
+		<field>
+			<a>reunion.convocatoria</a>
+			<b>juntaAccionistas.convocatoria</b>
+		</field>
+		<field>
+			<a>reunion.medios</a>
+			<b is-accessible="true">juntaAccionistas.convocatoria.medios.medioPublicacion</b>
+		</field>
+		<field>
+			<a>reunion.formaAproActa</a>
+			<b>aprobacionActa.forma</b>
+		</field>
+		<field>
+			<a>reunion.fechaAproActa</a>
+			<b>aprobacionActa.fecha</b>
+		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CORPMERMCeseNombramiento.Modelo4</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFechaCertificacion.lugar</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>lugaryFechaCertificacion.fecha</b>
+		</field>
+		<field>
+  			<a>certificantes</a>
+  			<b is-accessible="true">certificantes.certificante</b>
+  		</field>
+  		<field>
+			<a>reunion.porcentajeCapital</a>
+			<b>acuerdos.porcentajeCapitalAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion.porcentajeSocios</a>
+			<b>acuerdos.porcentajeSocioslAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion.porcentajeSocios</a>
+			<b>acuerdos.porcentajeSocioslAcuerdo</b>
+		</field>
+		<field>
+			<a>reunion</a>
+			<b>juntaSocios.reunionJunta</b>
+		</field>
+		<field>
+			<a>reunion.convocatoria</a>
+			<b>juntaSocios.convocatoria</b>
+		</field>
+		<field>
+			<a>reunion.contenidoConvo</a>
+			<b>juntaSocios.contenidoConvocatoria</b>
+		</field>
+		<field>
+			<a>reunion.medios</a>
+			<b is-accessible="true">juntaSocios.convocatoria.medios.medioPublicacion</b>
+		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CORPMERMCeseNombramiento.Modelo5</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFechaCertificacion.lugar</b>
+		</field>
+		<field>
+			<a>fechaCertif</a>
+			<b>lugaryFechaCertificacion.fecha</b>
+		</field>
+		<field>
+  			<a>certificantes</a>
+  			<b is-accessible="true">certificantes.certificante</b>
+  		</field>
+  		<field>
+			<a>reunion.fecha</a>
+			<b>consejoAdministracion.reunionConsejo.lugaryFechaCelebracion.fecha</b>
+		</field>
+		<field>
+			<a>reunion.lugar</a>
+			<b>consejoAdministracion.reunionConsejo.lugaryFechaCelebracion.lugar</b>
+		</field>
+		<field>
+			<a>asistentes</a>
+			<b is-accessible="true">consejoAdministracion.reunionConsejo.asistentes.asistente</b>
+		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.AsistenteDto</class-a>
+  		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.AsistentesType.Asistente</class-b>
+  		<field>
+  			<a>descCargo</a>
+  			<b>cargo</b>
+  		</field>
+  		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>identificacion.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nombre</a>
+  			<b>identificacion.nombre</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>identificacion.apellidos</b>
+  		</field>
+  		<field>
+  			<a>tipoDocumento</a>
+  			<b>identificacion.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nif</a>
+  			<b>identificacion.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.AcuerdoDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CeseType</class-b>
+		<field>
+			<a>descCargo</a>
+			<b>cargo</b>
+		</field>
+		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>identificacion.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nombre</a>
+  			<b>identificacion.nombre</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>identificacion.apellidos</b>
+  		</field>
+  		<field>
+  			<a>tipoDocumento</a>
+  			<b>identificacion.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nif</a>
+  			<b>identificacion.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.MedioConvocatoriaDto</class-a>
+  		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.MediosType.MedioPublicacion</class-b>
+  		<field>
+  			<a>medio.descMedio</a>
+  			<b>descripcion</b>
+  		</field>
+  		<field>
+  			<a>fechaPublicacion</a>
+  			<b>fecha</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ConvocatoriaDto</class-a>
+  		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.ConvocatoriaType</class-b>
+  		<field>
+  			<a>numeroConvo</a>
+  			<b>numeroConvocatoria</b>
+  		</field>
+  		<field>
+  			<a>porcentajeCapital</a>
+  			<b>porcentajeCapitalAsistente</b>
+  		</field>
+  		<field>
+  			<a>porcentajeSocios</a>
+  			<b>porcentajeSociosAsistentes</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.CertifCargoDto</class-a>
+  		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.CertificanteType</class-b>
+  		<field>
+  			<a>descCargo</a>
+  			<b>cargo</b>
+  		</field>
+  		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>identificacion.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nombre</a>
+  			<b>identificacion.nombre</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>identificacion.apellidos</b>
+  		</field>
+  		<field>
+  			<a>tipoDocumento</a>
+  			<b>identificacion.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nif</a>
+  			<b>identificacion.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+  	</mapping>
+  	
+  	<mapping>
+  		<class-a>org.gestoresmadrid.oegamComun.persona.view.dto.PersonaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.SociedadType</class-b>
+		<field>
+			<a>apellido1RazonSocial</a>
+			<b>denominacionSocial</b>
+		</field>
+		<field>
+			<a>nif</a>
+			<b>cif</b>
+		</field>
+  	</mapping>
+  	
+  	 <mapping>
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ReunionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.ReunionJuntaType</class-b>
+		<field>
+			<a>tipoReunion</a>
+			<b>tipo</b>
+		</field>
+		<field>
+			<a>lugar</a>
+			<b>lugaryFechaCelebracion.lugar</b>
+		</field>
+		<field>
+			<a>fecha</a>
+			<b>lugaryFechaCelebracion.fecha</b>
+		</field>
+  	</mapping>
+  	
+  	<mapping map-null="false">
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.AcuerdoDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.corpme.NombramientoType</class-b>
+		<field>
+			<a>descCargo</a>
+			<b>cargo</b>
+		</field>
+		<field>
+  			<a>tipoPersonalidad</a>
+  			<b>identificacion.tipoPersonalidad</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nombre</a>
+  			<b>identificacion.nombre</b>
+  		</field>
+  		<field>
+  			<a>apellidos</a>
+  			<b>identificacion.apellidos</b>
+  		</field>
+  		<field>
+  			<a>tipoDocumento</a>
+  			<b>identificacion.identificadorAdministrativo.tipo</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.personaCargo.nif</a>
+  			<b>identificacion.identificadorAdministrativo.numeroDocumento</b>
+  		</field>
+  		<field>
+			<a>circunstancia</a>
+			<b>circustanciasPersonales</b>
+		</field>
+  		<field>
+			<a>facultades</a>
+			<b>facultadesDelegadas</b>
+		</field>
+		<field>
+			<a>aceptacion</a>
+			<b>aceptacionCargo</b>
+		</field>
+  		<field custom-converter-id="dozerSINOConverter">
+  			<a>sociedadCargo.indefinido</a>
+			<b>duracionCargo.indefinida</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.meses</a>
+			<b>duracionCargo.duracion.meses</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.anios</a>
+			<b>duracionCargo.duracion.años</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.fechaInicio</a>
+			<b>duracionCargo.duracion.periodo.inicio</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.fechaFin</a>
+			<b>duracionCargo.duracion.periodo.fin</b>
+  		</field>
+  		<field>
+  			<a>sociedadCargo.listaEjercicios</a>
+			<b>duracionCargo.duracion.ejercicios.ejercicio</b>
+  		</field>
+  	</mapping>
+  	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.beans.ConsultaSociedadesBean</class-a>
+		<class-b>org.gestoresmadrid.oegamComun.persona.view.dto.PersonaDto</class-b>
+		<field>
+			<a>denominacionSocial</a>
+			<b>apellido1RazonSocial</b>
+		</field>
+		<field>
+			<a>cifSociedad</a>
+			<b>nif</b>
+		</field>
+	</mapping>
+	
+	<!-- FINANCIADORES -->
+	
+		
+		<!-- ClausulaType -->
+	<mapping  date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ClausulaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ClausulaType</class-b>		
+		<field>
+			<a>numero</a>
+			<b>numeroClausula</b>
+		</field>
+		<field>
+			<a>nombre</a>
+			<b>nombreClausula</b>
+		</field>
+		<field>
+			<a>descripcion</a>
+			<b>descripcionClausula</b>
+		</field>
+	</mapping>
+	
+	<!--  -->
+	
+	<!-- PactoType -->
+	<mapping  date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.PactoDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.PactoType</class-b>
+		<field>
+			<a>tipoPacto</a>
+			<b>tipoPacto</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>pactado</a>
+			<b>pactadoSN</b>
+		</field>		
+	</mapping>
+	<!--  -->
+	
+	<!-- DatosFinancierosFinanciacionType -->
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="financiacionDatosFinancieros">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatosFinancierosDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.DatosFinancierosFinanciacionType</class-b>
+		<field>
+			<a>unidadCuenta</a>
+			<b>unidadCuenta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPrecioCompraventa</a>
+			<b>importePrecioCompraventa</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impDesembolsoIni</a>
+			<b>importeDesembolsoInicial</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCapitalPrestamo</a>
+			<b>importeCapitalPrestamo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impTotalPrestamo</a>
+			<b>importeTotalPrestamo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>imtIntereses</a>
+			<b>importeIntereses</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tipoDeudor</a>
+			<b>tipoDeudor</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tipoInteresNominalAnual</a>
+			<b>tipoInteresNominalAnual</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>interesesDemora</a>
+			<b>interesesDemora</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>numeroMeses</a>
+			<b>numeroMeses</b>
+		</field>
+		<field>
+			<a>fecUltVencimiento</a>
+			<b>fechaUltimoVencimiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impImpuestoMatriculacion</a>
+			<b>importeImpuestoMatriculacion</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCancelacionRdLd</a>
+			<b>importeCancelacionRDLD</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impTotalAdeudado</a>
+			<b>importeTotalAdeudado</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impDerechoDes</a>
+			<b>importeDerechoDesistimiento</b>
+		</field>
+		
+		
+		<field>
+			<a>fecRevision</a>
+			<b>variabilidadTipoInteres.fechaRevision</b>
+		</field>
+		<field>
+			<a>periodoRevision</a>
+			<b>variabilidadTipoInteres.periodoRevision</b>
+		</field>
+		<field>
+			<a>tipoInteresRef</a>
+			<b>variabilidadTipoInteres.tipoInteresReferencia</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>diferencialFijo</a>
+			<b>variabilidadTipoInteres.diferencialFijo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>topeMaxIntNominal</a>
+			<b>variabilidadTipoInteres.topeMaximoInteresNominal</b>
+		</field>		
+		<field>
+			<a>entidadPago</a>
+			<b>domicilioPago.entidadPago</b>
+		</field>
+		<field>
+			<a>domicilioEntidadPago</a>
+			<b>domicilioPago.domicilioEntidadPago</b>
+		</field>
+		<field>
+			<a>codMunicipioPago</a>
+			<b>domicilioPago.municipio</b>
+		</field>
+		<field>
+			<a>codProvinciaPago</a>
+			<b>domicilioPago.provincia</b>
+		</field>
+		<field>
+			<a>cccPago</a>
+			<b>domicilioPago.numeroCuentaCorriente</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentajeTaePago</a>
+			<b>domicilioPago.porcentajeTAE</b>
+		</field>
+	</mapping>
+	<!--  -->
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="financiacionReconocimientoDeuda">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ReconocimientoDeudaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ReconocimientoDeudaFinanciacionType</class-b>
+		
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impReconocido</a>
+			<b>importeReconocido</b>
+		</field>
+		<field>
+			<a>numPlazos</a>
+			<b>numeroPlazos</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPlazos</a>
+			<b>importePlazos</b>
+		</field>
+	</mapping>	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="financiacionComisiones">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ComisionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ComisionType</class-b>
+		<field>
+			<a>tipoComision</a>
+			<b>tipoComision</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentaje</a>
+			<b>porcentaje</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importeMinimo</a>
+			<b>importeMinimo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importeMaximo</a>
+			<b>importeMaximo</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>financiado</a>
+			<b>financiado</b>
+		</field>
+		<field>
+			<a>condicionAplicacion</a>
+			<b>condicionAplicacion</b>
+		</field>			
+	</mapping>
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="financiacionOtroImporte">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.OtroImporteDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.OtroImporteType</class-b>
+		<field>
+			<a>tipoOtroImporte</a>
+			<b>tipoOtroImporte</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importe</a>
+			<b>importe</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentaje</a>
+			<b>porcentaje.porcentaje</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentajeBase</a>
+			<b>porcentaje.base</b>
+		</field>
+		<field>
+			<a>observaciones</a>
+			<b>observaciones</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>condicionante</a>
+			<b>condicionante</b>
+		</field>
+			
+	</mapping>
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="financiacionPlazo">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.CuadroAmortizacionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.PlazoFinanciacionType</class-b>
+		<field>
+			<a>fechaVencimiento</a>
+			<b>fechaVencimiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPlazo</a>
+			<b>importePlazo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCapitalAmortizado</a>
+			<b>importeCapitalAmortizado</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impInteresesPlazo</a>
+			<b>importeInteresesPlazo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impInteresDevengado</a>
+			<b>intsDevengadosIncorpAlCapital</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCapitalPendiente</a>
+			<b>importeCapitalPendiente</b>
+		</field>
+	</mapping>
+	
+	
+	<!-- FirmaType -->
+	<mapping date-format="dd/MM/yyyy" map-id="financiacionFirma">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatoFirmaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.FirmaType</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugarFirma</b>
+		</field>
+		<field>
+			<a>fecFirma</a>
+			<b>fechaFirma</b>
+		</field>
+		<field>
+			<a>tipoIntervencion</a>
+			<b>tipoIntervencion</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>derechoDes</a>
+			<b>derechoDesistimiento</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>consumidor</a>
+			<b>consumidor</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>informado</a>
+			<b>informado</b>
+		</field>
+		<field>
+			<a>tipoFirma</a>
+			<b>tipoFirma</b>
+		</field>		
+	</mapping>
+	
+	<!--  -->
+	
+	
+	<!-- ObjetoFinanciadoType -->
+	<mapping  date-format="dd/MM/yyyy" map-id="financiacionObjetoFinanciado">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.PropiedadDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ObjetoFinanciadoType</class-b>
+		<field>
+			<a>categoria</a>
+			<b>desBienMueble.categoria</b>
+		</field>
+		
+		<field>
+			<a>vehiculo.tipo</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].tipo</b>
+			 <b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.marca</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].marca</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.modelo</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].modelo</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.grupo</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].grupo</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.matricula</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].matricula</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.bastidor</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].bastidor</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		<field>
+			<a>vehiculo.nive</a>
+			<b>desBienMueble.datosCategoria.vehiculo[0].nive</b>
+			<b-deep-index-hint>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VehiculoType</b-deep-index-hint>   
+		</field>
+		
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>valor</a>
+			<b>valor.valorContado</b>
+		</field>
+		<field>
+			<a>unidadCuenta</a>
+			<b>valor.unidadCuenta</b>
+		</field>
+	</mapping>
+	<!--  -->
+	
+	<!-- VendedorType -->
+	<mapping date-format="dd/MM/yyyy"  map-id="financiacionVendedor">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.IntervinienteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.VendedorType</class-b>
+		<field  custom-converter-id="dozerTipoPersonaRegistradoresConverter">
+			<a>persona.tipoPersona</a>
+			<b>idenSujeto.tipoPersona</b>
+		</field>
+		<field>
+			<a>nif</a>
+			<b>idenSujeto.nifCif</b>
+		</field>
+		<field>
+			<a>persona.nombre</a>
+			<b>idenSujeto.nombre</b>
+		</field>
+		<field>
+			<a>persona.apellido1RazonSocial</a>
+			<b>idenSujeto.apellidos</b>
+		</field>
+		
+		<!--  -->
+		<!-- DomicilioINEType -->
+		<field>
+			<a>direccion.pais</a>
+			<b>domicilio.pais</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.regionExtranjera</a>
+			<b>domicilio.estadoRegionProvinciaExtranjera</b>
+		</field>
+		<field>
+			<a>direccion.idProvincia</a>
+			<b>domicilio.codProvincia</b>
+		</field>
+		<field>
+			<a>direccion.idMunicipio</a>
+			<b>domicilio.codMunicipio</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.pueblo</a>
+			<b>domicilio.entidadLocalMenor</b>
+		</field>
+		<field>
+			<a>direccion.idTipoVia</a>
+			<b>domicilio.codTipoVia</b>
+		</field>
+		<field>
+			<a>direccion.nombreVia</a>
+			<b>domicilio.nombreVia</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalTagVacioConverter">
+			<a>direccion.km</a>
+			<b>domicilio.puntoKilometrico</b>
+		</field>
+		<field>
+			<a>direccion.numero</a>
+			<b>domicilio.numero</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.numeroBis</a>
+			<b>domicilio.numeroBis</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalTagVacioConverter">
+			<a>direccion.numLocal</a>
+			<b>domicilio.portal</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.bloque</a>
+			<b>domicilio.bloque</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.escalera</a>
+			<b>domicilio.escalera</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.planta</a>
+			<b>domicilio.planta</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.puerta</a>
+			<b>domicilio.puerta</b>
+		</field>
+		<field>
+			<a>direccion.codPostal</a>
+			<b>domicilio.codigoPostal</b>
+		</field>
+	</mapping>
+	
+	<!-- FIN FINANCIADORES -->
+	
+	<!-- RENTING -->
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="rentingReconocimientoDeuda">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ReconocimientoDeudaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ReconocimientoDeudaLeasingType</class-b>
+		
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impReconocido</a>
+			<b>importeReconocido</b>
+		</field>
+		<field>
+			<a>numPlazos</a>
+			<b>numeroPlazos</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPlazos</a>
+			<b>importePlazos</b>
+		</field>
+		<field  custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>diaVencimiento</a>
+			<b>diaMesVencimiento</b>
+		</field>
+		<field>
+			<a>fecPrimerVencimiento</a>
+			<b>fechaPrimerVencimiento</b>
+		</field>
+		<field  custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tiempoEntrePagos</a>
+			<b>tiempoEntrePagos</b>
+		</field>
+	</mapping>	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="rentingComisiones">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ComisionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ComisionType</class-b>
+		<field>
+			<a>tipoComision</a>
+			<b>tipoComision</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentaje</a>
+			<b>porcentaje</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importeMinimo</a>
+			<b>importeMinimo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importeMaximo</a>
+			<b>importeMaximo</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>financiado</a>
+			<b>financiado</b>
+		</field>
+		<field>
+			<a>condicionAplicacion</a>
+			<b>condicionAplicacion</b>
+		</field>			
+	</mapping>
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="rentingOtroImporte">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.OtroImporteDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.OtroImporteType</class-b>
+		<field>
+			<a>tipoOtroImporte</a>
+			<b>tipoOtroImporte</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importe</a>
+			<b>importe</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentaje</a>
+			<b>porcentaje.porcentaje</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentajeBase</a>
+			<b>porcentaje.base</b>
+		</field>
+		<field>
+			<a>observaciones</a>
+			<b>observaciones</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>condicionante</a>
+			<b>condicionante</b>
+		</field>
+			
+	</mapping>
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="rentingPlazo">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.CuadroAmortizacionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.PlazoFinanciacionType</class-b>
+		<field>
+			<a>fechaVencimiento</a>
+			<b>fechaVencimiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPlazo</a>
+			<b>importePlazo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCapitalAmortizado</a>
+			<b>importeCapitalAmortizado</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impInteresesPlazo</a>
+			<b>importeInteresesPlazo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impInteresDevengado</a>
+			<b>intsDevengadosIncorpAlCapital</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCapitalPendiente</a>
+			<b>importeCapitalPendiente</b>
+		</field>
+	</mapping>
+	
+	
+	<!-- DatosFinancierosRentingType -->
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="rentingDatosFinancieros">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatosFinancierosDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.DatosFinancierosRentingType</class-b>
+		<field>
+			<a>unidadCuenta</a>
+			<b>unidadCuenta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impTotalArrend</a>
+			<b>importeTotalArrendamiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impOpcionCompra</a>
+			<b>importeOpcionCompra</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impEntregaCuenta</a>
+			<b>importeEntregaCuenta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impFianza</a>
+			<b>importeFianza</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>numeroMeses</a>
+			<b>numeroMeses</b>
+		</field>
+		<field>
+			<a>fecUltVencimiento</a>
+			<b>fechaUltimoVencimiento</b>
+		</field>
+		<field>
+			<a>fecRevision</a>
+			<b>variabilidadTipoInteres.fechaRevision</b>
+		</field>
+		<field>
+			<a>periodoRevision</a>
+			<b>variabilidadTipoInteres.periodoRevision</b>
+		</field>
+		<field>
+			<a>tipoInteresRef</a>
+			<b>variabilidadTipoInteres.tipoInteresReferencia</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>diferencialFijo</a>
+			<b>variabilidadTipoInteres.diferencialFijo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>topeMaxIntNominal</a>
+			<b>variabilidadTipoInteres.topeMaximoInteresNominal</b>
+		</field>		
+		<field>
+			<a>entidadPago</a>
+			<b>domicilioPago.entidadPago</b>
+		</field>
+		<field>
+			<a>domicilioEntidadPago</a>
+			<b>domicilioPago.domicilioEntidadPago</b>
+		</field>
+		<field>
+			<a>codMunicipioPago</a>
+			<b>domicilioPago.municipio</b>
+		</field>
+		<field>
+			<a>codProvinciaPago</a>
+			<b>domicilioPago.provincia</b>
+		</field>
+		<field>
+			<a>cccPago</a>
+			<b>domicilioPago.numeroCuentaCorriente</b>
+		</field>
+	</mapping>
+	<!--  -->
+	
+	
+	<!-- FirmaType -->
+	<mapping date-format="dd/MM/yyyy"  map-id="rentingFirma">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatoFirmaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.FirmaType</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugarFirma</b>
+		</field>
+		<field>
+			<a>fecFirma</a>
+			<b>fechaFirma</b>
+		</field>
+		<field>
+			<a>tipoIntervencion</a>
+			<b>tipoIntervencion</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>derechoDes</a>
+			<b>derechoDesistimiento</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>consumidor</a>
+			<b>consumidor</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>informado</a>
+			<b>informado</b>
+		</field>
+		<field>
+			<a>tipoFirma</a>
+			<b>tipoFirma</b>
+		</field>		
+	</mapping>
+	
+	<!--  -->
+	
+	<!-- IdentificacionContratoType -->
+	<mapping date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegRbmDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.IdentificacionContratoType</class-b>
+		<field>
+			<a>numeroOperacion</a>
+			<b>numeroOperacion</b>
+		</field>
+		<field>
+			<a>nombreAsociacion</a>
+			<b>nombreAsociacion</b>
+		</field>
+		<field>
+			<a>numeroEjemplar</a>
+			<b>numeroEjemplar</b>
+		</field>
+		<field>
+			<a>modeloContrato</a>
+			<b>modeloContrato</b>
+		</field>
+		<field>
+			<a>nombreDocumento</a>
+			<b>nombreDocumento</b>
+		</field>
+		<field>
+			<a>aprobadoDgrn</a>
+			<b>aprobadoDGRN</b>
+		</field>
+		<field>
+			<a>numeroImpreso</a>
+			<b>numeroImpreso</b>
+		</field>
+	</mapping>
+	<!--  -->
+	
+	<!-- ObjetoFinanciadoType -->
+	<mapping date-format="dd/MM/yyyy"  map-id="rentingObjetoFinanciado">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.PropiedadDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ObjetoFinanciadoType</class-b>
+		<field>
+			<a>categoria</a>
+			<b>desBienMueble.categoria</b>
+		</field>
+		<field>
+			<a>vehiculo.tipo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.tipo</b>
+		</field>
+		<field>
+			<a>vehiculo.marca</a>
+			<b>desBienMueble.datosCategoria.vehiculo.marca</b>
+		</field>
+		<field>
+			<a>vehiculo.modelo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.modelo</b>
+		</field>
+		<field>
+			<a>vehiculo.grupo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.grupo</b>
+		</field>
+		<field>
+			<a>vehiculo.matricula</a>
+			<b>desBienMueble.datosCategoria.vehiculo.matricula</b>
+		</field>
+		<field>
+			<a>vehiculo.bastidor</a>
+			<b>desBienMueble.datosCategoria.vehiculo.bastidor</b>
+		</field>
+		<field>
+			<a>vehiculo.nive</a>
+			<b>desBienMueble.datosCategoria.vehiculo.nive</b>
+		</field>
+		
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>valor</a>
+			<b>valor.valorContado</b>
+		</field>
+		<field>
+			<a>unidadCuenta</a>
+			<b>valor.unidadCuenta</b>
+		</field>
+	
+		
+	
+	</mapping>
+	
+	
+	<!--  -->
+	
+	<!-- FIN RENTING -->
+	
+	<!-- LEASING -->
+	
+	
+	<mapping map-id="telefonos">
+		<class-a>org.gestoresmadrid.oegamComun.persona.view.dto.PersonaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.IntervinienteType.Telefonos</class-b>		
+		<field>
+			<a>telefonos</a>
+			<b>telefono.numero</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="leasingProveedor">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.IntervinienteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ProveedorType</class-b>
+		<field  custom-converter-id="dozerTipoPersonaRegistradoresConverter">
+			<a>persona.tipoPersona</a>
+			<b>idenSujeto.tipoPersona</b>
+		</field>
+		<field>
+			<a>nif</a>
+			<b>idenSujeto.nifCif</b>
+		</field>
+		<field>
+			<a>persona.nombre</a>
+			<b>idenSujeto.nombre</b>
+		</field>
+		<field>
+			<a>persona.apellido1RazonSocial</a>
+			<b>idenSujeto.apellidos</b>
+		</field>
+		
+		<!--  -->
+		<!-- DomicilioINEType -->
+		<field>
+			<a>direccion.pais</a>
+			<b>domicilio.pais</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.regionExtranjera</a>
+			<b>domicilio.estadoRegionProvinciaExtranjera</b>
+		</field>
+		<field>
+			<a>direccion.idProvincia</a>
+			<b>domicilio.codProvincia</b>
+		</field>
+		<field>
+			<a>direccion.idMunicipio</a>
+			<b>domicilio.codMunicipio</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.pueblo</a>
+			<b>domicilio.entidadLocalMenor</b>
+		</field>
+		<field>
+			<a>direccion.idTipoVia</a>
+			<b>domicilio.codTipoVia</b>
+		</field>
+		<field>
+			<a>direccion.nombreVia</a>
+			<b>domicilio.nombreVia</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalTagVacioConverter">
+			<a>direccion.km</a>
+			<b>domicilio.puntoKilometrico</b>
+		</field>
+		<field >
+			<a>direccion.numero</a>
+			<b>domicilio.numero</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.numeroBis</a>
+			<b>domicilio.numeroBis</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalTagVacioConverter">
+			<a>direccion.numLocal</a>
+			<b>domicilio.portal</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.bloque</a>
+			<b>domicilio.bloque</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.escalera</a>
+			<b>domicilio.escalera</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.planta</a>
+			<b>domicilio.planta</b>
+		</field>
+		<field custom-converter-id="dozerTagVacioConverter">
+			<a>direccion.puerta</a>
+			<b>domicilio.puerta</b>
+		</field>
+		<field>
+			<a>direccion.codPostal</a>
+			<b>domicilio.codigoPostal</b>
+		</field>		
+	</mapping>
+	
+	<!--  -->
+	
+	
+	<!-- DatosFinancierosRentingType -->
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="leasingDatosFinancieros">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatosFinancierosDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.DatosFinancierosLeasingType</class-b>
+		<field>
+			<a>unidadCuenta</a>
+			<b>unidadCuenta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impNetoMat</a>
+			<b>importeNetoMaterial</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impTotalArrend</a>
+			<b>importeTotalArrendamiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impOpcionCompra</a>
+			<b>importeOpcionCompra</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impEntregaCuenta</a>
+			<b>importeEntregaCuenta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impFianza</a>
+			<b>importeFianza</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tipoInteresNominalAnual</a>
+			<b>tipoInteresNominalAnual</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tasaAnualEquiv</a>
+			<b>tasaAnualEquivalente</b>
+		</field>
+		<field  custom-converter-id="dozerBigDecimalToStringConverter">
+			<a>numeroMeses</a>
+			<b>numeroMeses</b>
+		</field>
+		<field>
+			<a>fecUltVencimientoDatFinancieros</a>
+			<b>fechaUltimoVencimiento</b>
+		</field>
+		
+		
+		<field>
+			<a>fecRevisionDatFinancieros</a>
+			<b>variabilidadTipoInteres.fechaRevision</b>
+		</field>
+		<field>
+			<a>periodoRevision</a>
+			<b>variabilidadTipoInteres.periodoRevision</b>
+		</field>
+		<field>
+			<a>tipoInteresRef</a>
+			<b>variabilidadTipoInteres.tipoInteresReferencia</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>diferencialFijo</a>
+			<b>variabilidadTipoInteres.diferencialFijo</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>topeMaxIntNominal</a>
+			<b>variabilidadTipoInteres.topeMaximoInteresNominal</b>
+		</field>		
+		
+		<field>
+			<a>entidadPago</a>
+			<b>domicilioPago.entidadPago</b>
+		</field>
+		<field>
+			<a>domicilioEntidadPago</a>
+			<b>domicilioPago.domicilioEntidadPago</b>
+		</field>
+		<field>
+			<a>codMunicipioPago</a>
+			<b>domicilioPago.municipio</b>
+		</field>
+		<field>
+			<a>codProvinciaPago</a>
+			<b>domicilioPago.provincia</b>
+		</field>
+		<field>
+			<a>cccPago</a>
+			<b>domicilioPago.numeroCuentaCorriente</b>
+		</field>
+	</mapping>
+	<!--  -->
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="leasingOtroImporte">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.OtroImporteDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.OtroImporteType</class-b>
+		<field>
+			<a>tipoOtroImporte</a>
+			<b>tipoOtroImporte</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>importe</a>
+			<b>importe</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentaje</a>
+			<b>porcentaje.porcentaje</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>porcentajeBase</a>
+			<b>porcentaje.base</b>
+		</field>
+		<field>
+			<a>observaciones</a>
+			<b>observaciones</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>condicionante</a>
+			<b>condicionante</b>
+		</field>
+			
+	</mapping>
+	
+	
+	
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="leasingReconocimientoDeuda">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.ReconocimientoDeudaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ReconocimientoDeudaLeasingType</class-b>
+		
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impReconocido</a>
+			<b>importeReconocido</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>numPlazos</a>
+			<b>numeroPlazos</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>diaVencimiento</a>
+			<b>diaMesVencimiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impPlazos</a>
+			<b>importePlazos</b>
+		</field>
+		<field>
+			<a>fecPrimerVencimiento</a>
+			<b>fechaPrimerVencimiento</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>tiempoEntrePagos</a>
+			<b>tiempoEntrePagos</b>
+		</field>
+	</mapping>	
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false" map-id="leasingPlazo">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.CuadroAmortizacionDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.PlazoLeasingType</class-b>
+		<field>
+			<a>fechaVencimiento</a>
+			<b>fechaVencimiento</b>
+		</field>
+
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impRecupCoste</a>
+			<b>importeRecuperacionCoste</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impRecupCostePte</a>
+			<b>importeRecuperacionCostePendiente</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCargaFinan</a>
+			<b>importeCargaFinanciera</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impCuotaNeta</a>
+			<b>importeCuotaNeta</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impImpuesto</a>
+			<b>importeImpuesto</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter"> 
+			<a>impTotalCuota</a>
+			<b>importeTotalCuota</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impDistiEntreCuenta</a>
+			<b>importeDistribucionEntregaCuenta</b>
+		</field>
+	</mapping>
+		
+	<!--  -->
+	<!-- FirmaType -->
+	<mapping date-format="dd/MM/yyyy" map-id="leasingFirma">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatoFirmaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.FirmaType</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugarFirma</b>
+		</field>
+		<field>
+			<a>fecFirma</a>
+			<b>fechaFirma</b>
+		</field>
+		<field>
+			<a>tipoIntervencion</a>
+			<b>tipoIntervencion</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>derechoDes</a>
+			<b>derechoDesistimiento</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>consumidor</a>
+			<b>consumidor</b>
+		</field>
+		<field custom-converter-id="dozerSINORegistradoresConverter">
+			<a>informado</a>
+			<b>informado</b>
+		</field>
+		<field>
+			<a>tipoFirma</a>
+			<b>tipoFirma</b>
+		</field>		
+	</mapping>
+	
+	<!--  -->
+	
+	
+	<mapping date-format="dd/MM/yyyy" map-null="false">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.EstablecimientoRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.EstablecimientoMercantilType</class-b>
+		<field>
+			<a>nombreEstablecimiento</a>
+			<b>nombreEstablecimiento</b>
+		</field>
+		<field>
+			<a>claseEstablecimiento</a>
+			<b>claseEstablecimiento</b>
+		</field>
+		<field>
+			<a>numeroEstablecimiento</a>
+			<b>numeroEstablecimiento</b>
+		</field>
+		<field>
+			<a>pais</a>
+			<b>ubicacion.domicilio.pais</b>
+		</field>
+		<field>
+			<a>regionProvinciaExtranjera</a>
+			<b>ubicacion.domicilio.estadoRegionProvinciaExtranjera</b>
+		</field>
+		<field>
+			<a>codProvincia</a>
+			<b>ubicacion.domicilio.codProvincia</b>
+		</field>
+		<field>
+			<a>codMunicipio</a>
+			<b>ubicacion.domicilio.codMunicipio</b>
+		</field>
+		<field>
+			<a>entidadLocalMenor</a>
+			<b>ubicacion.domicilio.entidadLocalMenor</b>
+		</field>
+		<field>
+			<a>codTipoVia</a>
+			<b>ubicacion.domicilio.codTipoVia</b>
+		</field>
+		<field>
+			<a>nombreVia</a>
+			<b>ubicacion.domicilio.nombreVia</b>
+		</field>
+		<field>
+			<a>puntoKilometrico</a>
+			<b>ubicacion.domicilio.puntoKilometrico</b>
+		</field>
+		<field>
+			<a>numero</a>
+			<b>ubicacion.domicilio.numero</b>
+		</field>
+		<field>
+			<a>numeroBis</a>
+			<b>ubicacion.domicilio.numeroBis</b>
+		</field>
+		<field>
+			<a>portal</a>
+			<b>ubicacion.domicilio.portal</b>
+		</field>
+		<field>
+			<a>bloque</a>
+			<b>ubicacion.domicilio.bloque</b>
+		</field>
+		<field>
+			<a>escalera</a>
+			<b>ubicacion.domicilio.escalera</b>
+		</field>
+		<field>
+			<a>planta</a>
+			<b>ubicacion.domicilio.planta</b>
+		</field>
+		<field>
+			<a>puerta</a>
+			<b>ubicacion.domicilio.puerta</b>
+		</field>
+		<field>
+			<a>codigoPostal</a>
+			<b>ubicacion.domicilio.codigoPostal</b>
+		</field>
+		<field>
+			<a>lugarUbicacion</a>
+			<b>ubicacion.domicilio.lugarUbicacion</b>
+		</field>
+		<field>
+			<a>codRegistroPropiedad</a>
+			<b>ubicacion.datosRegistrales.codRegistroPropiedad</b>
+		</field>
+		<field>
+			<a>codProvinciaDatReg</a>
+			<b>ubicacion.datosRegistrales.codProvincia</b>
+		</field>
+		<field>
+			<a>codMunicipioDatReg</a>
+			<b>ubicacion.datosRegistrales.codMunicipio</b>
+		</field>
+		<field>
+			<a>seccionPropiedad</a>
+			<b>ubicacion.datosRegistrales.seccionPropiedad</b>
+		</field>
+		<field>
+			<a>numFinca</a>
+			<b>ubicacion.datosRegistrales.numFinca</b>
+		</field>
+		<field>
+			<a>numFincaBis</a>
+			<b>ubicacion.datosRegistrales.numFincaBis</b>
+		</field>
+		<field>
+			<a>numSubFinca</a>
+			<b>ubicacion.datosRegistrales.numSubFinca</b>
+		</field>
+		<field>
+			<a>idufir</a>
+			<b>ubicacion.datosRegistrales.idufir</b>
+		</field>
+		<field>
+			<a>referenciaCatastral</a>
+			<b>ubicacion.referenciaCatastral</b>
+		</field>
+	</mapping>
+	
+	
+	<!-- ObjetoFinanciadoType -->
+	<mapping date-format="dd/MM/yyyy"  map-id="leasingObjetoFinanciado">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.PropiedadDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.ObjetoLeasingType</class-b>
+		<field>
+			<a>categoria</a>
+			<b>desBienMueble.categoria</b>
+		</field>
+		<field>
+			<a>vehiculo.tipo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.tipo</b>
+		</field>
+		<field>
+			<a>vehiculo.marca</a>
+			<b>desBienMueble.datosCategoria.vehiculo.marca</b>
+		</field>
+		<field>
+			<a>vehiculo.modelo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.modelo</b>
+		</field>
+		<field>
+			<a>vehiculo.grupo</a>
+			<b>desBienMueble.datosCategoria.vehiculo.grupo</b>
+		</field>
+		<field>
+			<a>vehiculo.matricula</a>
+			<b>desBienMueble.datosCategoria.vehiculo.matricula</b>
+		</field>
+		<field>
+			<a>vehiculo.bastidor</a>
+			<b>desBienMueble.datosCategoria.vehiculo.bastidor</b>
+		</field>
+		<field>
+			<a>vehiculo.nive</a>
+			<b>desBienMueble.datosCategoria.vehiculo.nive</b>
+		</field>
+
+		 <field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impBase</a>
+			<b>precioAdquisicion.importeBase</b>
+		</field>
+		 <field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impImpuesto</a>
+			<b>precioAdquisicion.importeImpuesto</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter">
+			<a>impTotal</a>
+			<b>precioAdquisicion.importeTotal</b>
+		</field>
+		<field>
+			<a>unidadCuenta</a>
+			<b>precioAdquisicion.unidadCuenta</b>
+		</field>
+	</mapping>
+	
+
+	<!--  -->	
+	
+	<!-- FIN LEASING -->
+	
+	
+	<!-- CANCELACION -->
+	
+	<!-- FirmaSolicitanteType -->
+	<mapping date-format="dd/MM/yyyy" map-id="cancelacionFirma">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.DatoFirmaDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.FirmaSolicitanteType</class-b>
+		<field>
+			<a>lugar</a>
+			<b>lugarFirma</b>
+		</field>
+		<field>
+			<a>fecFirma</a>
+			<b>fechaFirma</b>
+		</field>		
+	</mapping>
+	
+	<!-- IdentificacionContratoInscritoType -->
+	<mapping date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegRbmDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.IdentificacionContratoInscritoType</class-b>
+		<field>
+			<a>solicitante.nif</a>
+			<b>entidadTitularSuscriptora.codigoIdentificacionFiscal</b>
+		</field>
+		<field>
+			<a>solicitante.persona.apellido1RazonSocial</a>
+			<b>entidadTitularSuscriptora.razonSocial</b>
+		</field>
+		<field>
+			<a>entidadSucesora.datRegMercantil</a>
+			<b>entidadSucesora.datosRegistralesMercantil</b>
+		</field>
+		<field>
+			<a>entidadSucesora.datRegMercantil</a>
+			<b>entidadSucesora.datosRegistralesMercantil</b>
+		</field>
+		<field>
+			<a>entidadSucesora.datRegMercantil.codRegistroMercantil</a>
+			<b>entidadSucesora.datosRegistralesMercantil.codigoRMercantil</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter"> 
+			<a>entidadSucesora.datRegMercantil.tomo</a>
+			<b>entidadSucesora.datosRegistralesMercantil.tomoRMercantil</b>
+		</field>
+		<field custom-converter-id="dozerBigDecimalToStringRegistradoresConverter"> 
+			<a>entidadSucesora.datRegMercantil.folio</a>
+			<b>entidadSucesora.datosRegistralesMercantil.folioRMercantil</b>
+		</field>
+		<field>
+			<a>entidadSucesora.datRegMercantil.numInscripcion</a>
+			<b>entidadSucesora.datosRegistralesMercantil.inscripcionRMercantil</b>
+		</field>
+		<field>
+			<a>datosInscripcion.codigoRbm</a>
+			<b>datosInscripcion.codigoRBM</b>
+		</field>
+		<field>
+			<a>compradoresArrendatarios</a>
+			<b>compradorArrendatario</b>
+		</field>
+	</mapping>
+	<!--  -->
+	
+	<!-- CompradorArrendatarioType -->
+	<mapping date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.IntervinienteRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.CompradorArrendatarioType</class-b>
+		<field>
+			<a>nif</a>
+			<b>codigoIdentificacionFiscal</b>
+		</field>
+		<field>
+			<a>persona.nombre</a>
+			<b>nombre</b>
+		</field>
+		<field>
+			<a>persona.apellido1RazonSocial</a>
+			<b>primerApellido</b>
+		</field>
+		<field>
+			<a>persona.apellido2</a>
+			<b>segundoApellido</b>
+		</field>
+		<field>
+			<a>persona.apellido1RazonSocial</a>
+			<b>razonSocial</b>
+		</field>
+	</mapping>
+	
+	<!-- FIN CANCELACION -->
+	
+	<mapping map-null="false" map-id="dozerRbmConverter">
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.TramiteRegRbmDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.corpme.CORPMEEDoc</class-b>
+		<field>
+			<a>version</a>
+			<b>datosPRIVADO.version</b>
+		</field>
+		<field>
+			<a>presentador</a>
+			<b>datosPRIVADO.envioTramite.identificacionPresentante</b>
+		</field>
+		<field>
+			<a>fechaDocumento</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.fechaDocumento</b>
+		</field>
+		<field>
+			<a>idTramiteRegistro</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.numeroDocumento</b>
+		</field>
+		<field>
+			<a>tipoEntrada</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.tipo</b>
+		</field>
+		<field>
+			<a>codigoNotaria</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.codigoNotaria</b>
+		</field>
+		<field>
+			<a>codigoNotario</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.codigoNotario</b>
+		</field>
+		<field>
+			<a>anioProtocolo</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.anyoProtocolo</b>
+		</field>
+		<field>
+			<a>protocolo</a>
+			<b>datosPRIVADO.envioTramite.identificacionDocumento.entrada.identificacionDocumentoNotarial.protocolo</b>
+		</field>
+		<field>
+			<a>destinatario</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion</b>
+		</field>
+		<field>
+			<a>formaPago</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.tipoFormaPago</b>
+		</field>
+		<field>
+			<a>identificacionCorpme</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.formaPagoFactura.usuarioAbonadoCorpme</b>
+		</field>
+		<field>
+			<a>aplicarIrpf</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.irpf.aplicarIRPF</b>
+		</field>
+		<field>
+			<a>porcentajeIrpf</a>
+			<b>datosPRIVADO.envioTramite.datosFacturacion.irpf.porcentajeIrpf</b>
+		</field>
+		<field>
+			<a>numSociedades</a>
+			<b>datosPRIVADO.envioTramite.objetos.sociedades.numeroSociedades</b>
+		</field>
+		<field>
+			<a>numInmuebles</a>
+			<b>datosPRIVADO.envioTramite.objetos.bienesInmuebles.numeroInmuebles</b>
+		</field>
+		<field>
+			<a>inmuebles</a>
+			<b is-accessible="true">datosPRIVADO.envioTramite.objetos.bienesInmuebles.bienInmueble</b>
+		</field>
+	</mapping>
+	
+	<!--BUQUES  -->
+	<mapping map-null="false">
+  		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.BuqueRegistroDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.BuqueType</class-b>
+		<field>
+			<a>nombreBuque</a>
+			<b>nombreBuque</b>
+		</field>
+		<field>
+			<a>capitaniaMaritima</a>
+			<b>matriculaBuque.matriculaMaritima.capitaniaMaritima</b>
+		</field>
+		<field>
+			<a>provinciaMaritima</a>
+			<b>matriculaBuque.matriculaMaritima.provinciaMaritima</b>
+		</field>
+		<field>
+			<a>distritoMaritimo</a>
+			<b>matriculaBuque.matriculaMaritima.distritoMaritimo</b>
+		</field>
+		<field>
+			<a>numLista</a>
+			<b>matriculaBuque.matriculaMaritima.numLista</b>
+		</field>
+		<field>
+			<a>folioInscripcion</a>
+			<b>matriculaBuque.matriculaMaritima.folioInscripcion</b>
+		</field>
+		<field>
+			<a>anioInscripcion</a>
+			<b>matriculaBuque.matriculaMaritima.anioInscripcion</b>
+		</field>
+		<field>
+			<a>matriculaFluvial</a>
+			<b>matriculaBuque.matriculaFluvial</b>
+		</field>
+		<field>
+			<a>nib</a>
+			<b>nib</b>
+		</field>
+		<field>
+			<a>pabellon</a>
+			<b>pabellon</b>
+		</field>
+		<field>
+			<a>omi</a>
+			<b>omi</b>
+		</field>
+		<field>
+			<a>tipoEmbarcacion</a>
+			<b>clasificacionBuque.tipoEmbarcacion</b>
+		</field>
+		<field>
+			<a>subTipoEmbarcacion</a>
+			<b>clasificacionBuque.subTipoEmbarcacion</b>
+		</field>
+		<field>
+			<a>eslora</a>
+			<b>dimensiones.eslora</b>
+		</field>
+		<field>
+			<a>manga</a>
+			<b>dimensiones.manga</b>
+		</field>
+		<field>
+			<a>puntal</a>
+			<b>dimensiones.puntal</b>
+		</field>
+		<field>
+			<a>caladoMaximo</a>
+			<b>dimensiones.caladoMaximo</b>
+		</field>
+		<field>
+			<a>bruto</a>
+			<b>tonelaje.bruto</b>
+		</field>
+		<field>
+			<a>registradoBruto</a>
+			<b>tonelaje.registradoBruto</b>
+		</field>
+		<field>
+			<a>neto</a>
+			<b>tonelaje.neto</b>
+		</field>
+		<field>
+			<a>registradoNeto</a>
+			<b>tonelaje.registradoNeto</b>
+		</field>
+		<field>
+			<a>desplazamiento</a>
+			<b>tonelaje.desplazamiento</b>
+		</field>
+		<field>
+			<a>pesoMuerto</a>
+			<b>tonelaje.pesoMuerto</b>
+		</field>
+		<field>
+			<a>cargaMaxima</a>
+			<b>tonelaje.cargaMaxima</b>
+		</field>
+		<field>
+			<a>astillero</a>
+			<b>casco.astillero</b>
+		</field>
+		<field>
+			<a>anioConstruccion</a>
+			<b>casco.anioConstruccion</b>
+		</field>
+		<field>
+			<a>pais</a>
+			<b>casco.pais</b>
+		</field>
+		<field>
+			<a>marca</a>
+			<b>casco.marca</b>
+		</field>
+		<field>
+			<a>modelo</a>
+			<b>casco.modelo</b>
+		</field>
+		<field>
+			<a>numSerie</a>
+			<b>casco.numSerie</b>
+		</field>
+		<field>
+			<a>motorBuques</a>
+			<b>motores</b>
+		</field>
+		<field>
+			<a>estado</a>
+			<b>estado</b>
+		</field>
+		<field>
+			<a>otrosDatos</a>
+			<b>otrosDatos</b>
+		</field>
+	</mapping>
+	
+	<!-- MotoresType -->
+	<mapping date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.view.dto.MotorBuqueDto</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.rm.rbm.MotoresType</class-b>
+		<field>
+			<a>potenciaKw</a>
+			<b>potenciaKW</b>
+		</field>
+		<field>
+			<a>potenciaCv</a>
+			<b>potenciaCV</b>
+		</field>
+	</mapping>
+	
+	<mapping date-format="dd/MM/yyyy">
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.FORMATOGA.ESCRITURA</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.TramiteRegistroVO</class-b>
+ 		<field>
+			<a>escritura.inmatriculada</a>
+			<b>inmatriculada</b>
+		</field>
+ 		<field>
+			<a>escritura.tipoOperacion</a>
+			<b>operacion</b>
+		</field>
+ 		<field>
+			<a>escritura.fechaEscritura</a>
+			<b>fechaCertif</b>
+		</field>
+ 		<field>
+			<a>escritura.referenciaPropia</a>
+			<b>refPropia</b>
+		</field>
+
+ 		<field>
+			<a>escritura.tipoPresentante</a>
+			<b>presentante</b>
+		</field>		
+ 		<field>
+			<a>escritura.tipoInscripcion.primeraEntrada</a>
+			<b>subsanacion</b>
+		</field>
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNotarial.codigoNotaria</a>
+			<b>codigoNotaria</b>
+		</field>
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNotarial.codigoNotario</a>
+			<b>codigoNotario</b>
+		</field>
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNotarial.anyoProtocolo</a>
+			<b>anioProtocolo</b>
+		</field>
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNotarial.numeroProtocolo</a>
+			<b>protocolo</b>
+		</field>
+		
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNumeroEntrada.anyo</a>
+			<b>anioRegSub</b>
+		</field>
+		<field>
+			<a>escritura.tipoInscripcion.identificacionNumeroEntrada.numero</a>
+			<b>numRegSub</b>
+		</field>
+		<field>
+			<a>destinatario.numeroDocumento</a>
+			<b>cif</b>
+		</field>
+		<field>
+			<a>destinatario</a>
+			<b>sociedad</b>
+		</field>
+		<field>
+			<a>registro.codRegistro</a>
+			<b>idRegistro</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.IdentificacionSujetoType</class-a>
+		<class-b>org.gestoresmadrid.core.personas.model.vo.PersonaVO</class-b>
+ 		<field>
+			<a>numeroDocumento</a>
+			<b>id.nif</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.DomicilioINEType</class-a>
+		<class-b>org.gestoresmadrid.core.direccion.model.vo.DireccionVO</class-b>
+ 		<field>
+			<a>estadoRegionProvinciaExtranjera</a>
+			<b>regionExtranjera</b>
+		</field>
+ 		<field>
+			<a>codProvincia</a>
+			<b>idProvincia</b>
+		</field>
+ 		<field>
+			<a>codMunicipio</a>
+			<b>idMunicipio</b>
+		</field>
+ 		<field>
+			<a>entidadLocalMenor</a>
+			<b>pueblo</b>
+		</field>
+ 		<field>
+			<a>codTipoVia</a>
+			<b>idTipoVia</b>
+		</field>
+ 		<field>
+			<a>puntoKilometrico</a>
+			<b>km</b>
+		</field>
+ 		<field>
+			<a>codigoPostal</a>
+			<b>codPostal</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.DomicilioINEType</class-a>
+		<class-b>org.gestoresmadrid.oegamComun.direccion.view.dto.DireccionDto</class-b>
+ 		<field>
+			<a>codProvincia</a>
+			<b>idProvincia</b>
+		</field>
+ 		<field>
+			<a>codMunicipio</a>
+			<b>idMunicipio</b>
+		</field>
+ 		<field>
+			<a>entidadLocalMenor</a>
+			<b>pueblo</b>
+		</field>
+ 		<field>
+			<a>codTipoVia</a>
+			<b>idTipoVia</b>
+		</field>
+ 		<field>
+			<a>puntoKilometrico</a>
+			<b>km</b>
+		</field>
+ 		<field>
+			<a>codigoPostal</a>
+			<b>codPostal</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.BienEscrituraType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.InmuebleVO</class-b>
+ 		<field>
+			<a>codigoProvincia</a>
+			<b>bien.direccion.idProvincia</b>
+		</field>
+ 		<field>
+			<a>codigoMunicipio</a>
+			<b>bien.direccion.idMunicipio</b>
+		</field>
+ 		<field>
+			<a>seccionRegistral</a>
+			<b>bien.seccion</b>
+		</field>
+		<field>
+			<a>idufir</a>
+			<b>bien.idufir</b>
+		</field>
+		<field>
+			<a>numeroFinca</a>
+			<b>bien.numeroFinca</b>
+		</field>
+ 		<field>
+			<a>subnumeroFinca</a>
+			<b>bien.subnumFinca</b>
+		</field>
+ 		<field>
+			<a>numeroFincaDuplicado</a>
+			<b>bien.numFincaDupl</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.BienEscrituraType</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.registradores.view.dto.InmuebleDto</class-b>
+ 		<field>
+			<a>codigoProvincia</a>
+			<b>bien.direccion.idProvincia</b>
+		</field>
+ 		<field>
+			<a>codigoMunicipio</a>
+			<b>bien.direccion.idMunicipio</b>
+		</field>
+ 		<field>
+			<a>seccionRegistral</a>
+			<b>bien.seccion</b>
+		</field>
+		<field>
+			<a>idufir</a>
+			<b>bien.idufir</b>
+		</field>
+		<field>
+			<a>numeroFinca</a>
+			<b>bien.numeroFinca</b>
+		</field>
+ 		<field>
+			<a>subnumeroFinca</a>
+			<b>bien.subnumFinca</b>
+		</field>
+ 		<field>
+			<a>numeroFincaDuplicado</a>
+			<b>bien.numFincaDupl</b>
+		</field>
+	</mapping>
+	<!-- IMPLEMENTED JVG/ 16/04/2018.  -->
+	
+
+	<mapping date-format="dd/MM/yyyy">
+	
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.FORMATOGA.CONTRATOFINANCIACION</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.TramiteRegRbmVO</class-b>
+		
+		<field>
+			<a>identificacion.numeroOperacion</a>
+			<b>numeroOperacion</b>
+		</field>
+		
+		<field>
+			<a>identificacion.nombreAsociacion</a>
+			<b>nombreAsociacion</b>
+		</field>
+		
+		<field>
+		    <a>identificacion.numeroEjemplar</a>
+			<b>numeroEjemplar</b>
+		</field>
+		
+		<field>
+		    <a>identificacion.modeloContrato</a>
+			<b>modeloContrato</b>
+		</field>
+		
+		<field>
+		    <a>identificacion.nombreDocumento</a>
+			<b>nombreDocumento</b>
+		</field>
+		
+		<field>
+		    <a>identificacion.aprobadoDGRN</a>
+			<b>aprobadoDGRN</b>
+		</field>
+		
+		<field>
+		    <a>identificacion.numeroImpreso</a>
+			<b>numeroImpreso</b>
+		</field>
+		
+		<field>
+		    <a>compradores.comprador</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		
+		<field>
+		    <a>compradores.comprador.representante</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		
+		
+		 <field>
+		    <a>fiadores.fiador</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		
+		 <field>
+		    <a>fiadores.fiador.representante</a>
+			<b>intervinienteRegistro</b>
+		</field>
+			
+		<field>
+		    <a>financiadores.financiador</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		
+		<field>
+		    <a>financiadores.financiador.representante</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		 
+		<field>
+		    <a>vendedores.vendedor</a>
+			<b>intervinienteRegistro</b>
+		</field>
+		
+		<field>
+		    <a>objetosFinanciados.objetoFinanciado</a>
+			<b>intervinienteRegistro</b>
+		</field>
+				
+		<field>
+		    <a>datosFinancieros.unidadCuenta</a>
+			<b>datosFinanciero.unidadCuenta</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importePrecioCompraventa</a>
+			<b>datosFinanciero.impPrecioCompraventa</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeDesembolsoInicial</a>
+			<b>datosFinanciero.impDesembolsoIni</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeCapitalPrestamo</a>
+			<b>datosFinanciero.impCapitalPrestamo</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeTotalPrestamo</a>
+			<b>datosFinanciero.impTotalPrestamo</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeIntereses</a>
+			<b>datosFinanciero.imtIntereses</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.tipoDeudor</a>
+			<b>datosFinanciero.tipoDeudor</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.tipoInteresNominalAnual</a>
+			<b>datosFinanciero.tipoInteresNominalAnual</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.interesesDemora</a>
+			<b>datosFinanciero.interesesDemora</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.numeroMeses</a>
+			<b>datosFinanciero.numeroMeses</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.fechaUltimoVencimiento</a>
+			<b>datosFinanciero.fecUltVencimiento</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeImpuestoMatriculacion</a>
+			<b>datosFinanciero.impImpuestoMatriculacion</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeCancelacionRDLD</a>
+			<b>datosFinanciero.impCancelacionRdLd</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeTotalAdeudado</a>
+			<b>datosFinanciero.impTotalAdeudado</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.importeDerechoDesistimiento</a>
+			<b>datosFinanciero.impDerechoDes</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.tipoComision</a>
+			<b>datosFinanciero.comisiones.tipoComision</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.porcentaje</a>
+			<b>datosFinanciero.comisiones.porcentaje</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.importeMinimo</a>
+			<b>datosFinanciero.comisiones.importeMinimo</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.importeMaximo</a>
+			<b>datosFinanciero.comisiones.importeMaximo</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.financiado</a>
+			<b>datosFinanciero.comisiones.financiado</b>
+		</field>
+		
+		<field>
+		    <a>datosFinancieros.comisiones.comision.condicionAplicacion</a>
+			<b>datosFinanciero.comisiones.condicionAplicacion</b>
+		</field>
+
+		<field>
+		    <a>datosFinancieros.variabilidadTipoInteres.fechaRevision</a>
+			<b>fecModificacion</b>
+		</field>															
+		
+		
+		<field>
+		    <a>condicionesParticulares.pactos.pacto.tipoPacto</a>
+			<b>pactos.tipoPacto</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.pactos.pacto.pactadoSN</a>
+			<b>pactos.pactado</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.cesion.cesionAPersonaNODeterminada</a>
+			<b>personaNoDeterminada</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.cesion.tipoCesionTercero</a>
+			<b>tipoCesionTercero</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.clausulasParticulares.clausula.numeroClausula</a>
+			<b>clausulas.numero</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.clausulasParticulares.clausula.nombreClausula</a>
+			<b>clausulas.nombre</b>
+		</field>
+		
+		<field>
+		    <a>condicionesParticulares.clausulasParticulares.clausula.descripcionClausula</a>
+			<b>clausulas.descripcion</b>
+		</field>
+		
+		<!-- 
+		<field>
+		    <a>condicionesGenerales.clausula.numeroClausula</a>
+			<b>clausulas.numero</b>
+		</field>
+		
+		<field>
+		    <a>condicionesGenerales.clausula.nombreClausula</a>
+			<b>clausulas.nombre</b>
+		</field>
+		
+		<field>
+		    <a>condicionesGenerales.clausula.descripcionClausula</a>
+			<b>clausulas.descripcion</b>
+		</field>
+		-->
+		
+		<field>
+		    <a>firmas.firma.lugarFirma</a>
+			<b>datoFirmas.lugar</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.fechaFirma</a>
+			<b>datoFirmas.fecFirma</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.tipoIntervencion</a>
+			<b>datoFirmas.tipoIntervencion</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.derechoDesistimiento</a>
+			<b>datoFirmas.derechoDes</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.consumidor</a>
+			<b>datoFirmas.consumidor</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.informado</a>
+			<b>datoFirmas.informado</b>
+		</field>
+		
+		<field>
+		    <a>firmas.firma.tipoFirma</a>
+			<b>datoFirmas.tipoFirma</b>
+		</field>
+		 
+		 
+
+	</mapping>
+	
+	<!-- IMPLEMENTED JVG. 23/05/2018. -->
+	
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.ClausulaType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.ClausulaVO</class-b>	
+	
+		<field>
+		    <a>numeroClausula</a>
+			<b>numero</b>
+		</field>
+		
+		<field>
+		    <a>nombreClausula</a>
+			<b>nombre</b>
+		</field>
+		
+		<field>
+		    <a>descripcionClausula</a>
+			<b>descripcion</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.ComisionType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.ComisionVO</class-b>	
+		
+		<field>
+		    <a>tipoComision</a>
+			<b>tipoComision</b>
+		</field>
+		
+		<field>
+		    <a>porcentaje</a>
+			<b>porcentaje</b>
+		</field>
+		
+	    <field>
+		    <a>importeMinimo</a>
+			<b>importeMinimo</b>
+		</field>
+		
+		<field>
+		    <a>importeMaximo</a>
+			<b>importeMaximo</b>
+		</field>
+		
+		<field>
+		    <a>financiado</a>
+			<b>financiado</b>
+		</field>
+		
+		 <field>
+		    <a>condicionAplicacion</a>
+			<b>condicionAplicacion</b>
+		</field>
+		
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.OtroImporteType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.OtroImporteVO</class-b>	
+	
+		<field>
+		    <a>observaciones</a>
+			<b>observaciones</b>
+		</field>
+		
+		<field>
+		    <a>condicionante</a>
+			<b>condicionante</b>
+		</field>
+		
+		<field>
+		    <a>tipoOtroImporte</a>
+			<b>tipoOtroImporte</b>
+		</field>
+		
+		<field>
+		    <a>importe</a>
+			<b>importe</b>
+		</field>
+		
+		<field>
+		    <a>porcentaje.porcentaje</a>
+			<b>porcentaje</b>
+		</field>
+		
+		<field>
+		    <a>porcentaje.base</a>
+			<b>porcentajeBase</b>
+		</field>
+
+	</mapping>
+	
+	<!-- END IMPLEMENTED. -->
+	
+	<mapping>
+<!-- IMPLEMENTED JVG. 18/05/2018. -->
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.ObjetoFinanciadoType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.PropiedadVO</class-b>		
+
+		
+	  <!--  PENDIENTE IMPLEMENTACIÓN Y VERIFICACIÓN DE DATOS xsd.
+		<field>
+			<a>desBienMueble.datosCategoria.condicionGeneral.nombrePredisponente</a>
+			<b>datosCategoria.nombrePredisponente</b>
+		</field>
+	  --> 
+	  
+	  <field>
+			<a>valor.valorContado</a>
+			<b>valor</b>
+	  </field>
+	  
+	   <field>
+			<a>valor.unidadCuenta</a>
+			<b>unidadCuenta</b>
+	  </field>	  																																																												
+	
+	
+	</mapping>
+	
+	<!-- END IMPLEMENTED. -->
+	
+	<!-- IMPLEMENTED JVG. 17/05/2018. -->
+	
+	<mapping>
+	
+	  <class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.OtrosBienesType</class-a>
+	  <class-b>org.gestoresmadrid.core.registradores.model.vo.OtrosBienesRegistroVO</class-b>
+	  
+	  <field>
+			<a>desOtrosBienes.tipo</a>
+			<b>tipo</b>
+	  </field>
+	  
+	  <field>
+			<a>desOtrosBienes.marca</a>
+			<b>marca</b>
+	  </field>
+	  
+	   <field>
+			<a>desOtrosBienes.modelo</a>
+			<b>modelo</b>
+	  </field>
+	  
+	   <field>
+			<a>desOtrosBienes.numSerie</a>
+			<b>numSerie</b>
+	  </field>
+	  
+	   <field>
+			<a>registroAdministrativo.tipoRegAdm</a>
+			<b>tipoRegAdm</b>
+	  </field>
+	  
+	  <field>
+			<a>registroAdministrativo.numRegAdm</a>
+			<b>numRegAdm</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.pais</a>
+			<b>pais</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.estadoRegionProvinciaExtranjera</a>
+			<b>regionProvinciaExtranjera</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.codProvincia</a>
+			<b>codProvincia</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.codMunicipio</a>
+			<b>codMunicipio</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.domicilio.entidadLocalMenor</a>
+			<b>entidadLocalMenor</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.domicilio.codTipoVia</a>
+			<b>codTipoVia</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.domicilio.nombreVia</a>
+			<b>nombreVia</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.puntoKilometrico</a>
+			<b>puntoKilometrico</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.numero</a>
+			<b>numero</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.numeroBis</a>
+			<b>numeroBis</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.domicilio.portal</a>
+			<b>portal</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.bloque</a>
+			<b>bloque</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.escalera</a>
+			<b>escalera</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.planta</a>
+			<b>planta</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.domicilio.puerta</a>
+			<b>puerta</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.domicilio.codigoPostal</a>
+			<b>codigoPostal</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.codRegistroPropiedad</a>
+			<b>codRegistroPropiedad</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.datosRegistrales.codProvincia</a>
+			<b>codProvincia</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.codMunicipio</a>
+			<b>codMunicipio</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.seccionPropiedad</a>
+			<b>seccionPropiedad</b>
+	  </field>
+	  
+	  <field>
+			<a>ubicacion.datosRegistrales.numFinca</a>
+			<b>numFinca</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.numFincaBis</a>
+			<b>numFincaBis</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.numSubFinca</a>
+			<b>numSubFinca</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.datosRegistrales.idufir</a>
+			<b>idufir</b>
+	  </field>
+	  
+	   <field>
+			<a>ubicacion.referenciaCatastral</a>
+			<b>referenciaCatastral</b>
+	  </field>
+	  
+	  <field>
+			<a>sociedad.nombreSociedad</a>
+			<b>nombreSociedad</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.cifSociedad</a>
+			<b>cifSociedad</b>
+	  </field>
+	  
+	  <field>
+			<a>sociedad.cnae</a>
+			<b>cnae</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.insRegMercantil.codRegMercantil</a>
+			<b>codRegMercantil</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.insRegMercantil.seccionMercantil</a>
+			<b>seccionMercantil</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.insRegMercantil.numHoja</a>
+			<b>numHoja</b>
+	  </field>
+	  
+	  <field>
+			<a>sociedad.insRegMercantil.numHojaDup</a>
+			<b>numHojaDup</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.insRegMercantil.numSubHoja</a>
+			<b>numSubHoja</b>
+	  </field>
+	  
+	   <field>
+			<a>sociedad.insRegMercantil.tomoSociedad</a>
+			<b>tomoSociedad</b>
+	  </field>
+	  
+	  <field>
+			<a>sociedad.insRegMercantil.folioSociedad</a>
+			<b>folioSociedad</b>
+	  </field>
+	  
+	  <field>
+			<a>sociedad.insRegMercantil.insSociedad</a>
+			<b>insSociedad</b>
+	  </field>
+	   
+	  <field>
+			<a>otraDescripcion</a>
+			<b>otraDescripcion</b>
+	  </field>
+
+		
+    </mapping>
+<!-- END IMPLEMENTED JVG. -->		
+
+	<mapping>
+	
+	
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.IntervinienteType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.IntervinienteRegistroVO</class-b>
+		
+		<field>
+			<a>idenSujeto.tipoPersona</a>
+			<b>tipoPersona</b>
+		</field>
+			
+		<field>
+			<a>idenSujeto.nifCif</a>
+			<b>nif</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.nombre</a>
+			<b>persona.nombre</b>
+		</field>
+	 
+	 
+		<field>
+			<a>idenSujeto.apellido1RazonSocial</a>
+			<b>persona.apellido1RazonSocial</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.apellido2</a>
+			<b>persona.apellido2</b>
+		</field>
+		
+		<field>
+			<a>domicilio</a>
+			<b>direccion</b>
+		</field>
+		
+		<field>
+			<a>correoElectronico</a>
+			<b>persona.correoElectronico</b>
+		</field>
+		
+		
+		<field>
+			<a>datosRegistralesMercantil</a>
+			<b>datRegMercantil</b>
+		</field>
+		
+		<field>
+			<a>representante</a>
+			<b>idRepresentado</b>
+		</field>
+		
+		
+		<field>
+			<a>representante.datosNotario.idenSujeto.tipoPersona</a>
+			<b>notario.tipoPersona</b>
+		</field>
+		
+		<field>
+			<a>representante.datosNotario.idenSujeto.nifCif</a>
+			<b>notario.nif</b>
+		</field>
+		
+		<field>
+			<a>representante.datosNotario.idenSujeto.nombre</a>
+			<b>notario.nombre</b>
+		</field>
+		
+		<field>
+			<a>representante.datosNotario.idenSujeto.apellido1RazonSocial</a>
+			<b>notario.apellido1</b>
+		</field>
+		
+		<field>
+			<a>representante.datosNotario.idenSujeto.apellido2</a>
+			<b>notario.apellido2</b>
+		</field>
+
+		
+		<field>
+			<a>telefono</a>
+			<b>persona.telefonos</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.IntervinienteFiadorType</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.IntervinienteRegistroVO</class-b>
+		
+		<field>
+			<a>idenSujeto.tipoPersona</a>
+			<b>tipoPersona</b>
+		</field>
+			
+		<field>
+			<a>idenSujeto.nifCif</a>
+			<b>nif</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.nombre</a>
+			<b>persona.nombre</b>
+		</field>
+	 
+		<field>
+			<a>idenSujeto.apellido1RazonSocial</a>
+			<b>persona.apellido1RazonSocial</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.apellido2</a>
+			<b>persona.apellido2</b>
+		</field>
+		
+		<field>
+			<a>domicilio</a>
+			<b>direccion</b>
+		</field>
+		
+		<field>
+			<a>correoElectronico</a>
+			<b>persona.correoElectronico</b>
+		</field>
+		
+		
+		<field>
+			<a>datosRegistralesMercantil</a>
+			<b>datRegMercantil</b>
+		</field>
+		
+		<field>
+			<a>representante.idenSujeto.tipoPersona</a>
+			<b>tipoPersona</b>
+		</field>
+		
+		<field>
+			<a>representante.idenSujeto.nifCif</a>
+			<b>nif</b>
+		</field>
+		
+		<field>
+			<a>representante.idenSujeto.nombre</a>
+			<b>persona.nombre</b>
+		</field>
+		
+		<field>
+			<a>representante.idenSujeto.apellido1RazonSocial</a>
+			<b>persona.apellido1RazonSocial</b>
+		</field>
+		
+		<field>
+			<a>representante.idenSujeto.apellido2</a>
+			<b>persona.apellido2</b>
+		</field>
+			
+		<field>
+			<a>telefono</a>
+			<b>persona.telefonos</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+	              
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.DatosRegistralesMercantil2Type</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.DatRegMercantilVO</class-b>
+ 		<field>
+			<a>codigoRMercantil</a>
+			<b>codRegistroMercantil</b>
+		</field>
+		
+		<field>
+			<a>tomoRMercantil</a>
+			<b>tomo</b>
+		</field>
+		
+		<field>
+			<a>libroRMercantil</a>
+			<b>libro</b>
+		</field>
+		
+		<field>
+			<a>folioRMercantil</a>
+			<b>folio</b>
+		</field>
+		
+		<field>
+			<a>hojaRMercantil</a>
+			<b>hoja</b>
+		</field>
+		
+		<field>
+			<a>inscripcionRMercantil</a>
+			<b>numInscripcion</b>
+		</field>
+		
+	</mapping>	
+
+	<mapping>
+	              
+		<class-a>org.gestoresmadrid.oegam2comun.registradores.importExport.jaxb.Representante2Type</class-a>
+		<class-b>org.gestoresmadrid.core.registradores.model.vo.IntervinienteRegistroVO</class-b>
+ 		<field>
+			<a>idenSujeto.tipoPersona</a>
+			<b>tipoPersona</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.nifCif</a>
+			<b>nif</b>
+		</field>
+	
+		<field>
+			<a>idenSujeto.apellido1RazonSocial</a>
+			<b>persona.apellido1RazonSocial</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.apellido2</a>
+			<b>persona.apellido2</b>
+		</field>
+		
+		<field>
+			<a>idenSujeto.nombre</a>
+			<b>persona.nombre</b>
+		</field>
+		
+		<field>
+			<a>domicilio</a>
+			<b>direccion</b>
+		</field>
+		
+	</mapping>
+	
+<!-- END IMPLEMENTED FINANCIACIÓN. JVG  -->
+
+</mappings>

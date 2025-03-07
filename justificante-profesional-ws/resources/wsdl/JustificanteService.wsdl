@@ -1,0 +1,694 @@
+<definitions name='JustificanteService' targetNamespace='http://blackbox.gescogroup.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://blackbox.gescogroup.com/' version='1.0' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='descargarJustificante' type='tns:descargarJustificante'/>
+   <xs:element name='descargarJustificanteResponse' type='tns:descargarJustificanteResponse'/>
+   <xs:element name='emitirJustificante' type='tns:emitirJustificante'/>
+   <xs:element name='emitirJustificanteResponse' type='tns:emitirJustificanteResponse'/>
+   <xs:element name='verificarJustificante' type='tns:verificarJustificante'/>
+   <xs:element name='verificarJustificanteResponse' type='tns:verificarJustificanteResponse'/>
+   <xs:complexType name='emitirJustificante'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg1' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='emitirJustificanteResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:justificanteRespuestaSOAP'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='justificanteRespuestaSOAP'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='avisos' nillable='true' type='tns:justificanteCodigoRetorno'/>
+     <xs:element minOccurs='0' name='justificante' type='xs:base64Binary'/>
+     <xs:element minOccurs='0' name='numeroJustificante' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='justificanteCodigoRetorno'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='codigo' type='xs:string'/>
+       <xs:element minOccurs='0' name='descripcion' type='xs:string'/>
+       <xs:element minOccurs='0' name='justificantePeticion' type='tns:justificantePeticion'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='abstractEntity'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='userLabels' nillable='true' type='tns:userLabel'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='justificantePeticion'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='avisos' nillable='true' type='tns:justificanteCodigoRetorno'/>
+       <xs:element minOccurs='0' name='doiPlataforma' type='xs:string'/>
+       <xs:element minOccurs='0' name='justificante' type='tns:justificante'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='justificante'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='bastidor' type='xs:string'/>
+       <xs:element minOccurs='0' name='codigoGestor' type='xs:string'/>
+       <xs:element minOccurs='0' name='doiTitular' type='xs:string'/>
+       <xs:element minOccurs='0' name='domicilioGestor' type='xs:string'/>
+       <xs:element minOccurs='0' name='domicilioTitular' type='xs:string'/>
+       <xs:element minOccurs='0' name='fechaPresentacion' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='fechaProvincia' type='xs:string'/>
+       <xs:element minOccurs='0' name='gestor' type='tns:agent'/>
+       <xs:element minOccurs='0' name='gestoria' type='tns:agency'/>
+       <xs:element minOccurs='0' name='justificanteURI' type='xs:string'/>
+       <xs:element minOccurs='0' name='marcaVehiculo' type='xs:string'/>
+       <xs:element minOccurs='0' name='matricula' type='xs:string'/>
+       <xs:element minOccurs='0' name='modeloVehiculo' type='xs:string'/>
+       <xs:element minOccurs='0' name='municipioGestor' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='municipioTitular' type='xs:string'/>
+       <xs:element minOccurs='0' name='nombreColegio' type='xs:string'/>
+       <xs:element minOccurs='0' name='nombreGestor' type='xs:string'/>
+       <xs:element minOccurs='0' name='nombreTitular' type='xs:string'/>
+       <xs:element minOccurs='0' name='plataforma' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='primerApellidoTitular' type='xs:string'/>
+       <xs:element minOccurs='0' name='provinciaGestoria' type='xs:string'/>
+       <xs:element minOccurs='0' name='segundoApellidoTitular' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='abstractProcessEntity'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='createdBy' type='tns:user'/>
+       <xs:element minOccurs='0' name='modifiedBy' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agent'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agencies' nillable='true' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agentCertificate' type='tns:agentCertificate'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='fiscalAddress' type='tns:address'/>
+       <xs:element name='memberId' type='xs:int'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='user'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element minOccurs='0' name='creationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='defaultLanguage' type='xs:string'/>
+       <xs:element minOccurs='0' name='dropOutDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='emailAddress' type='xs:string'/>
+       <xs:element minOccurs='0' name='enabled' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='nif' type='xs:string'/>
+       <xs:element minOccurs='0' name='observations' type='xs:string'/>
+       <xs:element minOccurs='0' name='role' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname2' type='xs:string'/>
+       <xs:element minOccurs='0' name='telephoneNumber' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userRptProfiles' nillable='true' type='tns:userRPTProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agency'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element name='agencyCode' type='xs:int'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agencyEmployees' nillable='true' type='tns:agencyEmployee'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agents' nillable='true' type='tns:agent'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='bankAccounts' nillable='true' type='tns:agencyBankAccount'/>
+       <xs:element minOccurs='0' name='emailAddress' type='xs:string'/>
+       <xs:element minOccurs='0' name='enabled' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='fiscalPersonType' type='tns:fiscalPersonType'/>
+       <xs:element name='invoicingId' type='xs:int'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='telephoneNumber' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='address'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='customStreet' type='xs:string'/>
+       <xs:element minOccurs='0' name='door' type='xs:string'/>
+       <xs:element minOccurs='0' name='floor' type='xs:string'/>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='postalCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='stair' type='xs:string'/>
+       <xs:element minOccurs='0' name='street' type='tns:street'/>
+       <xs:element minOccurs='0' name='streetNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='municipality'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='dgtName' type='xs:string'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='province' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='mlString'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element name='translations'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='entry'>
+         <xs:complexType>
+          <xs:sequence>
+           <xs:element minOccurs='0' name='key' type='xs:string'/>
+           <xs:element minOccurs='0' name='value' type='tns:translation'/>
+          </xs:sequence>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='translation'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='languageId' type='xs:string'/>
+     <xs:element minOccurs='0' name='mlString' type='tns:mlString'/>
+     <xs:element minOccurs='0' name='mlStringId' type='xs:int'/>
+     <xs:element minOccurs='0' name='value' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='province'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='provinceGroup' type='tns:provinceGroup'/>
+       <xs:element minOccurs='0' name='region' type='tns:region'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='region'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='provinces' nillable='true' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userLabel'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='bgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='fgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='label' type='xs:string'/>
+       <xs:element minOccurs='0' name='owner' type='tns:user'/>
+       <xs:element name='shared' type='xs:boolean'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='users' nillable='true' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='profile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='servicePermissions' nillable='true' type='tns:servicePermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='uiPermissions' nillable='true' type='tns:uiPermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='servicePermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='uiPermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='read' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='write' type='xs:boolean'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userRPTProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='rptProfile' type='tns:rptProfile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='report'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='details' type='tns:rptDetails'/>
+       <xs:element minOccurs='0' name='group' type='tns:rptGroup'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='reportType' type='tns:reportType'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='rptProfiles' nillable='true' type='tns:rptProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptDetails'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='jrbin' type='xs:string'/>
+       <xs:element minOccurs='0' name='jrxml' type='xs:string'/>
+       <xs:element minOccurs='0' name='paramxml' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptGroup'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='street'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='streetName' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='streetType'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agencyEmployee'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agencyBankAccount'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='accountNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='bank' type='tns:bank'/>
+       <xs:element minOccurs='0' name='bankOffice' type='xs:string'/>
+       <xs:element minOccurs='0' name='controlCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='bank'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='code' type='xs:string'/>
+       <xs:element minOccurs='0' name='logoName' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agentCertificate'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agentCertificateRequest' nillable='true' type='tns:agentCertificateRequest'/>
+       <xs:element minOccurs='0' name='certificate' type='xs:string'/>
+       <xs:element minOccurs='0' name='commonName' type='xs:string'/>
+       <xs:element minOccurs='0' name='country' type='xs:string'/>
+       <xs:element minOccurs='0' name='csr' type='xs:string'/>
+       <xs:element minOccurs='0' name='email' type='xs:string'/>
+       <xs:element minOccurs='0' name='encryptedPrivateKey' type='xs:string'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='givenName' type='xs:string'/>
+       <xs:element minOccurs='0' name='issuer' type='tns:certificateIssuer'/>
+       <xs:element minOccurs='0' name='lastError' type='xs:string'/>
+       <xs:element minOccurs='0' name='organization' type='xs:string'/>
+       <xs:element minOccurs='0' name='organizationUnit' type='xs:string'/>
+       <xs:element minOccurs='0' name='passwd' type='xs:string'/>
+       <xs:element minOccurs='0' name='profOrderCif' type='xs:string'/>
+       <xs:element minOccurs='0' name='province' type='xs:string'/>
+       <xs:element minOccurs='0' name='representantNif' type='xs:string'/>
+       <xs:element minOccurs='0' name='requestId' type='xs:int'/>
+       <xs:element minOccurs='0' name='serialNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='state' type='tns:agentCertificateState'/>
+       <xs:element minOccurs='0' name='surnames' type='xs:string'/>
+       <xs:element minOccurs='0' name='title' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agentCertificateRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agentCertificate' type='tns:agentCertificate'/>
+       <xs:element minOccurs='0' name='certificateState' type='tns:agentCertificateState'/>
+       <xs:element minOccurs='0' name='requestState' type='tns:agentCertificateRequestState'/>
+       <xs:element minOccurs='0' name='response' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='branchOffice'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='branchEmployees' nillable='true' type='tns:branchEmployee'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='branchEmployee'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='professionalOrder'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='branchOffices' nillable='true' type='tns:branchOffice'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='externalSystems' nillable='true' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='nif' type='xs:string'/>
+       <xs:element minOccurs='0' name='poCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='profOrderCertificate' type='tns:poCertificate'/>
+       <xs:element minOccurs='0' name='shortName' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='externalSystem'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='authMethod' type='tns:authMethod'/>
+       <xs:element minOccurs='0' name='cif' type='xs:string'/>
+       <xs:element minOccurs='0' name='description' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystemName' type='xs:string'/>
+       <xs:element minOccurs='0' name='password' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='professionalOrders' nillable='true' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='sourceIps' type='xs:string'/>
+       <xs:element minOccurs='0' name='username' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='poCertificate'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='certificate' type='xs:string'/>
+       <xs:element minOccurs='0' name='commonName' type='xs:string'/>
+       <xs:element minOccurs='0' name='country' type='xs:string'/>
+       <xs:element minOccurs='0' name='csr' type='xs:string'/>
+       <xs:element minOccurs='0' name='email' type='xs:string'/>
+       <xs:element minOccurs='0' name='encryptedPrivateKey' type='xs:string'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='givenName' type='xs:string'/>
+       <xs:element minOccurs='0' name='issuer' type='tns:certificateIssuer'/>
+       <xs:element minOccurs='0' name='profOrder' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='province' type='xs:string'/>
+       <xs:element minOccurs='0' name='representantNif' type='xs:string'/>
+       <xs:element minOccurs='0' name='serialNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='state' type='tns:poCertificateState'/>
+       <xs:element minOccurs='0' name='surnames' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='descargarJustificante'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+     <xs:element minOccurs='0' name='arg1' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='descargarJustificanteResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:justificanteRespuestaSOAP'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='verificarJustificante'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='verificarJustificanteResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:justificanteRespuestaSOAP'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name='provinceGroup'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENINSULA'/>
+     <xs:enumeration value='CANARIES'/>
+     <xs:enumeration value='CEUTAMELILLA'/>
+     <xs:enumeration value='CEUTA'/>
+     <xs:enumeration value='MELILLA'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='reportType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='REPORT'/>
+     <xs:enumeration value='STAT'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='fiscalPersonType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PERSON'/>
+     <xs:enumeration value='COMPANY'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='agentCertificateState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='ERROR'/>
+     <xs:enumeration value='EXPIRED'/>
+     <xs:enumeration value='REVOKED'/>
+     <xs:enumeration value='REQUESTING'/>
+     <xs:enumeration value='NOTREQUESTING'/>
+     <xs:enumeration value='MODIFIED'/>
+     <xs:enumeration value='REQUESTERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='agentCertificateRequestState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='ERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='certificateIssuer'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='FIRMA_PROFESIONAL'/>
+     <xs:enumeration value='CAMERFIRMA'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='authMethod'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='CLIENTCERT'/>
+     <xs:enumeration value='PASSWORD'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='poCertificateState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='NEW'/>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='ERROR'/>
+     <xs:enumeration value='EXPIRED'/>
+     <xs:enumeration value='REVOKED'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='JustificanteWS_verificarJustificante'>
+  <part element='tns:verificarJustificante' name='verificarJustificante'></part>
+ </message>
+ <message name='JustificanteWS_emitirJustificante'>
+  <part element='tns:emitirJustificante' name='emitirJustificante'></part>
+ </message>
+ <message name='JustificanteWS_descargarJustificante'>
+  <part element='tns:descargarJustificante' name='descargarJustificante'></part>
+ </message>
+ <message name='JustificanteWS_descargarJustificanteResponse'>
+  <part element='tns:descargarJustificanteResponse' name='descargarJustificanteResponse'></part>
+ </message>
+ <message name='JustificanteWS_emitirJustificanteResponse'>
+  <part element='tns:emitirJustificanteResponse' name='emitirJustificanteResponse'></part>
+ </message>
+ <message name='JustificanteWS_verificarJustificanteResponse'>
+  <part element='tns:verificarJustificanteResponse' name='verificarJustificanteResponse'></part>
+ </message>
+ <portType name='JustificanteWS'>
+  <operation name='descargarJustificante' parameterOrder='descargarJustificante'>
+   <input message='tns:JustificanteWS_descargarJustificante'></input>
+   <output message='tns:JustificanteWS_descargarJustificanteResponse'></output>
+  </operation>
+  <operation name='emitirJustificante' parameterOrder='emitirJustificante'>
+   <input message='tns:JustificanteWS_emitirJustificante'></input>
+   <output message='tns:JustificanteWS_emitirJustificanteResponse'></output>
+  </operation>
+  <operation name='verificarJustificante' parameterOrder='verificarJustificante'>
+   <input message='tns:JustificanteWS_verificarJustificante'></input>
+   <output message='tns:JustificanteWS_verificarJustificanteResponse'></output>
+  </operation>
+ </portType>
+ <binding name='JustificanteWSBinding' type='tns:JustificanteWS'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='descargarJustificante'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='emitirJustificante'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='verificarJustificante'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='JustificanteService'>
+  <port binding='tns:JustificanteWSBinding' name='JustificanteService'>
+   <soap:address location='https://test.gacn.es/bbws/JustificanteService'/>
+  </port>
+ </service>
+</definitions>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+         <liberarEITVReturn>
+            <infoErrores>
+               <!--Zero or more repetitions:-->
+               <InfoErrorDTO>
+                  <codigoError>?</codigoError>
+                  <descripcionError>?</descripcionError>
+               </InfoErrorDTO>
+            </infoErrores>
+            <datosSimpleEITV>
+               <baseeitvdto>
+                  <bastidor>?</bastidor>
+                  <nive>?</nive>
+                  <ficheroEntradaB64>?</ficheroEntradaB64>
+                  <numRegistroEntrada>?</numRegistroEntrada>
+               </baseeitvdto>
+               <concesionarioClienteComercial>?</concesionarioClienteComercial>
+               <custodioActual>?</custodioActual>
+               <custodioSiguiente>?</custodioSiguiente>
+               <denominacionEstadoFinanciero>?</denominacionEstadoFinanciero>
+               <dninifNieClienteFinal>?</dninifNieClienteFinal>
+               <estadoBastidor>?</estadoBastidor>
+               <fechaFacturaFinal>?</fechaFacturaFinal>
+               <fechaFacturaMarca>?</fechaFacturaMarca>
+               <firCif>?</firCif>
+               <FIRMarca>?</FIRMarca>
+               <importeFacturaFinal>?</importeFacturaFinal>
+               <importeFacturaMarca>?</importeFacturaMarca>
+               <motivo>?</motivo>
+               <numeroFacturaFinal>?</numeroFacturaFinal>
+               <numeroFacturaMarca>?</numeroFacturaMarca>
+               <custodioAnterior>?</custodioAnterior>
+               <custodioFinal>?</custodioFinal>
+               <entidadCredito>?</entidadCredito>
+               <datosHistoricosITV>
+                  <custodioActualAnterior>?</custodioActualAnterior>
+                  <custodioAnteriorAnterior>?</custodioAnteriorAnterior>
+                  <custodioFinalAnterior>?</custodioFinalAnterior>
+                  <custodioSiguienteAnterior>?</custodioSiguienteAnterior>
+                  <denominacionEstadoFinancieroAnterior>?</denominacionEstadoFinancieroAnterior>
+               </datosHistoricosITV>
+               <nombreApellidosClienteFinal>
+                  <!--Zero or more repetitions:-->
+                  <string>?</string>
+               </nombreApellidosClienteFinal>
+               <direccionCliente>
+                  <!--Zero or more repetitions:-->
+                  <string>?</string>
+               </direccionCliente>
+            </datosSimpleEITV>
+            <numRegistroEntrada>?</numRegistroEntrada>
+            <numRegistroSalida>?</numRegistroSalida>
+         </liberarEITVReturn>

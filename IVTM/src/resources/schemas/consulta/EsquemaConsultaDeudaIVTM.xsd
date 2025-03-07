@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns1="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns2="http://www.map.es/scsp/esquemas/V2/peticion">
+  <xs:import namespace="http://www.map.es/scsp/esquemas/V2/peticion" schemaLocation="Peticion.xsd"/>
+
+  <xs:element name="DatosEspecificos" type="ns1:DatosEspecificosConsultaDeudaIVTMReq"/>
+    <xs:complexType name="DatosEspecificosConsultaDeudaIVTMReq">
+      <xs:sequence>
+        <xs:element ref="ns1:docautorizado"/>
+        <xs:element ref="ns1:matricula"/>
+      </xs:sequence>
+    </xs:complexType>
+  <xs:element name="docautorizado" type="xs:string"/>
+  <xs:element name="matricula" type="xs:string"/>
+</xs:schema>

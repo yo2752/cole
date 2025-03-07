@@ -1,0 +1,555 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+	<table class="subtitulo" cellspacing="0" cellpadding="0" width="100%" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Trámite transmisión</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellspacing="1" cellpadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DEL TRÁMITE</span>
+				<s:set var="numExpediente" value="tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente"/>
+				<s:if test="@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()">
+					<s:if test="%{(#numExpediente!=null && #numExpediente!='')}">
+						<img title="Ver evolución JPT" onclick="abrirEvolucionJPT('<s:property value="tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+					</s:if>
+				</s:if>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<s:if test="@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()">
+			<tr>
+				<td><label>Origen Trámite:</label></td>
+				<td><s:textfield cssClass="campo_disabled" name="origenTramite"
+						readonly="true"
+						value="%{@general.utiles.TipoCreacionEnum@getEnum(tramiteTraficoTransmisionBean.idTipoCreacion).getNombre()}"></s:textfield>
+				</td>
+			</tr>
+		</s:if>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="numExpedienteId">Núm. expediente:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente}"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="refPropiaId">Referencia Propia:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.referenciaPropia"
+				id="refPropiaId"
+				onblur="this.className='input2';"
+				onfocus="this.className='inputfocus';" size="30" maxlength="50"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="estadoId">Estado trámite:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.estado.nombreEnum}"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="diaPresentacionId">Fecha de Presentación:<span class="naranja">*</span></label>
+			</td>
+			<td align="left">
+				<table width=100%>
+					<tr>
+						<td>
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.dia" id="diaPresentacionId"
+								size="2" maxlength="2" onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" onkeypress="return validarNumeros(event)"/>
+						</td>
+						<td>/</td>
+						<td>
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.mes" id="mesPresentacionId"
+								size="2" maxlength="2" onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" onkeypress="return validarNumeros(event)"/>
+						</td>
+						<td>/</td>
+						<td>
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.anio" id="anioPresentacionId"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';" size="5" maxlength="4"
+								onkeypress="return validarNumerosEnteros(event)"/>
+						</td>
+						<td align="left" nowrap="nowrap">
+							<a href="javascript:;"
+								onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioPresentacionId, document.formData.mesPresentacionId, document.formData.diaPresentacionId);return false;"
+									title="Seleccionar fecha">
+								<img class="PopcalTrigger"
+									align="middle"
+									src="img/ico_calendario.gif" ${displayDisabled}
+									width="15" height="16"
+									border="0" alt="Calendario"/>
+							</a>
+						</td>
+						<td width="2%"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="jefaturaId">Jefatura provincial:<span class="naranja">*</span></label>
+			</td>
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:if test="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.idContrato == 209}">
+					<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getJefaturasTraficoTodas()"
+						listKey="jefatura_provincial" listValue="descripcion"
+						onblur="this.className='input2';"
+						headerKey="M" headerValue="MADRID"
+						onfocus="this.className='inputfocus';" disabled="true"/>
+					<s:hidden id="jefaturaId" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.jefaturaTrafico.jefaturaProvincial" value="M"/>
+				</s:if>
+				<s:else>
+					<s:select id="jefaturaId"
+						name="tramiteTraficoTransmisionBean.tramiteTraficoBean.jefaturaTrafico.jefaturaProvincial"
+						list="@trafico.utiles.UtilesVistaTrafico@getInstance().getJefaturasTraficoTodas()"
+						headerKey="-1"
+						disabled="%{flagDisabled}"
+						headerValue="Seleccione jefatura provincial"
+						listKey="jefatura_provincial" listValue="descripcion"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"/>
+				</s:else>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left">
+				<label for="observacionesId">Observaciones:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:textarea name="tramiteTraficoTransmisionBean.tramiteTraficoBean.anotaciones"
+					id="observacionesId"
+					disabled="%{flagDisabled}"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					rows="5"
+					cols="68"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="cambioServicioId">Cambio servicio:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.cambioServicio" id="cambioServicioId" onchange="cambioCambioServicio()"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="impresionPermisoId">Impresión permiso circulación:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.impresionPermiso"
+					id="impresionPermisoId" onchange="sinPermiso()"/>
+			</td>
+
+			<!-- <td align="left" nowrap="nowrap">
+				<label for="cambioSocietario">Cambio societario:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox name="tramiteTraficoTransmisionBean.cambioSocietario" id="cambioSocietario" />
+			</td> -->
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="rentingId">Renting:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.tramiteTraficoBean.renting"
+					id="rentingId" onclick="cambioRentingId()"/>
+			</td>
+		</tr>
+		<!-- <tr>
+			<td align="left" nowrap="nowrap">
+				<label for="modificacionNoConstante">Modificación no constante en registro vehículos:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:checkbox name="tramiteTraficoTransmisionBean.modificacionNoConstante" id="modificacionNoConstante" />
+			</td>
+		</tr> -->
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="transferenciaId">Transferencia simult&aacute;nea:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTransferenciaSimultanea()"
+							name="tramiteTraficoTransmisionBean.simultanea"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="transferenciaSimultaneaId"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoTransferenciaId">Tipo transferencia:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoTransferencia()"
+							headerKey="-1"
+							headerValue="Seleccione tipo de transferencia"
+							name="tramiteTraficoTransmisionBean.tipoTransferencia"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="tipoTransferenciaId"
+							disabled="%{flagDisabled}"
+							onchange="toggleCheckTasaInforme();seleccionaModoAdjudicacion();cargarTipoTasaTipoTransferencia();trasCambioTipoTransferenciaOModoAdjudicacion();checkImpresoPermiso();"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="modoAdjudicacionId">Modo adjudicación:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="2">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboModoAdjudicacion()"
+							headerKey="-1"
+							headerValue="Seleccione modo de adjudicación"
+							name="tramiteTraficoTransmisionBean.modoAdjudicacion"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="modoAdjudicacionId"
+							disabled="%{flagDisabled}"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"
+							onchange="cambioModoAdjudicacion();cargarTipoTasaModoAdjudicacion();trasCambioTipoTransferenciaOModoAdjudicacion()"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">ACREDITACIÓN DERECHO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="consentimientoId">Consentimiento:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.consentimiento"
+				id="consentimientoId"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="contratoCompraventaId">Contrato de compraventa:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.contratoFactura"
+				id="contratoCompraventaId"
+				onclick="cambioContratoFactura()"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="actaSubastaId">Acta adjudicación subasta:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.actaSubasta"
+				id="actaSubastaId"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="sentenciaJudicialId">Sentencia judicial adjudicación:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<s:checkbox disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.sentenciaJudicial"
+				id="sentenciaJudicialId"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="acreditacionHerenciaId">Acreditación:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="17%">
+				<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getAcreditacionesTrafico()"
+							headerKey="-1"
+							disabled="%{flagDisabled}"
+							headerValue="Seleccione acreditación"
+							name="tramiteTraficoTransmisionBean.acreditaHerenciaDonacion"
+							listKey="valorEnum" listValue="nombreEnum"
+							onchange="mostrarAnexo()"
+							id="acreditacionHerenciaId"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+			
+				<td><a href="#" style="display: none;" class="herenciaAnexo" id="herenciaAnexo" title="descargar anexo">Descargar Anexo I</a> </td>
+		
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">TASAS</span>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span style="color:#A52642; font-weight:bold; font-size: 1.1em;">TASA TRANSMISIÓN</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="tipoTasaTransmisionId">Tipo de tasa:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="10%">
+				<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboTipoTasa()"
+							headerKey="-1"
+							headerValue=""
+							name="tramiteTraficoTransmisionBean.tramiteTraficoBean.tasa.tipoTasa"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="tipoTasaTransmisionId"
+							disabled="%{flagDisabled}"
+							onchange="cargarListaCodigosTasa(this,'codigoTasaTransmisionId','codigoTasaTransmisionSeleccionadoId');habilitaCodigoTasaSiTipoTasaTransmision()"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="codigoTasaTransmisionId">Código de tasa:<span class="naranja">*</span></label>
+			</td>
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaTasa@getInstance().esGestionAlmacenTasa()}">
+				<td align="left" nowrap="nowrap" width="20%">
+					<s:select id="codigoTasaTransmisionId"
+						list="@org.gestoresmadrid.oegam2.utiles.UtilesVistaTasa@getInstance().getCodigosTasaCtit(tramiteTraficoTransmisionBean)"
+						listKey="codigoTasa" listValue="codigoTasa"
+						headerKey="-1"
+						headerValue="Seleccione Código de Tasa"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('codigoTasaTransmisionSeleccionadoId','codigoTasaTransmisionId');"
+						disabled="true"/>
+					<s:hidden id="codigoTasaTransmisionSeleccionadoId"
+						name="tramiteTraficoTransmisionBean.tramiteTraficoBean.tasa.codigoTasa"/>
+				</td>
+			</s:if>
+			<s:else>
+				<td align="left" nowrap="nowrap" width="20%">
+					<s:select id="codigoTasaTransmisionId"
+						list="@org.gestoresmadrid.oegam2.utiles.UtilesVistaTasa@getInstance().getCodigosTasaCtit(tramiteTraficoTransmisionBean)"
+						listKey="codigoTasa" listValue="codigoTasa"
+						headerKey="-1"
+						headerValue="Seleccione Código de Tasa"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('codigoTasaTransmisionSeleccionadoId','codigoTasaTransmisionId');"
+						disabled="true"/>
+					<s:hidden id="codigoTasaTransmisionSeleccionadoId"
+						name="tramiteTraficoTransmisionBean.tramiteTraficoBean.tasa.codigoTasa"/>
+				</td>
+			</s:else>
+			<!--<td align="left" nowrap="nowrap">
+				<input type="button" class="boton" id="botonCargaTasa" value = "Ver Todas" align="left"
+					onclick="javascript:verTodasTasas('idContratoTramite','tipoTasaTransmisionId','codigoTasaTransmisionId');"/>
+			</td>-->
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span style="color:#A52642; font-weight:bold; font-size: 1.1em;">TASA INFORME</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" width="25%" nowrap="nowrap" colspan="2">
+				<label for="idCheckboxInforme">Solicitar informe del vehículo: </label>
+			</td>
+			<td align="left" nowrap="nowrap" colspan="2">
+				<input type="checkbox" id="idCheckboxInforme" onchange="toggleTasaInforme()"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="tipoTasaInformeId">Tipo de tasa:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="10%">
+				<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboTipoTasa()"
+							headerKey="4.1"
+							headerValue="4.1"
+							name="tramiteTraficoTransmisionBean.tipoTasaInforme"
+							disabled="true"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="tipoTasaInformeId"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="codigoTasaInformeId">Código de tasa:<span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="60%">
+				<s:select id="codigoTasaInformeId"
+					name="tramiteTraficoTransmisionBean.codigoTasaInforme"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCodigosTasaBajas(tramiteTraficoTransmisionBean.codigoTasaInforme,tramiteTraficoTransmisionBean.tramiteTraficoBean.idContrato)"
+					headerKey="-1"
+					disabled="%{flagDisabled}"
+					headerValue="Seleccione código de tasa"
+					listKey="codigoTasa" listValue="codigoTasa"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span style="color:#A52642; font-weight:bold; font-size: 1.1em;">TASA CAMBIO SERVICIO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="tipoTasaCambioServicioId">Tipo de tasa:</label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="10%">
+				<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getComboTipoTasa()"
+							headerKey="4.1"
+							headerValue="4.1"
+							name="tramiteTraficoTransmisionBean.tipoTasaCambioServicio"
+							disabled="true"
+							listKey="valorEnum" listValue="nombreEnum"
+							id="tipoTasaCambioServicioId"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"/>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="codigoTasaCambioServicioId">Código de tasa:<span class="naranja">*</span></label>
+			</td>
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaTasa@getInstance().esGestionAlmacenTasa()}">
+				<td align="left" nowrap="nowrap" width="60%">
+					<s:select id="codigoTasaCambioServicioId"
+						name="tramiteTraficoTransmisionBean.codigoTasaCambioServicio"
+						list="@org.gestoresmadrid.oegam2.utiles.UtilesVistaTasa@getInstance().getCodigosTasaBajas(tramiteTraficoTransmisionBean.codigoTasaCambioServicio,tramiteTraficoTransmisionBean.tramiteTraficoBean.idContrato)"
+						headerKey="-1"
+						headerValue="Seleccione código de tasa"
+						listKey="codigoTasa" listValue="codigoTasa"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="true"/>
+				</td>
+			</s:if>
+			<s:else>
+				<td align="left" nowrap="nowrap" width="60%">
+					<s:select id="codigoTasaCambioServicioId"
+						name="tramiteTraficoTransmisionBean.codigoTasaCambioServicio"
+						list="@trafico.utiles.UtilesVistaTrafico@getInstance().getCodigosTasaBajas(tramiteTraficoTransmisionBean.codigoTasaCambioServicio,tramiteTraficoTransmisionBean.tramiteTraficoBean.idContrato)"
+						headerKey="-1"
+						headerValue="Seleccione código de tasa"
+						listKey="codigoTasa" listValue="codigoTasa"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="true"/>
+				</td>
+			</s:else>
+		</tr>
+	</table>
+
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmision(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center" style="size: 95%; text-align: center; list-style:none;">
+					<input type="button"
+							class="boton"
+							name="bGuardar1"
+							id="bGuardar1"
+							value="Consultar / Guardar"
+							onClick="sinPermiso();return guardarAltaTramiteTransmision('TramiteTransmision');"
+							onKeyPress="this.onClick"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="loadingImage1" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+				</td>
+			</tr>
+		</table>
+	</s:if>
+
+	<script type="text/javascript">
+		// En esta función debe incluirse cualquier sentencia javascript que necesite esta pestaña, para liberarla de código innecesario
+		iniciarPestaniaTramiteTransmision();
+		checkImpresoPermiso();
+		mostrarAnexo();
+	</script>
+</div>
+<style>
+    .herenciaAnexo {
+     	 position: absolute;
+   		 top: 48em;
+   		 left: 37em;
+   		 color: #a52642;
+  		 text-decoration: none;
+       }
+	.herenciaAnexo:hover{
+	  color: red;
+	}
+	
+	.herenciaAnexo:active{
+	  color: blue;
+	}
+</style>

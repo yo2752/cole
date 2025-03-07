@@ -1,0 +1,114 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<div align="center">
+	<s:if test="resumen.esImprimir">
+		<table class="subtitulo" cellSpacing="0" cellspacing="0">
+			<tr>
+				<td>Resumen Impresion Notificaciones Transporte:</td>
+			</tr>
+		</table>
+	</s:if>
+	<s:elseif test="resumen.esRechazar">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td>Resumen de Notificaciones de Transporte Rechazadas:</td>
+		</tr>
+	</table>
+	</s:elseif>
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la validación" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+		<s:if test="resumen.esImprimir">
+			<tr>
+	   			<th></th>
+	   			<th>Imprimidos</th>
+	   			<th>Fallidos </th>
+			</tr>
+		</s:if>
+		<s:elseif test="resumen.esRechazar">
+			<tr>
+	   			<th></th>
+	   			<th>Rechazados</th>
+	   			<th>Fallidos </th>
+			</tr>
+		</s:elseif>
+		<tr>
+			<td></td>
+			<td>
+				<s:label style="color:green;" value="%{resumen.numOK}"/>
+			</td>
+			<td>
+				<s:label style="color:red;" value="%{resumen.numError}"/>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold;">
+				TOTAL
+			</td>
+			<td>
+				<s:label style="color:green" value="%{resumen.numOK}"/>
+				<s:if test="%{resumen.numOK != null}">
+					<img id="despValidado"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueActualizados();" />
+	   			</s:if>
+			</td>
+			<td>
+				<s:label style="color:red" value="%{resumen.numError}"/>
+				<s:if test="%{resumen.numError != null}">
+					<img id="despFallidos"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueFallidos();" />
+	   			</s:if>	
+			</td>
+		</tr>
+ 	</table>
+	<div id="bloqueActualizados" style="display:none;width:100%;font-size:11px;">
+		<s:if test="resumen.esImprimir">
+			<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+				<tr>
+					<td  style="width:100%;text-align:center;">Detalle de Notificaciones Transporte Impresas</td>
+				</tr>
+			</table>
+		</s:if>
+		<s:elseif test="resumen.esRechazar">
+			<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+				<tr>
+					<td  style="width:100%;text-align:center;">Detalle de Notificaciones Transporte Rechazadas</td>
+				</tr>
+			</table>
+		</s:elseif>
+		<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left">
+			<s:iterator value="resumen.listaMensajesOk">
+				<li><span style="text-align: left;"><s:property /></span></li>	
+			</s:iterator>
+		</ul>		
+	</div>		
+	<div id="bloqueFallidos" style="display:none;width:100%;font-size:11px;">
+		<s:if test="resumen.esImprimir">
+			<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+				<tr>
+					<td  style="width:100%;text-align:center;">Detalle de Notificaciones Transporte Impresas Fallidas</td>
+				</tr>
+			</table>
+		</s:if>
+		<s:elseif test="resumen.esRechazar">
+			<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+				<tr>
+					<td  style="width:100%;text-align:center;">Detalle de Notificaciones Transporte Rechazadas Fallidas</td>
+				</tr>
+			</table>
+		</s:elseif>
+		<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="resumen.listaMensajesError">
+				<li><span><s:property /></span></li>	
+			</s:iterator>
+		</ul>
+	</div> 	
+	<s:if test="resumen.esImprimir && resumen.existeFichero">
+		<table class="subtitulo" cellSpacing="0" cellspacing="0">
+			<tr>
+				<td>Descargar fichero Notificaciones Transporte:</td>
+			</tr>
+		</table>
+		<table style="width:100%;font-size:11px;" class="tablacoin" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+			<tr>
+				<s:hidden name="nombreFichero"/>
+				<td><a href="javascript:descargarFichero();">Descargar Fichero</a></td>
+			</tr>
+		</table>
+	</s:if>
+</div> 		

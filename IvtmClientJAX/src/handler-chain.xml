@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+  <handler-chain>    
+  <handler>    
+      <handler-class>es.iam.sbae.sbintopexterna.handler.SecurityHandlerNew</handler-class>
+    </handler>
+    <handler>      
+      <handler-class>es.iam.sbae.sbintopexterna.handler.FileHandlerConsultaIvtm</handler-class>
+    </handler>
+      <handler>      
+      <handler-class>es.iam.sbae.sbintopexterna.handler.FileHandlerAltaIvtm</handler-class>
+    </handler>
+      <handler>      
+      <handler-class>es.iam.sbae.sbintopexterna.handler.FileHandlerModificacionIvtm</handler-class>
+    </handler>
+ </handler-chain>
+</handler-chains>
+
+

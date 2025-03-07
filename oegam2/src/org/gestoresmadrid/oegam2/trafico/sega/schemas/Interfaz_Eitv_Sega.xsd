@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ConsultaTarjeta">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Datos_Firmados">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="AGENT_DOI" type="xs:string"/>
+                            <xs:element name="AGENCY_DOI" type="xs:string"/>
+                            <xs:element name="VIN" type="xs:string"/>
+                            <xs:element name="NIVE" type="xs:string"/>
+                            <xs:element name="TEXTO_LEGAL" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Firma_Gestor" type="xs:base64Binary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

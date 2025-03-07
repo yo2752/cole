@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CTITService" targetNamespace="http://sega.gestores.net/checkctit" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sega.gestores.net/checkctit" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <types>
+  <xs:schema targetNamespace="http://sega.gestores.net/checkctit" version="1.0" xmlns:tns="http://sega.gestores.net/checkctit" xmlns:tipos="http://sega.gestores.net/ctit/tipos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://sega.gestores.net/ctit/tipos" schemaLocation="./CTITTipos.xsd" />
+      
+   <xs:element name="checkCTIT" type="tipos:checkRequest"/>
+   <xs:element name="checkCTITResponse" type="tipos:checkResponse"/>
+  
+  </xs:schema>
+ </types>
+ 
+ <message name="CTITWS_checkCTIT">
+  <part element="tns:checkCTIT" name="checkCTIT"></part>
+ </message>
+ <message name="CTITWS_checkCTITResponse">
+  <part element="tns:checkCTITResponse" name="checkCTITResponse"></part>
+ </message>
+ 
+ <portType name="CTITConsultaWS">
+  <operation name="checkCTIT" parameterOrder="checkCTIT">
+   <input message="tns:CTITWS_checkCTIT"></input>
+   <output message="tns:CTITWS_checkCTITResponse"></output>
+  </operation>
+ </portType>
+ <binding name="CTITConsultaWSBinding" type="tns:CTITConsultaWS">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="checkCTIT">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="CTITConsultaService">
+  <port binding="tns:CTITConsultaWSBinding" name="CTITConsultaService">
+   <soap:address location="https://217.130.244.72:8081/sega/CTITConsultaService"/>
+  </port>
+ </service>
+</definitions>

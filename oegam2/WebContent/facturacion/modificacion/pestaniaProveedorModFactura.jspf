@@ -1,0 +1,301 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+ <div class="contentTabs" id="Proveedor" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">
+	<div class="contenido">		
+		<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+			<tr>
+				<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+				<td>Datos del Proveedor</td>
+			</tr>
+		</table>
+		
+		<!-- DRC@20/06/2012 Incluye la parte de los datos de la factura -->	
+		<%@include file="resumenDatosModFactura.jspf" %>
+	
+		<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+			<tr>
+				<td class="tabular">
+					<span class="titulo">Datos Personales</span>
+				</td>
+			</tr>
+		</table>
+	
+		<table cellSpacing="2" class="tablaformbasica" cellPadding="0" align="left" border="0">
+			<tr>
+				<td align="left" nowrap="nowrap" >
+					<label for="nifProveedor">NIF / CIF: <span class="naranja">*</span></label>
+				</td>
+				<td align="left" nowrap="nowrap" width="24%">
+	       	    	<table style="align:left;">
+						<tr>
+							<td align="left" nowrap="nowrap">
+								<s:textfield name="traficoTramiteMatriculacionBean.titularBean.persona.nif" 
+			       				id="nifTitular" 
+			       				onblur="this.className='input2';calculaLetraNIF(this)" 
+			       				onfocus="this.className='inputfocus';" 
+			       				onchange="limpiarFormularioTitularMatriculacion()"
+			       				size="9" maxLength="9"
+			       				/>
+							</td>
+							<td align="left" nowrap="nowrap">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteMatriculacion('Titular','Titular')"/>
+							</td>
+						</tr>
+					</table>
+	       	    </td>
+	       	    
+	       	    <td align="left" nowrap="nowrap">
+	       			<label for="nombreProveedor">Nombre: <span class="naranja">*</span></label>
+	       		</td>				        		       	       			
+	       		<td align="left" nowrap="nowrap">
+	       			<s:textfield size="20" maxlength="255"/>
+	       		</td>			        		
+	       	</tr>
+	       
+	    	<tr>    			
+	    		<td align="left" nowrap="nowrap" >
+			       	<label for="apellido1RazonSocialProveedor">Primer Apellido / Razón Social: <span class="naranja">*</span></label>
+			    </td>				        		
+			    <td align="left" nowrap="nowrap">
+			       	<s:textfield size="20" maxlength="255"/>
+			    </td>		    
+			    <td align="left" nowrap="nowrap">
+	       			<label for="apellido2Proveedor">Segundo Apellido: </label>
+	       		</td>				        		
+	       		<td align="left" nowrap="nowrap">
+	       	       	<s:textfield size="20" maxlength="255"/>
+	       		</td>
+	       	</tr>
+			
+			<tr>			
+	       		<td align="left" nowrap="nowrap">
+	       			<label for="sexoProveedor">Sexo: </label>
+	       		</td>
+	         	<td align="left" nowrap="nowrap">
+		         	     	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+							id="sexoProveedor"
+							onblur="this.className='input2';"
+							onfocus="this.className='inputfocus';"
+							name="traficoTramiteMatriculacionBean.titularBean.persona.sexo"
+							listValue="nombreEnum"
+							listKey="valorEnum"
+							title="Sexo Persona"
+							headerKey="-1" headerValue="-"/>
+	       		</td>
+	       		
+	       		<td align="left" nowrap="nowrap" width="17%">
+					<label for="idFechaNacimientoProveedor">Fecha de Nacimiento: </label>
+				</td>
+				<td align="left" nowrap="nowrap" >
+					<table>
+						<tr>
+							<td align="left" nowrap="nowrap" width="5%">
+								<s:textfield size="2" maxlength="2"/>
+							</td>						
+							<td width="1%">/</td>						
+							<td align="left" nowrap="nowrap" width="5%">
+								<s:textfield size="2" maxlength="2"/>
+							</td>						
+							<td width="1%">/</td>						
+							<td align="left" nowrap="nowrap" width="5%">
+								<s:textfield size="4" maxlength="2"/>	
+							</td>						
+							<td align="left" nowrap="nowrap">				    		
+							</td>
+						</tr>
+					</table>
+				</td>
+	  		</tr>       		
+	
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="telefonoProveedor">Teléfono: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap" >
+					<s:textfield size="9" maxlength="9"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="correoElectronicoProveedor">Correo Electrónico: </label>
+				</td>   	       			
+		        <td align="left" nowrap="nowrap" colspan="2">
+					<s:textfield size="20" maxlength="255"/>
+				</td>
+			</tr>
+		</table>
+	
+		<s:if test="traficoTramiteMatriculacionBean.titularBean.persona.direccion.idDireccion != null " >	
+			<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" style="100%">
+				<tr>
+					<td align="left" nowrap="nowrap" width="100%">
+						<table  style="align:left;">
+							<tr>
+								<td  align="left" style="vertical-align:middle" width="10%">
+									<label>Seleccionar Dirección</label>
+								</td>
+								<td align="left" nowrap="nowrap" width="90%">
+									<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+										onclick="javascript:consultaDireccion('<s:property value="traficoTramiteMatriculacionBean.titularBean.persona.nif"/>','<s:property value="traficoTramiteMatriculacionBean.tramiteTraficoBean.numColegiado"/>','<s:property value="traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente"/>','TitularMatriculacion');"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+			</table>
+		</s:if>
+		
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="idProvinciaProveedor">Provincia: <span class="naranja">*</span></label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">				
+					
+				</td>	
+		
+				<td align="left" nowrap="nowrap">
+					<label for="idMunicipioProveedor">Municipio: <span class="naranja">*</span></label>	
+				</td>
+	       		<td align="left" nowrap="nowrap">			
+					<select id="idMunicipioTitular"  onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';"
+						onchange="cargarListaPueblos('idProvinciaTitular', this, 'idPuebloTitular', 'puebloSeleccionadoTitular');
+						seleccionarCampo('municipioSeleccionadoTitular','idMunicipioTitular');						
+						obtenerCodigoPostalPorMunicipio('idProvinciaTitular', this, 'codPostalTitular');
+						document.getElementById('idMunicipioIVTM').value=this.options[this.selectedIndex].text;
+						inicializarTipoVia('tipoViaDireccionTitular','nombreViaDireccionTitular',viaTitularMatriculacion);">
+						
+						<option value="-1">Seleccione Municipio</option>
+					</select>						  
+			    	<s:hidden id="municipioSeleccionadoTitular" 
+			    		name="traficoTramiteMatriculacionBean.titularBean.persona.direccion.municipio.idMunicipio"/>
+				</td>
+			</tr>
+			
+			<tr>									
+				<td align="left" nowrap="nowrap">
+					<label for="idPuebloProveedor">Pueblo: </label>			
+				</td>
+				<td align="left" nowrap="nowrap">				
+					<select id="idPuebloTitular" onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('puebloSeleccionadoTitular','idPuebloTitular');
+						document.getElementById('idPuebloIVTM').value=this.options[this.selectedIndex].text;"
+						style="width:200px;">
+						<option value="-1">Seleccione Pueblo</option>
+					</select>						  
+				   	<s:hidden id="puebloSeleccionadoTitular" 
+				   		name="traficoTramiteMatriculacionBean.titularBean.persona.direccion.pueblo"/>
+				</td>						
+				
+				<td align="left" nowrap="nowrap">
+					<label for="codPostalProveedor">Código Postal: <span class="naranja">*</span></label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+		        	<s:textfield size="5" maxlength="5"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="tipoViaDireccionProveedor">Tipo vía: <span class="naranja">*</span></label>
+				</td>				        		
+	       	    
+	       	    <td align="left" nowrap="nowrap">         	
+		         	<select id="tipoViaDireccionProveedor" 
+							onblur="this.className='input2';" 
+							onfocus="this.className='inputfocus';"
+							onchange="seleccionarCampo('tipoViaSeleccionadaDireccionTitular','tipoViaDireccionTitular');
+									cargarListaNombresVia('idProvinciaProveedor', 'municipioSeleccionadoProveedor', this, 'nombreViaDireccionProveedor',viaProveedorMatriculacion);">
+							<option value="-1">Seleccione Tipo Via</option>
+					</select>
+	       		</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="nombreViaDireccionProveedor">Nombre vía: <span class="naranja">*</span></label>
+				</td>		
+				<td align="left" nowrap="nowrap" colspan="3">
+		       		<s:textfield size="40" maxlength="255"/>
+	       		</td>        
+	       		
+			</tr>
+		</table>
+		
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+			<tr>	
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="numeroDireccionProveedor">N&uacute;mero: <span class="naranja">*</span></label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="letraDireccionProveedor">Letra: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="escaleraDireccionProveedor">Escalera: </label>
+				</td>				        		
+	       	       			
+	       		<td align="left" nowrap="nowrap">
+	       			<s:textfield size="2" maxlength="4"/>				
+				</td>
+				
+				<td align="left" nowrap="nowrap" width="7%">
+					<label for="pisoDireccionProveedor">Piso: </label>
+				</td>				        		
+	       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="puertaDireccionProveedor">Puerta: </label>
+				</td>       	       			
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="bloqueDireccionProveedor">Bloque: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="kmDireccionProveedor">Km: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+				
+				<td align="left" nowrap="nowrap">
+					<label for="hmDireccionProveedor">Hm: </label>
+				</td>		
+	       		<td align="left" nowrap="nowrap">
+					<s:textfield size="2" maxlength="4"/>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- DRC@20/06/2012 Incluye la parte del resumen de gastos totales desplegados  -->	
+		<%@include file="resumenTotalesModGastos.jspf" %>
+		
+		<table class="acciones" width="95%" align="left">
+			<tr>
+				<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardar" value="Guardar" onClick="return guardarAltaFactura('Proveedor');" onKeyPress="this.onClick"/>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+</div>

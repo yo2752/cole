@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://bsn.gaa9.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BSNService" targetNamespace="http://bsn.gaa9.com/">
+<types>
+<xs:schema xmlns:tns="http://bsn.gaa9.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://bsn.gaa9.com/" version="1.0">
+<xs:element name="gestionarBastidores" type="tns:gestionarBastidores"/>
+<xs:element name="gestionarBastidoresResponse" type="tns:gestionarBastidoresResponse"/>
+<xs:complexType name="gestionarBastidores">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:bsnRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bsnRequest">
+<xs:sequence>
+<xs:element minOccurs="0" name="aviso" type="xs:boolean"/>
+<xs:element minOccurs="0" name="bloqueado" type="xs:boolean"/>
+<xs:element minOccurs="0" name="identificador" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="gestionarBastidoresResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:bsnResponse"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bsnResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+<xs:element minOccurs="0" name="resultado" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</types>
+<message name="BSNWS_gestionarBastidoresResponse">
+<part element="tns:gestionarBastidoresResponse" name="gestionarBastidoresResponse"/>
+</message>
+<message name="BSNWS_gestionarBastidores">
+<part element="tns:gestionarBastidores" name="gestionarBastidores"/>
+</message>
+<portType name="BSNWS">
+<operation name="gestionarBastidores" parameterOrder="gestionarBastidores">
+<input message="tns:BSNWS_gestionarBastidores"/>
+<output message="tns:BSNWS_gestionarBastidoresResponse"/>
+</operation>
+</portType>
+<binding name="BSNWSBinding" type="tns:BSNWS">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="gestionarBastidores">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="BSNService">
+<port binding="tns:BSNWSBinding" name="BSNService">
+<soap:address location="https://test.gacn.es/bbws/BSNService"/>
+</port>
+</service>
+</definitions>

@@ -1,0 +1,2147 @@
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition  name="bienvenida" extends="plantilla" >
+		<put-attribute name="cabecera" value="/cabecera_bienvenida.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/bienvenida.jsp" />
+	</definition>
+
+	<definition name="inicio" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/bienvenida.jsp" />
+	</definition>
+
+	<definition name="listaNotificaciones" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/bienvenida.jsp" />
+	</definition>
+
+	<definition name="popUpModalLopd" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/popUpModalLopd.jsp" />
+	</definition>
+	
+	<definition name="plantillaSinMenu" template="/plantilla.jsp">
+		<put-attribute name="titulo"
+			value="OEGAM - Colegio Oficial de Gestores Administrativos de Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/cuerpo.jsp" />
+		<put-attribute name="pie" value="/pie.jsp" />
+		<put-attribute name="fondo_menu" value="/menu_der.jsp" />
+		<put-attribute name="menu_der" value="/menu_der.jsp" />
+	</definition>
+
+	<definition name="plantilla" template="/plantilla.jsp">
+		<put-attribute name="titulo"
+			value="OEGAM - Colegio Oficial de Gestores Administrativos de Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="fondo_menu" value="/menu_der.jsp" />
+		<put-attribute name="menu" value="/menu.jsp" />
+		<put-attribute name="cuerpo" value="/cuerpo.jsp" />
+		<put-attribute name="pie" value="/pie.jsp" />
+		<put-attribute name="menu_der" value="/menu_der.jsp" />
+	</definition>
+
+	<definition name="plantillaNumExpediente" template="/plantillaExpediente.jsp">
+		<put-attribute name="titulo"
+			value="OEGAM - Colegio Oficial de Gestores Administrativos de Madrid" />
+		<put-attribute name="cuerpo" value="/cuerpo.jsp" />
+		<put-attribute name="pie" value="/pie.jsp" />
+	</definition>
+
+	<definition name="consultaPersona" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de personas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/persona/consultaPersona.jsp" />
+	</definition>
+	
+	<definition name="consultaInterviniente" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de intervinientes" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/interviniente/consultaInterviniente.jsp" />
+	</definition>
+
+	<definition name="expedientesDireccion" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Expedientes por Persona y Direccion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/persona/listaExpedientesDireccion.jsp" />
+	</definition>
+
+	<definition name="verTodas" extends="plantilla">
+		<put-attribute name="titulo" value="Personas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/verTodas.jsp" />
+	</definition>
+
+	<definition name="listaColegiados" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de Colegiados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaColegiados.jsp" />
+	</definition>
+	
+	<definition name="consultaColegiados" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de Colegiados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/colegiados/consultaColegiados.jsp" />
+	</definition>
+	
+	<definition name="consultaCreditoCargar" extends="plantilla">
+		<put-attribute name="titulo" value="Creditos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/consultaCreditoCargar.jsp" />
+	</definition>
+	
+	<definition name="listaContadoresUso" extends="plantilla">
+		<put-attribute name="titulo" value="Contadores uso" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaContadores.jsp" />
+	</definition>
+
+	<definition name="listaContratos" extends="plantilla">
+		<put-attribute name="titulo" value="Contratos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaContratos.jsp" />
+	</definition>
+
+	<definition name="consultaContrato" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de contratos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/contratos/consultaContratos.jsp" />
+	</definition>
+
+	<definition name="listaDetalle" extends="plantilla">
+		<put-attribute name="titulo" value="Contratos Detalle" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaDetalles.jsp" />
+	</definition>
+
+	<definition name="colegiadoDetalle" extends="plantilla">
+		<put-attribute name="titulo" value="Colegiados Detalle" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaColegiado.jsp" />
+	</definition>
+
+	<definition name="nuevoContrato" extends="plantilla">
+		<put-attribute name="titulo" value="Nuevo contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/contrato_new.jsp" />
+	</definition>
+	
+	<definition name="detalleContrato" extends="plantilla">
+		<put-attribute name="titulo" value="Detalle de contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/contrato/detalleContrato.jsp" />
+	</definition>
+
+	<definition name="listaModificaciones" extends="plantilla">
+		<put-attribute name="titulo" value="Modificar contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/escrituras/listaModifi.jsp" />
+	</definition>
+
+	<definition name="modificarContrato" extends="plantilla">
+		<put-attribute name="titulo" value="Nuevo contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/contratos/contratoSeleccionado.jsp" />
+	</definition>
+
+	<definition name="listaContratoAplicacion" extends="plantilla">
+		<put-attribute name="titulo" value=" Contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/listaContratoAplicacion.jsp" />
+	</definition>
+
+	<definition name="listaUsuarioContratos" extends="plantilla">
+		<put-attribute name="titulo" value=" Contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/listaUsuarioContratos.jsp" />
+	</definition>
+	<definition name="contratoUsuarioDetalle" extends="plantilla">
+		<put-attribute name="titulo" value=" Contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/contrato_usuario_det.jsp" />
+	</definition>
+	<definition name="contratoUsuarioAlta" extends="plantilla">
+		<put-attribute name="titulo" value=" Contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/contrato_usuario_alta.jsp" />
+	</definition>
+
+	<definition name="listaUsuarioModificacion" extends="plantilla">
+		<put-attribute name="titulo" value=" Contrato" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/escrituras/listaUsuarioModificacion.jsp" />
+	</definition>
+
+	<definition name="error" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/error.jsp" />
+	</definition>
+
+	<definition name="errorGenerico" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/errorGenerico.jsp" />
+	</definition>
+
+	<definition name="errorPermisos" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/errorPermisos.jsp" />
+	</definition>
+
+	<definition name="sesionExpirada" extends="plantilla">
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="menu" value="/vacio.jsp" />
+		<put-attribute name="cuerpo" value="/sesionExpirada.jsp" />
+	</definition>
+
+	<!-- Definiciones de tiles para registradores -->
+	
+	<definition name="tramiteRegistroModelo1" extends="plantilla">
+		<put-attribute name="titulo" value="Cese y Nombramiento (reducido)" />
+		<put-attribute name="title" value="Sociedades" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroCYNReunionJunta.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroModelo2" extends="plantilla">
+		<put-attribute name="titulo" value="Aceptación de Nombramiento" />
+		<put-attribute name="title" value="Sociedades" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroAYNReunionJunta.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroModelo3" extends="plantilla">
+		<put-attribute name="titulo" value="S.A. Cese y Nombramiento" />
+		<put-attribute name="title" value="Sociedades" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroCYNJuntaAccionistas.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroModelo4" extends="plantilla">
+		<put-attribute name="titulo" value="S.L. Cese y Nombramiento" />
+		<put-attribute name="title" value="Sociedades" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroCYNJuntaSocios.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroModelo5" extends="plantilla">
+		<put-attribute name="titulo" value="Cese y Nombramiento (completo)" />
+		<put-attribute name="title" value="Sociedades" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroDelegacionFacultades.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroModelo6" extends="plantilla">
+		<put-attribute name="titulo" value="Envío de escrituras" />
+		<put-attribute name="title" value="tramiteRegistroModelo6" />
+		<put-attribute name="cuerpo"
+			value="/registradores/altaTramiteRegistroEscritura.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroCuenta" extends="plantilla">
+		<put-attribute name="titulo" value="Envío de cuentas" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosCuenta/contrato.jsp" />
+	</definition>
+	
+	<definition name="tramiteRegistroLibro" extends="plantilla">
+		<put-attribute name="titulo" value="Envío de libros" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosLibro/contrato.jsp" />
+	</definition>
+
+	<definition name="verRM" extends="plantilla">
+		<put-attribute name="title" value="ver Archivo" />
+		<put-attribute name="cuerpo" value="/registradores/verRM.jsp" />
+	</definition>
+
+	<definition name="listaRecuperarTramite" extends="plantilla">
+		<put-attribute name="titulo" value="Lista recuperar tramite" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/registradores/listaRecuperarTramite.jsp" />
+	</definition>
+	
+	<!-- Definición de tiles para rbm -->
+
+	<definition name="contratosFinanciacion" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosFinanciacion/contrato.jsp" />
+	</definition>
+	
+	<definition name="contratosRenting" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosRenting/contrato.jsp" />
+	</definition>
+
+	<definition name="contratosLeasing" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosLeasing/contrato.jsp" />
+	</definition>
+
+	<definition name="detalleFinanciadores" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/financiadores/detalle.jsp" />
+	</definition>
+	
+	<definition name="listarFinanciadores" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/financiadores/lista.jsp" />
+	</definition>
+
+	
+	<definition name="contratosCancelaciones" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosCancelaciones/contrato.jsp" />
+	</definition>
+	
+	<definition name="contratosDesistimiento" extends="plantilla">
+		<put-attribute name="titulo" value="Registro bienes muebles" />
+		<put-attribute name="cuerpo" value="/registradores/rbm/contratosDesistimiento/contrato.jsp" />
+	</definition>
+	
+	<definition name="importarRegistro" extends="plantilla">
+		<put-attribute name="titulo" value="Importar trámite registro" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/registradores/importarRegistro.jsp" />
+	</definition>
+	
+	<!-- Definición de tiles para la lista de procesos -->
+
+	<!-- <definition name="listaProcesos" extends="plantilla">
+		<put-attribute name="titulo" value="Monitor de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/colas/listaProcesos.jsp" />
+	</definition> -->
+	
+	<definition name="pagListaProcesos" extends="plantilla">
+		<put-attribute name="titulo" value="Monitor de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/procesos/gestionProcesos.jsp" />
+	</definition>
+	
+	<definition name="login" extends="plantilla">
+		<put-attribute name="titulo" value="Login Monitor de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/procesos/passwordProcesos.jsp" />
+	</definition>
+	
+	<definition name="loginCYP" extends="plantilla">
+		<put-attribute name="titulo" value="Login Colas y Procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/procesos/passwordProcesos.jsp" />
+	</definition>
+	
+	<definition name="cambioPassword" extends="plantilla">
+		<put-attribute name="titulo" value="Cambio Password Monitor de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/procesos/cambiarPasswordProcesos.jsp" />
+	</definition>
+
+	<!-- Definición de tiles para Envio Data -->
+
+	<definition name="dataProcesos" extends="plantilla">
+		<put-attribute name="titulo" value="Envio Data" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/colas/envioDataProcesos.jsp" />
+	</definition>
+
+	<!-- Definiciones de tiles para Datos Sensibles -->
+
+	<definition name="consultaDatosSensibles" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta datos sensibles" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/datosSensibles/consulta/consultaDatosSensibles.jsp" />
+	</definition>
+	
+	<definition name="inicioFicherosTemporales" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Ficheros " />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/ficherosTemporales/consulta.jsp" />
+	</definition>
+
+	<definition name="altaDatosSensibles" extends="plantilla">
+		<put-attribute name="titulo" value="Alta datos sensibles" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/datosSensibles/alta/altaDatosSensibles.jsp" />
+	</definition>
+
+	<definition name="consultaBastidor" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta datos sensibles" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/datosSensibles/consulta/consultaBastidor.jsp" />
+	</definition>
+
+	<definition name="altaBastidor" extends="plantilla">
+		<put-attribute name="titulo" value="Alta datos sensibles" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/datosSensibles/alta/altaBastidor.jsp" />
+	</definition>
+
+	<definition name="importarDatosSensibles" extends="plantilla">
+		<put-attribute name="titulo" value="Importar datos sensibles" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/datosSensibles/importarDatosSensibles.jsp" />
+	</definition>
+
+	<!-- Definiciones de tiles para estadisticas ANTIGUO//BORRAR-->
+	<definition name="listadoGeneralEstadisticas" extends="plantilla">
+		<put-attribute name="titulo" value="Listado general y personalizado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoGeneralEstadisticas.jsp" />
+	</definition>
+
+	<definition name="listadoUsuariosIPEstadisticas" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de estadisticas de usuarios / IP" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoUsuariosIPEstadisticas.jsp" />
+	</definition>
+
+	<definition name="listadoTasaExpedientes" extends="plantilla">
+		<put-attribute name="titulo" value="Listado de Tasas por Expediente" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoTasaExpedientes.jsp" />
+	</definition>
+
+	<definition name="listadoJustificantesNoUltimadosEstadisticas"
+		extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de Justificantes Profesionales No Ultimados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoJustificantesNoUltimadosEstadisticas.jsp" />
+	</definition>
+
+	<definition name="listadoVehiculosEstadisticas" extends="plantilla">
+		<put-attribute name="titulo" value="Listado de Vehiculos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoVehiculosEstadisticas.jsp" />
+	</definition>
+
+	<definition name="listadoMatriculasEstadisticas" extends="plantilla">
+		<put-attribute name="titulo" value="Listado de Matriculas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoMatriculasEstadisticas.jsp" />
+	</definition>
+
+
+	<!-- Definiciones de tiles para estadísticas -->
+	<definition name="listadoUsuarios" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de usuarios" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoUsuarios/listadoUsuarios.jsp" />
+	</definition>
+	
+	<definition name="listadoJustificantesNoUltimados" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de Justificantes Profesionales No Ultimados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoJustificantesNoUltimados/listadoJustificantesNoUltimados.jsp" />
+	</definition>
+	
+	<definition name="listadoMatriculas" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de matrículas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoMatriculas/listadoMatriculas.jsp" />
+	</definition>
+	
+	<definition name="listadoTasasPorExpediente" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de Tasas por Expediente" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoTasasPorExpediente/listadoTasasPorExpediente.jsp" />
+	</definition>
+	
+	<definition name="listadoVehiculos" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado de Vehículos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoVehiculos/listadoVehiculos.jsp" />
+	</definition>
+	
+	<definition name="listadoGeneralYPersonalizado" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Listado general y personalizado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoGeneralYPersonalizado/listadoGeneralYPersonalizado.jsp" />
+	</definition>
+	
+	<definition name="listadoMensajesErrorServicio" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Mensajes Error Servicio" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/estadisticas/listadoMensajesErrorServicio/listadoMensajesErrorServicio.jsp" />
+	</definition>
+
+
+	<!-- Definiciones de tiles para trafico -->
+	<definition name="altasMatriculacion" extends="plantilla">
+		<put-attribute name="titulo" value="Altas Matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/altasMatriculacion.jsp" />
+	</definition>
+
+
+	<definition name="importarDGT" extends="plantilla">
+		<put-attribute name="titulo" value="Importar tramite" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/importarDGT.jsp" />
+	</definition>
+
+
+	<definition name="etiquetasMatricula" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/etiquetasMatricula.jsp" />
+	</definition>
+
+
+	<definition name="consultaTramiteMatriculacion" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/consultaTramiteMatriculacion.jsp" />
+	</definition>
+
+	<definition name="altasMatriculacionMatw" extends="plantilla">
+		<put-attribute name="titulo" value="Altas Matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matw/altasMatriculacion.jsp" />
+	</definition>
+
+	<definition name="detalleVehiculo" extends="plantilla">
+		<put-attribute name="title" value="Detalle Vehículo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/vehiculo/detalleVehiculo.jsp" />
+	</definition>
+	
+	<definition name="detallePersona" extends="plantilla">
+		<put-attribute name="title" value="Detalle Persona" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/persona/detallePersona.jsp" />
+	</definition>
+	
+	<definition name="detalleInterviniente" extends="plantilla">
+		<put-attribute name="title" value="Detalle Interviniente" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/interviniente/detalleInterviniente.jsp" />
+	</definition>
+
+	<definition name="etiquetasMatricula" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matw/etiquetasMatricula.jsp" />
+	</definition>
+
+
+	<definition name="consultaTramiteMatriculacion" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matw/consultaTramiteMatriculacion.jsp" />
+	</definition>
+
+
+	<definition name="consultaTramiteTrafico" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta tramite trafico" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/consultaTramiteTrafico.jsp" />
+	</definition>
+
+	<definition name="consultaSolicitudesErrorServicio" extends="plantilla">
+		<put-attribute name="title" value="Solicitudes en Error Servicio" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/administracion/consultaSolicitudesErrorServicio.jsp" />
+	</definition>
+
+	<definition name="consultaVehiculo" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta vehiculo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/vehiculo/consultaVehiculo.jsp" />
+	</definition>
+	
+	<definition name="consultaMensajesWebService" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Mensajes Web Service" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/consultaMensajesWebService.jsp" />
+	</definition>
+	
+	<definition name="detalleTramiteWebService" extends="plantilla">
+		<put-attribute name="title" value="detalle mensaje Web Service" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/detalleMensajesWebService.jsp" />
+	</definition>
+
+	<!-- Justificantes Profesionales -->
+
+	<definition name="altasTramiteJustificante" extends="plantilla">
+		<put-attribute name="titulo" value="Alta tramite justificante" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/justificante/altasTramiteJustificante.jsp" />
+	</definition>
+	
+	
+	<definition name="consultaJustificantesProfesionales"
+		extends="plantilla">
+		<put-attribute name="titulo" value="Justificantes profesionales" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/justificante/consultaJustificantesProfesionales.jsp" />
+	</definition>
+	
+	<definition name="verificacionJustificantesProfesionales"
+		extends="plantilla">
+		<put-attribute name="titulo"
+			value="Verificacion Justificantes Profesionales" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/justificante/verificacionJustificantesProfesionales.jsp" />
+	</definition>
+	
+	<definition name="verifJustificante" extends="plantilla">
+		<put-attribute name="titulo" value="Verificación Justificantes Profesionales" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/justificanteN/verificacionJustificanteProf.jsp" />
+	</definition>
+
+	<!-- Tasas -->
+
+	<definition name="importarTasas" extends="plantilla">
+		<put-attribute name="titulo  " value="Importar tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/importarTasas.jsp" />
+	</definition>
+
+	<definition name="consultaTasa" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/consultaTasa.jsp" />
+	</definition>
+	
+		<definition name="consultaTasaNueva" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/consultaTasaNueva.jsp" />
+	</definition>
+
+	<definition name="detalleTasa" extends="plantilla">
+		<put-attribute name="title" value="tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/detalleTasa.jsp" />
+	</definition>
+	
+		<definition name="detalleTasaNueva" extends="plantilla">
+		<put-attribute name="title" value="tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/detalleTasaNueva.jsp" />
+	</definition>
+
+	<definition name="descargarCertificadoDeTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/consultaTasa.jsp" />
+	</definition>
+
+	<definition name="resumenTasa" extends="plantilla">
+		<put-attribute name="titulo" value="Resumen de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/tasas/resumenTasa.jsp" />
+	</definition>
+
+	<!-- Transmision -->
+
+	<definition name="altasTramiteTransmision" extends="plantilla">
+		<put-attribute name="titulo" value="Altas tramite transmision CTIT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/transmision/altasTramiteTransmision.jsp" />
+	</definition>
+
+	<definition name="altasTramiteTransmisionActual" extends="plantilla">
+		<put-attribute name="titulo"
+			value="Altas tramite transmision no telematica" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/transmision/altasTramiteTransmisionActual.jsp" />
+	</definition>
+
+	<!-- Solicitud Datos -->
+
+	<definition name="altaSolicitudDatos" extends="plantilla">
+		<put-attribute name="titulo" value="Alta solicitud datos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/solicitudDatos/altaSolicitudDatos.jsp" />
+	</definition>
+
+	<definition name="consultaSolicitudDatos" extends="plantilla">
+		<put-attribute name="title" value="consultaSolicitudDatos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/solicitudDatos/consultaSolicitudDatos.jsp" />
+	</definition>
+
+	<!-- Solicitud Informacion -->
+
+	<definition name="detalleSolicitudInformacion" extends="plantilla">
+		<put-attribute name="titulo" value="Alta solicitud datos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/solicitudInformacion/detalle.jsp" />
+	</definition>
+
+	<!-- Tiles para imprimir de tráfico -->
+
+	<definition name="imprimirTramites" extends="plantilla">
+		<put-attribute name="title" value="imprimirTramites" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/imprimirTramitesTrafico.jsp" />
+	</definition>
+	
+	<definition name="impresionTramites" extends="plantilla">
+		<put-attribute name="title" value="impresionTramites" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/impresionTramitesTrafico.jsp" />
+	</definition>
+
+	<definition name="clonarTramites" extends="plantilla">
+		<put-attribute name="title" value="imprimirTramites" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/clonarTramites/selectorPestanias.jsp" />
+	</definition>
+
+	<definition name="imprimirSolicitudDatos" extends="plantilla">
+		<put-attribute name="title" value="imprimirSolicitudDatos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/solicitudDatos/imprimirSolicitudDatos.jsp" />
+	</definition>
+
+	<definition name="imprimirTramiteTransmision" extends="plantilla">
+		<put-attribute name="title" value="imprimirTramiteTransmision" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/transmision/imprimirTramiteTransmision.jsp" />
+	</definition>
+
+	<definition name="imprimirTramiteBaja" extends="plantilla">
+		<put-attribute name="title" value="imprimirTramiteBaja" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/baja/imprimirTramiteBaja.jsp" />
+	</definition>
+
+	<definition name="imprimirTramiteDuplicado" extends="plantilla">
+		<put-attribute name="title" value="imprimirTramiteDuplicado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/duplicado/imprimirTramiteDuplicado.jsp" />
+	</definition>
+
+	<definition name="imprimirMatriculacion" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/imprimirMatriculacion.jsp" />
+	</definition>
+
+	<definition name="imprimirMatriculacionMatw" extends="plantilla">
+		<put-attribute name="title" value="matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matw/imprimirMatriculacion.jsp" />
+	</definition>
+	
+	<!-- ..................................................................................................... Placas1-->
+	<definition name="altaSolicitudPlacas1" extends="plantilla">
+		<put-attribute name="title"
+			value="Alta de Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/altaSolicitudPlaca1.jsp" />
+	</definition>
+	
+	
+    <definition name="solicitudPlacas1Buscar" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/buscarPlacas1.jsp" />
+	</definition>
+	
+	<definition name="solicitudPlacas1Inicio" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas1.jsp" />
+	</definition>
+	
+
+	<definition name="solicitudPlacas1Realizada" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas1.jsp" />
+	</definition>
+
+	<definition name="solicitudPlacas1Modificar" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas1.jsp" />
+	</definition>
+	
+	<definition name="solicitudPlacas1Estadisticas" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/estadisticasPlacas1.jsp" />
+	</definition>
+	
+	<!-- ..................................................................................................Final de Placas1-->
+	
+	
+
+	<definition name="altaSolicitudPlaca" extends="plantilla">
+		<put-attribute name="title"
+			value="Alta de Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/altaSolicitudPlaca.jsp" />
+	</definition>
+	
+
+	<definition name="solicitudPlacasInicio" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas.jsp" />
+	</definition>
+
+	<definition name="solicitudPlacasBuscar" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/buscarPlacas.jsp" />
+	</definition>
+
+
+	<definition name="solicitudPlacasModificar" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas.jsp" />
+	</definition>
+
+	<definition name="solicitudPlacasRealizada" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/solicitudPlacas.jsp" />
+	</definition>
+
+	<definition name="solicitudPlacasEstadisticas" extends="plantilla">
+		<put-attribute name="title"
+			value="Solicitud de Placas de Matriculación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/matriculacion/estadisticasPlacas.jsp" />
+	</definition>
+
+	<definition name="anuntis_*" extends="plantilla">
+		<put-attribute name="titulo" value="Tramites Anuntis" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/anuntis/{1}.jsp" />
+	</definition>
+
+	<definition name="monitorizaProcesos" extends="plantilla">
+		<put-attribute name="titulo" value="Monitorización de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/administracion/monitorProcesos.jsp" />
+	</definition>
+
+	<definition name="estadisticaProcesos" extends="plantilla">
+		<put-attribute name="titulo" value="Estadísticas de procesos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/administracion/estadisticaProcesos.jsp" />
+	</definition>
+	
+	<definition name="generarNRE06" extends="plantilla">
+		<put-attribute name="title" value="Generar Solicitud NRE-06" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/consultaTramiteTrafico.jsp" />
+	</definition>
+
+	<!-- DRC@19/06/2012 Nuevo modulo de Facturacion -->
+	<definition name="altaFacturacion" extends="plantilla">
+		<put-attribute name="title" value="alta Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/facturacion/alta/altaFactura.jsp" />
+	</definition>
+
+	<definition name="bajaFacturacion" extends="plantilla">
+		<put-attribute name="title" value="Baja Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/facturacion/baja/bajaFactura.jsp" />
+	</definition>
+
+	<definition name="consultaFacturacion" extends="plantilla">
+		<put-attribute name="title" value="Consulta Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/consulta/consultaFactura.jsp" />
+	</definition>
+
+	<definition name="consultaFacturacionRectificativa" extends="plantilla">
+		<put-attribute name="title" value="Consulta Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/consulta/consultaFacturaRectificativa.jsp" />
+	</definition>
+
+	<definition name="modificacionFacturacion" extends="plantilla">
+		<put-attribute name="title" value="Modificacion Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/modificacion/modificacionFactura.jsp" />
+	</definition>
+
+	<definition name="consultaConceptoFacturacion" extends="plantilla">
+		<put-attribute name="title" value="Consulta Tasa" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/alta/consultaConceptoFacturacion.jsp" />
+	</definition>
+
+	<definition name="consultaTramiteFacturacion" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Tramite" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/alta/consultaTramiteFacturacion.jsp" />
+	</definition>
+	<definition name="nuevaFacturacion" extends="plantilla">
+		<put-attribute name="title" value="nueva Factura" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/nueva/consultaTramiteTraficoFacturacion.jsp" />
+	</definition>
+
+	<definition name="consultaFacturaAbono" extends="plantilla">
+		<put-attribute name="title" value="consulta Factura Abono" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/consulta/consultaFacturaAbono.jsp" />
+	</definition>
+
+	<definition name="altaFacturacionResumen" extends="plantilla">
+		<put-attribute name="title" value="nueva factura resumen" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/facturacion/alta/altaFacturaResumen.jsp" />
+	</definition>
+
+	<definition name="numExpedientes" extends="plantillaNumExpediente">
+		<put-attribute name="cuerpo"
+			value="/facturacion/alta/NumExpedientes.jsp" />
+	</definition>
+
+	<!-- Definiciones IVTM Madrid -->
+	<definition name="consultaIVTM" extends="plantilla">
+		<put-attribute name="title" value="IVTM Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/ivtm/consultaIVTM.jsp" />
+	</definition>
+
+	<definition name="modificacionIVTM" extends="plantilla">
+		<put-attribute name="title" value="IVTM Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/ivtm/modificacionIVTM.jsp" />
+	</definition>
+
+	<definition name="modificaDatosIVTM" extends="plantilla">
+		<put-attribute name="title" value="IVTM Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/ivtm/modificaDatosIVTM.jsp" />
+	</definition>
+	
+	<definition name="popupMatriculaTiles" extends="plantilla">
+		<put-attribute name="title" value="IVTM Madrid" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"  value="/trafico/ivtm/consultaIVTMPopup.jsp" />
+	</definition>
+	<!-- Fin de Definciones IVTM Madrid -->
+
+
+	<definition name="reconocimientos_*" extends="plantilla">
+		<put-attribute name="titulo" value="Reconocimiento médico" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/reconocimientos/{1}.jsp" />
+	</definition>
+
+	<definition name="consultaEEFF" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta EEFF" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/eeff/consulta.jsp" />
+	</definition>
+
+	<definition name="recargaCaches" extends="plantilla">
+		<put-attribute name="title" value="Recarga de caches" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/administracion/consultaRecargaCaches.jsp" />
+	</definition>
+
+	<definition name="altaLegalizacion" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Legalizacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/legalizacion/altaLegalizacion.jsp" />
+	</definition>
+
+	<definition name="consultaLegalizacion" extends="plantilla">
+		<put-attribute name="titulo" value="Consuta documentos a Legalizar" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/legalizacion/listadoLegalizacion.jsp" />
+	</definition>
+
+	<definition name="altaLegalizacionNuevo" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Legalizacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/legalizacion/oegamLegalizacion/altaLegalizacion.jsp" />
+	</definition>
+
+	<definition name="consultaLegalizacionNuevo" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de Documentos a Legalizar" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/legalizacion/oegamLegalizacion/listadoLegalizacion.jsp" />
+	</definition>
+
+	<definition name="listadoDiarioNuevo" extends="plantilla">
+		<put-attribute name="titulo" value="Listado Diario Legalizacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/legalizacion/oegamLegalizacion/listadoLegalizacionDiario.jsp" />
+	</definition>
+
+	<definition name="altaSancion" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Sanción" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/sancion/altaSancion.jsp" />
+	</definition>
+
+	<definition name="consultaSancion" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Sanciones" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/sancion/listadoSancion.jsp" />
+	</definition>
+
+	<definition name="altaSancionNuevo" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Sanción" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/sancion/oegamSanciones/altaSancion.jsp" />
+	</definition>
+
+	<definition name="consultaSancionNuevo" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Sanciones" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/sancion/oegamSanciones/listadoSancion.jsp" />
+	</definition>
+
+	<definition name="altaMarcaDgt" extends="plantilla">
+		<put-attribute name="titulo" value="Alta marca vehículo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/altaMarcaDgt.jsp" />
+	</definition>
+
+	<definition name="jspKeyStores" extends="plantilla">
+		<put-attribute name="titulo" value="Almacenes de claves" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/keyStores.jsp" />
+	</definition>
+
+	<definition name="jspMatrSolInfo" extends="plantilla">
+		<put-attribute name="titulo" value="Modificación de matrículas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/solicitudDatos/listaMatrTasaSolInfo.jsp" />
+	</definition>
+
+	<definition name="inicioConsultaImpresionMasiva" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Impresion Masiva" />
+		<put-attribute name="cuerpo" value="/trafico/consultaImpresionMasiva.jsp" />
+	</definition>
+	
+	<definition name="inicioConsultaImpresion" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Impresion" />
+		<put-attribute name="cuerpo" value="/trafico/impresion/consultaImpresion.jsp" />
+	</definition>
+	
+	<definition name="jspProperties" extends="plantilla">
+		<put-attribute name="titulo" value="Propiedades OEGAM" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/properties.jsp" />
+	</definition>
+
+	<definition name="vehiculoPrematriculadoAltaUnitaria"
+		extends="plantilla">
+		<put-attribute name="titulo" value="Consulta tarjeta EITV" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/vehiculosPrematriculados/consultaEitvUnitaria.jsp" />
+	</definition>
+
+	<definition name="vehiculoPrematriculadoAltaMultiple"
+		extends="plantilla">
+		<put-attribute name="titulo" value="Consulta tarjeta EITV" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/vehiculosPrematriculados/consultaEitvMulti.jsp" />
+	</definition>
+
+	<definition name="vehiculoPrematriculadoResultado" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta tarjeta EITV" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/trafico/vehiculosPrematriculados/resultado.jsp" />
+	</definition>
+
+	<definition name="consultaGrupos" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta grupos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/grupos/consultaGrupos.jsp" />
+	</definition>
+
+	<definition name="aeat_*" extends="plantilla">
+		<put-attribute name="titulo" value="Trámites de la agencia tributaria" />
+		<put-attribute name="cuerpo" value="/aeat/{1}.jsp" />
+	</definition>
+
+	<definition name="altaTramiteBaja" extends="plantilla">
+		<put-attribute name="titulo" value="Altas tramite baja" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/baja/altaTramiteBaja.jsp" />
+	</definition>
+	
+	<definition name="altaTramiteMatriculacion" extends="plantilla">
+		<put-attribute name="titulo" value="Altas tramite matriculacion" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/matriculacionN/altaTramiteMatriculacion.jsp" />
+	</definition>
+	
+	<definition name="altaTramiteDuplicado" extends="plantilla">
+		<put-attribute name="titulo" value="Altas tramite duplicado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/duplicado/altaTramiteDuplicado.jsp" />
+	</definition>
+	<definition name="altaTramiteCambioServicio" extends="plantilla">
+		<put-attribute name="titulo" value="Altas tramite cambio de servicio" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/cambioServicio/altaTramiteCambioServicio.jsp" />
+	</definition>
+	<definition name="consultaLogs" extends="plantilla">
+		<put-attribute name="titulo" value="Descarga de ficheros de Log" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/logs/consultaLogs.jsp" />
+	</definition>
+
+	<!-- Compra Tasas DGT -->
+	<definition name="compraTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Lista de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/tasas/compraTasas.jsp" />
+	</definition>
+
+	<definition name="pagoTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Pago de tasa" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/tasas/pagoTasas.jsp" />
+	</definition>
+
+	<definition name="cargaListaCompraTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Pago de tasa" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/tasas/listadoCompraTasas.jsp" />
+	</definition>
+
+	<definition name="resumenCompraTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Pago de tasa" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/tasas/resumenCompraTasas.jsp" />
+	</definition>
+
+	<definition name="importarCompraTasas" extends="plantilla">
+		<put-attribute name="titulo" value="Importar compra de tasas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/tasas/importarCompra.jsp" />
+	</definition>
+
+	<definition name="imputar" extends="plantilla">
+		<put-attribute name="titulo" value="Imputación de Horas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/imputacion/imputacionHoras.jsp" />
+	</definition>
+	
+	<!-- PRESENTACION JPT -->
+	<definition name="presentacionJPT" extends="plantilla">
+		<put-attribute name="titulo"   value="Presentacion JPT Alta" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/alta.jsp" />
+	</definition>
+	
+	<definition name="presentacionJPTconfirmar" extends="plantilla">
+		<put-attribute name="titulo"   value="Presentacion JPT Confirmar" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/resumen.jsp" />
+	</definition>
+	
+	<definition name="presentacionJPTpresentacion" extends="plantilla">
+		<put-attribute name="titulo"   value="Presentacion JPT Presentacion" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/presentacion.jsp" />
+	</definition>
+	
+	<definition name="cargarListaTipoEstadisticas" extends="plantilla">
+		<put-attribute name="titulo" value="Estadísticas JPT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/estadisticas.jsp" />
+	</definition>
+	
+	<definition name="generarEstadisticaJPT" extends="plantilla">
+		<put-attribute name="titulo" value="Generar Estadísticas JPT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/generarEstadisticaJPT.jsp" />
+	</definition>
+	
+	<definition name="excelNoPresentados" extends="plantilla">
+		<put-attribute name="titulo" value="Excel no presentados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/excelNoPresentados.jsp" />
+	</definition>
+	
+	<definition name="asociarJefaturaJPT" extends="plantilla">
+		<put-attribute name="titulo" value="Generar Estadísticas JPT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/presentacionJPT/jefatura.jsp" />
+	</definition>
+	
+	
+	<!-- FIN PRESENTACION JPT -->
+	
+	<definition name="detalleConsultaEEFF" extends="plantilla">
+		<put-attribute name="titulo" value="Detalle Consulta EEFF" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/eeff/detalleConsultaEEFF.jsp" />
+	</definition>
+	
+	<!-- ALTA ESTACION ITV -->
+	<definition name="altaEstacionITV" extends="plantilla">
+		<put-attribute name="titulo" value="Alta estacion ITV" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/administracion/estacionITV/altaEstacionITV.jsp" />
+	</definition>
+	
+	<definition name="altaTramiteFacturacion" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Trámite Facturación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/facturacionTasa/altaTramiteFacturacionTasa.jsp" />
+	</definition>
+	
+	<definition name="consultaFacturacionTasa" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta vehiculo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/facturacionTasa/consultaFacturacionTasa.jsp" />
+	</definition>
+	
+	<definition name="favoritos" extends="plantilla">
+		<put-attribute name="titulo" value="Favoritos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/favoritos/favoritos.jsp" />
+	</definition>
+	
+	<!-- inicioConsultaNotificacion -->
+	
+	<definition name="inicioConsultaNotificacion" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Notificaciones" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/seguridadsocial/consultaNotificacion.jsp" />
+	</definition>
+	
+	<definition name="inicioPreferenciasSeguridadSocial" extends="plantilla">
+		<put-attribute name="titulo" value="PreferenciasSeguridadSocial" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/seguridadsocial/preferenciasSeguridadSocial.jsp" />
+	</definition>
+	
+	<!-- inicioRespuestaSeguridadSocial -->
+	
+	<definition name="inicioRespuestaSeguridadSocial" extends="plantilla">
+		<put-attribute name="titulo" value="Respuesta Seguridad Social" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/seguridadsocial/respuestaSeguridadSocial.jsp" />
+	</definition>
+	
+	<!-- aceptacionServicio -->
+	<definition name="aceptacionServicio" extends="plantilla">
+		<put-attribute name="titulo" value="Aceptación del servicio" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/seguridadsocial/aceptacionServicio.jsp" />
+	</definition>
+	
+	<!-- Remesas -->
+	
+	<definition name="altaRemesa600" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Remesa modelo 600" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/remesas/remesa600/altaRemesa600.jsp" />
+	</definition>
+	
+	<definition name="altaRemesa601" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Remesa modelo 601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/remesas/remesa601/altaRemesa601.jsp" />
+	</definition>
+	
+	<definition name="consultaRemesas" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Remesas 600/601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/remesas/consulta.jsp" />
+	</definition>
+	
+	<!-- Modelos -->
+	
+	<definition name="altaModelo600" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Modelo 600" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/modelos/modelo600/altaModelo600.jsp" />
+	</definition>
+	
+	<definition name="altaModelo601" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Modelo 601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/modelos/modelo601/altaModelo601.jsp" />
+	</definition>
+	
+	<definition name="consultaModelos" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Modelos 600/601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/modelos/consulta.jsp" />
+	</definition>
+	
+	<definition name="impresionModelos" extends="plantilla">
+		<put-attribute name="titulo" value="Impresion Modelos 600/601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/modelos/imprimirModelos.jsp" />
+	</definition>
+	
+	<definition name="impresionRemesas" extends="plantilla">
+		<put-attribute name="titulo" value="Impresion Remesas 600/601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/remesas/imprimirRemesas.jsp" />
+	</definition>
+	
+	<definition name="altaBienRustico" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Bien Rustico" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/bienes/altaBienRustico.jsp" />
+	</definition>
+	
+	<definition name="altaBienUrbano" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Bien Urbano"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/bienes/altaBienUrbano.jsp" />
+	</definition>
+	
+	<definition name="altaOtroBien" extends="plantilla">
+		<put-attribute name="titulo" value="Alta otro bien"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/bienes/altaOtroBien.jsp" />
+	</definition>
+	
+	<definition name="consultaBienes" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Bienes"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/bienes/consulta.jsp" />
+	</definition>
+	
+	<!--  testra tiles -->
+	<definition name="consultaTestra" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Testra"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/matriculasTestra/consultaTestra.jsp" />
+	</definition>
+	<definition name="altaTestra" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Testra"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/matriculasTestra/altaTestra.jsp" />
+	</definition>
+	<definition name="importarTestra" extends="plantilla">
+		<put-attribute name="titulo" value="Importación Testra"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/matriculasTestra/importarTestra.jsp" />
+	</definition>
+	
+	<!-- Trafico Materiales -->
+
+	<definition name="gestionMateriales" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Materiales"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/gestionMateriales.jsp" />
+	</definition>
+	
+	<definition name="stockMateriales" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Materiales"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/stockMateriales.jsp" />
+	</definition>
+	
+	<definition name="altaIncidencia" extends="plantilla">
+		<put-attribute name="titulo" value="Alta de Incidencias"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/crearIncidencia.jsp" />
+	</definition>
+	
+	<definition name="gestionIncidencia" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Incidencias"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/gestionIncidencia.jsp" />
+	</definition>
+	
+	<definition name="gestionPedidos" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Pedidos"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/gestionPedidos.jsp" />
+	</definition>
+
+	<definition name="gestionStock" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Stock"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/gestionStockMaterial.jsp" />
+	</definition>
+
+	<definition name="facturacionStock" extends="plantilla">
+		<put-attribute name="titulo" value="Facturacion de Stock de Materiales"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/facturacionStock.jsp" />
+	</definition>
+
+	<definition name="crearPedido" extends="plantilla">
+		<put-attribute name="titulo" value="Crear Pedido"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/materiales/crearPedido.jsp" />
+	</definition>
+
+	<!-- Pegatinas -->
+	
+	<definition name="gestionPegatinas" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de Pegatinas"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/gestionPegatinas.jsp" />
+	</definition>
+	
+	<definition name="impresionPegatinas" extends="plantilla">
+		<put-attribute name="titulo" value="Impresion Pegatinas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/impresionPegatinas.jsp" />
+	</definition>
+	
+	<definition name="imprimirPegatinas" extends="plantilla">
+		<put-attribute name="titulo" value="Impresion Pegatinas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/imprimirPegatinas.jsp" />
+	</definition>
+	
+	<definition name="stockPegatinas" extends="plantilla">
+		<put-attribute name="titulo" value="Peticiones Stock Pegatinas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/stockPegatinas.jsp" />
+	</definition>
+	
+	<definition name="stockHistorico" extends="plantilla">
+		<put-attribute name="titulo" value="Historico Stock Pegatinas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/stockHistorico.jsp" />
+	</definition>
+	
+	<definition name="asociarJefaturaPegatinas" extends="plantilla">
+		<put-attribute name="titulo" value="Cambio Jefatura Pegatinas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/pegatinas/cambioJefaturaPegatinas.jsp" />
+	</definition>
+	
+	<!-- datos Bancarios -->
+	<definition name="consultaDatosBancarios" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Datos Bancarios"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/datosBancarios/consulta.jsp" />
+	</definition>
+	
+	<definition name="altaDatosBancarios" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Datos Bancarios"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/datosBancarios/altaDatoBancario.jsp" />
+	</definition>
+	
+	<definition name="consultaContratos" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de Contratos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/contrato/consultaContratos.jsp" />
+	</definition>
+	
+	<definition name="consultaPeticionesDev" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Peticiones Dev"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/consultaDev/consulta.jsp" />
+	</definition>
+	
+	<definition name="altaDev" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Dev"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/consultaDev/altaConsultaDev.jsp" />
+	</definition>
+	
+	<definition name="altaMasivasDev" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Masiva de Consultas Dev"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/consultaDev/altaMasivaConsultasDev.jsp" />
+	</definition>
+	
+	<definition name="consultaPersonaAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Persona Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/persona/consultaPersonaAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaPersonaAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Persona Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/persona/altaConsultaPersonaAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaMasivaPersonaAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Masiva Personas Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/personasMasivas/altaConsultaMasivaPersonasAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaMasivaVehiculoAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Masiva Vehiculos Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/vehiculosMasivas/altaConsultaMasivaVehiculosAtex5.jsp" />
+	</definition>
+	
+	<definition name="consultaMasivaAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Masiva Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/masivas/consultaMasivasAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaVehiculoAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Vehiculo Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/vehiculo/altaConsultaVehiculoAtex5.jsp" />
+	</definition>
+	
+	<definition name="consultaVehiculoAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Vehiculo Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/vehiculo/consultaVehiculoAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaVehiculoApliAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Vehiculo Por Aplicacion Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/vehiculoPorAplicacion/altaConsultaVehiculoPorAplicacionAtex5.jsp" />
+	</definition>
+	
+	<definition name="consultaVehiculoApliAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Vehiculo Por Aplicacion Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/vehiculoPorAplicacion/consultaVehiculoPorAplicacionAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaDocAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Documento Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/documento/altaConsultaDocAtex5.jsp" />
+	</definition>
+	
+	<definition name="consultaDocAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Documento Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/documento/consultaDocAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaEucarisAtex5" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta Eucaris Atex5"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/atex5/eucaris/altaConsultaEucarisAtex5.jsp" />
+	</definition>
+	
+	<definition name="altaJustificanteProf" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Justificante Profesional"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/justificanteProfesional/altaJustificanteProfesional.jsp" />
+	</definition>
+	
+	<definition name="consultaJustificanteProf" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Justificantes Profesionales" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/justificanteProfesional/consultaJustificanteProf.jsp" />
+	</definition>
+	
+	<definition name="altaConsultaEEFF" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Consulta EEFF" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/eeff/altaConsultaEEFF.jsp" />
+	</definition>
+	
+	<definition name="altaFormulario" extends="plantilla">
+		<put-attribute name="titulo" value="Alta formulario embarcaciones 06" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/embarcaciones/altaFormulario.jsp" />
+	</definition>
+	
+	<definition name="consultaNotTransporte" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Notificaciones Transporte" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/transporte/notificaciones/consultaNotificacionesTrans.jsp" />
+	</definition>
+	
+	<definition name="altaPoderTransporte" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Poder Transporte" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/transporte/poderes/altaPoderTransporte.jsp" />
+	</definition>
+	
+	<definition name="consultaPoderTransporte" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Poder Transporte" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/transporte/poderes/consultaPoderTrans.jsp" />
+	</definition>
+
+	<definition name="importarModelos" extends="plantilla">
+		<put-attribute name="titulo" value="Importar modelos 600 601" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/modelos/importarModelos.jsp" />
+	</definition>
+	
+	<definition name="consultaIpNoPermitidas" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Ip no permitidas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/ipNoPermitidas/consultaIpNoPermitidas.jsp" />
+	</definition>
+	
+	<definition name="altaIpNoPermitidas" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Ip no permitidas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/ipNoPermitidas/altaIpNoPermitidas.jsp" />
+	</definition>
+
+	<definition name="listadoMensajeErrorServicio" extends="plantilla">
+		<put-attribute name="titulo" value="Mensajes error servicio" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/estadisticas/listadoMensajeErrorServicio.jsp" />
+	</definition>
+	
+	<definition name="consultaNotario" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Notario" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/notario/consultaNotario.jsp" />
+	</definition>
+	
+	<definition name="altaNotario" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Notario" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/notario/altaNotario.jsp" />
+	</definition>	
+	
+	<definition name="altaTramSolInfo" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Tramite Solicitud Información" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/solInfo/altaTramiteSolInfo.jsp" />
+	</definition>
+	
+	<definition name="consultaInteve" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Solicitudes Inteve" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/solInfo/consultaInteve.jsp" />
+	</definition>
+	
+	
+	<definition name="listaProcesosFrontal" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion de procesos en frontal" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/procesos/listaProcesos.jsp" />
+	</definition>		
+		
+	<definition name="consultaPrmDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Permiso/Distintivo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/consultaPermisoDistintivo.jsp" />
+	</definition>
+		<definition name="modificarVehiculoGestionDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Modificar Vehiculo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/modificarVehiculoGestionDstv.jsp" />
+	</definition>	
+	<!-- Distintivos medioambientales -->
+	<definition name="gestionDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion Distintivo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/gestionDistintivoDgt.jsp" />
+	</definition>
+	
+	<!-- Arrendatarios -->
+	<definition name="altaArrendatario" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Arrendatario"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/arrendatarios/altaArrendatario.jsp" />
+	</definition>
+		
+	<!-- Actualizacion Marcas/Fabricantes -->
+	<definition name="actualizacion" extends="plantilla">
+		<put-attribute name="titulo" value="Alta actualización Marcas-Fabricantes"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/mf/actualizacionMF.jsp" />
+	</definition>
+	
+	<definition name="consultaActualizacionMF" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Actualización Marcas-Fabricantes"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/mf/consultaActualizacionMF.jsp" />
+	</definition>		
+	
+		
+	
+	
+	<definition name="inicioConsultaArrendatarios" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Arrendatarios"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/arrendatarios/inicioConsultaArrendatarios.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="inicioModificarArrendatarios" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Arrendatarios"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/arrendatarios/inicioModificarArrendatarios.jsp" />
+	</definition>
+	
+	
+	
+	<!-- Conductor Habitual -->
+	<definition name="altaConductorHabitual" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Conductor Habitual"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/conductor/altaConductorHabitual.jsp" />
+	</definition>	
+	
+	<definition name="inicioConsultaConductorHabitual" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Conductor Habitual"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/conductor/inicioConsultaconductorHabitual.jsp" />
+	</definition>
+	
+	<definition name="inicioModificarConductorHabitual" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Conductor Habitual"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/conductor/inicioModificarconductorHabitual.jsp" />
+	</definition>
+		
+		
+<!-- DIRe -->
+	<definition name="tiles_altaEmpresaDIRe" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Empresa DIRe"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/DIRe/altaEmpresaDIRe.jsp" />
+	</definition>	
+	
+	
+	<definition name="tiles_modificarEmpresaDIRe" extends="plantilla">
+		<put-attribute name="titulo" value="Modificar Empresa DIRe"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/DIRe/altaEmpresaDIRe.jsp" />
+	</definition>
+	
+	
+	<definition name="tiles_consultaEmpresaDIRe" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Empresa DIRe"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/DIRe/consultaEmpresaDIRe.jsp" />
+	</definition>
+			
+		
+		
+	<definition name="consultaMF" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Marca Fabricante" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/marcaFabricante/consultaMarcarFabricante.jsp" />
+	</definition>
+	
+	<!-- Mandatos -->
+	<definition name="altaMandato" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Mandato"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/mandato/altaMandato.jsp" />
+	</definition>
+	
+	<definition name="consultaMandato" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Mandatos"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/mandato/consultaMandato.jsp" />
+	</definition>
+	
+	<definition name="altaMF" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Marca Fabricante" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/marcaFabricante/altaMarcaFabricante.jsp" />
+	</definition>
+	
+		<definition name="gestionarPermDstvItv" extends="plantilla">
+		<put-attribute name="titulo" value="Gestionar documento solicitado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/gestionPermDstvItv.jsp" />
+	</definition>
+	
+	<definition name="generarExcelLiquidacion620" extends="plantilla">
+		<put-attribute name="titulo" value="Descargar excel liquidacion generado" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/generarExcelLiquidacion620.jsp" />
+	</definition>
+	
+	<definition name="altaVehNoMatOegam" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Duplicados de Distintivos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/altaVehNoMatOegam.jsp" />
+	</definition>
+	
+	<definition name="consultaVehNoMatOegam" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Duplicados de Distintivos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/consultaVehNoMatOegam.jsp" />
+	</definition>
+	
+	<definition name="consultaEmpresaTelematica" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de Empresas Telemáticas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/empresaTelematica/consulta.jsp" />
+	</definition>
+	
+	<definition name="altaEmpresaTelematica" extends="plantilla">
+		<put-attribute name="titulo" value="Alta de Empresas Telemáticas" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/empresaTelematica/altaEmpresaTelematica.jsp" />
+	</definition>		
+	
+	<definition name="importarCAYC" extends="plantilla">
+		<put-attribute name="titulo" value="Importar CAYC" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/CAYCModelo/importarCAYC.jsp" />
+	</definition>
+	
+	<definition name="gestionPrm" extends="plantilla">
+		<put-attribute name="titulo" value="Gestión Permisos DGT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisosDgt/gestionPermisosDgt.jsp" />
+	</definition>
+	
+	<definition name="gestionFchTr" extends="plantilla">
+		<put-attribute name="titulo" value="Gestión Fichas Técnicas DGT" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/fichasTecnicasDgt/gestionFichasTecnicasDgt.jsp" />
+	</definition>
+	
+	<definition name="gestionPrmFchMsv" extends="plantilla">
+		<put-attribute name="titulo" value="Gestión Permisos y Fichas Masivo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/gestionPermFichasMasivo.jsp" />
+	</definition>
+	
+	<definition name="datosDocuGener" extends="plantilla">
+		<put-attribute name="titulo" value="Datos de documentos generados" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/datosDocumentosGenerados.jsp" />
+	</definition>
+	
+	<definition name="estadisticaImpresion" extends="plantilla">
+		<put-attribute name="titulo" value="Estadística Impresión" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/estadisticaImpresion/estadistica.jsp" />
+	</definition>
+	
+	<definition name="altaSolicitudLicencia" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Solicitud Licencia" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/licenciasCam/altaSolicitudLicencia.jsp" />
+	</definition>
+	
+	<definition name="consultaSolicitudLicencia" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Solicitud Licencia" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/licenciasCam/consultaSolicitudLicencia.jsp" />
+	</definition>
+	
+	<definition name="consultaFacturacionDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Facturación" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/consultaFacturacionDstv.jsp" />
+	</definition>
+	
+	<definition name="importarDupDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Importar Duplicado Distintivo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/permisoDistintivoItv/importarDuplicadosDstv.jsp" />
+	</definition>
+	
+	<definition name="solictudesMasivasDstv" extends="plantilla">
+		<put-attribute name="titulo" value="Solicitudes Masivas Distintivo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/distintivos/altaSolicitudMasivaDstv.jsp" />
+	</definition>
+	
+	<definition name="altaCircularOegam" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Circulares OEGAM" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/circularesOegam/altaCircularOegam.jsp" />
+	</definition>
+	
+	<definition name="consultaCircularOegam" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Circulares OEGAM" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/circularesOegam/consultaCircularOegam.jsp" />
+	</definition>
+	
+		<definition name="consultaKo" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Ko" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/consultaKo/consultaKo.jsp" />
+	</definition>
+	
+	<definition name="getionDocBase" extends="plantilla">
+		<put-attribute name="titulo" value="Gestion Documento Base" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/docBase/gestionDocBase.jsp" />
+	</definition>
+	
+	<definition name="preferenciasDocBase" extends="plantilla">
+		<put-attribute name="title" value="Preferencias Documento Base" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/docBase/contratoPreferencias.jsp" />
+	</definition>
+	
+	<definition name="altaTramiteTraficoInteve" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Tramite Inteve" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/inteve/altaTramiteTraficoInteve.jsp" />
+	</definition>
+	<definition name="pagGestionCola" extends="plantilla">
+		<put-attribute name="title" value="Gestion de Solicitudes en Cola" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/gestionCola/consultaGestionCola.jsp" />
+	</definition>
+	<definition name="pagConsultaGestionCola" extends="plantilla">
+		<put-attribute name="title" value="Gestion de Solicitudes en Cola" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/gestionCola/consultaGestionCola.jsp" />
+	</definition>
+	
+	<definition name="consultaTramiteTraficoInteve" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Tramite Inteve" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/inteve/consultaTramiteInteve.jsp" />
+	</definition>
+	
+	<definition name="altaPermisoInternacional" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Permiso Internacional"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/permisoInternacional/altaPermisoInternacional.jsp" />
+	</definition>
+	
+	<definition name="consultaCarnetInternacional" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Tramite Carnet Internacional"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/permisoInternacional/consultaPermisoInternacional.jsp" />
+	</definition>
+	
+	<definition name="altaSemaforo" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Semáforo" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/semaforo/altaSemaforo.jsp" />
+	</definition>
+	
+	<definition name="gestionSemaforo" extends="plantilla">
+		<put-attribute name="titulo" value="Gestión Semáforos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/semaforo/gestionSemaforo.jsp" />
+	</definition>
+	
+	<definition name="altaDuplicadoPermisoConducir" extends="plantilla">
+		<put-attribute name="titulo" value="Alta Duplicado Permiso Conducir"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/duplicadoPermisoConducir/altaDuplicadoPermisoConducir.jsp" />
+	</definition>
+	
+	<definition name="consultaDuplicadoPermisoConducir" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Duplicado Permiso Conducir"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/duplicadoPermisoConducir/consultaDuplicadoPermisoConducir.jsp" />
+	</definition>
+	
+	<definition name="consultaTramiteTraf" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta Tramite Trafico"/>
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/consultaTramiteTraficoNuevo.jsp" />
+	</definition>
+	
+	<!-- Pantallas de Oegam Créditos -->
+	<definition name="gastoMensualCreditos" extends="plantilla">
+		<put-attribute name="titulo" value="Consulta de histórico de créditos" />
+		<put-attribute name="cuerpo" value="/creditos/consultaGastoMensualCreditos.jsp" />
+	</definition>
+	
+	<definition name="consultaHistCreditos" extends="plantilla">
+		<put-attribute name="titulo" value="Detalle Histórico " />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/consultaHistCreditos.jsp" />
+	</definition>
+	
+	<definition name="resumenCargaCreditos" extends="plantilla">
+		<put-attribute name="titulo" value="Resumen Carga Créditos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/consultaResumenCreditos.jsp" />
+	</definition>
+	
+	<definition name="resumenCargaCreditosMes" extends="plantilla">
+		<put-attribute name="titulo" value="Resumen Mensual Carga Créditos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/consultaResumenCreditosMes.jsp" />
+	</definition>
+	
+	<definition name="creditosDisponibles" extends="plantilla">
+		<put-attribute name="titulo" value="Resumen" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo"
+			value="/creditos/creditosDisponibles.jsp" />
+	</definition>
+	
+	<definition name="tipoCreditos" extends="plantilla">
+		<put-attribute name="titulo" value="Tipos de créditos" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/consultaTipoCreditos.jsp" />
+	</definition>
+	
+	<definition name="nuevoTipoCredito" extends="plantilla">
+		<put-attribute name="titulo" value="Nuevo/modificación Tipo Crédito" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/nuevoTipoCredito.jsp" />
+	</definition>
+	
+	<definition name="detalleTipoCredito" extends="plantilla">
+		<put-attribute name="titulo" value="Detalle Tipo Crédito" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/creditos/detalleTipoCredito.jsp" />
+	</definition>
+	
+	<definition name="resumenNRE06" extends="plantilla">
+		<put-attribute name="titulo" value="Resumen Estadistica Solicitud NRE06" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/resumenEstadisitcaSolicitudNRE06.jsp" />
+	</definition>
+	
+	<definition name="gestionImpr" extends="plantilla">
+		<put-attribute name="titulo" value="Gestionar Impr" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/impr/gestion_impr.jsp" />
+	</definition>
+	
+	<definition name="gestionDocImpr" extends="plantilla">
+		<put-attribute name="titulo" value="Gestionar Documentacion Impr" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/impr/gestion_doc_impr.jsp" />
+	</definition>
+	<definition name="autorizarFichaA" extends="plantilla">
+		<put-attribute name="title" value="Autorizar ficha" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/autorizarFichaA.jsp" />
+	</definition>
+	<definition name="autorizarCtit" extends="plantilla">
+		<put-attribute name="title" value="Autorizar ctit" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/autorizarCtit.jsp" />
+	</definition>
+	<definition name="autorizarMatw" extends="plantilla">
+		<put-attribute name="title" value="Autorizar matw" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/autorizarMatw.jsp" />
+	</definition>
+	<definition name="redireccionOegam3" extends="plantilla">
+		<put-attribute name="titulo" value="Redirección OEGAM3" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/trafico/redireccionOegam3.jsp" />
+	</definition>
+	<definition name="gestionCanjes" extends="plantilla">
+		<put-attribute name="titulo" value="Gestionar Canjes" />
+		<put-attribute name="cabecera" value="/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="/canjes/gestionCanjes.jsp" />
+	</definition>
+</tiles-definitions>

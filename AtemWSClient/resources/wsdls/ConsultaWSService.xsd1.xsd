@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://atem.vehiculos.servicios.trafico.es" xmlns:intf="http://atem.vehiculos.servicios.trafico.es" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://atem.vehiculos.servicios.trafico.es">
+   
+<element name="consultaBastidorResponse">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="consultaBastidorReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaPersonaResponse">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="consultaPersonaReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaMatricula">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="tasa" nillable="true" type="xsd:string"/>
+      
+<element name="matricula" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaMatriculaResponse">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="consultaMatriculaReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaMasiva">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="tipo" nillable="true" type="xsd:string"/>
+      
+<element name="xml" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaMasivaResponse">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="consultaMasivaReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="obtenerResultadoConsulta">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="referencia" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="obtenerResultadoConsultaResponse">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="obtenerResultadoConsultaReturn" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaBastidor">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="tasa" nillable="true" type="xsd:string"/>
+      
+<element name="bastidor" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   
+<element name="consultaPersona">
+    
+<complexType>
+     
+<sequence>
+      
+<element name="tasa" nillable="true" type="xsd:string"/>
+      
+<element name="persona" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>

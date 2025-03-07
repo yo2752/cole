@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+      
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcActuacionVO</class-a>
+  		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcActuacionDto</class-b>
+  		<field custom-converter-id="dozer0s1sConverter">
+  			<a>solicitudAyudaRehabilitacion</a>
+  			<b>solicitudAyudaRehabilitacion</b>
+  		</field>
+  		<field custom-converter-id="dozerBooleanToBigDecimalConverter">
+  			<a>modificaActividad</a>
+  			<b>modificaActividad</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>gestionadoAdminPublica</a>
+  			<b>gestionadoAdminPublica</b>
+  		</field>
+  	</mapping>
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcDatosSuministrosVO</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcDatosSuministrosDto</class-b>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>aguaCalienteSanitaria</a>
+  			<b>aguaCalienteSanitaria</b>
+  		</field>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>equipoFotovoltaico</a>
+  			<b>equipoFotovoltaico</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>captEnergiaSolar</a>
+  			<b>captEnergiaSolar</b>
+  		</field>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>climatizacionAc</a>
+  			<b>climatizacionAc</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>condensacionSalidaChimenea</a>
+  			<b>condensacionSalidaChimenea</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>condensacionSalidaFachada</a>
+  			<b>condensacionSalidaFachada</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>condensadorCubierta</a>
+  			<b>condensadorCubierta</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>hayEnfriadoresEvaporativos</a>
+  			<b>hayEnfriadoresEvaporativos</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>equipoCentralizadoLocal</a>
+  			<b>equipoCentralizadoLocal</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>hayEquiposAutonomos</a>
+  			<b>hayEquiposAutonomos</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>instalacionesGeneralEdificio</a>
+  			<b>instalacionesGeneralEdificio</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>instalacionesGeneralEdificioCalefcc</a>
+  			<b>instalacionesGeneralEdificioCalefcc</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>torreRefirgeracion</a>
+  			<b>torreRefirgeracion</b>
+  		</field>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>hayInstalacionesRelevantes</a>
+  			<b>hayInstalacionesRelevantes</b>
+  		</field>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>equipoCentralizadoLocalCalefcc</a>
+  			<b>equipoCentralizadoLocalCalefcc</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>instalacionesCalefaccion</a>
+  			<b>instalacionesCalefaccion</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>ventilacionForzada</a>
+  			<b>ventilacionForzada</b>
+  		</field>
+  	</mapping>
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcObraVO</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcObraDto</class-b>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>andamios</a>
+  			<b>andamios</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>contenedorViaPublica</a>
+  			<b>contenedorViaPublica</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>instalacionGrua</a>
+  			<b>instalacionGrua</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>vallas</a>
+  			<b>vallas</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>ocupacionViaPublica</a>
+  			<b>ocupacionViaPublica</b>
+  		</field>
+  	</mapping>
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcInfoLocalVO</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcInfoLocalDto</class-b>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>accesoPrincipalIgual</a>
+  			<b>accesoPrincipalIgual</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>solicitaRotulo</a>
+  			<b>solicitaRotulo</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>sujetaAOtros</a>
+  			<b>sujetaAOtros</b>
+  		</field>
+  		
+  	</mapping>
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcEdificacionVO</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcEdificacionDto</class-b>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>superaDoceMil</a>
+  			<b>superaDoceMil</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>superaSeisMil</a>
+  			<b>superaSeisMil</b>
+  		</field>
+  	</mapping>
+  	<mapping>
+  		<class-a>org.gestoresmadrid.core.licencias.model.vo.LcTramiteVO</class-a>
+		<class-b>org.gestoresmadrid.oegam2comun.licenciasCam.view.dto.LcTramiteDto</class-b>
+		<field custom-converter-id="dozerSNConverter">
+  			<a>ocupacionViario</a>
+  			<b>ocupacionViario</b>
+  		</field>
+  		<field custom-converter-id="dozerSNConverter">
+  			<a>solicitaOtraAutorizacion</a>
+  			<b>solicitaOtraAutorizacion</b>
+  		</field>
+  	</mapping>
+</mappings>

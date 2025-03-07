@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Tipos="http://www.gacn.es/CTIT/tipos"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified" xsi:noNamespaceSchemaLocation="InterfazCTITCON.xsd">
+	<xs:import namespace="http://www.gacn.es/CTIT/tipos" schemaLocation="TiposCTITCON.xsd"/>
+	<xs:element name="Solicitud_Tramite">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Firmados"/>
+				<xs:element name="Firma_Gestor" type="Tipos:tipoHash"/>
+			</xs:sequence>
+			<xs:attribute name="Version" type="Tipos:tipoVersionRegistro" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NIF_Gestor" type="Tipos:tipoNIF"/>
+				<xs:element name="Matricula" type="Tipos:alfa12"/>
+				<xs:element name="Lista_Transmitentes">
+					<xs:complexType>
+						<xs:sequence maxOccurs="3">
+							<xs:element name="DOI" type="Tipos:tipoNIF"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Lista_Adquirientes">
+					<xs:complexType>
+						<xs:sequence maxOccurs="3">
+							<xs:element name="DOI" type="Tipos:tipoNIF"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Tipo_Tramite" type="Tipos:tipoTramite"/>
+				<xs:element name="Servicio_Del_Vehiculo" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="Tipos:tipoServicioDelVehiculo"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Texto_Legal" type="Tipos:tipoTextoLegal"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

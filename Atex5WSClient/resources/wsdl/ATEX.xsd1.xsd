@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservices.atex.consulta.vehiculos.servicios.trafico.es" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservices.atex.consulta.vehiculos.servicios.trafico.es">
+			
+<!--Consulta de ATEX-->
+			
+<xs:element name="SolicitudConsultaVehiculoAtex">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="tasa" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaVehiculo"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="SolicitudConsultaVehiculoAtexFecha">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaVehiculoFecha"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="SolicitudConsultaPersonaAtex">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="tasa" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaPersona"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="SolicitudConsultaDocumentoAtex">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="tasa" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaDocumento"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+<!--Consulta de EUCARIS-->
+			
+<xs:element name="SolicitudConsultaEucarisAtex">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaEucaris"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaDocumento">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="matricula" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="bastidor" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="nive" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="tipoDocumento" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaVehiculo">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="matricula" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="bastidor" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="nive" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaVehiculoFecha">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="matricula" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="fecha" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="aplicacion" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaPersona">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="doi" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="razonSocial" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="primerApellido" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="segundoApellido" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="nombre" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="fechaNacimiento" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="anyoNacimiento" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaEucaris">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="matricula" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="paisMatricula" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="fechaHora" type="xs:dateTime"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="delitoMatricula" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="RespuestaAtex">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" ref="tns:CriteriosConsultaVehiculo"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" ref="tns:CriteriosConsultaPersona"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" ref="tns:CriteriosConsultaDocumento"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" ref="tns:CriteriosConsultaEucaris"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="resultado" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="respuesta" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="RespuestaATEXMultiple">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="resultado" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:InformacionRespuesta"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+       		
+<xs:element name="InformacionRespuesta">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="numReferencia" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" ref="tns:ListaDatos">
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="ListaDatos">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="unbounded" minOccurs="1" ref="tns:tuplaDatos"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="tuplaDatos">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="criterioConsulta" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="codigoRetorno" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="datos" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="SolicitudConsultaATEXMultipleVehiculos">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaMasivaVehiculos"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+<xs:element name="SolicitudConsultaATEXMultipleVehiculosResponse">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element name="out" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="SolicitudConsultaATEXMultiplePersonas">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idUsuario" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="0" name="idOrganismoResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="idResponsable" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="version" type="xs:string"/>
+						
+<xs:element maxOccurs="1" minOccurs="1" ref="tns:CriteriosConsultaMasivaPersonas"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+<xs:element name="SolicitudConsultaATEXMultiplePersonasResponse">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element name="out" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaMasivaVehiculos">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="xml" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+<xs:element name="CriteriosConsultaMasivaPersonas">
+				
+<xs:complexType>
+					
+<xs:sequence>
+						
+<xs:element maxOccurs="1" minOccurs="1" name="xml" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+        </xs:schema>

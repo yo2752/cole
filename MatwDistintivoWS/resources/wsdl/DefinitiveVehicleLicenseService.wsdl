@@ -1,0 +1,283 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://siga.gestores.net/dvl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DefinitiveVehicleLicenseService" targetNamespace="http://siga.gestores.net/dvl">
+<types>
+<xs:schema xmlns:tns="http://siga.gestores.net/dvl" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://siga.gestores.net/dvl" version="1.0">
+<xs:element name="issueEnvironmentalDistinctive" type="tns:dvlEDRequest"/>
+<xs:element name="issueDefinitiveVehicleLicense" type="tns:dvlRequest"/>
+<xs:element name="issueDefinitiveVehicleLicenseEITV" type="tns:dvlEitvRequest"/>
+<xs:element name="issueDefinitiveVehicleLicenseResponse" type="tns:dvlResponse"/>
+<xs:complexType name="dvlEDRequest">
+<xs:sequence>
+<xs:element minOccurs="0" name="externalSystemFiscalId" type="xs:string"/>
+<xs:element minOccurs="0" name="associationFiscalId" type="xs:string"/>
+<xs:element minOccurs="0" name="agentFiscalId" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="tasa" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="1" name="CriteriosConsultaVehiculo" type="tns:CriteriosConsultaVehiculo"/>
+<xs:element maxOccurs="1" minOccurs="0" name="carSharing">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Y"/>
+<xs:enumeration value="N"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element minOccurs="0" name="offsetLeft" type="xs:int"/>
+<xs:element minOccurs="0" name="offsetTop" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CriteriosConsultaVehiculo">
+<xs:sequence>
+<xs:element maxOccurs="1" minOccurs="0" name="matricula" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="bastidor" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="nive" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dvlRequest">
+<xs:sequence>
+<xs:element name="externalSystemFiscalId" type="xs:string"/>
+<xs:element name="xmlB64" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="carSharing">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Y"/>
+<xs:enumeration value="N"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element minOccurs="0" name="offsetLeft" type="xs:int"/>
+<xs:element minOccurs="0" name="offsetTop" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dvlEitvRequest">
+<xs:sequence>
+<xs:element name="arg0" type="tns:eitvArgument"/>
+<xs:element name="headOffice">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="VI"/>
+<xs:enumeration value="AB"/>
+<xs:enumeration value="A"/>
+<xs:enumeration value="AL"/>
+<xs:enumeration value="O"/>
+<xs:enumeration value="AV"/>
+<xs:enumeration value="BA"/>
+<xs:enumeration value="B"/>
+<xs:enumeration value="BU"/>
+<xs:enumeration value="CC"/>
+<xs:enumeration value="CA"/>
+<xs:enumeration value="CS"/>
+<xs:enumeration value="CR"/>
+<xs:enumeration value="CO"/>
+<xs:enumeration value="C"/>
+<xs:enumeration value="CU"/>
+<xs:enumeration value="GE"/>
+<xs:enumeration value="GR"/>
+<xs:enumeration value="GU"/>
+<xs:enumeration value="SS"/>
+<xs:enumeration value="H"/>
+<xs:enumeration value="HU"/>
+<xs:enumeration value="PM"/>
+<xs:enumeration value="J"/>
+<xs:enumeration value="LE"/>
+<xs:enumeration value="L"/>
+<xs:enumeration value="LO"/>
+<xs:enumeration value="LU"/>
+<xs:enumeration value="M"/>
+<xs:enumeration value="MA"/>
+<xs:enumeration value="MU"/>
+<xs:enumeration value="NA"/>
+<xs:enumeration value="OR"/>
+<xs:enumeration value="P"/>
+<xs:enumeration value="GC"/>
+<xs:enumeration value="PO"/>
+<xs:enumeration value="TF"/>
+<xs:enumeration value="S"/>
+<xs:enumeration value="SG"/>
+<xs:enumeration value="SE"/>
+<xs:enumeration value="SO"/>
+<xs:enumeration value="T"/>
+<xs:enumeration value="TE"/>
+<xs:enumeration value="TO"/>
+<xs:enumeration value="V"/>
+<xs:enumeration value="VA"/>
+<xs:enumeration value="BI"/>
+<xs:enumeration value="ZA"/>
+<xs:enumeration value="Z"/>
+<xs:enumeration value="CE"/>
+<xs:enumeration value="ML"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="branchOffice">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value=""/>
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="titularName" type="xs:string"/>
+<xs:element name="titularFirstFamilyName" type="xs:string"/>
+<xs:element name="titularSecondFamilyName" type="xs:string"/>
+<xs:element name="service">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="B00"/>
+<xs:enumeration value="A00"/>
+<xs:enumeration value="A01"/>
+<xs:enumeration value="A02"/>
+<xs:enumeration value="A03"/>
+<xs:enumeration value="A04"/>
+<xs:enumeration value="A05"/>
+<xs:enumeration value="B06"/>
+<xs:enumeration value="A07"/>
+<xs:enumeration value="B07"/>
+<xs:enumeration value="A08"/>
+<xs:enumeration value="B09"/>
+<xs:enumeration value="A10"/>
+<xs:enumeration value="A11"/>
+<xs:enumeration value="A12"/>
+<xs:enumeration value="A13"/>
+<xs:enumeration value="A14"/>
+<xs:enumeration value="A15"/>
+<xs:enumeration value="A16"/>
+<xs:enumeration value="B17"/>
+<xs:enumeration value="A18"/>
+<xs:enumeration value="B18"/>
+<xs:enumeration value="B19"/>
+<xs:enumeration value="A20"/>
+<xs:enumeration value="B21"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="firtMatriculationDate" type="xs:string"/>
+<xs:element maxOccurs="1" minOccurs="0" name="carSharing">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Y"/>
+<xs:enumeration value="N"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element minOccurs="0" name="offsetLeft" type="xs:int"/>
+<xs:element minOccurs="0" name="offsetTop" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="eitvArgument">
+<xs:sequence>
+<xs:element minOccurs="0" name="agencyFiscalId" type="xs:string"/>
+<xs:element minOccurs="0" name="agentFiscalId" type="xs:string"/>
+<xs:element minOccurs="0" name="customDossierNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="externalSystemFiscalId" type="xs:string"/>
+<xs:element minOccurs="0" name="nive" type="xs:string"/>
+<xs:element minOccurs="0" name="vin" type="xs:string"/>
+<xs:element minOccurs="0" name="xmlB64" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dvlResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:dvlReturn"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dvlReturn">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:dvlError"/>
+<!--
+ <xs:element minOccurs="0" name="definitiveVehicleLicensePdf" type="xs:base64Binary"/>
+-->
+<xs:element minOccurs="0" name="environmentDistinctivePdf" type="xs:base64Binary"/>
+<!--
+ <xs:element minOccurs="0" name="dataSheetPdf" type="xs:base64Binary"/> 
+-->
+<xs:element minOccurs="0" name="environmentDistinctiveType">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value=""/>
+<xs:enumeration value="0"/>
+<xs:enumeration value="E"/>
+<xs:enumeration value="A"/>
+<xs:enumeration value="B"/>
+<xs:enumeration value="C"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element minOccurs="0" name="isLightVehicle">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Y"/>
+<xs:enumeration value="N"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="dvlError">
+<xs:sequence>
+<xs:element minOccurs="0" name="code" type="xs:string"/>
+<xs:element minOccurs="0" name="message" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</types>
+<message name="DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseResponse">
+<part element="tns:issueDefinitiveVehicleLicenseResponse" name="issueDefinitiveVehicleLicenseResponse"/>
+</message>
+<message name="DefinitiveVehicleLicenseWS_issueEnvironmentalDistinctive">
+<part element="tns:issueEnvironmentalDistinctive" name="issueEnvironmentalDistinctive"/>
+</message>
+<message name="DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicense">
+<part element="tns:issueDefinitiveVehicleLicense" name="issueDefinitiveVehicleLicense"/>
+</message>
+<message name="DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseEITV">
+<part element="tns:issueDefinitiveVehicleLicenseEITV" name="issueDefinitiveVehicleLicenseEITV"/>
+</message>
+<portType name="DefinitiveVehicleLicenseWS">
+<operation name="issueEnvironmentalDistinctive" parameterOrder="issueEnvironmentalDistinctive">
+<input message="tns:DefinitiveVehicleLicenseWS_issueEnvironmentalDistinctive"/>
+<output message="tns:DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseResponse"/>
+</operation>
+<operation name="issueDefinitiveVehicleLicense" parameterOrder="issueDefinitiveVehicleLicense">
+<input message="tns:DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicense"/>
+<output message="tns:DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseResponse"/>
+</operation>
+<operation name="issueDefinitiveVehicleLicenseEITV" parameterOrder="issueDefinitiveVehicleLicenseEITV">
+<input message="tns:DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseEITV"/>
+<output message="tns:DefinitiveVehicleLicenseWS_issueDefinitiveVehicleLicenseResponse"/>
+</operation>
+</portType>
+<binding name="DefinitiveVehicleLicenseServiceWSBinding" type="tns:DefinitiveVehicleLicenseWS">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="issueEnvironmentalDistinctive">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="issueDefinitiveVehicleLicense">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="issueDefinitiveVehicleLicenseEITV">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="DefinitiveVehicleLicenseService">
+<port binding="tns:DefinitiveVehicleLicenseServiceWSBinding" name="DefinitiveVehicleLicenseService">
+<soap:address location="https://segawsdl2.consejogestores.org:8443/siga/DefinitiveVehicleLicenseService"/>
+</port>
+</service>
+</definitions>

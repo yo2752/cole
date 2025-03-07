@@ -1,0 +1,481 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+ <div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td colspan="3">Datos del presentador
+			<s:set var="identificacion" value="tramiteTraficoTransmisionBean.presentadorBean.persona.nif"/>
+			<s:set var="colegiado" value="tramiteTraficoTransmisionBean.presentadorBean.numColegiado"/>
+			<s:if test="%{(#identificacion!='' && #identificacion!=null) && (#colegiado!='' && #colegiado!=null)}">
+				<img title="Ver evolución" onclick="consultaEvolucionPersona('<s:property value="tramiteTraficoTransmisionBean.presentadorBean.persona.nif"/>','<s:property value="tramiteTraficoTransmisionBean.presentadorBean.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+			</s:if>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">PRESENTADOR</span>
+			</td>
+		</tr>
+	</table>
+	
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNifPresentador">NIF / CIF: <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       	    	<table cellPadding="1" cellSpacing="3">
+					<tr>
+						
+						<td align="left" nowrap="nowrap" width="24%">
+			       			<s:if test="%{tramiteTraficoTransmisionBean.presentadorBean.nifInterviniente != null && !tramiteTraficoTransmisionBean.presentadorBean.nifInterviniente.equals('')}">
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.nif" 
+				       				id="idNifPresentador" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				onchange="limpiarFormularioPresentadorTransmision()"
+				       				size="9" maxlength="9"/>
+				       		</s:if>
+				       		<s:else>
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.nif" 
+				       				id="idNifPresentador" 
+				       				onblur="this.className='input2';calculaLetraNIF(this)" 
+				       				onfocus="this.className='inputfocus';" 
+				       				size="9" maxlength="9"/>
+				       		</s:else>
+       					</td>	
+						<td align="left" nowrap="nowrap">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteTransmisionActual('Presentador','Presentador')"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+       	    </td>			
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="tipoPersonaPresentador">Tipo de persona: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaPresentador"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						value="%{tramiteTraficoTransmisionBean.presentadorBean.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+       	</tr>
+       	<s:hidden name="tramiteTraficoTransmisionBean.presentadorBean.persona.tipoPersona"></s:hidden>
+       	<tr>	        	
+       		<td align="left" nowrap="nowrap">
+       			<label for="sexoPresentador">Sexo: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+						id="sexoPresentador"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.presentadorBean.persona.sexo"
+						disabled="%{flagDisabled}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Sexo Persona"
+						headerKey="-1" headerValue="-"/>
+       		</td>	
+       			
+    	   	<td align="left" nowrap="nowrap">
+       			<label for="idApellidoRazonSocialPresentador">Apellido o Razón Social: <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.apellido1RazonSocial" 
+       				id="idApellidoRazonSocialPresentador" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="50" maxlength="100"/>
+       		</td>
+       	</tr>
+		
+		<tr>	
+			<td align="left" nowrap="nowrap">
+       			<label for="idApellido2Presentador">Segundo Apellido: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.apellido2" 
+       				id="idApellido2Presentador" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNombrePresentador">Nombre: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.nombre" 
+       				id="idNombrePresentador" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       	</tr>
+       	<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="idAnagramaPresentador">Anagrama</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.anagrama" 
+       				id="idAnagramaPresentador" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="5" maxlength="5"
+       				readonly="true"/>
+       		</td>
+       	</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaNacPresentador">Fecha de Nacimiento: </label>
+			</td>
+		
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.fechaNacimientoBean.dia" 
+					id="diaNacPresentador"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.fechaNacimientoBean.mes" 
+					id="mesNacPresentador"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.fechaNacimientoBean.anio" 
+					id="anioNacPresentador"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="3%">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioNacPresentador, document.formData.mesNacPresentador, document.formData.diaNacPresentador);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idTelefonoPresentador">Teléfono: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.telefonos" 
+					id="idTelefonoPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="9" maxlength="9"/>
+			</td>
+		</tr>
+	</table>
+	
+	<s:if test="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.idDireccion != null " >
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" style="100%">
+			<tr>
+				<td align="left" nowrap="nowrap" width="100%">
+					<table  style="align:left;">
+						<tr>
+							<td  align="left" style="vertical-align:middle" width="10%">
+								<label>Seleccionar Dirección</label>
+							</td>
+							<td align="left" nowrap="nowrap" width="90%">
+								<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+									<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+										onclick="javascript:consultaDireccion('<s:property value="tramiteTraficoTransmisionBean.presentadorBean.persona.nif"/>','<s:property value="tramiteTraficoTransmisionBean.adquirienteBean.numColegiado"/>','<s:property value="tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente"/>','PresentadorTransmisionActual');"/>
+								</s:if>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>					
+		</table>
+	</s:if>
+	
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+       		
+       		<td align="left" nowrap="nowrap">
+				<label for="idProvinciaPresentador">Provincia: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasPresentador()"
+					headerKey="-1"
+	           		headerValue="Seleccione Provincia"
+					name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.municipio.provincia.idProvincia" 
+					listKey="idProvincia" listValue="nombre"
+					disabled="%{flagDisabled}"
+					id="idProvinciaPresentador"
+					onchange="cargarListaMunicipios(this,'idMunicipioPresentador','municipioSeleccionadoPresentador');
+					cargarListaTipoVia(this,'tipoViaPresentador','tipoViaSeleccionadaPresentador');
+					inicializarTipoVia('tipoViaPresentador','viaPresentador',viaPresentadorTransmision);
+					borrarComboPueblo('idPuebloPresentador');"
+					cssStyle="width:170px;"
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"/>	
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="idMunicipioPresentador">Municipio: <span class="naranja">*</span></label>	
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">			
+				<select id="idMunicipioPresentador" 
+					onchange="cargarListaPueblos('idProvinciaPresentador', this, 'idPuebloPresentador', 'puebloSeleccionadoPresentador');
+					seleccionarCampo('municipioSeleccionadoPresentador','idMunicipioPresentador');
+					obtenerCodigoPostalPorMunicipio('idProvinciaPresentador', this, 'codPostalPresentador');
+					inicializarTipoVia('tipoViaPresentador','viaPresentador',viaPresentadorTransmision);" 
+					onblur="this.className='input2';" 
+					${stringDisabled}
+       				onfocus="this.className='inputfocus';">
+					<option value="-1">Seleccione Municipio</option>
+				</select>						  
+		    	<s:hidden id="municipioSeleccionadoPresentador" 
+		    		name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.municipio.idMunicipio"/>
+			</td>
+		</tr>
+		
+		<tr>	
+												
+			<td align="left" nowrap="nowrap">
+				<label for="idPuebloPresentador">Pueblo: </label>			
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">				
+				<select id="idPuebloPresentador" onchange="seleccionarCampo('puebloSeleccionadoPresentador','idPuebloPresentador');"
+					style="width:200px;" onblur="this.className='input2';"
+					${stringDisabled} 
+					onfocus="this.className='inputfocus';">
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+			   	<s:hidden id="puebloSeleccionadoPresentador" 
+			   		name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.pueblo"/>
+			</td>	
+			
+			<td align="left" nowrap="nowrap">
+				<label for="codPostalPresentador">Código Postal: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+	        	<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.codPostal" 
+	        		id="codPostalPresentador" 
+	        		maxlength="5" size="5" 
+	            	onblur="this.className='input';"
+	               	onkeypress="return validarNumerosEnteros(event)"
+	            	onfocus="this.className='inputfocus';"/>
+			</td>			
+		</tr>
+		
+		<tr>			
+      
+      		<td align="left" nowrap="nowrap">
+       			<label for="tipoViaPresentador">Tipo de vía: <span class="naranja">*</span></label>
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+         	
+	         	<select id="tipoViaPresentador" 
+						onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';"
+						${stringDisabled}
+						onchange="seleccionarCampo('tipoViaSeleccionadaPresentador','tipoViaPresentador');
+						cargarListaNombresVia('idProvinciaPresentador', 'municipioSeleccionadoPresentador', this, 'viaPresentador',viaPresentadorTransmision);">
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+		    	<s:hidden id="tipoViaSeleccionadaPresentador" 
+		    		name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.tipoVia.idTipoVia"/>
+         	
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="viaPresentador">Nombre v&iacute;a: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+			<td align="left" nowrap="nowrap" colspan="6">
+	       			<s:textfield disabled="%{flagDisabled}" id="viaPresentador" 
+	       				onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.nombreVia"
+		       			cssStyle="width:200px;position:relative;" size="40" maxlength="120" autocomplete="off"/>
+       		</td>        
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>	
+			<td align="left" nowrap="nowrap">
+				<label for="numeroPresentador">N&uacute;mero: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.numero" 
+					id="numeroPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarSN2(event,this)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="letraPresentador">Letra: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.letra" 
+					id="letraPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="escaleraPresentador">Escalera: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.escalera" 
+					id="escaleraPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="pisoPresentador">Piso: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.planta" 
+					id="pisoPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="puertaPresentador">Puerta: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.puerta" 
+					id="puertaPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="bloquePresentador">Bloque: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.bloque" 
+					id="bloquePresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="kmPresentador">Km: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.puntoKilometrico" 
+					id="kmPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="hmPresentador">Hm: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.presentadorBean.persona.direccion.hm" 
+					id="hmPresentador" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+	</table>
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" 
+					   class="boton" 
+					   name="bGuardar4" 
+					   id="bGuardar4" 
+					   value="Consultar / Guardar" 
+					   onClick="return guardarAltaTramiteTransmisionActual('Presentador');" 
+					   onKeyPress="this.onClick"/>				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage4" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+		</tr>
+	</table>
+	</s:if>	
+	<script>	
+		var viaPresentadorTransmision = new BasicContentAssist(document.getElementById('viaPresentador'), [], null, true);  
+		recargarComboMunicipios('idProvinciaPresentador','idMunicipioPresentador','municipioSeleccionadoPresentador');
+		recargarComboTipoVia('idProvinciaPresentador','tipoViaPresentador','tipoViaSeleccionadaPresentador');
+		recargarComboPueblos('idProvinciaPresentador','municipioSeleccionadoPresentador','idPuebloPresentador', 'puebloSeleccionadoPresentador');
+		recargarNombreVias('idProvinciaPresentador', 'municipioSeleccionadoPresentador', 'tipoViaSeleccionadaPresentador','viaPresentador', viaPresentadorTransmision);
+	</script>
+</div>

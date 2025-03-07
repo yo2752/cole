@@ -1,0 +1,362 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+<div class="contentTabs" id="Resumen" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">  
+<div class="contenido">	
+	
+		<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Resumen del trámite de alta de matriculación</td>
+			<td align="right">
+				<img src="img/history.png" alt="ver evolución" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" 
+		  		onclick="abrirEvolucionTramite(<s:property value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente}"/>);" title="Ver evolución"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS GENERALES</span>
+			</td>
+		</tr>
+	</table>
+	
+ 	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+   			<td align="left" nowrap="nowrap" width="120">
+       			<label for="numExpediente">Número de Expediente: </label>
+       		</td>
+       		
+         	<td align="left" nowrap="nowrap">
+       			<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.numExpediente}"/>
+       		</td>				        		
+		</tr>		        		
+
+		
+		
+		<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label for="refPropia">Referencia Propia: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.referenciaPropia}"/>
+   			</td>	
+      	</tr>
+      	
+      	
+      	 	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label for="estado">Estado: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+         		<s:if test="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.estado!= null}">
+   					<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.estado.nombreEnum}"/>
+   				</s:if>
+   			</td>	
+   			</tr>     
+   			<tr>     
+   			<td align="left" nowrap="nowrap">
+   				<label for="P_Respuesta">P_Respuesta </label>
+   			</td>
+   			
+         		<td align="left" nowrap="nowrap">
+	   			<%if(request.getAttribute("traficoTramiteMatriculacionBean.tramiteTraficoBean.respuesta")!=null){
+		   			String[] aux = ((String)request.getAttribute("traficoTramiteMatriculacionBean.tramiteTraficoBean.respuesta")).split("<BR>");
+			   		for(String s:aux){
+			   			out.println(s+"<br/>");
+			   		}
+			   	}%>
+	   		</td>	
+   			</tr>
+   			
+   			<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label for="estado">Estado IVTM: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+         		<!-- //TODO MPC. Cambio IVTM.  -->
+         		<s:if test="%{ivtmMatriculacionDto.estadoIvtm!= null}">
+   					<s:label value="%{@escrituras.utiles.UtilesVista@getInstance().getEstadoIvtm(tramiteTraficoDto.tramiteTrafMatr.ivtmMatriculacionDto.estadoIvtm)}"/>
+   				</s:if>
+   			</td>	
+   			</tr>     
+   			<tr>     
+   			<td align="left" nowrap="nowrap">
+   				<label for="P_Respuesta">Respuesta IVTM: </label>
+   			</td>
+   			
+         		<td align="left" nowrap="nowrap">
+	   			<!-- //TODO MPC. Cambio IVTM. -->
+	   			<%if(request.getAttribute("ivtmMatriculacionDto.mensaje")!=null){
+		   			String[] aux = ((String)request.getAttribute("ivtmMatriculacionDto.mensaje")).split("<BR>");
+			   		for(String s:aux){
+			   			out.println(s+"<br/>");
+			   		}
+			   	}%>
+	   		</td>	
+   			</tr>           
+   			
+       	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label for="bastidor">Bastidor: </label>
+   			</td>
+   		
+   		<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.bastidor}"/>
+   			</td>   		   				
+       	</tr>
+      
+      <tr>
+      	<td align="left" nowrap="nowrap">
+			   				<label for="fechaPresentacion">Fecha de presentación: </label>
+			   			</td>
+			   			
+			   			<td align="left" nowrap="nowrap">
+			   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.dia}"/>/
+			   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.mes}"/>/
+			   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.fechaPresentacion.anio}"/>
+			   			</td>
+      </tr>
+    </table>
+    
+       
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LA TRAMITACIÓN</span>
+			</td>
+		</tr>
+	</table>
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		
+       	<tr>
+			<td align="left" nowrap="nowrap">
+   				<label for="fechaPresentacion">Código de Tasa: </label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.codigoTasa}"/>
+   			</td>
+   		</tr>
+   		<tr>
+   			<td align="left" nowrap="nowrap">
+   				<label for="fechaPresentacion">Tipo de Tasa: </label>
+   			</td>
+   			<s:if test="traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.tipoTasa!= null && traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.tipoTasa!=-1">
+	   			<td align="left" nowrap="nowrap">
+	   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.tasa.tipoTasa}"/>
+	   			</td>
+   			</s:if>
+   			
+		</tr>
+		<tr>
+   			<td align="left" nowrap="nowrap">
+   				<label for="fechaPresentacion">Matrícula: </label>
+   			</td>
+   			<s:if test="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.matricula!= null">
+	   			<td align="left" nowrap="nowrap">
+	   				<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.matricula}"/>
+	   			</td>
+   			</s:if>
+   			
+		</tr>
+		<tr>
+		<s:if test="traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaMatriculacion != null && traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaMatriculacion.dia!= null"></s:if>
+      		<td align="left" nowrap="nowrap">
+				<label for="fechaPresentacion">Fecha de Matriculación: </label>
+			</td>
+			<td align="left" nowrap="nowrap">
+			   	<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaMatriculacion.dia}"/>/
+			   	<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaMatriculacion.mes}"/>/
+			   	<s:label value="%{traficoTramiteMatriculacionBean.tramiteTraficoBean.vehiculo.fechaMatriculacion.anio}"/>
+			</td>
+      </tr>
+	</table>
+	
+    
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LOS INTERVINIENTES</span>
+			</td>
+		</tr>
+	</table>
+	 
+    <table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	        	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label for="datosTitular">Nombre y apellidos del titular: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.titularBean.persona.nombre}"/>
+   				<s:label value="%{traficoTramiteMatriculacionBean.titularBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{traficoTramiteMatriculacionBean.titularBean.persona.apellido2}"/>
+   			</td>
+   			
+   			<td width="20"></td>
+   			
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label for="nifTitular">NIF del titular: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.titularBean.persona.nif}"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.titularBean.persona.tipoPersona.valor}"/>
+   			</td>
+   			
+   				
+      	</tr>
+      	
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label for="datosRepresentante">Nombre y apellidos del representante: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.nombre}"/>
+   				<s:label value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.apellido2}"/>
+   			</td>
+   			
+   			<td width="20"></td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<label for="nifRepresentante">NIF del representante: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.nif}"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<s:label value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.tipoPersona.valor}"/>
+   			</td>
+   				
+      	</tr>
+      	
+      	<tr>        	       		
+      		<s:if test="traficoTramiteMatriculacionBean.arrendatarioBean.persona.nif!=null">
+	      		<td align="left" nowrap="nowrap">
+	   				<label for="datosArrendatario">Nombre y apellidos del arrendatario: </label>
+	   			</td>
+	   			
+	         	<td align="left" nowrap="nowrap">
+	   				<s:label value="%{traficoTramiteMatriculacionBean.arrendatarioBean.persona.nombre}"/>
+	   				<s:label value="%{traficoTramiteMatriculacionBean.arrendatarioBean.persona.apellido1RazonSocial}"/>
+	   				<s:label value="%{traficoTramiteMatriculacionBean.arrendatarioBean.persona.apellido2}"/>
+	   			</td>
+	   			
+	   			<td width="20"></td>
+	   			
+	   			<td align="left" nowrap="nowrap">
+	   				<label for="nifAdquiriente">NIF del arrendatario: </label>
+	   			</td>
+	   			
+	         	<td align="left" nowrap="nowrap">
+	   				<s:label value="%{traficoTramiteMatriculacionBean.arrendatarioBean.persona.nif}"/>
+	   			</td>
+	   			
+	   			
+	   			<td align="left" nowrap="nowrap">
+	   				<s:label value="%{traficoTramiteMatriculacionBean.arrendatarioBean.persona.tipoPersona.valor}"/>
+	   			</td>   	
+      		</s:if>	
+      	</tr>
+    
+   	</table>
+      	
+	<%@include file="../resumenAcciones.jspf" %>
+
+	<table class="acciones">
+		<tr>		
+		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esValidableMATE(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+		
+			<td align="center" style="text-align:center; list-style:none;">
+				<input type="button" 
+					   class="oculto" 
+					   name="bValidarMatricular" 
+					   id="idBotonValidarMatricular" 
+					   value="Validar" 
+					   onClick="return validarMatriculacion('Resumen');" 
+					   onKeyPress="this.onClick" />					
+			</td>
+			</s:if>
+
+		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().sePuedeObtenerMatriculaMATE(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+		
+			<td align="center" style="text-align:center; list-style:none;">
+				<input type="button" 
+					   class="oculto" 
+					   name="bObtenerMatricula" 
+					   id="idBotonObtenerMatricula" 
+					   value="Obtener matrícula" 
+					   onClick="return obtenerMatricula('Resumen');" 
+					   onKeyPress="this.onClick" />					
+			</td>
+		</s:if>
+	
+		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esMatriculableTelematicamente(traficoTramiteMatriculacionBean.tramiteTraficoBean)
+		&& @org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso(@org.gestoresmadrid.oegamComun.acceso.service.impl.UtilesColegiado@PERMISO_MATRICULACION_ALTAS)}">
+		
+			<td>
+				<input type="button" 
+					   class="oculto" 
+					   name="bMatriculacionTelematica" 
+					   id="idBotonMatriculacionTelematica" 
+					   value="Matriculación Telemática" 
+					   onClick="return preMatricularTelematicamente('Resumen');" 
+					   onKeyPress="this.onClick"
+						  />					
+			</td>
+		</s:if>
+	
+	
+		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esImprimibleMATEPdfPresentacionTelematica(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+		
+				<td>
+					<input type="button" class="oculto" name="bImprimir" id="idBotonImprimir" value="ImprimirPdf" 
+					onClick="return imprimirPdfMatriculacion('idExpediente');"
+					onKeyPress="this.onClick"/>
+					&nbsp;
+						
+				</td>
+			
+	  	</s:if>
+	</tr>
+</table>
+<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableMATE(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+	<table class="acciones">
+		<tr>
+			<td>
+				<input type="button" class="oculto" name="bGuardar" id="idBotonGuardar" value="Consultar / Guardar" onClick="return guardarAltaMatriculacion('Resumen');" onKeyPress="this.onClick"/>
+				&nbsp;
+					
+			</td>
+		</tr>
+	</table>
+</s:if>	
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	// Para desconectar la tramitación (desconectar=1), para habilitar (0)
+	var desconectar = 1;
+	function preMatricularTelematicamente(option) {
+		if (desconectar) {
+			alert("La matriculación antigua MATE está obsoleta y no se permite actualmente.");
+		} else {
+			matricularTelematicamente(option);
+		}
+	};
+</script>

@@ -1,0 +1,79 @@
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+<table class="subtitulo" cellSpacing="0" cellspacing="0">
+	<tr>
+		<td>Créditos</td>
+	</tr>
+</table>
+
+<div class="divCreditos">	
+	<table border="0" cellspacing="0" cellpadding="0" align="center">
+		<!--<tr>
+			<td class="left disponibles" align="left">Créditos Disponibles</td>		
+			<td class="right" nowrap="nowrap">
+				<s:hidden id="idContrato" name="idContratoSession" />
+				<ul>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP1}" />
+						<s:hidden id="numCreditosDisponiblesCTP1" name="numCreditosDisponiblesCTP1" />
+					</li>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP2}" />
+						<s:hidden id="numCreditosDisponiblesCTP2" name="numCreditosDisponiblesCTP2" />
+					</li>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP3}" />
+						<s:hidden id="numCreditosDisponiblesCTP3" name="numCreditosDisponiblesCTP3" />
+					</li>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP4}" />
+						<s:hidden id="numCreditosDisponiblesCTP4" name="numCreditosDisponiblesCTP4" />
+					</li>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP5}" />
+						<s:hidden id="numCreditosDisponiblesCTP5" name="numCreditosDisponiblesCTP5" />
+					</li>
+					<li>
+						<s:label cssClass="disponibles" value="%{numCreditosDisponiblesCTP6}" />
+						<s:hidden id="numCreditosDisponiblesCTP6" name="numCreditosDisponiblesCTP6" />
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td class="left totales" align="left">Créditos Totales</td>		
+			<td class="right" nowrap="nowrap">
+				<s:label cssClass="totales" value="%{numCreditosTotales}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="left bloqueados" align="left">
+				Créditos Bloqueados
+				&nbsp;
+				<img id="info_creditos_bloqueados" src="img/botonDameInfo.gif" alt="Info - Créditos Bloqueados" onmouseover="dameInfo('mostrar', this.id)" onmouseout="dameInfo('ocultar', this.id)" class="botonesInfo" />
+			</td>		
+			<td class="right" nowrap="nowrap">
+				<s:label cssClass="bloqueados" value="%{numCreditosBloqueados}" />
+			</td>
+		</tr>-->
+		<tr>
+			<td class="left solicitados">Créditos Solicitados (al confirmar)</td>		
+			<td class="right" nowrap="nowrap">
+				<s:textfield cssClass="solicitados" name="numCreditosSolicitados" id="numCreditosSolicitados" value="0" readonly="true" maxlength="4" />
+			</td>
+		</tr>
+	</table>
+</div>
+	
+<s:if test="%{(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso('OT3I'))}">
+	<s:hidden id="OT3I" value="true"></s:hidden>
+</s:if>
+<s:else></s:else>
+
+<br></br>
+<s:if test="%{(@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermiso('OT2I'))}">
+	<s:hidden id="OT2I" value="true"></s:hidden>
+</s:if>
+<s:else></s:else>

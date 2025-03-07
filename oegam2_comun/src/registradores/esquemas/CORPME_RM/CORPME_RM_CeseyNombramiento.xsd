@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:crm="http://www.corpme.org/RMSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_RM_Tipos.xsd"/>
+	<xs:element name="CORPME-RM-Cese-Nombramiento">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Modelo" type="ModeloType">
+					<xs:annotation>
+						<xs:documentation>Identificación del modelo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="Modelo_1">
+						<xs:annotation>
+							<xs:documentation>1 - SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType">
+									<xs:annotation>
+										<xs:documentation>Certificantes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Sociedad" type="SociedadType">
+									<xs:annotation>
+										<xs:documentation>Identificación de la sociedad</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Reunion_Junta" type="Reunion_JuntaType">
+									<xs:annotation>
+										<xs:documentation>Información sobre la junta</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Acuerdos" type="AcuerdosType">
+									<xs:annotation>
+										<xs:documentation>Acuerdos aprobados</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType">
+									<xs:annotation>
+										<xs:documentation>Lugar y fecha de expedición de la certificación</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Modelo_2">
+						<xs:annotation>
+							<xs:documentation>2 - SOCIEDADES ANÓNIMAS Y LIMITADAS. ACEPTACIÓN DE NOMBRAMIENTO</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Nombramiento" type="NombramientoType">
+									<xs:annotation>
+										<xs:documentation>Descripción del nombramiento Aceptado</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Sociedad" type="SociedadType">
+									<xs:annotation>
+										<xs:documentation>Sociedad de la que es nombrado</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Reunion_Junta" type="Reunion_JuntaType">
+									<xs:annotation>
+										<xs:documentation>Información sobre la junta en la que se produjo el nombramiento</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LugaryFecha" type="LugaryFechaType">
+									<xs:annotation>
+										<xs:documentation>Lugar y fecha donde se suscribe el documento</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Modelo_3">
+						<xs:annotation>
+							<xs:documentation>3.- SOCIEDADES ANÓNIMAS. CESE Y NOMBRAMIENTO</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType">
+									<xs:annotation>
+										<xs:documentation>Certificantes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Sociedad" type="SociedadType">
+									<xs:annotation>
+										<xs:documentation>Identificación de la sociedad</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Junta_Accionistas" type="JuntaType">
+									<xs:annotation>
+										<xs:documentation>Información sobre la junta de accionistas</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Acuerdos" type="Acuerdos2Type">
+									<xs:annotation>
+										<xs:documentation>Acuerdos aprobados</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Aprobacion_Acta" type="Aprobacion_ActaType">
+									<xs:annotation>
+										<xs:documentation>Debe indicarse la fecha y la forma de aprobación del acta. Dice el art. 113.1 del T.R. de la L.S.A.: "El acta de la Junta podrá ser aprobada por la propia Junta a continuación de haberse celebrado ésta y, en su defecto, y dentro del plazo de quince días, por el presidente y dos interventores, uno en representación de la mayoría y otro por la minoría"</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType">
+									<xs:annotation>
+										<xs:documentation>Lugar y fecha de expedición de la certificación</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Modelo_4">
+						<xs:annotation>
+							<xs:documentation>4.- SOCIEDADES LIMITADAS. CESE Y NOMBRAMIENTO</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType">
+									<xs:annotation>
+										<xs:documentation>Certificantes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Sociedad" type="SociedadType">
+									<xs:annotation>
+										<xs:documentation>Identificación de la sociedad</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Junta_Socios" type="Junta2Type">
+									<xs:annotation>
+										<xs:documentation>Información sobre la junta de socios</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Acuerdos" type="Acuerdos2Type">
+									<xs:annotation>
+										<xs:documentation>Acuerdos aprobados</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType">
+									<xs:annotation>
+										<xs:documentation>Lugar y fecha de expedición de la certificación</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Modelo_5">
+						<xs:annotation>
+							<xs:documentation>5.- SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO Y DELEGACIÓN DE FACULTADES</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType">
+									<xs:annotation>
+										<xs:documentation>Certificantes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Sociedad" type="SociedadType">
+									<xs:annotation>
+										<xs:documentation>Identificación de la sociedad</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Consejo_Administracion" type="ConsejoType">
+									<xs:annotation>
+										<xs:documentation>Información sobre el consejo de administración</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Acuerdos" type="AcuerdosType">
+									<xs:annotation>
+										<xs:documentation>Acuerdos aprobados</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType">
+									<xs:annotation>
+										<xs:documentation>Lugar y fecha de expedición de la certificación</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="Clausula_LOPD" type="Clausula_LOPDType">
+					<xs:annotation>
+						<xs:documentation>Contenido de la claúsula de la ley de protección de datos</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

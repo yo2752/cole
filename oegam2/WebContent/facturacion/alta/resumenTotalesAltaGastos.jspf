@@ -1,0 +1,60 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">Gastos Totales</span>
+			</td>
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>	
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="totalGastos">Total Gastos: </label>
+			</td>       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield size="10" maxlength="40" disabled="true"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="totalHonorarios">Total Honorarios: </label>
+			</td>		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield size="10" maxlength="40" disabled="true"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="15%">
+				<label for="totalSinIVA">Total Sin IVA: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield size="10" maxlength="40" disabled="true"/>				
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="totalIRPF">Total IRPF: </label>
+			</td>       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield size="10" maxlength="40" disabled="true"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="totalIVA">Total IVA: </label>
+			</td>		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield size="10" maxlength="40" disabled="true"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="total">Total: </label>
+			</td>		
+       		<td align="left" nowrap="nowrap">
+				<s:textfield size="10" maxlength="40" disabled="true"/>
+			</td>
+		</tr>
+	</table>
+

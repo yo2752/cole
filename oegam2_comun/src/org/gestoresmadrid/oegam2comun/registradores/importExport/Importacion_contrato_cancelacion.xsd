@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="tipos.xsd"/>
+	<xs:element name="FORMATO_GA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="CABECERA">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="DATOS_GESTORIA">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="NIF" type="tipoNIF" minOccurs="0" />
+										<xs:element name="NOMBRE" type="alfa50" minOccurs="0" />
+										<xs:element name="PROFESIONAL" type="numCol" />
+										<xs:element name="PROVINCIA" type="tipoProvincia" minOccurs="0" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CONTRATO_CANCELACION" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Modelo" type="xs:string" minOccurs="0"/>
+							<xs:element name="Solicitante_Cancelacion" type="Solicitante_CancelacionType" minOccurs="0"/>
+							<xs:element name="Identificacion_Bien" type="Identificacion_Bien_CancelacionType" minOccurs="0"/>
+							<xs:element name="Situacion_Juridica_Cancelada" type="Tipificacion_Situacion_JuridicaType" minOccurs="0" maxOccurs="3"/>
+							<xs:element name="Identificacion_Contrato_Inscrito" type="Identificacion_Contrato_InscritoType" minOccurs="0"/>
+							<xs:element name="Causa_Cancelacion" type="Tipificacion_Causa_CancelacionType" minOccurs="0"/>
+							<xs:element name="Importe_Comision_Cancelacion" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="ImporteType"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Firma_Solicitante" type="Firma_SolicitanteType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="FechaCreacion" type="xs:string" use="optional" />
+			<xs:attribute name="Plataforma" type="xs:string" use="optional" />
+		</xs:complexType>
+    </xs:element>
+</xs:schema>

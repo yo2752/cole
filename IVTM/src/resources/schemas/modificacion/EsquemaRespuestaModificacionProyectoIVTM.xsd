@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema targetNamespace="http://www.map.es/scsp/esquemas/datosespecificos"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.map.es/scsp/esquemas/datosespecificos" xmlns:ns2="http://ws.iam.munimadrid.es" xmlns:ns3="http://ws.iam.munimadrid.es" xmlns:ns4="http://ws.iam.munimadrid.es" xmlns:ns5="http://ws.iam.munimadrid.es" xmlns:ns6="http://ws.iam.munimadrid.es" xmlns:ns7="http://ws.iam.munimadrid.es" xmlns:ns8="http://ws.iam.munimadrid.es">
+	<xs:import namespace="http://ws.iam.munimadrid.es"
+	 schemaLocation="Errores.xsd"/>
+	<xs:element name="DatosEspecificos"
+		type="ns1:DatosEspecificosModificacionProyectoIVTMRespuesta" />
+	<xs:complexType name="DatosEspecificosModificacionProyectoIVTMRespuesta">
+		<xs:sequence>
+			<xs:element ref="ns2:numautoliquidacion" />
+			<xs:element ref="ns3:emisor" />
+			<xs:element ref="ns4:importeanual" />
+			<xs:element ref="ns5:importe" />
+			<xs:element ref="ns6:digitos" />
+			<xs:element ref="ns7:codgestor" />
+			<xs:element ref="ns8:errores" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="errores" type="ns2:erroresType"/>
+</xs:schema>

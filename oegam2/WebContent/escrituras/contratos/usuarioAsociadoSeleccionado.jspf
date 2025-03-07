@@ -1,0 +1,224 @@
+ <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+  	
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos del Usuario</td>
+		</tr>
+	</table>
+
+		<s:hidden id="idUsuarioActivo" name="idUsuarioActivo"></s:hidden>		
+		<s:hidden id="idContratoUsuarioSeleccionado" name="usuarioSeleccionado.idContrato"></s:hidden> 
+		<!-- INICIO Mantis 0011494: (ihgl) renombramos el campo 'idUsuarioSeleccionado' para poder añadirlo al formulario del contrato seleccionado -->
+		<s:hidden id="idUsuarioAsociadoSeleccionado" name="usuarioSeleccionado.idUsuario"></s:hidden>
+		<!-- FIN Mantis 0011494 (ihgl) --> 
+		<table cellSpacing="3" class="tablaformbasica" cellPadding="0" summary="Datos usuario seleccionado">
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="nombre">Apellidos y Nombre<span class="naranja">*</span></label>
+					<s:textfield name="usuarioSeleccionado.apellidosNombre" 
+					id="nombreUsuarioSeleccionado" onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="60" maxLength="100"/>
+				</td>
+				<td  align="left" nowrap="nowrap">
+					<label for="nifNieUsuarioSeleccionado">NIF/NIE</label>			
+					<s:textfield name="usuarioSeleccionado.nif" 
+					id="nifNieUsuarioSeleccionado" 
+					onblur="this.className='input2'; calculaLetraDni('nifNieUsuarioSeleccionado');" 
+					onfocus="this.className='inputfocus';" 
+					size="9" maxLength="9"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+	              <label for="estadoUsuario">Estado Usuario</label>
+        			<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboEstados()"
+								id="estadoUsuarioSeleccionado"
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';"
+								name="usuarioSeleccionado.estadoUsuario"
+								listValue="nombreEnum"
+								listKey="valorEnum"
+								title="Estado Usuario"
+								
+								/>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap">
+					<label for="correoElectronicoUsuario">Correo Electr&oacute;nico<span class="naranja">*</span></label>	
+						<s:textfield name="usuarioSeleccionado.correoElectronico" 
+						id="correoElectronicoUsuarioSeleccionado" onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';" 
+						size="60" maxLength="100"/>
+				</td>
+				<!-- Mantis 11562. David Sierra: Agregados dos nuevos campos de texto solo visibles para usuarios con permiso de administrador.
+				En la plataforma son la fecha de alta y de baja de un usuario  -->
+				<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+							@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+					<td align="left" nowrap="nowrap"><br/>
+								<label for="fechaAlta">Fecha Alta</label>			                        					                      		
+								<s:textfield name="usuarioSeleccionado.fechaAlta" 
+				       				id="fechaAlta" 
+				       				onblur="this.className='input2';" 
+				       				onfocus="this.className='inputfocus';" 
+				       				cssClass="inputview"
+				       				readonly="true"
+				       				disabled="true"/>
+				       			<s:hidden id="idFechaAlta" name="usuarioSeleccionado.fechaAlta.dia"></s:hidden>
+				       			<s:hidden id="idFechaAlta" name="usuarioSeleccionado.fechaAlta.mes"></s:hidden>
+				       			<s:hidden id="idFechaAlta" name="usuarioSeleccionado.fechaAlta.anio"></s:hidden>
+							</td>
+					<td align="left" nowrap="nowrap"><br/>
+								<label for="fechaFin">Fecha Fin</label>			                        					                      		
+								<s:textfield name="usuarioSeleccionado.fechaFin" 
+				       				id="fechaFin" 
+				       				onblur="this.className='input2';" 
+				       				onfocus="this.className='inputfocus';" 
+				       				cssClass="inputview"
+				       				readonly="true"
+				       				disabled="true"/>
+				       			<s:hidden id="idFechaFin" name="usuarioSeleccionado.fechaFin.dia"></s:hidden>
+				       			<s:hidden id="idFechaFin" name="usuarioSeleccionado.fechaFin.mes"></s:hidden>
+				       			<s:hidden id="idFechaFin" name="usuarioSeleccionado.fechaFin.anio"></s:hidden>
+					</td>				
+				</s:if>
+			</tr>
+			<tr>
+				
+				<td align="left" nowrap="nowrap">
+					<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+						@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+						<label for="GrupoUsuario">Grupo Usuario Especial</label>
+						<s:select list="@trafico.datosSensibles.utiles.UtilesVistaDatosSensibles@getInstance().listarGrupos()"					
+							name="usuarioSeleccionado.idGrupoUsuario"
+							listKey="idGrupo" listValue="descGrupo"
+							headerKey="-1" headerValue="Ninguno" 						
+							id="idGrupoUsuario" />
+					</s:if>
+					<s:else>
+						<s:hidden name="usuarioSeleccionado.idGrupoUsuario"/>
+					</s:else>
+				</td>
+			</tr>
+		</table>
+		
+<table class="subtitulo" cellSpacing="0" cellspacing="0">
+	<tr>
+		<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+		<td>Permisos contrato/usuario </td>
+	</tr>
+</table>
+									
+<display:table name="usuarioSeleccionado.listaPermisos" excludedParams="*"
+		requestURI="detalleUsuarioContratoNuevo.action"
+		class="tablacoi"   
+		summary="Listado de Funciones" decorator="trafico.utiles.OcultaFilas"
+		cellspacing="0" cellpadding="0" uid="listaContratosTable">
+		
+		<display:column title="C&oacute;digo Aplicaci&oacute;n"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"							
+			style="width:20%;text-align:left;" > 
+			<s:iterator var="counter" begin="0" end="#attr.listaContratosTable.nivel - 1" >
+    			&nbsp;
+				&nbsp;
+ 			</s:iterator> 			
+	 			<s:if test="%{#attr.listaContratosTable.esPadre}">
+					<img id="desp${listaContratosTable.codigo_Funcion}"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarLineas('${listaContratosTable.codigo_Funcion}');" style="cursor:pointer;"/>
+				</s:if>
+				<s:else>
+				&nbsp;
+				&nbsp;
+				</s:else>
+				${listaContratosTable.codigo_Aplicacion}
+		</display:column>
+		
+		  <display:column  title="Provincia Asociada"
+			sortProperty="id_Provincia" sortable="false" headerClass="sortable"											
+			defaultorder="descending"				
+			style="width:5%" >
+			<s:property 
+				value="%{@escrituras.utiles.modelo.UtilesModelo@convertirIdToProvincia(#attr.listaContratosTable.id_Provincia)}" />
+				
+			<!--
+				value="%{@org.gestoresmadrid.core.model.enumerados.Estado@convertirIdToProvincia(#attr.listaContratosTable.id_Provincia)}" 	  
+			-->	
+			
+			</display:column>
+		
+			<display:column property="codigo_Funcion_Padre" title="Funci&oacute;n Padre"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"
+			style="width:5%" />
+			
+			<display:column property="codigo_Funcion" title="Funci&oacute;n"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"
+			style="width:5%" />
+			
+			<display:column property="desc_Funcion" title="Descripci&oacute;n"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"
+			style="width:40%" />
+						
+			<display:column property="url" title="URL"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"
+			style="width:10%" maxLength="12"/>
+			
+			<display:column property="nivel" title="Nivel"
+			defaultorder="descending"
+			style="width:5%" />
+			
+			
+			<display:column property="tipo" title="Tipo"
+			sortable="false" headerClass="sortable"
+			defaultorder="descending"
+			style="width:5%" />
+			
+			
+		    <display:column style="width:5%" title="<input type='checkbox' name='checkAll' onClick='marcarTodos(this, document.getElementsByName(\"permisosUsuarios\"));' onKeyPress='this.onClick'/>">
+		    	<s:if test="%{ #attr.listaContratosTable.codigo_Funcion == 'OT02'
+		    					|| #attr.listaContratosTable.codigo_Funcion == 'OT2T'
+		    					|| #attr.listaContratosTable.codigo_Funcion == 'OT7M'}">
+		    		<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()}">			
+				    	<input 	type="checkbox" name="permisosUsuarios" 
+		      					value="${listaContratosTable.codigo_Funcion}" 
+		      					class="checkbox"  
+		      					<s:if test="%{#attr.listaContratosTable.asignada==1}">
+		      					checked=checked
+		      					</s:if>
+		      					/>
+  					</s:if>
+				</s:if>
+				<s:else>
+					<input 	type="checkbox" name="permisosUsuarios" 
+	      					value="${listaContratosTable.codigo_Funcion}" 
+	      					class="checkbox"  
+	      					<s:if test="%{#attr.listaContratosTable.asignada==1}">
+	      					checked=checked
+	      					</s:if>
+    					/>
+				</s:else>
+		   </display:column>
+
+</display:table>
+		
+		
+		<table class="acciones">
+		<tr>
+			<td>
+				<input type="button" class="boton" name="bGuardarUsuario" id="idBotonGuardarUsuario" value="Guardar Usuario" onClick="return guardarUsuario();" onKeyPress="this.onClick"/>
+				&nbsp;
+					
+			</td>
+			<td align="center">
+				<input type="button" class="boton" name="bCancelarUsuario" id="bCancelarUsuario" value="Cancelar" onClick="cancelarUsuario('nuevoUsuario');" onKeyPress="this.onClick" />&nbsp;                     
+		     </td>
+		</tr>
+	</table>
+
+<script type="text/javascript">ocultaHijos();</script>

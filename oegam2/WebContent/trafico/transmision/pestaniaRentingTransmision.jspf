@@ -1,0 +1,1107 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td colspan="3">Datos del arrendatario</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">ARRENDATARIO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="tipoPersonaArrendatario">Tipo de persona: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaArrendatario"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						value="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+				<s:hidden name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.tipoPersona"></s:hidden>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idNifArrendatario">NIF / CIF: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" width="24%">
+				<table>
+					<tr>
+						<td align="left" nowrap="nowrap" width="24%">
+							<s:if test="%{tramiteTraficoTransmisionBean.arrendatarioBean.nifInterviniente != null && !tramiteTraficoTransmisionBean.arrendatarioBean.nifInterviniente.equals('')}">
+							<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.nif" 
+								id="idNifArrendatario" 
+								onblur="this.className='input2';calculaLetraNIF(this)" 
+								onfocus="this.className='inputfocus';" 
+								onchange="limpiarFormularioArrendatarioTransmision()"
+								size="9" maxlength="9"/>
+								</s:if>
+							<s:else>
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.nif" 
+									id="idNifArrendatario" 
+									onblur="this.className='input2';calculaLetraNIF(this)" 
+									onfocus="this.className='inputfocus';" 
+									size="9" maxlength="9"/>
+							</s:else>
+						</td>
+						<td align="left" nowrap="nowrap">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteTransmision('Arrendatario','Renting')"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+       	    </td>
+       		<td align="left" nowrap="nowrap" colspan="1">
+				<label for="Nif">Fecha Caducidad NIF:<span class="naranja">*</span></label>
+			</td>
+			<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadNif.dia" 
+										id="arrendatarioDiaCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadNif.mes" 
+										id="arrendatarioMesCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadNif.anio" 
+										id="arrendatarioAnioCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4"/>
+								</td>
+	
+								<td>
+								<div id="arrendatarioIdFechaDni" <s:if test="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.indefinido != null &&
+										tramiteTraficoTransmisionBean.arrendatarioBean.persona.indefinido == true}">
+								 		style="display:none"
+										</s:if>
+										>
+				    				<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.arrendatarioAnioCadNif, document.formData.arrendatarioMesCadNif, document.formData.arrendatarioDiaCadNif);return false;" 
+				    					title="Seleccionar fecha">
+					    				<img class="PopcalTrigger" 
+					    					align="left" 
+					    					src="img/ico_calendario.gif" 
+					    					width="15" height="16" 
+					    					border="0" alt="Calendario"/>
+				    				</a>
+				    			</div>
+								</td>
+	
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+					</td>
+       	</tr>
+       	
+       	<tr>
+       		<td align="left" nowrap="nowrap" colspan="1">
+		        		<label for="arrendatarioOtroDocIdentidad">Documento Alternativo:</label>	
+		     </td>
+		     <td>	        			
+		        		<s:checkbox 
+		        		id="arrendatarioOtroDocumentoIdentidad"		
+						disabled="%{flagDisabled}"		
+						onclick="" 
+						onkeypress="this.onClick" 
+						onchange="habilitarDocumentoAlternativo('arrendatarioOtroDocumentoIdentidad','arrendatarioTipoDocumentoAlternativo','arrendatarioDiaCadAlternativo','arrendatarioMesCadAlternativo','arrendatarioAnioCadAlternativo','arrendatarioIdFecha','arrendatarioIndefinido');"
+		        		name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad">
+		        		</s:checkbox>
+		     </td>
+		     <td align="left" nowrap="nowrap" colspan="1">
+		        <label for="arrendatarioIndefinido">Indefinido:</label>	
+			</td>
+			<td>	        			
+		    	<s:checkbox 
+		       		id="arrendatarioIndefinido"		
+					disabled="%{flagDisabled}"		
+					onclick="" 
+					onkeypress="this.onClick" 
+					onchange="documentoIndefinido('arrendatarioIndefinido', 'arrendatarioOtroDocumentoIdentidad', 'arrendatarioTipoDocumentoAlternativo', 'arrendatarioDiaCadNif', 'arrendatarioMesCadNif', 'arrendatarioAnioCadNif', 'arrendatarioDiaCadAlternativo', 'arrendatarioMesCadAlternativo', 'arrendatarioAnioCadAlternativo', 'arrendatarioIdFechaDni', 'arrendatarioIdFecha');"
+		       		name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.indefinido">
+		    	</s:checkbox>
+		    </td>
+       	</tr>
+       	
+       	<tr>
+       		<td align="left" nowrap="nowrap" colspan="1">
+       					<label for="arrendatarioTipoDocumentoAlternativo">Tipo de Doc Alternativo: </label>
+       		</td>
+       		<td>
+       		         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoDocumentoAlternativo()" id="arrendatarioTipoDocumentoAlternativo"
+							onblur="this.className='input2';" onfocus="this.className='inputfocus';"
+							name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.tipoDocumentoAlternativo"
+							listValue="nombreEnum" listKey="valorEnum" title="Tipo Documento Alternativo" headerKey="-1" headerValue="-" disabled="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad}"/>
+       		</td>
+
+       			<td align="left" nowrap="nowrap" colspan="1">
+						<label for="Nif">Caducidad Doc Alternativo:<span class="naranja">*</span></label>
+				</td>
+				<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadAlternativo.dia" 
+										id="arrendatarioDiaCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadAlternativo.mes" 
+										id="arrendatarioMesCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaCaducidadAlternativo.anio" 
+										id="arrendatarioAnioCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4" disabled="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>
+								<div id="arrendatarioIdFecha" <s:if test="%{tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.arrendatarioBean.persona.otroDocumentoIdentidad}">
+								 style="display:none"
+								 </s:if>
+								 >
+				    				<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.arrendatarioAnioCadAlternativo, document.formData.arrendatarioMesCadAlternativo, document.formData.arrendatarioDiaCadAlternativo);return false;" 
+				    					title="Seleccionar fecha">
+				    				
+					    				<img class="PopcalTrigger" 
+					    					align="left" 
+					    					src="img/ico_calendario.gif" 
+					    					width="15" height="16" 
+					    					border="0" alt="Calendario" />
+				    				</a>
+				    			</div>
+								</td>
+	
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+       					</td>
+       			</tr>
+       	
+       	<tr>	        	
+       		<td align="left" nowrap="nowrap">
+       			<label for="sexoArrendatario">Sexo: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+						id="sexoArrendatario"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						disabled="%{flagDisabled}"
+						name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.sexo"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Sexo Persona"
+						headerKey="-1" headerValue="-"/>
+       		</td>	
+       			
+    	   	<td align="left" nowrap="nowrap">
+       			<label for="idApellidoRazonSocialArrendatario">Apellido o Razón Social: <span class="naranja">*</span></label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.apellido1RazonSocial" 
+       				id="idApellidoRazonSocialArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="50" maxlength="70"/>
+       		</td>
+       	</tr>
+		
+		<tr>	
+			<td align="left" nowrap="nowrap">
+       			<label for="idApellido2Arrendatario">Segundo Apellido: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.apellido2" 
+       				id="idApellido2Arrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="26"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="idNombreArrendatario">Nombre: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.nombre" 
+       				id="idNombreArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="18"/>
+       		</td>
+       	</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaNacArrendatario">Fecha de Nacimiento: </label>
+			</td>
+		
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaNacimientoBean.dia" 
+					id="diaNacArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaNacimientoBean.mes" 
+					id="mesNacArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.fechaNacimientoBean.anio" 
+					id="anioNacArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="3%">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioNacArrendatario, document.formData.mesNacArrendatario, document.formData.diaNacArrendatario);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idTelefonoArrendatario">Teléfono: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.telefonos" 
+					id="idTelefonoArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="9" maxlength="9"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaInicioArrendatario">Fecha inicio: </label>
+			</td>
+		
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaInicio.dia" 
+					id="diaInicioArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaInicio.mes" 
+					id="mesInicioArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaInicio.anio" 
+					id="anioInicioArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="3%">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioInicioArrendatario, document.formData.mesInicioArrendatario, document.formData.diaInicioArrendatario);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idHoraInicioArrendatario">Hora inicio: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.horaInicio" 
+					id="idHoraInicioArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" width="10%">
+				<label for="diaFinArrendatario">Fecha fin: </label>
+			</td>
+		
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaFin.dia" 
+					id="diaFinArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaFin.mes" 
+					id="mesFinArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2"/>
+			</td>
+			
+			<td width="2">/</td>
+			
+			<td align="left" nowrap="nowrap" width="1%">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.fechaFin.anio" 
+					id="anioFinArrendatario"
+					onblur="this.className='input2';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					onfocus="this.className='inputfocus';" 
+					size="4" maxlength="4"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="3%">
+	    		<a href="javascript:;" 
+	    			onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioFinArrendatario, document.formData.mesFinArrendatario, document.formData.diaFinArrendatario);return false;" 
+	    				title="Seleccionar fecha">
+	    			<img class="PopcalTrigger" 
+	    				align="middle" 
+	    				src="img/ico_calendario.gif" ${displayDisabled} 
+	    				width="15" height="16" 
+	    				border="0" alt="Calendario"/>
+	    		</a>
+			</td>
+			
+			<td align="left" nowrap="nowrap" width="130">
+				<label for="idHoraFinArrendatario">Hora fin: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.horaFin" 
+					id="idHoraFinArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+       		<td align="left" nowrap="nowrap">
+				<label for="idProvinciaArrendatario">Provincia: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasArrendatario()"
+					headerKey="-1"
+	           		headerValue="Seleccione Provincia"
+	           		disabled="%{flagDisabled}"
+					name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.municipio.provincia.idProvincia" 
+					listKey="idProvincia" listValue="nombre"
+					id="idProvinciaArrendatario"
+					onchange="cargarListaMunicipios(this,'idMunicipioArrendatario','municipioSeleccionadoArrendatario');
+					cargarListaTipoVia(this,'tipoViaArrendatario','tipoViaSeleccionadaArrendatario');
+					inicializarTipoVia('tipoViaArrendatario','viaArrendatario',viaArrendatarioTransmision);"
+					cssStyle="width:150px;"
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"/>	
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="idMunicipioArrendatario">Municipio: <span class="naranja">*</span></label>	
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">			
+				<select id="idMunicipioArrendatario" 
+					onchange="cargarListaPueblos('idProvinciaArrendatario', this, 'idPuebloArrendatario', 'puebloSeleccionadoArrendatario');
+					seleccionarCampo('municipioSeleccionadoArrendatario','idMunicipioArrendatario');
+					obtenerCodigoPostalPorMunicipio('idProvinciaArrendatario', this, 'codPostalArrendatario');
+					inicializarTipoVia('tipoViaArrendatario','viaArrendatario',viaArrendatarioTransmision);" 
+					onblur="this.className='input2';" 
+					${stringDisabled}
+       				onfocus="this.className='inputfocus';">
+					<option value="-1">Seleccione Municipio</option>
+				</select>						  
+		    	<s:hidden id="municipioSeleccionadoArrendatario" 
+		    		name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.municipio.idMunicipio"/>
+			</td>
+		</tr>
+		
+		<tr>	
+			
+			<td align="left" nowrap="nowrap">
+				<label for="codPostalArrendatario">Código Postal: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+	        	<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.codPostal" 
+	        		id="codPostalArrendatario" 
+	        		maxlength="5" size="5" 
+	            	onblur="this.className='input';"
+	               	onkeypress="return validarNumerosEnteros(event)"
+	            	onfocus="this.className='inputfocus';"/>
+			</td>								
+			<td align="left" nowrap="nowrap">
+				<label for="idPuebloArrendatario">Pueblo: </label>			
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">				
+				<select id="idPuebloArrendatario" ${stringDisabled} onchange="seleccionarCampo('puebloSeleccionadoArrendatario','idPuebloArrendatario');"
+					style="width:200px;">
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+			   	<s:hidden id="puebloSeleccionadoArrendatario" 
+			   		name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.pueblo"/>
+			</td>				
+		</tr>
+		
+		<tr>			
+			
+      
+      		<td align="left" nowrap="nowrap">
+       			<label for="tipoViaArrendatario">Tipo de vía: <span class="naranja">*</span></label>
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+         	
+	         	<select id="tipoViaArrendatario"
+						onblur="this.className='input2';" 
+						${stringDisabled}
+						onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('tipoViaSeleccionadaArrendatario','tipoViaArrendatario');
+						cargarListaNombresVia('idProvinciaArrendatario', 'municipioSeleccionadoArrendatario', this, 'viaArrendatario',viaArrendatarioTransmision);">
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+		    	<s:hidden id="tipoViaSeleccionadaArrendatario" 
+		    		name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.tipoVia.idTipoVia"/>
+         	
+       		</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="viaArrendatario">Nombre v&iacute;a: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+			<td align="left" nowrap="nowrap" colspan="2">
+	       			<s:textfield disabled="%{flagDisabled}" id="viaArrendatario" 
+	       				onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.nombreVia"
+		       			cssStyle="width:200px;position:relative;" size="40" maxlength="120" autocomplete="off"/>
+						
+       		</td>        
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>	
+			<td align="left" nowrap="nowrap">
+				<label for="numeroArrendatario">N&uacute;mero: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.numero" 
+					id="numeroArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarSN2(event,this)"
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="letraArrendatario">Letra: </label>
+			</td>				        		
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.letra" 
+					id="letraArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<label for="escaleraArrendatario">Escalera: </label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.escalera" 
+					id="escaleraArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="pisoArrendatario">Piso: </label>
+			</td>				        		
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.planta" 
+					id="pisoArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="puertaArrendatario">Puerta: </label>
+			</td>
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.puerta" 
+					id="puertaArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="bloqueArrendatario">Bloque: </label>
+			</td>
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.bloque" 
+					id="bloqueArrendatario"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="kmArrendatario">Km: </label>
+			</td>
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.puntoKilometrico" 
+					id="kmArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<label for="hmArrendatario">Hm: </label>
+			</td>
+
+       		<td align="left" nowrap="nowrap">
+				<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.arrendatarioBean.persona.direccion.hm" 
+					id="hmArrendatario" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					onkeypress="return validarNumerosEnteros(event)"
+					size="5" maxlength="5"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">REPRESENTANTE DEL ARRENDATARIO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+
+		<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="nifRepresentanteArrendatario">NIF / CIF:</label>
+       		</td>
+
+       	    <td align="left" nowrap="nowrap" width="24%" >
+       	    	<table cellPadding="1" cellSpacing="3">
+					<tr>
+						<td align="left" nowrap="nowrap" width="24%">
+				       		<s:if test="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.nifInterviniente != null && !tramiteTraficoTransmisionBean.representanteArrendatarioBean.nifInterviniente.equals('')}">
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.nif" 
+				       				id="nifRepresentanteArrendatario" 
+				       				onblur="this.className='input2';" 
+				       				onfocus="this.className='inputfocus';" 
+				       				onchange="limpiarFormularioRepresentanteArrendatarioTransmision()"
+				       				size="9" maxlength="9"/>
+				       		</s:if>
+				       		<s:else>
+				       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.nif" 
+				       				id="nifRepresentanteArrendatario" 
+				       				onblur="this.className='input2';" 
+				       				onfocus="this.className='inputfocus';" 
+				       				size="9" maxlength="9"/>
+				       		</s:else>
+       					</td>	
+						<td align="left" nowrap="nowrap">
+							<s:if test="%{!@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoEspecial()}">
+								<input type="button" class="boton-persona" style="background-image: url(img/mostrar.gif);height:20px;width:20px;" 
+									onclick="javascript:buscarIntervinienteTransmision('Representante Arrendatario','Renting')"/>
+							</s:if>
+						</td>
+					</tr>
+				</table>
+			</td>
+
+       		<td align="left" nowrap="nowrap" colspan="1">
+				<label for="Nif">Fecha Caducidad NIF:<span class="naranja">*</span></label>
+			</td>
+			<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadNif.dia" 
+										id="representanteArrendatarioDiaCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+
+								<td>/</td>
+
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadNif.mes" 
+										id="representanteArrendatarioMesCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+
+								<td>/</td>
+
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadNif.anio" 
+										id="representanteArrendatarioAnioCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4"/>
+								</td>
+
+								<td>
+								<div id="representanteArrendatarioIdFechaDni" <s:if test="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.indefinido != null &&
+										tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.indefinido == true}">
+								 		style="display:none"
+										</s:if>
+										>
+									<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.representanteArrendatarioAnioCadNif, document.formData.representanteArrendatarioMesCadNif, document.formData.representanteArrendatarioDiaCadNif);return false;" 
+										title="Seleccionar fecha">
+										<img class="PopcalTrigger" 
+											align="left" 
+											src="img/ico_calendario.gif" 
+											width="15" height="16" 
+											border="0" alt="Calendario"/>
+									</a>
+								</div>
+								</td>
+
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+					</td>
+		</tr>
+		
+				<tr>
+       		<td align="left" nowrap="nowrap" colspan="1">
+		        		<label for="representanteArrendatarioOtroDocIdentidad">Documento Alternativo:</label>		
+		     </td>
+		     <td colspan="1" >        			
+		        		<s:checkbox 
+		        		id="representanteArrendatarioOtroDocumentoIdentidad"		
+						disabled="%{flagDisabled}"		
+						onclick="" 
+						onkeypress="this.onClick" 
+						onchange="habilitarDocumentoAlternativo('representanteArrendatarioOtroDocumentoIdentidad','representanteArrendatarioTipoDocumentoAlternativo','representanteArrendatarioDiaCadAlternativo','representanteArrendatarioMesCadAlternativo','representanteArrendatarioAnioCadAlternativo','representanteArrendatarioIdFecha','representanteArrendatarioIndefinido');"
+		        		name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad">
+		        		</s:checkbox>
+		     </td>
+		     <td align="left" nowrap="nowrap" colspan="1">
+		        <label for="arrendatarioIndefinido">Indefinido:</label>	
+			</td>
+			<td>	        			
+		    	<s:checkbox 
+		       		id="representanteArrendatarioIndefinido"		
+					disabled="%{flagDisabled}"		
+					onclick="" 
+					onkeypress="this.onClick" 
+					onchange="documentoIndefinido('representanteArrendatarioIndefinido', 'representanteArrendatarioOtroDocumentoIdentidad', 'representanteArrendatarioTipoDocumentoAlternativo', 'representanteArrendatarioDiaCadNif', 'representanteArrendatarioMesCadNif', 'representanteArrendatarioAnioCadNif', 'representanteArrendatarioDiaCadAlternativo', 'representanteArrendatarioMesCadAlternativo', 'representanteArrendatarioAnioCadAlternativo', 'representanteArrendatarioIdFechaDni');"
+		       		name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.indefinido">
+		    	</s:checkbox>
+		    </td>
+		    </tr>
+		    <tr>
+       
+       		<td align="left" nowrap="nowrap" colspan="1">
+       					<label for="representanteArrendatarioTipoDocumentoAlternativo">Tipo de Doc Alternativo: </label>
+       		</td>
+       		<td>
+       		         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoDocumentoAlternativo()" id="representanteArrendatarioTipoDocumentoAlternativo"
+							onblur="this.className='input2';" onfocus="this.className='inputfocus';"
+							name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.tipoDocumentoAlternativo"
+							listValue="nombreEnum" listKey="valorEnum" title="Tipo Documento Alternativo" headerKey="-1" headerValue="-" disabled="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad}"/>
+       		</td>
+
+       			<td align="left" nowrap="nowrap" colspan="1">
+						<label for="Nif">Caducidad Doc Alternativo:<span class="naranja">*</span></label>
+				</td>
+				<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadAlternativo.dia" 
+										id="representanteArrendatarioDiaCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadAlternativo.mes" 
+										id="representanteArrendatarioMesCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.fechaCaducidadAlternativo.anio" 
+										id="representanteArrendatarioAnioCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4" disabled="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>
+								<div id="representanteArrendatarioIdFecha" <s:if test="%{tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad != null &&
+										!tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.otroDocumentoIdentidad}">
+								 style="display:none"
+								 </s:if>
+								 >
+				    				<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.representanteArrendatarioAnioCadAlternativo, document.formData.representanteArrendatarioMesCadAlternativo, document.formData.representanteArrendatarioDiaCadAlternativo);return false;" 
+				    					title="Seleccionar fecha">
+				    				
+					    				<img class="PopcalTrigger" 
+					    					align="left" 
+					    					src="img/ico_calendario.gif" 
+					    					width="15" height="16" 
+					    					border="0" alt="Calendario" />
+				    				</a>
+				    			</div>
+								</td>
+	
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+       					</td>
+       			</tr>
+       	<tr>
+    		<td align="left" nowrap="nowrap" >
+       			<label for="apellido1RepresentanteArrendatario">Apellido o Razón Social:</label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" colspan="3" >
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.apellido1RazonSocial" 
+       				id="apellido1RepresentanteArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="50" maxlength="70"/>
+       		</td>
+       	</tr>
+		
+		<tr>	
+			<td align="left" nowrap="nowrap">
+       			<label for="apellido2RepresentanteArrendatario">Segundo Apellido: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" >
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.apellido2" 
+       				id="apellido2RepresentanteArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="26"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap" >
+       			<label for="idNombreRepresentanteArrendatario">Nombre: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" >
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.persona.nombre" 
+       				id="idNombreRepresentanteArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="18"/>
+       		</td>
+       	</tr>	
+       	<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="conceptoRepresentanteArrendatario">Concepto: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" >
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getConceptoTutela()"
+						id="conceptoRepresentanteArrendatario"
+						onblur="this.className='input2';"
+						disabled="%{flagDisabled}"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.conceptoRepre"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Concepto tutela"
+						headerKey="-1" headerValue="-"
+						onchange="cambioConceptoRepreArrendatario()"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="motivoRepresentanteArrendatario">Motivo: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" >
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposTutela()"
+						id="motivoRepresentanteArrendatario"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.idMotivoTutela"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Motivo tutela"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+       	</tr>
+       	<tr>
+       		<td align="left" nowrap="nowrap" colspan="3">
+       			<label for="datosAcrediteRepresentanteArrendatario">Datos del documento que acredite la facultad para actuar en nombre del Arrendatario: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap" colspan="1">
+       			<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.datosDocumento" 
+       				id="datosAcrediteRepresentanteArrendatario" 
+       				onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';" 
+       				size="20" maxlength="100"/>
+       		</td>
+       	</tr>
+       	<tr>
+       		<td align="left" nowrap="nowrap" colspan="4">
+       			<table>
+       				<tr>
+	       					<td align="left" nowrap="nowrap">
+								<label for="diaInicioRepresentanteArrendatario">Fecha inicio Tutela: </label>
+							</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaInicio.dia" 
+									id="diaInicioRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="2" maxlength="2"/>
+							</td>
+							
+							<td width="2">/</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaInicio.mes" 
+									id="mesInicioRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="2" maxlength="2"/>
+							</td>
+							
+							<td width="2">/</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaInicio.anio" 
+									id="anioInicioRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="4" maxlength="4"/>
+							</td>
+							
+							<td align="left" nowrap="nowrap">
+					    		<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioInicioRepresentanteArrendatario, document.formData.mesInicioRepresentanteArrendatario, document.formData.diaInicioRepresentanteArrendatario);return false;" 
+					    			title="Seleccionar fecha">
+					    			<img class="PopcalTrigger" 
+					    				align="middle" 
+					    				src="img/ico_calendario.gif" ${displayDisabled} 
+					    				width="15" height="16" 
+					    				border="0" alt="Calendario"/>
+					    		</a>
+							</td>
+				
+							<td align="left" nowrap="nowrap">
+								<label for="diaFinRepresentanteArrendatario">Fecha fin Tutela: </label>
+							</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaFin.dia" 
+									id="diaFinRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="2" maxlength="2"/>
+							</td>
+							
+							<td width="2">/</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaFin.mes" 
+									id="mesFinRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="2" maxlength="2"/>
+							</td>
+							
+							<td width="2">/</td>
+							
+							<td align="left" nowrap="nowrap" width="20">
+								<s:textfield disabled="%{flagDisabled}" name="tramiteTraficoTransmisionBean.representanteArrendatarioBean.fechaFin.anio" 
+									id="anioFinRepresentanteArrendatario"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';" 
+									onkeypress="return validarNumerosEnteros(event)"
+									size="4" maxlength="4"/>
+							</td>
+							
+							<td align="left" nowrap="nowrap">
+					    		<a href="javascript:;" onClick="if(self.gfPop)gfPop.fPopCalendarSplit(document.formData.anioFinRepresentanteArrendatario, document.formData.mesFinRepresentanteArrendatario, document.formData.diaFinRepresentanteArrendatario);return false;" 
+					    			title="Seleccionar fecha">
+					    			<img class="PopcalTrigger" 
+					    				align="middle" 
+					    				src="img/ico_calendario.gif" ${displayDisabled} 
+					    				width="15" height="16" 
+					    				border="0" alt="Calendario"/>
+					    		</a>
+							</td>
+       				</tr>
+       			</table>
+       		</td>
+       	</tr>
+       	
+	</table>
+	
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmision(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" 
+					   class="boton" 
+					   name="bGuardar7" 
+					   id="bGuardar7" 
+					   value="Consultar / Guardar" 
+					   onClick="return guardarAltaTramiteTransmision('Renting');" 
+					   onKeyPress="this.onClick"/>				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage7" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+		</tr>
+	</table>
+	</s:if>
+	<script>	
+		var viaArrendatarioTransmision = new BasicContentAssist(document.getElementById('viaArrendatario'), [], null, true); 
+		recargarComboMunicipios('idProvinciaArrendatario','idMunicipioArrendatario','municipioSeleccionadoArrendatario');
+		recargarComboTipoVia('idProvinciaArrendatario','tipoViaArrendatario','tipoViaSeleccionadaArrendatario');
+		recargarComboPueblos('idProvinciaArrendatario','municipioSeleccionadoArrendatario','idPuebloArrendatario', 'puebloSeleccionadoArrendatario');
+		recargarNombreVias('idProvinciaArrendatario', 'municipioSeleccionadoArrendatario', 'tipoViaSeleccionadaArrendatario','viaArrendatario',viaArrendatarioTransmision);
+	</script>
+</div>

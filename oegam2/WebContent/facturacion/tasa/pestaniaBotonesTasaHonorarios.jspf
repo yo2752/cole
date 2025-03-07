@@ -1,0 +1,13 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+<table class="acciones" width="95%" align="left">
+	<tr>
+		<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+			<input type="button" class="boton" name="bAlta   " id="bAlta"    value="Nueva Tasa" onClick="return guardarNuevaTasa('Cliente');" onKeyPress="this.onClick"/>
+			<input type="button" class="boton" name="bGuardar" id="bGuardar" value="Guardar"    onClick="return testFormTasaHonorario();"     onKeyPress="this.onClick"/>
+			<input type="button" class="boton" name="bBorrar"  id="bBorrar"  value="Borrar"     onClick="return eliminarTasaHonorario('idCodTasa');"  onKeyPress="this.onClick"/>
+			<input type="button" class="boton" name="bLimpiar" id="bLimpiar" value="Limpiar"    onClick="return limpiarFormTasaHonorario();"  onKeyPress="this.onClick"/>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,308 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+  
+<div class="contentTabs" id="DatosdelContrato" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">  
+	<div class="contenido">		
+	<table class="subtitulo" cellSpacing="0" cellspacing="0">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos del contrato</td>
+		</tr>
+	</table>
+
+	<table width="100%" border="0" cellspacing="3" cellpadding="0" class="tablaformbasica">
+		
+		<tr>			
+			<td>
+				<table>
+				<tr>
+					<td align="left" nowrap="nowrap"><br/>
+					<label style="text-aling:left;" for="contratoEstado" >Estado</label>
+					<s:textfield name="contratoBean.datosContrato.estadoContrato.nombreEnum" 
+	       				id="contratoEstado" 
+	       				onblur="this.className='input2';" 
+	       				onfocus="this.className='inputfocus';" 
+	       				cssClass="inputview"
+	       				readonly="true"
+	       				disabled="true"/>
+	       			<s:hidden id="idEstadoContrato" name="contratoBean.datosContrato.estadoContrato"></s:hidden>
+					</td>
+					<td align="left" nowrap="nowrap"><br/>
+						<label for="fechaInicio">Fecha Inicio</label>			                        					                      		
+						<s:textfield name="contratoBean.datosContrato.fechaInicio" 
+		       				id="fechaInicio" 
+		       				onblur="this.className='input2';" 
+		       				onfocus="this.className='inputfocus';" 
+		       				cssClass="inputview"
+		       				readonly="true"
+		       				disabled="true"/>
+		       			<s:hidden id="idFechaInicio" name="contratoBean.datosContrato.fechaInicio.dia"></s:hidden>
+		       			<s:hidden id="idFechaInicio" name="contratoBean.datosContrato.fechaInicio.mes"></s:hidden>
+		       			<s:hidden id="idFechaInicio" name="contratoBean.datosContrato.fechaInicio.anio"></s:hidden>
+					</td>
+					<!-- INICIO MANTIS 0011560: (ihgl) añadimos la fecha de fin -->
+					<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+								@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+						<td align="left" nowrap="nowrap"><br/>
+							<label for="fechaFin">Fecha Fin</label>			                        					                      		
+							<s:textfield name="contratoBean.datosContrato.fechaFin" 
+			       				id="fechaFin" 
+			       				onblur="this.className='input2';" 
+			       				onfocus="this.className='inputfocus';" 
+			       				cssClass="inputview"
+			       				readonly="true"
+			       				disabled="true"/>
+			       		 <td align="left" nowrap="nowrap"><br/>
+							<label for="fechaFin">Id Usuario</label>			                        					                      		
+							<s:textfield name="contratoBean.datosColegiado.usuario.idUsuario" 
+			       				id="fechaFin" 
+			       				onblur="this.className='input2';" 
+			       				onfocus="this.className='inputfocus';" 
+			       				cssClass="inputview"
+			       				readonly="true"
+			       				disabled="true"/>
+			       		  <td align="left" nowrap="nowrap"><br/>
+							<label for="fechaFin">Id Contrato</label>			                        					                      		
+							<s:textfield name="idContrato" 
+			       				id="fechaFin" 
+			       				onblur="this.className='input2';" 
+			       				onfocus="this.className='inputfocus';" 
+			       				cssClass="inputview"
+			       				readonly="true"
+			       				disabled="true"/>
+			       			<s:hidden id="idFechaFin" name="contratoBean.datosContrato.fechaFin.dia"></s:hidden>
+			       			<s:hidden id="idFechaFin" name="contratoBean.datosContrato.fechaFin.mes"></s:hidden>
+			       			<s:hidden id="idFechaFin" name="contratoBean.datosContrato.fechaFin.anio"></s:hidden>
+						</td>
+					</s:if>
+					
+					<!-- FIN MANTIS 0011560 (ihgl) -->
+										
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+				<tr>
+					<td  align="left" nowrap="nowrap">
+						<label for="cif">CIF<span class="naranja">*</span></label>			
+						<s:textfield name="contratoBean.datosContrato.cif" 
+				       				id="cif" 
+				       				onblur="this.className='input2';calculaLetraDni('cif');" 
+				       				onfocus="this.className='inputfocus';" 
+				       				size="9" maxLength="9"
+				       				/>
+					</td>
+					<td  align="left" nowrap="nowrap">
+						<label for="razonSocial">Raz&oacute;n Social<span class="naranja">*</span></label>			
+						<s:textfield name="contratoBean.datosContrato.razonSocial" 
+									id="razonSocial" 
+									onblur="this.className='input2';"
+								 	onfocus="this.className='inputfocus';" 
+								 	size="70" maxLength="120"/>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+				<tr>
+					<td align="left" nowrap="nowrap">
+						<label for="provincia">Provincia<span class="naranja">*</span></label>	
+					
+						<s:select	list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvincias()"
+							headerKey="-1"
+			           		headerValue="Seleccione Provincia"
+							name="contratoBean.datosContrato.direccion.municipio.provincia.idProvincia" 
+							listKey="idProvincia" listValue="nombre"
+							id="idProvincia"
+							onchange="cargarListaMunicipios(this,'idMunicipio','municipioSeleccion');
+							cargarListaColegios(this,'idColegio','colegioSeleccionado');
+							cargarListaJefaturas(this,'idJefatura','jefaturaSeleccionado');
+							cargarListaTipoVia(this,'idTipoVia','idTipoViaSeleccionada');
+							inicializarTipoVia('idTipoVia','via',viaContrato);" 
+							cssStyle="width:170px;"
+							onblur="this.className='input2';" 
+							onfocus="this.className='inputfocus';"/>
+								
+					</td>
+					<td align="left" nowrap="nowrap">
+						<label for="municipio">Localidad/Municipio<span class="naranja">*</span></label>	
+						<select id="idMunicipio" 
+						onblur="this.className='input2';" 
+		  				onfocus="this.className='inputfocus';"
+						onchange="seleccionarCampo('municipioSeleccion','idMunicipio');						
+						obtenerCodigoPostalPorMunicipio('idProvincia', this, 'codPostal');
+						inicializarTipoVia('tipoViaDireccion','nombreViaDireccion',viaContrato);" >
+							
+							<option value="-1">Seleccione Municipio</option>
+						</select>
+							
+						<s:hidden id="municipioSeleccion" 
+					 		name="contratoBean.datosContrato.direccion.municipio.idMunicipio"/>				
+						
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+				<tr>
+
+				<td align="left" nowrap="nowrap">
+	   				<label for="idTipoVia">Tipo de vía: <span class="naranja">*</span></label>
+		         	<select id="idTipoVia" 
+							onblur="this.className='input2';" 
+							onfocus="this.className='inputfocus';"
+							onchange="seleccionarCampo('idTipoViaSeleccionada','idTipoVia');
+									  cargarListaNombresVia('idProvincia', 'municipioSeleccion', this, 'via',viaContrato);" >
+							<option value="-1">Seleccione Tipo Via</option>
+					</select>
+			    	<s:hidden id="idTipoViaSeleccionada"
+			    		name="contratoBean.datosContrato.direccion.tipoVia.idTipoVia"/>
+	       		</td>
+
+				<td  align="left" nowrap="nowrap">
+					<label for="via">Nombre v&iacute;a p&uacute;blica<span class="naranja">*</span></label>				
+					<s:textfield name="contratoBean.datosContrato.direccion.nombreVia" 
+								id="via" cssStyle="width:200px;position:relative;"
+								onblur="this.className='input2';" 
+								onfocus="this.className='inputfocus';" 
+								autocomplete="off"
+								size="40" maxLength="120"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="numero">N&uacute;mero<span class="naranja">*</span></label>				
+					<s:textfield name="contratoBean.datosContrato.direccion.numero" 
+								id="numero" 
+								onblur="this.className='input2';" 
+								onfocus="this.className='inputfocus';" 
+								size="5" maxLength="5"/>
+				</td>
+				<td  align="left" nowrap="nowrap">
+					<label for="letra">Letra</label>			
+					<s:textfield name="contratoBean.datosContrato.direccion.letra" 
+								id="letra" 
+								onblur="this.className='input2';" 
+								onfocus="this.className='inputfocus';"
+								size="5" maxLength="5"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="escalera">Escalera</label>				
+					<s:textfield name="contratoBean.datosContrato.direccion.escalera" 
+								id="escalera" 
+								onblur="this.className='input2';" 
+								onfocus="this.className='inputfocus';" 
+								size="5" maxLength="5"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="piso">Piso</label>			
+					<s:textfield name="contratoBean.datosContrato.direccion.planta" 
+					id="piso" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxLength="5"/>
+				</td>
+				<td align="left" nowrap="nowrap">
+					<label for="puerta">Puerta</label>				
+					<s:textfield name="contratoBean.datosContrato.direccion.puerta" 
+					id="puerta" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';" 
+					size="5" maxLength="5"/>
+				</td>
+			</tr>
+			</table>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				<table>
+				<tr>
+					<td align="left" nowrap="nowrap">
+						<label for="codPostal">C&oacute;digo Postal<span class="naranja">*</span></label>		
+						<s:textfield name="contratoBean.datosContrato.direccion.codPostal" 
+						id="codPostal" 
+						onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';" 
+						size="10" maxLength="5"/>
+					</td>
+					<td align="left" nowrap="nowrap">
+						<label for="telefono">Tel&eacute;fono<span class="naranja">*</span></label>			
+							<s:textfield name="contratoBean.datosContrato.telefono" 
+							id="telefono" 
+							onblur="this.className='input2';" 
+							onfocus="this.className='inputfocus';" 
+							size="9" maxLength="9"/>
+					</td>
+					<td align="left" nowrap="nowrap">
+						<label for="correoElectronico">Correo Electr&oacute;nico<span class="naranja">*</span></label>			
+						<s:textfield name="contratoBean.datosContrato.correoElectronico" 
+						id="correoElectronico" 
+						onblur="this.className='input2';" 
+						onfocus="this.className='inputfocus';" 
+						size="60" maxLength="100"/>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+				<tr>		
+					<td align="left" nowrap="nowrap">
+							<label for="idColegio">Colegios<span class="naranja">*</span></label>
+							<select id="idColegio"  
+							onchange="seleccionarCampo('colegioSeleccionado','idColegio');">
+								<option value="-1">Seleccione Colegio</option>
+							</select>
+					<s:hidden id="colegioSeleccionado" 
+				    		name="contratoBean.datosContrato.colegio.colegio"/>	
+					</td>
+					<td align="left" nowrap="nowrap">
+							<label for="idJefatura">Jefaturas<span class="naranja">*</span></label>
+							<select id="idJefatura" 
+							onchange="seleccionarCampo('jefaturaSeleccionado','idJefatura');">
+								<option value="-1">Seleccione Jefatura</option>
+							</select>
+					<s:hidden id="jefaturaSeleccionado" 
+				    		name="contratoBean.datosContrato.jefatura.jefaturaProvincial"/>	
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>	
+	
+	<table class="acciones">
+		<tr>
+			<s:if test="%{@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoAdmin()||
+						@org.gestoresmadrid.oegam2.utiles.UtilesVistaAcceso@getInstance().tienePermisoColegio()}">
+				<td>
+					<input type="button" class="boton" name="bGuardar" id="idBotonGuardar" value="Guardar" onClick="return guardarContrato('DatosdelContrato');" onKeyPress="this.onClick"/>
+					&nbsp;	
+				</td>
+			</s:if>
+			<td align="center">
+				<input type="button" class="boton" name="bVolver" id="bVolver" value="Volver" onClick="nuevaConsulta();" onKeyPress="this.onClick" />&nbsp;                     
+		     </td>
+		</tr>
+	</table>		
+	</div>
+	
+</div>
+
+<script>	
+	var viaContrato = new BasicContentAssist(document.getElementById('via'), [], null, true); 
+	recargarComboMunicipios('idProvincia','idMunicipio','municipioSeleccion');
+	recargarComboTipoVia('idProvincia','idTipoVia','idTipoViaSeleccionada');
+	recargarComboColegios('idProvincia','idColegio','colegioSeleccionado');
+	recargarComboJefaturas('idProvincia','idJefatura','jefaturaSeleccionado');
+	recargarNombreVias('idProvincia', 'municipioSeleccion', 'tipoViaSeleccionada','via',viaContrato);
+</script>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<package name="facturacion" extends="default" strict-method-invocation="false">
+
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+<!--	 Actions de Trafico-->
+
+		<action name= "*GestionFacturar" method="{1}" class="facturacion.acciones.GestionFacturarAction">
+			<result name ="altaFactura" type="tiles">altaFacturacion</result>
+			<result name ="bajaFactura" type="tiles">bajaFacturacion</result>
+			<result name ="nuevaFactura" type="tiles">nuevaFacturacion</result>
+			<result name ="consultaFactura" type="tiles">consultaFacturacion</result>
+			<result name ="consultaFacturaRectificativa" type="tiles">consultaFacturacionRectificativa</result>
+			<result name ="consultaFacturaAbono" type="tiles">consultaFacturaAbono</result>
+			<result name ="modificacionFactura" type="tiles">modificacionFacturacion</result>
+			<result name ="exportacionFactura" type="tiles">altaFacturacion</result>
+			<result name ="consultaConcepto" type="tiles">consultaConceptoFacturacion</result>
+			<result name ="consultaTramite" type="tiles">consultaTramiteFacturacion</result>
+			<result name ="altaFacturaResumen" type="tiles">altaFacturacionResumen</result>
+			<result name ="numExpedientes" type="tiles">numExpedientes</result>
+
+			<result name="descargarFacturaPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="descargarXMLSIGA" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name= "*FacturacionAjax" method="{1}" class="facturacion.ajax.acciones.FacturacionAjaxAction"/>
+
+	</package>
+</struts>

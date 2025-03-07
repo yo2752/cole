@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ProfessionalProofService" targetNamespace="http://sega.gestores.net/pps" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sega.gestores.net/pps" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <types>
+  <xs:schema targetNamespace="http://sega.gestores.net/pps" version="1.0" xmlns:tns="http://sega.gestores.net/pps" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      
+   <xs:element name="getProfessionalProof" type="tns:ppsRequest"/>
+   <xs:element name="getProfessionalProofResponse" type="tns:ppsResponse"/>
+   
+   <xs:element name="issueProfessionalProof" type="tns:ppsRequest"/>
+   <xs:element name="issueProfessionalProofResponse" type="tns:ppsResponse"/>
+   
+   <xs:element name="verifyProfessionalProof" type="tns:vppsRequest"/>
+   <xs:element name="verifyProfessionalProofResponse" type="tns:vppsResponse"/>
+   
+   <xs:complexType name="ppsRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+     <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+     <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ppsResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tns:ppsReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ppsReturn">
+    <xs:sequence>
+     <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:ppsError"/>
+     <xs:element minOccurs="0" name="professionalProofPdf" type="xs:base64Binary"/>
+     <xs:element minOccurs="0" name="proofNumber" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ppsError">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="code" type="xs:string"/>
+     <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="vppsRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="vppsResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tns:vppsReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="vppsReturn">
+    <xs:sequence>
+     <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:ppsError"/>
+     <xs:element name="verificationSuccessful" type="xs:boolean"/>
+    </xs:sequence>
+   </xs:complexType>
+
+  </xs:schema>
+ </types>
+ <message name="ProfessionalProofWS_verifyProfessionalProofResponse">
+  <part element="tns:verifyProfessionalProofResponse" name="verifyProfessionalProofResponse"></part>
+ </message>
+ <message name="ProfessionalProofWS_getProfessionalProof">
+  <part element="tns:getProfessionalProof" name="getProfessionalProof"></part>
+ </message>
+ <message name="ProfessionalProofWS_verifyProfessionalProof">
+  <part element="tns:verifyProfessionalProof" name="verifyProfessionalProof"></part>
+ </message>
+ <message name="ProfessionalProofWS_issueProfessionalProofResponse">
+  <part element="tns:issueProfessionalProofResponse" name="issueProfessionalProofResponse"></part>
+ </message>
+ <message name="ProfessionalProofWS_getProfessionalProofResponse">
+  <part element="tns:getProfessionalProofResponse" name="getProfessionalProofResponse"></part>
+ </message>
+ <message name="ProfessionalProofWS_issueProfessionalProof">
+  <part element="tns:issueProfessionalProof" name="issueProfessionalProof"></part>
+ </message>
+ <portType name="ProfessionalProofWS">
+  <operation name="getProfessionalProof" parameterOrder="getProfessionalProof">
+   <input message="tns:ProfessionalProofWS_getProfessionalProof"></input>
+   <output message="tns:ProfessionalProofWS_getProfessionalProofResponse"></output>
+  </operation>
+  <operation name="issueProfessionalProof" parameterOrder="issueProfessionalProof">
+   <input message="tns:ProfessionalProofWS_issueProfessionalProof"></input>
+   <output message="tns:ProfessionalProofWS_issueProfessionalProofResponse"></output>
+  </operation>
+  <operation name="verifyProfessionalProof" parameterOrder="verifyProfessionalProof">
+   <input message="tns:ProfessionalProofWS_verifyProfessionalProof"></input>
+   <output message="tns:ProfessionalProofWS_verifyProfessionalProofResponse"></output>
+  </operation>
+ </portType>
+ <binding name="ProfessionalProofWSBinding" type="tns:ProfessionalProofWS">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="getProfessionalProof">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="issueProfessionalProof">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="verifyProfessionalProof">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="ProfessionalProofService">
+  <port binding="tns:ProfessionalProofWSBinding" name="ProfessionalProofService">
+   <soap:address location="https://217.130.244.72:8484/pps/ProfessionalProofService"/>
+  </port>
+ </service>
+</definitions>

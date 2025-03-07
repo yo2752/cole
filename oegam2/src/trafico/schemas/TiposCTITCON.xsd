@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.gacn.es/CTIT/tipos" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.gacn.es/CTIT/tipos" elementFormDefault="unqualified"
+	attributeFormDefault="unqualified">
+	<!--Tipos complejos-->
+	<!--Tipos simples-->
+	<xs:simpleType name="tipoVersionRegistro">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoHash">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|[a-bA-B]{1}[0-9]{7}[d-eD-E]{1}"
+			/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTramite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CTI"/>
+			<xs:enumeration value="NOT"/>
+			<xs:enumeration value="ENT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoServicioDelVehiculo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A00"/>
+			<xs:enumeration value="B00"/>
+			<xs:enumeration value="A01"/>
+			<xs:enumeration value="A02"/>
+			<xs:enumeration value="B03"/>
+			<xs:enumeration value="A04"/>
+			<xs:enumeration value="A05"/>
+			<xs:enumeration value="B06"/>
+			<xs:enumeration value="A07"/>
+			<xs:enumeration value="A08"/>
+			<xs:enumeration value="B09"/>
+			<xs:enumeration value="A10"/>
+			<xs:enumeration value="A11"/>
+			<xs:enumeration value="A12"/>
+			<xs:enumeration value="A13"/>
+			<xs:enumeration value="A14"/>
+			<xs:enumeration value="A15"/>
+			<xs:enumeration value="A16"/>
+			<xs:enumeration value="B17"/>
+			<xs:enumeration value="A18"/>
+			<xs:enumeration value="B18"/>
+			<xs:enumeration value="B19"/>
+			<xs:enumeration value="A20"/>
+			<xs:enumeration value="B21"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="alfa12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTextoLegal">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

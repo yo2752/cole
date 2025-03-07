@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+   
+  	<mapping type="bi-directional">
+  		<class-a>org.gestoresmadrid.core.sancion.model.vo.SancionVO</class-a>
+  		<class-b>org.gestoresmadrid.oegamSanciones.view.dto.SancionDto</class-b>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fechaPresentacion</a>
+			<b>fechaPresentacion</b>
+		</field>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fechaAlta</a>
+			<b>fechaAlta</b>
+		</field>
+  	</mapping>
+  	
+</mappings>

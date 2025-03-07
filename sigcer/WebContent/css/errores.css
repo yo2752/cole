@@ -1,0 +1,16 @@
+#fieldError span{
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #d00000;
+}
+
+.fieldError {
+    margin: 10px;
+    border-bottom: 3px #de7a7b solid;
+    border-top: 3px #de7a7b solid;
+    background-color: #e6c0c0;
+    list-style:none;
+    height: auto;
+    padding-bottom: 6px;
+    margin-bottom: 0px;
+}

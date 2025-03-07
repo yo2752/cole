@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:element name="Datos_REGISTRO">
+		<xs:annotation>
+			<xs:documentation>Datos cuando envía el registro</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Minutas">
+					<xs:annotation>
+						<xs:documentation>Obligatorio cuando Tipo_Mensaje "MDR"=Minuta Desde Registro</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Minuta" type="MinutaType" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="Numero_Minutas" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Facturas">
+					<xs:annotation>
+						<xs:documentation>Obligatorio cuando Tipo_Mensaje = "FDR". Un mismo trámite puede generar varias facturas.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Factura" type="FacturaType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Identificación de una factura</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Facturas" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="InterRegistros">
+					<xs:annotation>
+						<xs:documentation>Información cuando se transmiten documentos entre registros</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="Tipo_Registro" use="required">
+							<xs:annotation>
+								<xs:documentation>Tipo de registro que realiza el envío. 1 = Mercantil, 2 = Propiedad 3 = Bienes Muebles, 4 = Oficina Liquidadora. </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Codigo_Registro" use="required">
+							<xs:annotation>
+								<xs:documentation>Código de registro CORPME que realiza el envío. </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="\d{5}"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Motivo_Envio" use="required">
+							<xs:annotation>
+								<xs:documentation>Motivo por el que el registro realiza el envío. 1 = Traslado de Objeto Inscribible, 2 = Traslado de asiento por registro no competente, 3 = Intercambio de documentación genérica</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Version" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Versión del subesquema</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

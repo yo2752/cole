@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ServicioInformesReducidoIntv" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido/respuesta" schemaLocation="ServicioInformesReducidoIntv_schema1.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeReducido" schemaLocation="ServicioInformesReducidoIntv_schema2.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="obtenerInformeReducidoResponse">
+    <part name="parameters" element="tns:obtenerInformeReducidoResponse">
+    </part>
+  </message>
+  <message name="obtenerInformeReducido">
+    <part name="parameters" element="tns:obtenerInformeReducido">
+    </part>
+  </message>
+  <portType name="ServicioWebInformesReducidoIntv">
+    <operation name="obtenerInformeReducido">
+      <input message="tns:obtenerInformeReducido">
+    </input>
+      <output message="tns:obtenerInformeReducidoResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="IntvServicioInformesReducidoSoapBinding" type="tns:ServicioWebInformesReducidoIntv">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="obtenerInformeReducido">
+      <soap:operation soapAction="obtenerInformeReducido"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ServicioInformesReducidoIntv">
+    <port name="IntvServicioInformesReducidoSoap" binding="tns:IntvServicioInformesReducidoSoapBinding">
+      <soap:address location="http://localhost:9080/WS_INTV/ServicioInformesReducidoIntv"/>
+    </port>
+  </service>
+</definitions>

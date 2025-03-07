@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xsd:schema xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<xsd:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" schemaLocation="ServicioInformesCompletoIntv.xsd4.xsd"/>
+</xsd:schema>
+

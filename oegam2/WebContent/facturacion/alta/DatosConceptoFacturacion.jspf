@@ -1,0 +1,1241 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+<%@ page session="false" buffer="none" %>
+<%@ page import="java.util.*" %>
+<style type="text/css">
+.fila00{width: 59%}
+.fila01{width: 5%}
+.fila02{width: 24%}
+.fila03{width: 10%}
+.fila04{width: 6%}
+.fila05{width: 5%}
+.fila06{width: 7%}
+.fila07{width: 2%}
+.fila08{width: 8%}
+.fila09{width: 5%}
+.fila10{width: 9%}
+.fila11{width: 9%}
+.tablaformfacturacion{margin-top:0; margin-left: 1em; width: 98%; background-color: #f4f4f4;}
+#tabsContainer{position:relative; width:98%; margin:.5em 0 .5em 1em; background-color: #f4f4f4;}
+#tabsFactura{position:relative; width:100%; margin:1em 0 0 26%; background-color: #f4f4f4; padding:0; list-style-type:none;}
+/*Pestaña en estado normal */
+#tabsFactura li{position:relative; float:left; width:16% ;background-color: #f4f4f4; margin:0 .5em; border:1px solid #333; border-radius:5px;}
+#tabsFactura li a{position:relative; width:100%; height:100%; display:block;color:#a52642; text-decoration:none;}
+/* Pestaña en estado mouse over */
+#tabsFactura li:hover{background-color:#a52642;}
+#tabsFactura li:hover a{color:#fff; font-weight:bold;}
+/* Pestaña en estado seleccionado */
+#tabsFactura li.selectedTab{font-weight:bold; background-color:#a52642;}
+#tabsFactura li.selectedTab a{color:#fff;}
+#mitabla, #mitablaSuplidoDis, #mitablagasto, #mitablaGastoDis{display:none;}
+#idBotonHonorario{display:block;}
+#idBotonSuplidos, #idBotonGastos{display:none;}
+#conceptoNoActivo{display:none; margin:1em; padding:2em 0; font-size:1.5em; color:#780028; background:#ccc; border:1px solid #333;}
+</style>
+<script src="js/facturacionBotones.js" type="text/javascript"></script>
+
+	
+		
+	
+	<s:hidden name="datosCliente.HonorarioTodo" id="honorarioTodo" />
+	<s:hidden name="datosCliente.todoSuplidos"  id="suplidoTodo"  />
+	<s:hidden name="datosCliente.GastoTodo"     id="gastoTodo"     />
+	 
+	<s:hidden name="datosCliente.ConceptoTodo"       id="conceptoTodo" />
+	<s:hidden name="datosCliente.SuplidoDefectoIva"   id="SuplidoDefectoIVA" />
+	<s:hidden name="datosCliente.HonorariosTotalIva"  id="HonorariosTotalIva" />
+	<s:hidden name="datosCliente.HonorariosTotalIRPF" id="HonorariosTotalIRPF" />
+
+	<s:hidden name="datosCliente.ConceptoEliminado"  id="conceptoEliminado" />	
+	
+	<s:hidden name="datosCliente.factura.facturaOtro.OtroCheckIvaHidden"        id="idHiddenCheckOtro"/>
+	<s:hidden name="datosCliente.factura.facturaOtro.OtroCheckDescuentoHidden"  id="idHiddenCheckOtroDescuento"/>
+	
+	<s:hidden name="datosCliente.factura.facturaOtro.otroTotalIva" id="idOtroTotalIva"/>	
+				
+	<s:hidden name="datosCliente.numDecimales" id="numDecimales"/>		
+	
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+			<tr>
+				<td class="tabular">
+					<span class="titulo">Detalle de la Factura</span>		
+				</td>
+		</tr>
+	</table>
+	
+	<table class="tablaformfacturacion" id="mitablaotros" border="0">	    
+	     	<tr>    			
+    		<th align="left" class="fila01">
+		       	<label></label>
+		    </th>				        		
+		    <th align="left" class="fila02">
+		       	<label><center>Descripción</center></label>
+		    </th>
+		    <th align="left" class="fila03">
+		    	<label><center>Precio</center></label> 
+		    </th>
+		    <th align="left" class="fila04">
+		       	<label></label>
+		    </th>			    		    			    		    
+		    <th align="left" class="fila05">
+       			<label>IVA</label>
+       		</th>				        		
+       		<th align="left" class="fila06">
+		       	<label>% IVA</label>
+		    </th>
+		    <th align="left" class="fila07">
+       			<label></label>
+       		</th>		    
+		    <th align="left" class="fila08">
+       			<label>Dto. (%)</label>
+       		</th>				        		
+       		<th align="left" class="fila09">
+		       	<label></label>
+		    </th>
+		    <th align="left" class="fila10">
+		       	<label></label>
+		    </th>
+		    <th align="left" class="fila11">
+		       	<label>Total</label>
+		    </th>
+       	</tr>   
+	       	<tr> 
+	       		<td align="left" class="fila01">
+			       	<span>Otro:</span>
+			       	<s:hidden id="idContadorOtro"  name="datosCliente.factura.facturaOtro.idOtro"/>
+			    </td>				        		
+			    <td align="left" class="fila02">
+			    	<s:textfield id="idOtroDescripcion" maxlength="255" name="datosCliente.factura.facturaOtro.otroDescripcion" onfocus="limpiarTextfield('idOtroDescripcion')" onblur="comprobarTextfield('idOtroDescripcion')" style="position:relative;width:90%;color:#6E6E6E"/>
+			    </td> 
+			    <td align="left" class="fila03">
+			    	<s:textfield name="datosCliente.factura.facturaOtro.Otro" style="position:relative;width:90%" maxlength="10" id="idOtro" onKeyUp = "calcularFactura(this)"/>
+			    </td>
+			    <td align="left" class="fila04">&nbsp;</td>
+			    <td align="left" class="fila05">
+			    	<input type="checkbox" name="datosCliente.factura.facturaOtro.OtroCheckIva" id="idCheckOtro" onclick = "habilitarCampoConHidden('idCheckOtro','idOtroIVA', 'idHiddenCheckOtro')" checked/>			    
+	       		</td>     		      		
+	       		<td align="left" class="fila06">	     	
+	       	       		<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIvas()"					
+						name="datosCliente.factura.facturaOtro.OtroIva"
+						listKey="iva" listValue="iva"
+						id="idOtroIVA"	
+						onchange="calcularFactura(this);"/>
+	       		</td>
+	       		<td align="left" class="fila07">	       		  
+				    <input type="checkbox" name="datosCliente.factura.facturaOtro.OtroCheckDescuento" id="idCheckOtroDescuento" onclick = "habilitarCampoConHidden('idCheckOtroDescuento', 'idOtroDescuento' , 'idHiddenCheckOtroDescuento')" onKeyUp = "calcularFactura(this)" style="color:#6E6E6E" fieldValue="true" />		    
+			    </td>
+			    <td align="left" class="fila08">
+	      	        <s:textfield id="idOtroDescuento" maxlength="10" name="datosCliente.factura.facturaOtro.OtroDescuento" style="position:relative;width:90%;color:#6E6E6E" onKeyUp="calcularFactura(this)" readOnly="true"/>
+	       		</td>
+	       		<td align="left" class="fila09">&nbsp;</td>
+		    	<td align="left" class="fila10">&nbsp;</td>
+				
+	       		<td align="left" class="fila11">
+	       	       	<s:textfield name="datosCliente.factura.facturaOtro.OtroTotal" id="idTotalOtros" style="position:relative;width:90%;color:#6E6E6E" readOnly="true"/>
+	       		</td>
+	       	</tr>  
+	       	<tr>
+	       		<td align="left" class="fila01">
+			       	<span>Prov. Fondos:</span>
+			       	<s:hidden id="idContadorFondo"  name="datosCliente.factura.facturaProvFondo.idFondo"/>
+			    </td>				        		
+			    <td align="left" class="fila02">
+			    	<s:textfield id="idFondoDescripcion" maxlength="255" name="datosCliente.factura.facturaProvFondo.FondoDescripcion" 
+			    		onfocus="limpiarTextfield('idFondoDescripcion')" onblur="comprobarTextfield('idFondoDescripcion')" 
+			    		onKeyUp = "calcularFactura(this)" style="position:relative;width:90%;color:#6E6E6E"/>
+			    </td> 
+			    <td align="left" class="fila03">
+			    	<s:textfield name="datosCliente.factura.facturaProvFondo.Fondo" style="position:relative;width:90%" maxlength="10" 
+			    		id="idFondo" onKeyUp="calcularFactura(this)"/>
+			    </td>
+			    <td align="left" class="fila04">&nbsp;</td>
+
+	       		<td align="left" class="fila05">&nbsp;</td>
+	       		<td align="left" class="fila06">&nbsp;</td>
+				<td align="left" class="fila07">&nbsp;</td>
+		    	<td align="left" class="fila08">&nbsp;</td>
+		    	<td align="left" class="fila09">&nbsp;</td>
+		    	<td align="left" class="fila10">&nbsp;</td>
+	       		<td align="left" class="fila11">
+	       	       	<s:textfield name="datosCliente.factura.facturaProvFondo.FondoTotal" id="idTotalFondo" style="position:relative;width:90%;color:#6E6E6E" readOnly="true"/>
+	       		</td>
+	       	</tr>
+	       	</table>
+	
+	<display:table name="datosCliente.factura.facturaConceptos" excludedParams="*"
+					class="tablacoin"
+					uid="mitablaconcepto"
+					cellspacing="0" cellpadding="0"
+					summary="Listado de Conceptos" >		
+			
+	<display:column	class="fila04" >
+					
+		<img src="img/editar.gif" alt="Editar Concepto" id="idCambioConcepto<s:property value='#attr.mitablaconcepto_rowNum - 1'/>" style="height:18px;width:18px;cursor:pointer;" 
+			  		onclick="pasarHonorarioAjax('<s:property value='#attr.mitablaconcepto_rowNum - 1'/>','defaultConcepto');" title="Seleccionar Concepto"/>
+
+ 	</display:column>
+					
+	<display:column title="Id" class="fila01">
+		
+		<s:textfield value ="%{#attr.mitablaconcepto_rowNum - 1}" readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB" id="idContadorConcepto%{#attr.mitablaconcepto_rowNum - 1}" />
+		
+	</display:column>		
+	
+	<display:column title="Concepto" class="fila00" >
+			
+		<s:textfield value ="%{#attr.mitablaconcepto.concepto}" readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB" id="concepto%{#attr.mitablaconcepto_rowNum - 1}" />
+		
+	</display:column>
+								
+	<display:column title="Num Expediente" class="fila02" >
+	
+		<s:textfield value ="%{#attr.mitablaconcepto.numExpediente}" readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB" id="idExpAsociado%{#attr.mitablaconcepto_rowNum - 1}" />
+		
+	</display:column> 
+		
+	<display:column class="fila04" >
+
+		<img src="img/minus.gif" alt="Eliminar " style="height:20px;width:20px;cursor:pointer;" id="idEliminaConcepto<s:property value='#attr.mitablaconcepto_rowNum - 1'/>"
+			  		onclick="eliminarConcepto('<s:property value='#attr.mitablaconcepto_rowNum - 1'/>');" title="Eliminar Concepto"/>
+
+ 	</display:column>
+			
+	</display:table>
+	
+<div id="conceptoActivo">
+	<table cellSpacing="3" class="tablaformbasica" id="miconcepto" cellPadding="0" align="left" border="0">	 
+		<tr>  
+			<td align="left" nowrap="nowrap" style="width:2%">
+		  		<img src="img/plus.gif" alt="Nuevo " id="bNuevoConcepto" style="height:20px;width:20px;cursor:pointer;"	onclick="antesDeCrearConcepto();" title="Nuevo Concepto"/>
+		  		<img src="img/guardar.gif" alt="Guardar " id="bGuardarConcepto" style="height:20px;width:20px;cursor:pointer;"	onclick="guardaConcepto();" title="Guardar Concepto"/>
+		 	</td> 
+    		<td align="left" nowrap="nowrap" >
+    			<s:hidden id="idConceptoActual" name="datosCliente.facturaConceptoCargado.idConcepto"/>		       	
+		       	<label id="contadorConcepto"><script type ="text/javascript"> nombreConcepto();</script> </label>
+		    </td>				      
+		    <td align="left" nowrap="nowrap">
+		       	<s:textfield id="concepto" name="datosCliente.facturaConceptoCargado.concepto" cssStyle="position:relative;" size="50" maxlength="255"/>
+		    </td>
+		   <td align="left" nowrap="nowrap" style="padding-left:8px">
+        			<label for="numExpediente">NºExpediente Asociado: </label>
+       		</td>
+       		<td>
+       				<s:select list="datosCliente.listaExpedientes" onblur="this.className='input2';" 
+								onfocus="this.className='inputfocus';"
+								name="datosCliente.facturaConceptoCargado.numExpediente"
+								id="idExpAsociado"
+								headerKey="-1"
+	           					headerValue="Ninguno"	           					
+								title="expedientes" />					
+								
+			</td>
+       	</tr>        	
+    </table>
+    <div id="tabsContainer">
+	    <ul id="tabsFactura">
+			<li id="milihonorario" class="selectedTab" onclick="muestraBotonHonorario()"><a href="javascript: gestionaTabsFactura('mitablahonorarioDis')" title="Honorarios">Honorarios</a></li>
+			<li id="milisuplido" onclick="muestraBotonSuplidos()"><a href="javascript: gestionaTabsFactura('mitablaSuplidoDis')" title="Suplidos">Suplidos</a></li>
+			<li id="miligasto" onclick="muestraBotonGastos()"><a href="javascript: gestionaTabsFactura('mitablaGastoDis')" title="Gastos">Gastos</a></li>			
+		</ul>		
+	</div>
+    
+	<display:table name="datosCliente.facturaConceptoCargado.facturaHonorarios" excludedParams="*"
+					class="tablacoin"
+					requestURI="navegarGestionFacturar.action"
+					uid="mitablahonorarioDis"
+					cellspacing="0" cellpadding="0"
+					summary="Listado de Honorarios" >		
+			
+	<display:column title="Id" class="fila01" >
+		
+		<s:textfield value ="%{#attr.mitablahonorarioDis_rowNum - 1}"  readonly ="true" style="position:relative;width:80%;color:#6E6E6E" id="idContadorHonorario%{#attr.mitablahonorarioDis_rowNum - 1}" /> 		 				
+		
+	</display:column>
+			
+	<display:column class="fila02" title="Descripcion">
+			
+		<s:textfield onfocus="limpiarTextfield('idHonorarioDescripcion%{#attr.mitablahonorarioDis_rowNum - 1}')" onblur="comprobarTextfield('idHonorarioDescripcion%{#attr.mitablahonorarioDis_rowNum - 1}')" style="position:relative;width:95%;color:#6E6E6E" value="Introduzca la descripcion" id="idHonorarioDescripcion%{#attr.mitablahonorarioDis_rowNum - 1}" />
+		
+	</display:column>
+		
+	<display:column class="fila03" title="Precio">
+		
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%" id="idHonorario%{#attr.mitablahonorarioDis_rowNum - 1}" />
+
+	</display:column>
+		
+		
+	<display:column class="fila05" title="IVA" >
+		
+		<input type="checkbox" checked onclick = "habilitarCampo('idCheckHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>', 'idHonorarioIVA<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>')"
+				id="idCheckHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>"/>
+			
+	</display:column>
+		
+						
+	<display:column class="fila06" title="%IVA" >
+		
+		<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIvas()"											
+						listKey="iva" listValue="iva"
+						id="idHonorarioIVA%{#attr.mitablahonorarioDis_rowNum - 1}"
+						onchange="calcularFactura(this);"/>
+		
+	</display:column>
+		
+	<display:column class="fila07" title="Dto." >
+		
+		<input type="checkbox" onclick = "habilitarCampo('idCheckDescuentoHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>', 'idHonorarioDescuento<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>')"
+				id="idCheckDescuentoHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>" />
+			
+	</display:column>
+		
+		
+	<display:column class="fila08" title="Dto %" >
+		
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%;color:#6E6E6E" readOnly="true" id="idHonorarioDescuento%{#attr.mitablahonorarioDis_rowNum - 1}" />
+		
+	</display:column>
+			
+	<display:column class="fila09" title="IRPF" >
+		
+		<input type="checkbox" onclick = "habilitarCampo('idCheckIRPFHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>', 'idIRPF<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>')"
+				id="idCheckIRPFHonorario<s:property value='#attr.mitablahonorarioDis_rowNum - 1'/>" />
+			
+	</display:column>
+		
+	<display:column class="fila10" title="% IRPF" >
+		
+		<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIrpfs()"											
+						listKey="irpf" listValue="irpf"						
+						disabled="true"
+						style="color:#6E6E6E"
+						id="idIRPF%{#attr.mitablahonorarioDis_rowNum - 1}"
+						onchange="calcularFactura(this);"/>
+		
+	</display:column>
+		
+	<display:column class="fila11" title="Total" >
+		
+		<s:textfield readonly="true" style="position:relative;width:90%;color:#6E6E6E" id="idTotalHonorarios%{#attr.mitablahonorarioDis_rowNum - 1}"	/>
+
+	</display:column>
+		
+	<display:column	class="fila04" >
+					
+		<img src="img/minus.gif" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" id="eliminarHonorario%{#attr.mitablahonorarioDis_rowNum - 1}" 
+				onclick="actualizarHonorarioAjax();eliminarHonorario('%{#attr.mitablahonorarioDis_rowNum - 1}');" title="Eliminar Honorario"/>
+
+ 	</display:column>
+		
+	</display:table>
+	
+	<display:table name="datosCliente.facturaConceptoCargado.facturaSuplidos" excludedParams="*"
+					class="tablacoin"
+					requestURI="navegarGestionFacturar.action"
+					uid="mitablaSuplidoDis"
+					cellspacing="0" cellpadding="0"
+					summary="Listado de Suplidos" >		
+			
+	<display:column title="Id" class="fila01">
+		<s:textfield value ="%{#attr.mitablaSuplidoDis_rowNum - 1}"  readonly ="true" 
+			style="position:relative;width:80%;color:#6E6E6E" id="idContadorSuplido%{#attr.mitablaSuplidoDis_rowNum - 1}"/>
+	</display:column>
+	
+	<display:column class="fila02" title="Descripcion">
+		<s:textfield value="Introduzca la descripcion" onfocus="limpiarTextfield('idSuplidoDescripcion%{#attr.mitablaSuplidoDis_rowNum - 1}')" onblur="comprobarTextfield('idSuplidoDescripcion%{#attr.mitablaSuplidoDis_rowNum - 1}')" style="position:relative;width:95%;color:#6E6E6E" id="idSuplidoDescripcion%{#attr.mitablaSuplidoDis_rowNum - 1}"/>
+	</display:column>
+	
+	<display:column class="fila03"  title="Precio">
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%" id="idSuplido%{#attr.mitablaSuplidoDis_rowNum - 1}"/>	
+	</display:column>
+	
+	<display:column class="fila05" title="IVA">
+	</display:column>
+	
+	<display:column class="fila06" title="%IVA">
+	</display:column>
+	
+	<display:column class="fila07" title="Dto.">
+		<input type="checkbox" onclick = "habilitarCampo('idCheckDescuentoSuplido<s:property value='#attr.mitablaSuplidoDis_rowNum - 1'/>', 'idSuplidoDescuento<s:property value='#attr.mitablaSuplidoDis_rowNum - 1'/>'); calcularFactura(this)"
+				id="idCheckDescuentoSuplido<s:property value='#attr.mitablaSuplidoDis_rowNum - 1'/>" />
+	</display:column>
+
+	<display:column class="fila08" title="Dto %" >
+		<s:textfield readOnly="true" onKeyUp = "calcularFactura(this)" style="position:relative;width:90%" 
+			id="idSuplidoDescuento%{#attr.mitablaSuplidoDis_rowNum - 1}" />
+	</display:column>
+	
+	<display:column  class="fila09" title="IRPF">
+	</display:column>
+	
+	<display:column class="fila10" title="% IRPF">
+	</display:column>
+	
+	<display:column class="fila11" title="Total">
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%;color:#6E6E6E" readOnly="true" value ="%{#attr.mitablaSuplidoDis_rowNum - 1}" id="idTotalSuplido%{#attr.mitablaSuplidoDis_rowNum - 1}" />
+	</display:column>
+	
+	<display:column class="fila04" title="">
+		  		<img src="img/minus.gif" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" id="eliminarSuplido%{#attr.mitablaSuplidoDis_rowNum - 1}" 
+			  		onclick="actualizarSuplidoAjax();eliminarSuplidos('%{#attr.mitablaSuplidoDis_rowNum - 1}');" title="Eliminar Suplido"/>
+	</display:column>
+	
+	</display:table>
+	
+	<display:table name="datosCliente.facturaConceptoCargado.facturaGastos" excludedParams="*"
+					class="tablacoin"
+					requestURI="navegarGestionFacturar.action"
+					uid="mitablaGastoDis"
+					cellspacing="0" cellpadding="0"
+					summary="Listado de Gastos" >		
+			
+	<display:column title="Id" class="fila01">
+		<s:textfield value ="%{#attr.mitablaGastoDis_rowNum - 1}"  readonly ="true" style="position:relative;width:80%;color:#6E6E6E" id="idContadorGasto%{#attr.mitablaGastoDis_rowNum - 1}"/>
+	</display:column>
+	
+	<display:column class="fila02" title="Descripcion">
+		<s:textfield value="Introduzca la descripcion" onfocus="limpiarTextfield('idGastoDescripcion%{#attr.mitablaGastoDis_rowNum - 1}')" onblur="comprobarTextfield('idGastoDescripcion%{#attr.mitablaGastoDis_rowNum - 1}')" style="position:relative;width:95%;color:#6E6E6E" id="idGastoDescripcion%{#attr.mitablaGastoDis_rowNum - 1}"/>
+	</display:column>
+	
+	<display:column class="fila03"  title="Precio">
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%" id="idGasto%{#attr.mitablaGastoDis_rowNum - 1}"/>	
+	</display:column>
+	
+ 	<display:column class="fila05" title="IVA">
+	<input type="checkbox" checked="checked" onclick="habilitarCampo('idCheckGasto<s:property value='#attr.mitablaGastoDis_rowNum - 1'/>', 
+		'idGastoIVA<s:property value='#attr.mitablaGastoDis_rowNum - 1'/>'); calcularFactura(this)" id="idCheckGasto<s:property value='#attr.mitablaGastoDis_rowNum - 1'/>"/>
+	</display:column>
+	
+	<display:column class="fila06" title="%IVA">
+			<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIvas()"											
+						listKey="iva" listValue="iva"
+						id="idGastoIVA%{#attr.mitablaGastoDis_rowNum - 1}"
+						onchange="calcularFactura(this);"/> 
+		
+	</display:column>
+	
+	<display:column class="fila07" title="Dto.">
+		
+	</display:column>
+	
+	<display:column class="fila08" title="Dto %" >
+	</display:column>
+	
+	<display:column  class="fila09" title="IRPF">
+	</display:column>
+	
+	<display:column class="fila10" title="% IRPF">
+	</display:column>
+	
+	<display:column class="fila11" title="Total">
+		<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%;color:#6E6E6E" readOnly="true" value ="%{#attr.mitablaGastoDis_rowNum - 1}" id="idTotalGastos%{#attr.mitablaGastoDis_rowNum - 1}" />
+	</display:column>
+	
+	<display:column class="fila04" title="">
+		  		<img src="img/minus.gif" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" id="eliminarGasto%{#attr.mitablaGastoDis_rowNum - 1}"
+			  		onclick="actualizarGastoAjax();eliminarGasto('%{#attr.mitablaGastoDis_rowNum - 1}');" title="Eliminar Gasto"/>
+	</display:column>
+	
+	</display:table>
+	    	
+	       	<table class="tablaformfacturacion" id="mitablaTotal" border="0">
+	       	<tr>
+				<td align="left">					
+					<input type="button" class="boton" name="bHonorario" id="idBotonHonorario" value="Nuevo Honorario" onClick="actualizarHonorarioAjax();obtenerNuevoHonorario();" onKeyPress="this.onClick" /> 
+					<input type="button" class="boton" name="bSuplidos"  id="idBotonSuplidos" value="Nuevo Suplido" onClick="actualizarSuplidoAjax();obtenerNuevoSuplido();" onKeyPress="this.onClick" />
+					<input type="button" class="boton" name="bGastos"    id="idBotonGastos" value="Nuevo Gasto" onClick="actualizarGastoAjax();obtenerNuevoGasto();" onKeyPress="this.onClick" />
+				</td>
+				<td align="left" style="display:none">	    	
+	       	       		<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIvas()"					
+						name="ivas"
+						listKey="iva" listValue="iva"
+						id="ivas"
+						
+						/>
+	       		</td>
+	       		<td align="left" style="display:none">
+						<s:select list="@facturacion.utiles.UtilesVistaFacturacion@listaIrpfs()"											
+						listKey="irpf" listValue="irpf"
+						name="irpfs"
+						id="irpfs"
+						/>
+				</td>
+		       	<td align="left" colspan="7">&nbsp;</td>
+	       	</tr>
+		</table>
+		<table width="100%">
+			<tr>
+	       		<td align="right" style="width: 80%; font-size:1em; font-weight:bold;">
+			       	<label for="idTotalConcepto">Total Concepto</label>	       	
+			    </td>      	
+	       		<td align="right" style="width: 20%">
+	       	       	<s:textfield name="datosCliente.factura.facturaConceptos.TotalConcepto" id="idTotalConcepto" size="10" style="color:#6E6E6E" readOnly="true"/>
+	       		</td>
+	       	</tr>
+	       	<tr>
+	       		<td align="right" style="width: 80%; font-size:1.1em; font-weight:bold;">
+	       			<label for="idTotal">Total Factura</label>
+	       		</td>
+	       		<td align="right" style="width: 80%">
+	       	       	<s:textfield name="datosCliente.factura.importeTotal" id="idTotal" size="10" style="color:#6E6E6E" readOnly="true"/>
+	       		</td>
+	       	</tr>
+		</table>
+	
+</div>
+<div id="conceptoNoActivo">Concepto Eliminado Correctamente. Seleccione un Concepto</div>
+<script type="text/javascript"><!--
+
+	cargarConceptosColegiado("2056");
+
+	function gestionaTabsFactura(idTabla){
+
+		var array_tablas =	new Array('mitablahonorarioDis','mitablaSuplidoDis','mitablaGastoDis');
+		var array_lis =		new Array('milihonorario','milisuplido','miligasto');
+		for(var i = 0; i < array_tablas.length; i++){			
+			var tabla = document.getElementById(array_tablas[i]);
+			var li = document.getElementById(array_lis[i]);					
+			if(tabla.id == idTabla) {				
+				tabla.style.display = 'table';
+				tabla.style.backgroundColor = '#f4f4f4;'
+				li.className = 'selectedTab';
+			}
+			else {				
+				tabla.style.display = 'none';
+				li.className = '';
+			}
+
+		}		
+		
+	}
+
+	// DRC@30-08-2012 Comprueba el numero de Suplidos que existen en Base de datos, para cargarlos correctamente
+	function tamTablaHonorario (tamanyo, tableId, elemento) {
+		var table = document.getElementById(tableId); 		
+		for(var x = 0; x < table.childNodes.length; x++){			
+			if( table.childNodes[x]!='undefined'){
+				if(table.childNodes[x].tagName=='TBODY') var tbody = table.childNodes[x];
+			}	
+		}
+		
+		var pos = tbody.rows.length;
+
+		
+		for (var m = (pos-1); m>=0; m--){
+	
+			tbody.deleteRow(m);			
+		} 
+		var limit = tamanyo;
+		var fila = limit;	
+
+		
+            for (var i = 0; i < limit; i++) {
+				
+                  var row = tbody.insertRow(i);
+
+                  var cell_5 = row.insertCell(0);
+                  var cell_0 = row.insertCell(1); 
+                  var cell_1 = row.insertCell(2);
+                  var cell_2 = row.insertCell(3);
+                  
+                  var cell_3 = row.insertCell(4);
+                  var cell_4 = row.insertCell(5);
+                  
+                  var cell_6 = row.insertCell(6);
+                  var cell_7 = row.insertCell(7);
+                  var cell_8 = row.insertCell(8);
+                  var cell_9 = row.insertCell(9);                            
+                                                     
+                  var cell_10 = row.insertCell(10);
+//                var cell_11 = row.insertCell(11);
+
+                  //var cell_5_html = '<label for="suplido">Honorario ' + fila + ': </label>';
+                  var idCell5 = "idContadorHonorario" + i;
+                  var cell_5_html = '<s:textfield value ="'+i+'"  readonly ="true" style="position:relative;width:80%;color:#6E6E6E" id="'+idCell5+'" />';
+                  cell_5.innerHTML= cell_5_html;
+                  cell_5.className = "fila01";
+                  
+                  // Celda Cero 
+                  var idCell0 = "idHonorarioDescripcion" + i;
+                  //var cell_0_html = '<s:textfield name="datosCliente.HonorarioDescripcion" id="'+idCell0+'" size="21" maxlength="255" onKeyUp = "calcularFactura(this)" />';
+                  var cell_0_html = '<s:textfield onfocus="limpiarTextfield(\"'+idCell0+'\")" onblur="comprobarTextfield(\"'+idCell0+'\")" style="position:relative;width:95%;color:#6E6E6E" id="'+idCell0+'"	/>';
+                  cell_0.innerHTML= cell_0_html;
+                  cell_0.className = "fila02";
+
+                  // Celda Uno (Campo que indicar la cantidad en Euros del Suplido)
+                  var idCell1 = "idHonorario" + i;
+                  //var cell_1_html = '<s:textfield id="'+idCell1+'" size="8" maxlength="10" onKeyUp = "calcularFactura(this)" />'; 
+                  var cell_1_html = '<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%" id="'+idCell1+'"/>';				               
+                  cell_1.innerHTML = cell_1_html;
+                  cell_1.className = "fila03";
+
+                  
+                  // Celda Tres (Campo que indica si el IVA se aplica o no)
+                  var idCell2 = "idCheckHonorario" + i;
+                  var idCell3 = "idHonorarioIVA" + i;
+                  
+                  //var cell_2_html = '<input type="checkbox" name="datosCliente.HonorarioCheck" id="'+idCell3+'" onclick="habilitarCampo(\''+idCell3+'\', \''+idCell4+'\')"/>';
+                  var cell_2_html = '<input type="checkbox" onclick="habilitarCampo(\''+idCell2+'\', \''+idCell3+'\'); calcularFactura(this)" id="'+idCell2+'" />'; 
+                  cell_2.innerHTML=cell_2_html;
+                  cell_2.className = "fila05";
+
+                  // Celda Cuatro (Campo que indica si el valor del IVA, siempre y cuando el check esta activado)               
+                  var opcionesComboIVA = document.getElementById('ivas').options;                  
+                  var cell_3_html = '<select id="'+idCell3+'" onchange="calcularFactura(this);"></select>';
+                  cell_3.innerHTML=cell_3_html;
+                  cell_3.className = "fila06";                  
+                  for(var k = 0; k < opcionesComboIVA.length; k++){
+                      document.getElementById(idCell3).options[k] = new Option(opcionesComboIVA[k].text,opcionesComboIVA[k].value);
+                  }
+
+                  var idCell4 = "idCheckDescuentoHonorario" + i;
+                  var idCell6 = "idHonorarioDescuento" + i;                   
+                  // Celda Tres (Campo que indica si el IVA se aplica o no)
+                  var cell_4_html = '<input type="checkbox" onclick = "habilitarCampo(\''+idCell4+'\', \''+idCell6+'\'); calcularFactura(this)" id="'+idCell4+'" />';
+                  cell_4.innerHTML=cell_4_html;
+                  cell_4.className = "fila07";
+                                    
+                  var cell_6_html = '<s:textfield onKeyUp = "calcularFactura(this)" style="position:relative;width:90%;color:#6E6E6E" id="'+idCell6+'"/>';
+                  cell_6.innerHTML=cell_6_html;
+                  cell_6.className = "fila08";
+
+                  // Celda Tres (Campo que indica si el IVA se aplica o no)
+                  var idCell7 = "idCheckIRPFHonorario" + i;
+                  var idCell8 = "idIRPF" + i;               
+                  var cell_7_html = '<input type="checkbox" onclick = "habilitarCampo(\''+idCell7+'\', \''+idCell8+'\'); calcularFactura(this)" id="'+idCell7+'" />';
+                  cell_7.innerHTML=cell_7_html;
+				  cell_7.className = "fila09";
+                  
+                  // Celda Cuatro (Campo que indica si el valor del IVA, siempre y cuando el check esta activado)
+                  var opcionesComboIRPF = document.getElementById('irpfs').options;                  
+                  var cell_8_html = '<select id="'+idCell8+'" style="color:#6E6E6E" disabled="true" onchange="calcularFactura(this);"></select>';
+                  cell_8.innerHTML = cell_8_html;
+                  cell_8.className = "fila10";                  
+                  for(var j = 0; j < opcionesComboIRPF.length; j++){
+                        document.getElementById(idCell8).options[j] = new Option(opcionesComboIRPF[j].text,opcionesComboIRPF[j].value);
+                  }
+                  
+                  // Celda Ocho (Campo que indica el valor total del suplido)
+                  var idCell9 = "idTotalHonorarios" + i; 
+                  var cell_9_html = '<s:textfield readonly="true" style="position:relative;width:90%;color:#6E6E6E" id="'+idCell9+'"/>';
+                  cell_9.innerHTML=cell_9_html;     
+                  cell_9.className = "fila11";             
+
+                  // Celda Ocho (Campo que indica el valor total del suplido)
+                  
+                  var idCell10 = "eliminarHonorario" + i;
+                  var cell_10_html = '<img src="img/minus.gif" alt="Eliminar" id="'+idCell10+'" style="height:20px;width:20px;cursor:pointer;" onclick="eliminarHonorario(\''+i+'\');" title="Eliminar Honorario"/>';
+                  cell_10.innerHTML=cell_10_html;
+                  cell_10.className = "fila04";
+            }
+      }
+
+	function cargarDatosFacturacion() {
+	
+		document.getElementById('idConceptoActual').value = "0";
+		nombreConcepto();
+
+		if (document.getElementById("idHiddenCheckOtro").value == "1") {			
+			document.getElementById("idCheckOtro").checked = true;
+						 
+		} else if (document.getElementById("idHiddenCheckOtro").value == "0") {			
+			document.getElementById("idCheckOtro").checked = false;			 
+		}
+		habilitarCampoConHidden('idCheckOtro','idOtroIVA', 'idHiddenCheckOtro');
+		
+		if (document.getElementById("idHiddenCheckOtroDescuento").value == "1") {
+			document.getElementById("idCheckOtroDescuento").checked = true;
+		} else if (document.getElementById("idHiddenCheckOtroDescuento").value == "0") {			
+			document.getElementById("idCheckOtroDescuento").checked = false;			 
+		}
+		habilitarCampoConHidden('idCheckOtroDescuento', 'idOtroDescuento' , 'idHiddenCheckOtroDescuento');
+
+		if ((document.getElementById("idOtroDescripcion").value == "")  || (document.getElementById("idOtroDescripcion").value == "Introduzca la descripcion"))  {
+			document.getElementById("idOtroDescripcion").value = "Introduzca la descripcion";
+			document.getElementById("idOtroDescripcion").style.color="#6E6E6E";
+		} else {
+			document.getElementById("idOtroDescripcion").style.color="#000000";
+		}
+		
+		if ((document.getElementById("idFondoDescripcion").value == "") || (document.getElementById("idFondoDescripcion").value == "Introduzca la descripcion"))  {
+			document.getElementById("idFondoDescripcion").value = "Introduzca la descripcion";
+			document.getElementById("idFondoDescripcion").style.color="#6E6E6E";
+		} else {
+			document.getElementById("idFondoDescripcion").style.color="#000000";
+		}
+		
+		setTimeout("recuperarHonorarioConcepto()", 1000);
+		//setTimeout("calcularFactura()", 2000);
+		// Carga por defecto, para comprobar el estado de los PDF's
+		setTimeout("mostrarArchivosAdjuntos()", 2000);
+		//setTimeout("mostrarXMLExportacionSIGA()", 2000);
+		//mostrarPDFAlta();
+		//cargarConceptosColegiado();
+		
+	}
+
+		
+	// DRC@30-08-2012 Comprueba el numero de Suplidos que existen en Base de datos, para cargarlos correctamente
+	// FALTA@Creo que solo sirve para saber el numero de filas pero no para cargar los datos 
+	function tamTablaSuplido (tamanyo, tableId, elemento) {
+		var table = document.getElementById(tableId);
+
+		for(var x = 0; x < table.childNodes.length; x++){			
+			if( table.childNodes[x]!='undefined'){
+				if(table.childNodes[x].tagName=='TBODY') var tbody = table.childNodes[x];
+			}	
+		}
+		
+		var pos = tbody.rows.length;
+		
+		for (var m = (pos-1); m>=0; m--){
+			
+			tbody.deleteRow(m);			
+		} 
+		var limit = tamanyo;
+		var fila = limit;	
+		
+		for (var i = 0; i < limit; i++) {			
+			var row = tbody.insertRow(i);
+
+			var cell_20 = row.insertCell(0);
+			var cell_0 = row.insertCell(1); 
+			var cell_1 = row.insertCell(2);
+			var cell_2 = row.insertCell(3);
+			var cell_5 = row.insertCell(4);
+			var cell_6 = row.insertCell(5);						
+			var cell_3 = row.insertCell(6);
+			var cell_4 = row.insertCell(7);
+			var cell_9 = row.insertCell(8);
+			var cell_10 = row.insertCell(9);						
+			var cell_8 = row.insertCell(10);
+			
+/* 			var idCell3 = "idCheckSuplidoDescuento" + i;			
+			var idCell4 = "idSuplidoDescuento" + i; */
+
+/* 			cell_20.style.textAlign='left';
+			var cell_20_html = '<label for="suplido">Suplido ' + (fila+1) + ': </label>';
+			cell_20.innerHTML= cell_20_html; */
+			
+	        var idCell20 = "idContadorSuplido" + i;
+            var cell_20_html = '<s:textfield value ="'+i+'"  readonly ="true" style="position:relative;width:80%;color:#6E6E6E" id="'+idCell20+'" />';
+            cell_20.innerHTML= cell_20_html;
+            cell_20.className = "fila01";
+               
+			// Celda Cero 
+			var idCell0 = "idSuplidoDescripcion" + i;
+			var cell_0_html = '<s:textfield id="'+idCell0+'" onfocus="limpiarTextfield(\"'+idCell0+'\")" onblur="comprobarTextfield(\"'+idCell0+'\")" style="position:relative;width:95%;color:#6E6E6E"/>';																															  			
+			cell_0.innerHTML= cell_0_html;
+			cell_0.className = "fila02";
+
+			// Celda Uno (Campo que indicar la cantidad en Euros del Suplido)
+			var idCell1 = "idSuplido" + i;
+			var cell_1_html = '<s:textfield id="'+idCell1+'" style="position:relative;width:90%" onKeyUp = "calcularFactura(this)" />';			
+			cell_1.innerHTML = cell_1_html;
+			cell_1.className = "fila03";
+
+			// Celda Vacias
+			cell_2.innerHTML = '';
+			cell_2.className  = "fila05";
+		/* 	cell_3.innerHTML = ''; */
+			cell_5.innerHTML = '';
+			cell_5.className  = "fila06";
+			cell_4.innerHTML = '';
+			cell_4.className  = "fila09";
+			cell_9.innerHTML = '';
+			cell_9.className  = "fila10";
+
+			var idCell3 = "idSuplidoDescuento" + i;
+            var idCell6 = "idCheckDescuentoSuplido" + i;
+
+            // Celda Tres (Campo que indica si el Check de Descuento se aplica o no)
+			var cell_6_html = '<input type="checkbox" id="'+idCell6+'" onclick="habilitarCampo(\''+idCell6+'\', \''+idCell3+'\'); calcularFactura(this)" id="'+idCell6+'"/>';
+			cell_6.innerHTML=cell_6_html;
+			cell_6.className = "fila07";
+			
+			// Celda Cuatro (Campo que indica si el valor del Descuento, siempre y cuando el check esta activado)
+			var cell_3_html = '<s:textfield id="'+idCell3+'" style="position:relative;width:90%" onKeyUp = "calcularFactura(this)" readOnly="true" disabled="true"/>';
+			cell_3.innerHTML=cell_3_html;
+			cell_3.className = "fila08";
+			
+			// Celda Cuatro (Vacia)
+		/* 	var idCell6 = "idContadorSuplido" + fila;
+			var cell_6_html = '<s:hidden id="'+idCell6+'"/>';
+			cell_6.innerHTML = cell_6_html; */
+
+			// Celda Ocho (Campo que indica el valor total del suplido)
+			var idCell10 = "idTotalSuplido" + i;
+		    var cell_10_html = '<s:textfield readonly="true" style="position:relative;width:90%;color:#6E6E6E" id="'+idCell10+'"/>';
+			cell_10.innerHTML=cell_10_html;			
+			cell_10.className = "fila11";
+
+			var idCell8 = "eliminarSuplido" + i;
+            var cell_8_html = '<img src="img/minus.gif" id="'+idCell8+'" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" onclick="eliminarSuplido(\''+i+'\');" title="Eliminar Suplido"/>';
+            cell_8.innerHTML=cell_8_html;
+            cell_8.className = "fila04"; 
+		}
+	}
+
+	// DRC@30-08-2012 Comprueba el numero de Suplidos que existen en Base de datos, para cargarlos correctamente
+	// FALTA@Creo que solo sirve para saber el numero de filas pero no para cargar los datos 
+	function tamTablaGasto (tamanyo, tableId, elemento) {
+		var table = document.getElementById(tableId); 
+
+		for(var x = 0; x < table.childNodes.length; x++){			
+			if( table.childNodes[x]!='undefined'){
+				if(table.childNodes[x].tagName=='TBODY') var tbody = table.childNodes[x];
+			}	
+		}
+		
+		var pos = tbody.rows.length;
+		
+		for (var m = (pos-1); m>=0; m--){
+			
+			tbody.deleteRow(m);			
+		} 
+		
+		var limit = tamanyo;
+		var fila = limit;	
+
+		for (var i = 0; i < limit; i++) {			
+			var row = tbody.insertRow(i);
+
+			var cell_5 = row.insertCell(0);
+			var cell_0 = row.insertCell(1); 
+			var cell_1 = row.insertCell(2);
+			var cell_3 = row.insertCell(3);
+			var cell_4 = row.insertCell(4);
+			var cell_2 = row.insertCell(5);
+			
+			var cell_6 = row.insertCell(6);
+			var cell_7 = row.insertCell(7);
+			var cell_9 = row.insertCell(8);					
+						
+			var cell_8 = row.insertCell(9);
+			var cell_10 = row.insertCell(10);
+			var idCell3 = "idCheckGasto" + i;			
+			var idCell4 = "idGastoIVA" + i;	
+
+/* 			cell_5.style.textAlign='left';
+			var cell_5_html = '<label for="suplido">Gasto ' + (fila+1) + ': </label>';
+			cell_5.innerHTML= cell_5_html; */
+
+			var idCell5 = "idContadorGasto" + i;
+            var cell_5_html = '<s:textfield value ="'+i+'"  readonly ="true" style="position:relative;width:80%" id="'+idCell5+'" />';
+            cell_5.innerHTML= cell_5_html;
+            cell_5.className = "fila01";
+              
+			// Celda Cero 
+			var idCell0 = "idGastoDescripcion" + i;
+			var cell_0_html = '<s:textfield id="'+idCell0+'" onfocus="limpiarTextfield(\"'+idCell0+'\")" onblur="comprobarTextfield(\"'+idCell0+'\")" style="position:relative;width:95%;color:#6E6E6E" />';																															  			
+			cell_0.innerHTML= cell_0_html;
+			cell_0.className = "fila02";
+			
+			// Celda Uno (Campo que indicar la cantidad en Euros del Suplido)
+			var idCell1 = "idGasto" + i;			
+			var cell_1_html = '<s:textfield id="'+idCell1+'" style="position:relative;width:90%" onKeyUp = "calcularFactura(this)" />';			
+			cell_1.innerHTML = cell_1_html;
+			cell_1.className = "fila03";
+
+			// Celda Vacias
+			cell_2.innerHTML = '';
+			cell_2.className = "fila07";			
+			cell_6.innerHTML = '';
+			cell_6.className = "fila08";
+			cell_7.innerHTML = '';
+			cell_7.className = "fila09";
+			cell_9.innerHTML = '';
+			cell_9.className = "fila10";
+			
+			// Celda Tres (Campo que indica si el IVA se aplica o no)			
+			var cell_3_html = '<input type="checkbox" id="'+idCell3+'" onclick="habilitarCampo(\''+idCell3+'\', \''+idCell4+'\'); calcularFactura(this)"/>';
+			cell_3.innerHTML=cell_3_html;
+			cell_3.className = "fila05";
+			
+			// Celda Cuatro (Campo que indica si el valor del IVA, siempre y cuando el check esta activado)			
+			var opcionesComboIVA = document.getElementById('ivas').options;	
+			var cell_4_html = '<select id="'+ idCell4 +'" onchange="calcularFactura(this);"></select>';
+			cell_4.innerHTML = cell_4_html;
+			cell_4.className = "fila06";
+            for(var k = 0; k < opcionesComboIVA.length; k++){
+                document.getElementById(idCell4).options[k] = new Option(opcionesComboIVA[k].text,opcionesComboIVA[k].value);
+            }
+			/* document.getElementById(idCell4).innerHTML = opcionesComboIVA; */	
+
+			// Celda Cuatro (Vacia)
+		/* 	var idCell9 = "idContadorGasto" + i;			
+			var cell_9_html = '<s:hidden name="datosCliente.idContadorGasto" id="'+idCell9+'"/>';
+			cell_9.innerHTML= cell_9_html; */
+
+			// Celda Ocho (Campo que indica el valor total del suplido)
+			var idCell8 = "idTotalGastos" + i;
+			var cell_8_html = '<s:textfield id="'+idCell8+'" style="position:relative;width:90%;color:#6E6E6E" readOnly="true"/>';
+			cell_8.innerHTML=cell_8_html;
+			cell_8.className = "fila11";			
+
+			var idCell10 = "eliminarSuplido" + i;
+            var cell_10_html = '<img src="img/minus.gif" id="'+idCell10+'" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" onclick="eliminarGasto(\''+i+'\');" title="Eliminar Gastos"/>';
+            cell_10.innerHTML=cell_10_html;
+            cell_10.className = "fila04";
+		}
+	}
+
+	// DRC@30-08-2012 Comprueba el numero de Concepto que existen en Base de datos, para cargarlos correctamente
+	// FALTA@Creo que solo sirve para saber el numero de filas pero no para cargar los datos 
+	function tamTablaConcepto (tamanyo, tableId, elemento) {
+		
+		var tableC = document.getElementById(tableId); 
+
+		for(var x = 0; x < tableC.childNodes.length; x++){			
+			if( tableC.childNodes[x]!='undefined'){
+				if(tableC.childNodes[x].tagName=='TBODY') var tbodyC = tableC.childNodes[x];
+			}	
+		}
+		
+		var posC = tbodyC.rows.length;
+
+		for (var n = (posC-1); n>=0; n--){
+			tbodyC.deleteRow(n);	
+		} 
+		var limitC = tamanyo;
+		var filaC = limitC;
+
+		 for (var i = 0; i < limitC; i++) {	
+
+			var rowC = tbodyC.insertRow(i);
+			var cell_0C = rowC.insertCell(0);
+			var cell_1C = rowC.insertCell(1);
+			var cell_2C = rowC.insertCell(2);
+			var cell_3C = rowC.insertCell(3);		
+			var cell_4C = rowC.insertCell(4);					
+
+			// Celda Cero 		
+			var idCell0C      = "idCambioConcepto" + i;				
+			var cell_0_htmlC   = '<img src="img/editar.gif" alt="Editar Concepto" id="'+idCell0C+'" style="height:18px;width:18px;cursor:pointer;" onclick="pasarHonorarioAjax(\''+i+'\',\'defaultConcepto\');" title="Seleccionar Concepto"/>';
+			cell_0C.innerHTML  = cell_0_htmlC;
+			cell_0C.className = "fila04";
+			
+			// Celda Uno 			
+			var idCell1C      = "idContadorConcepto" + i;		
+            var cell_1_htmlC = '<s:textfield readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB;" id="'+idCell1C+'" />';
+            cell_1C.innerHTML= cell_1_htmlC;
+            cell_1C.className = "fila01";       
+
+			var idCell2C      = "concepto" + i;
+			var cell_2_htmlC  = '<s:textfield readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB;" id="'+idCell2C+'" />';
+			cell_2C.innerHTML= cell_2_htmlC;
+			cell_2C.className = "fila00";
+
+			var idCell3C      = "idExpAsociado" + i;
+			var cell_3_htmlC = '<s:textfield readonly ="true" style="position:relative;width:80%;border:none;background-color:#F5E9EB;" id="'+idCell3C+'" />';			
+			cell_3C.innerHTML=cell_3_htmlC;
+			cell_3C.className = "fila02";
+
+			// Celda Cuatro
+			var idCell4C      = "idEliminaConcepto" + i;
+			var cell_4_htmlC = '<img src="img/minus.gif" id="'+idCell4C+'" alt="Eliminar" style="height:20px;width:20px;cursor:pointer;" onclick="eliminarConcepto(\''+i+'\');" title="Eliminar Concepto"/>';
+            cell_4C.innerHTML=cell_4_htmlC;
+            cell_4C.className = "fila04";
+
+		}		
+	}
+	
+
+	// DRC@04-07-2012 Funcion que se utiliza para añadir una fila de los Suplidos (ahora mismo es ilimitado el numero de Suplidos que se pueden crear)
+	/*function addRowSuplido(tableId) {
+		var table = document.getElementById(tableId); 
+
+		var pos = table.rows.length;
+		// DRC@05-07-2012 Se podria utilizar par limitar el numero de Suplidos
+		//if ( pos < 11) { 
+			var row = table.insertRow(pos);
+			var cell_0 = row.insertCell(0); 
+			var cell_1 = row.insertCell(1); 
+			var cell_2 = row.insertCell(2);
+			var cell_3 = row.insertCell(3);			
+			var cell_4 = row.insertCell(4);
+			var cell_5 = row.insertCell(5);			
+			var cell_6 = row.insertCell(6);
+			var cell_7 = row.insertCell(7);
+			var cell_8 = row.insertCell(8);
+			var cell_9 = row.insertCell(9);
+			var cell_10 = row.insertCell(10);
+
+			var idCell6 = "idCheckSuplidoDescuento" + pos;
+			var idCell7 = "idSuplidoDescuento" + pos;
+
+			// Celda Cero (Nombre del Suplido)
+			cell_0.style.textAlign='left';
+			var cell_0_html = '<span> Suplido ' + pos + ': </span>';
+			cell_0.innerHTML= cell_0_html;
+			
+			// Celda Uno (Descripcion del Nombre del Suplido)
+			var idCell1 = "idSuplidoDescripcion" + pos;			
+			var cell_1_html = '<s:textfield id="'+idCell1+'" size="21" maxlength="255" onfocus="limpiarTextfield(\"'+idCell1+'\")" onblur="comprobarTextfield(\"'+idCell1+'\")" value="Introduzca la descripcion" onKeyUp = "calcularFactura(this)"  style="color:#6E6E6E"/>';
+			cell_1.innerHTML= cell_1_html;
+
+			// Celda Dos (Campo que indicar la cantidad en Euros del Suplido)
+			var idCell2 = "idSuplido" + pos;
+			var cell_2_html = '<s:textfield id="'+idCell2+'" size="8" maxlength="10" onKeyUp = "calcularFactura(this)" />';			
+			cell_2.innerHTML = cell_2_html;
+
+			// Celda Tres (Vacia)
+			var cell_3_html = '';	
+			cell_3.innerHTML=cell_3_html;
+
+			// Celda Cuatro (Vacia)
+			var cell_4_html = '';	
+			cell_4.innerHTML=cell_4_html;
+
+			// Celda Cinco (Vacia)
+			var cell_5_html = '';	
+			cell_5.innerHTML=cell_5_html;
+
+			// Celda Seis (Campo que indica si se le va aplicar Descuento o no)
+			var cell_6_html = '<input type="checkbox" id="'+idCell6+'" value="" onclick = "habilitarCampo(\''+idCell6+'\', \''+idCell7+'\')"/>';
+			cell_6.innerHTML=cell_6_html;
+
+			// Celda Siete (Campo que indica en caso de que se vaya a aplicar Descuento, el porcentage de Descuento a aplicar)
+			var cell_7_html = '<s:textfield id="'+idCell7+'" size="10" maxlength="10" onKeyUp = "calcularFactura(this)" readOnly="true" disabled="true" style="color:#6E6E6E"/>';	
+			cell_7.innerHTML=cell_7_html;
+
+			// Celda Ocho (Campo quie indica el id del suplido)
+			var idCell8 = "idContadorSuplido" + pos;			
+			var cell_8_html = '<s:hidden id="'+idCell8+'"/>';
+			cell_8.innerHTML= cell_8_html;
+
+			var cell_9_html = '';	
+			cell_9.innerHTML=cell_9_html;			
+
+			// Celda Nueve (Campo que indica el valor total del suplido)
+			var idCell10 = "idTotalSuplido" + pos;
+			var cell_10_html = '<s:textfield size="10" maxlength="10" id="'+idCell10+'" style="color:#6E6E6E" readOnly="true"/>';
+			cell_10.innerHTML=cell_10_html;		
+			//}
+//alert('idCell6: ' + idCell6 + ' idCell7: ' + idCell7 + ' idCell1: ' + idCell1 + ' idCell2: ' + idCell2 + ' idCell8: ' + idCell8 + ' idCell10: ' + idCell10);			
+			calcularFactura();
+	}*/
+	// ********************************** CONCEPTO **********************************
+		
+	/*function addRowHonorario(tableId) {
+		var table = document.getElementById(tableId); 
+
+		var pos = table.rows.length;
+		// DRC@05-07-2012 Se podria utilizar par limitar el numero de Gastos
+		//if ( pos < 11) { 
+			var row = table.insertRow(pos);
+			var cell_0 = row.insertCell(0); 
+			var cell_1 = row.insertCell(1); 
+			var cell_2 = row.insertCell(2);
+			var cell_3 = row.insertCell(3);			
+			var cell_4 = row.insertCell(4);
+			var cell_5 = row.insertCell(5);
+		
+			var cell_6 = row.insertCell(6);
+			var cell_7 = row.insertCell(7);
+			var cell_8 = row.insertCell(8);
+			var cell_9 = row.insertCell(9);			
+
+			var cell_12 = row.insertCell(10);
+			
+			var idCell4 = "idCheckHonorario" + pos;
+			var idCell5 = "idHonorarioIVA" + pos;
+			var idCell6 = "idCheckDescuentoHonorario" + pos;
+			var idCell7 = "idHonorarioDescuento" + pos;
+			var idCell8 = "idCheckIRPFHonorario" + pos;
+			var idCell9 = "idIRPF" + pos;
+			var idCell10 = "HonorariosTotalIva" + pos;
+			var idCell11 = "HonorariosTotalIRPF" + pos;
+
+			// Celda Cero (Nombre del Gasto)
+			cell_0.style.textAlign='left';
+			var cell_0_html = '<span>Honorario ' + pos + ': </span> ';
+			cell_0.innerHTML= cell_0_html;
+			
+			// Celda Uno (Descripcion del Nombre del Gasto)
+			var idCell1 = "idHonorarioDescripcion" + pos;			
+			var cell_1_html = '<s:textfield name="datosCliente.HonorarioDescripcion" id="'+idCell1+'" size="21" maxlength="255" onfocus="limpiarTextfield(\"'+idCell1+'\")" onblur="comprobarTextfield(\"'+idCell1+'\")" value="Introduzca la descripcion" onKeyUp = "calcularFactura(this)"  style="color:#6E6E6E"/>';
+			cell_1.innerHTML= cell_1_html;
+
+			// Celda Dos (Campo que indicar la cantidad en Euros del Gasto)
+			var idCell2 = "idHonorario" + pos;
+			var cell_2_html = '<s:textfield id="'+idCell2+'" size="8" maxlength="10" onKeyUp = "calcularFactura(this)" />';			
+			cell_2.innerHTML = cell_2_html;
+
+			// Celda Tres (Vacia)
+			// Celda Ocho (Campo quie indica el id del suplido)
+			var idCell3 = "idContadorHonorario" + pos;			
+			var cell_3_html = '<s:hidden name="datosCliente.contadorHonorario" id="'+idCell3+'"/>';
+			cell_3.innerHTML= cell_3_html;
+
+			// Celda Cuatro 			
+			var cell_4_html = '<input type="checkbox" name="datosCliente.HonorarioCheckIva" id="'+idCell4+'" value="" onclick="habilitarCampo(\''+idCell4+'\', \''+idCell5+'\')" onKeyUp = "calcularFactura(this)" checked/>';
+			cell_4.innerHTML=cell_4_html;
+
+			// Celda Cinco	
+			var opcionesComboIVA = document.getElementById('idHonorarioIVA1').options;			
+			var cell_5_html = '<select id="'+ idCell5 +'" name="datosCliente.HonorarioIVA" onchange="calcularFactura(this);"></select>';			
+			cell_5.innerHTML=cell_5_html;
+			for(var i = 0; i < opcionesComboIVA.length; i++){
+				document.getElementById(idCell5).options[i] = new Option(opcionesComboIVA[i].text,opcionesComboIVA[i].value);
+			}
+			
+			// Celda Seis (Campo que indica si se le va aplicar Descuento o no)		
+			var cell_6_html = '<input type="checkbox" name="datosCliente.HonorarioCheckDescuento" id="'+idCell6+'" value="" onclick = "habilitarCampo(\''+idCell6+'\', \''+idCell7+'\')" onKeyUp = "calcularFactura(this)"/>';
+			cell_6.innerHTML = cell_6_html;
+
+			// Celda Siete (Campo que indica en caso de que se vaya a aplicar Descuento, el porcentage de Descuento a aplicar)			
+			var cell_7_html = '<s:textfield id="'+idCell7+'" size="10" maxlength="10" name="datosCliente.HonorarioDescuento" onKeyUp="calcularFactura(this)" disabled="true" style="color:#6E6E6E" readOnly="true"/>';	
+			cell_7.innerHTML=cell_7_html;			
+
+			// Celda Ocho (Campo quie indica el id del suplido)			
+			var cell_8_html = '<input type="checkbox" name="datosCliente.HonorarioCheckIRPF" id="'+idCell8+'" value=""  onclick = "habilitarCampo(\''+idCell8+'\', \''+idCell9+'\')" style="color:#6E6E6E"/>';
+			cell_8.innerHTML= cell_8_html;
+
+			// Celda Siete (Campo que indica en caso de que se vaya a aplicar Descuento, el porcentage de Descuento a aplicar)			
+			var opcionesComboIRPF = document.getElementById('idIRPF1').options;
+			var cell_9_html = '<select id="'+ idCell9 +'" name="datosCliente.HonorarioIRPF" style="color:#6E6E6E" disabled="true" onchange="calcularFactura(this);"></select>';
+			cell_9.innerHTML = cell_9_html;
+			for(var i = 0; i < opcionesComboIRPF.length; i++){
+				document.getElementById(idCell9).options[i] = new Option(opcionesComboIRPF[i].text,opcionesComboIRPF[i].value);
+			}
+			
+			// Celda Nueve (Campo que indica el valor total del suplido)
+			var idCell12 = "idTotalHonorarios" + pos;
+			var cell_12_html = '<s:textfield size="10" maxlength="10" id="'+idCell12+'" style="color:#6E6E6E" readOnly="true"/>';
+			cell_12.innerHTML=cell_12_html;
+		//}
+			calcularFactura();
+	}*/
+	
+	// ********************************** GASTOS **********************************
+	// DRC@04-07-2012 Funcion que se utiliza para añadir una fila de los Suplidos (ahora mismo es ilimitado el numero de Suplidos que se pueden crear)
+	/*function addRowGasto(tableId) {
+		var table = document.getElementById(tableId); 
+
+		var pos = table.rows.length;
+		// DRC@05-07-2012 Se podria utilizar par limitar el numero de Gastos
+		//if ( pos < 11) { 
+			var row = table.insertRow(pos);
+			var cell_0 = row.insertCell(0); 
+			var cell_1 = row.insertCell(1); 
+			var cell_2 = row.insertCell(2);
+			var cell_3 = row.insertCell(3);			
+			var cell_4 = row.insertCell(4);
+			var cell_5 = row.insertCell(5);			
+			var cell_6 = row.insertCell(6);
+			var cell_7 = row.insertCell(7);
+			var cell_8 = row.insertCell(8);
+			var cell_9 = row.insertCell(9);
+			var cell_10 = row.insertCell(10);
+
+			var idCell4 = "idCheckGasto" + pos;
+			var idCell5 = "idGastoIVA" + pos;
+
+			// Celda Cero (Nombre del Gasto)
+			cell_0.style.textAlign='left';
+			var cell_0_html = '<span>Gasto ' + pos + ': </span>';
+			cell_0.innerHTML= cell_0_html;
+			
+			// Celda Uno (Descripcion del Nombre del Gasto)
+			var idCell1 = "idGastoDescripcion" + pos;			
+			var cell_1_html = '<s:textfield name="datosCliente.GastoDescripcion" id="'+idCell1+'" size="21" maxlength="255" onfocus="limpiarTextfield(\"'+idCell1+'\")" onblur="comprobarTextfield(\"'+idCell1+'\")" value="Introduzca la descripcion" onKeyUp = "calcularFactura(this)"  style="color:#6E6E6E"/>';
+			cell_1.innerHTML= cell_1_html;
+
+			// Celda Dos (Campo que indicar la cantidad en Euros del Gasto)
+			var idCell2 = "idGasto" + pos;
+			var cell_2_html = '<s:textfield id="'+idCell2+'" size="8" maxlength="10" onKeyUp = "calcularFactura(this)" />';			
+			cell_2.innerHTML = cell_2_html;
+
+			// Celda Tres (Vacia)
+			var cell_3_html = '';	
+			cell_3.innerHTML=cell_3_html;
+
+			// Celda Cuatro (Vacia)
+			var cell_4_html = '<input type="checkbox" name="datosCliente.GastoCheckIva" id="'+idCell4+'" value="" onclick="habilitarCampo(\''+idCell4+'\', \''+idCell5+'\')" onKeyUp = "calcularFactura(this)" checked/>';
+			cell_4.innerHTML=cell_4_html;
+
+			// Celda Cinco (Vacia)
+			var opcionesComboIVA = document.getElementById('idGastoIVA0').options;
+			var cell_5_html = '<select id="'+ idCell5 +'" name="datosCliente.GastoIva" onchange="calcularFactura(this);"></select>';
+			cell_5.innerHTML = cell_5_html;			
+			for(var i = 0; i < opcionesComboIVA.length; i++){
+				document.getElementById(idCell5).options[i] = new Option(opcionesComboIVA[i].text,opcionesComboIVA[i].value);
+			}	
+			
+			// Celda Seis (Campo que indica si se le va aplicar Descuento o no)
+			var cell_6_html = '';
+			cell_6.innerHTML=cell_6_html;
+
+			// Celda Siete (Campo que indica en caso de que se vaya a aplicar Descuento, el porcentage de Descuento a aplicar)
+			var cell_7_html = '';	
+			cell_7.innerHTML=cell_7_html;
+
+			// Celda Ocho (Campo quie indica el id del suplido)
+			var idCell8 = "idContadorGasto" + pos;			
+			var cell_8_html = '<s:hidden name="datosCliente.idContadorGasto" id="'+idCell8+'"/>';
+			cell_8.innerHTML= cell_8_html;			
+
+			// Celda Nueve (Vacia)
+			var cell_9_html = '';	
+			cell_9.innerHTML=cell_9_html;
+			
+			// Celda 10 (Campo que indica el valor total del suplido)
+			var idCell10 = "idTotalGastos" + pos;
+			var cell_10_html = '<s:textfield size="10" maxlength="10" id="'+idCell9+'" style="color:#6E6E6E" readOnly="true"/>';
+			cell_10.innerHTML=cell_10_html;
+		//}
+			calcularFactura();
+	}*/
+
+	// DRC@04-07-2012 Funcion que se utiliza para borrar (en caso de que sea posible) una fila de los Suplidos
+	
+	// --------------------------------------
+	// DRC@!4-09-2012 Funcion que se utiliza para recuperar los conceptoes guardados previamente por el colegiado
+	
+	
+
+	function rellenarListaNombreVias(req_NombreVia, selectConcepto, concepto) {
+		if (req_NombreVia.readyState == 4) { // Complete
+			if (req_NombreVia.status == 200) { // OK response			
+				var textToSplit = req_NombreVia.responseText;
+				//Split the document
+				returnElements=textToSplit.split("||");
+				var anterior = selectConcepto.value;
+//alert('7.- rellenarListaNombreVias - textToSplit: ' + textToSplit + ' selectConcepto: ' + selectConcepto + ' returnElements: ' + returnElements);
+				concepto.processor.setWords(returnElements);				
+				selectConcepto.value=anterior;
+//alert('8.- rellenarListaNombreVias');
+			}			
+		}
+	}
+	
+	function muestraBotonHonorario(){
+ 		var boton = document.getElementById("idBotonHonorario");
+ 		boton.style.display = "block"; 
+ 		boton = document.getElementById("idBotonSuplidos");
+ 		boton.style.display = "none"; 
+ 		boton = document.getElementById("idBotonGastos");
+ 		boton.style.display = "none"; 
+	}
+	
+	function muestraBotonSuplidos(){
+ 		var boton = document.getElementById("idBotonSuplidos");
+ 		boton.style.display = "block"; 
+ 		boton = document.getElementById("idBotonGastos");
+ 		boton.style.display = "none";
+ 		boton = document.getElementById("idBotonHonorario");
+ 		boton.style.display = "none"; 
+	}
+	
+	function muestraBotonGastos(){
+ 		var boton = document.getElementById("idBotonGastos");
+ 		boton.style.display = "block"; 
+ 		boton = document.getElementById("idBotonHonorario");
+ 		boton.style.display = "none"; 
+ 		boton = document.getElementById("idBotonSuplidos");
+ 		boton.style.display = "none"; 
+	}
+	
+	</script>
+	

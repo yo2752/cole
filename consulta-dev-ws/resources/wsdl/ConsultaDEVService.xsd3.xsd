@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns="http://www.dgt.es/nostra/esquemas/consultaDEV/respuesta" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.dgt.es/nostra/esquemas/consultaDEV/datos-especificos" xmlns:ns2="http://www.dgt.es/scsp/esquemas/datos-comun" targetNamespace="http://www.dgt.es/nostra/esquemas/consultaDEV/respuesta" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	
+<xs:import namespace="http://www.dgt.es/nostra/esquemas/consultaDEV/datos-especificos" schemaLocation="ConsultaDEVService.xsd4.xsd"/>
+	
+<xs:import namespace="http://www.dgt.es/scsp/esquemas/datos-comun" schemaLocation="ConsultaDEVService.xsd5.xsd"/>
+	
+	
+<xs:element name="Respuesta">
+		
+<xs:complexType>
+			
+<xs:sequence>
+				
+<xs:element ref="ns2:Atributos"/>
+				
+<xs:element ref="Transmisiones" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+<xs:element name="Transmisiones" nillable="false">
+		
+<xs:complexType>
+			
+<xs:sequence>
+				
+<xs:element ref="TransmisionDatos"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+<xs:element name="TransmisionDatos">
+		
+<xs:complexType>
+			
+<xs:all>
+				
+<xs:element ref="ns2:DatosGenericos"/>
+				
+<xs:element ref="ns1:DatosEspecificos"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

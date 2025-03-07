@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://atem.vehiculos.servicios.trafico.es" targetNamespace="http://atem.vehiculos.servicios.trafico.es">
+<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema>
+<xsd:import schemaLocation="ConsultaWSService.xsd1.xsd" namespace="http://atem.vehiculos.servicios.trafico.es"/></xsd:schema></wsdl:types>
+<wsdl:message name="consultaBastidorRequest">
+<wsdl:part name="parameters" element="xsns:consultaBastidor" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaBastidorResponse">
+<wsdl:part name="parameters" element="xsns:consultaBastidorResponse" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaMasivaRequest">
+<wsdl:part name="parameters" element="xsns:consultaMasiva" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaMasivaResponse">
+<wsdl:part name="parameters" element="xsns:consultaMasivaResponse" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaMatriculaRequest">
+<wsdl:part name="parameters" element="xsns:consultaMatricula" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaMatriculaResponse">
+<wsdl:part name="parameters" element="xsns:consultaMatriculaResponse" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaPersonaRequest">
+<wsdl:part name="parameters" element="xsns:consultaPersona" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="consultaPersonaResponse">
+<wsdl:part name="parameters" element="xsns:consultaPersonaResponse" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="obtenerResultadoConsultaRequest">
+<wsdl:part name="parameters" element="xsns:obtenerResultadoConsulta" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:message name="obtenerResultadoConsultaResponse">
+<wsdl:part name="parameters" element="xsns:obtenerResultadoConsultaResponse" xmlns:xsns="http://atem.vehiculos.servicios.trafico.es"/></wsdl:message>
+<wsdl:portType name="ConsultaWS">
+<wsdl:operation name="consultaBastidor">
+<wsdl:input name="consultaBastidorRequest" message="ns0:consultaBastidorRequest"/>
+<wsdl:output name="consultaBastidorResponse" message="ns0:consultaBastidorResponse"/></wsdl:operation>
+<wsdl:operation name="consultaMasiva">
+<wsdl:input name="consultaMasivaRequest" message="ns0:consultaMasivaRequest"/>
+<wsdl:output name="consultaMasivaResponse" message="ns0:consultaMasivaResponse"/></wsdl:operation>
+<wsdl:operation name="consultaMatricula">
+<wsdl:input name="consultaMatriculaRequest" message="ns0:consultaMatriculaRequest"/>
+<wsdl:output name="consultaMatriculaResponse" message="ns0:consultaMatriculaResponse"/></wsdl:operation>
+<wsdl:operation name="consultaPersona">
+<wsdl:input name="consultaPersonaRequest" message="ns0:consultaPersonaRequest"/>
+<wsdl:output name="consultaPersonaResponse" message="ns0:consultaPersonaResponse"/></wsdl:operation>
+<wsdl:operation name="obtenerResultadoConsulta">
+<wsdl:input name="obtenerResultadoConsultaRequest" message="ns0:obtenerResultadoConsultaRequest"/>
+<wsdl:output name="obtenerResultadoConsultaResponse" message="ns0:obtenerResultadoConsultaResponse"/></wsdl:operation></wsdl:portType>
+<wsdl:binding name="ConsultaWSSoapBinding" type="ns0:ConsultaWS">
+<soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="consultaBastidor">
+<soap11:operation soapAction="consultaBastidor" style="document"/>
+<wsdl:input name="consultaBastidorRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaBastidorResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaMasiva">
+<soap11:operation soapAction="consultaMasiva" style="document"/>
+<wsdl:input name="consultaMasivaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaMasivaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaMatricula">
+<soap11:operation soapAction="consultaMatricula" style="document"/>
+<wsdl:input name="consultaMatriculaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaMatriculaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="consultaPersona">
+<soap11:operation soapAction="consultaPersona" style="document"/>
+<wsdl:input name="consultaPersonaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="consultaPersonaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="obtenerResultadoConsulta">
+<soap11:operation soapAction="obtenerResultadoConsulta" style="document"/>
+<wsdl:input name="obtenerResultadoConsultaRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="obtenerResultadoConsultaResponse">
+<soap11:body use="literal"/></wsdl:output></wsdl:operation></wsdl:binding>
+<wsdl:service name="ConsultaWSService">
+<wsdl:port name="ConsultaWS" binding="ns0:ConsultaWSSoapBinding">
+<soap11:address location="http://pre-datapower.trafico.es:8080/WS_ATEM_INET/ConsultaWSService"/></wsdl:port></wsdl:service></wsdl:definitions>

@@ -1,0 +1,30 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>Control de cambios del proyecto Anuntis</title>
+		<author email="santiago.cuenca@globaltms.es">Santiago Cuenca Lizcano</author>
+	</properties>
+	<body>
+		
+		<release version="2.0" date="2013-01-01" description="Cambio en Anuntis para que vaya por Atem">
+			<action dev="ruben.diaz" type="fix" issue="0007082">
+				Se resuelve un problema por el que el proceso Inteve4Anuntis estaba guardando los informes doblemente comprimidos en zip.
+			</action>
+			
+			<action dev="ruben.diaz" type="update" issue="0006792">
+				Integración de ATEM y Gestor documental en el módulo de Anuntis.
+			</action>
+		</release>
+		
+		<release version="1.1" date="2013-02-08" description="Desasignación de tasas anuntis">
+			<action dev="ruben.diaz" type="update" issue="0004802">
+				Se permite desasignar tasas asociadas a consultas INTEVE de anuntis.
+			</action>
+		</release>
+		
+		<release version="1.0" date="2013-01-01" description="Primera versión estable">
+			<action dev="ruben.diaz" type="update" issue="0002556">
+				Publicada la primera versión estable de "Integración con Anuntis", en el entorno de producción.
+			</action>
+		</release>
+	</body>
+</document>

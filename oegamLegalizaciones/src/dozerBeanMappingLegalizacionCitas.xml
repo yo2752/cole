@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+   
+  	<mapping type="bi-directional">
+  		<class-a>org.gestoresmadrid.core.legalizacion.model.vo.LegalizacionCitaVO</class-a>
+  		<class-b>org.gestoresmadrid.oegamLegalizaciones.view.dto.LegalizacionCitaDto</class-b>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fecha</a>
+			<b>fecha</b>
+		</field>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fechaLegalizacion</a>
+			<b>fechaLegalizacion</b>
+		</field>
+  		<field custom-converter-id="dozerFechaConverter">
+			<a>fechaDocumento</a>
+			<b>fechaDocumentacion</b>
+		</field>
+  	</mapping>
+  	
+</mappings>

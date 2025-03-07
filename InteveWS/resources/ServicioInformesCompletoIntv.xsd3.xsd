@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" version="1.0" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto/respuesta">
+<xs:import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices/informeCompleto" schemaLocation="ServicioInformesCompletoIntv.xsd4.xsd"/>
+<xs:element name="ResultadoInformeCompleto" type="ns1:outInformeCompleto"/>
+</xs:schema>

@@ -1,0 +1,58 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<div align="center">
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">Resumen de la presentación</span>
+			</td>
+		</tr>
+	</table>
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la Presentación" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+   		<tr>
+			<th></th>
+   			<th>Presentados</th>
+   			<th>Fallidos</th>
+		</tr>
+		<tr>
+			<td style="font-weight:bold;">
+				TOTAL
+			</td>
+			<td>
+				<s:label style="color:green" value="%{resumenPresentacion.numOk}"/>
+				<s:if test="%{resumenPresentacion.numOk != 0}">
+					<img id="despValidado"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueValidados();" />
+	   			</s:if>
+			</td>
+			<td>
+				<s:label style="color:red" value="%{resumenPresentacion.numErrores}"/>
+				<s:if test="%{resumenPresentacion.numErrores != 0}">
+					<img id="despFallidos"  alt="Mostrar" src="img/plus.gif" onclick="return mostrarBloqueFallidos();" />
+	   			</s:if>	
+			</td>
+		</tr>
+ 	</table>
+	<div id="bloqueValidados" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+		<tr>
+			<td  style="width:100%;text-align:center;">Detalle de Modelos Presentados</td>
+		</tr>
+		</table>						
+			<ul style="color:green; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+				<s:iterator value="resumenPresentacion.listaMensajesOk">
+					<li><span style="text-align: left;"><s:property /></span></li>	
+				</s:iterator>
+			</ul>		
+	</div>		
+	<div id="bloqueFallidos" style="display:none;width:100%;font-size:11px;">
+		<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+			<tr>
+				<td  style="width:100%;text-align:center;">Detalle de Modelos Fallidos</td>
+			</tr>
+		</table>	
+		<ul style="color:red; font-family:tahoma, arial, sans-serif; font-size:11px; font-weight:bold;text-align: left;">
+			<s:iterator value="resumenPresentacion.listaMensajesErrores">
+				<li><span><s:property /></span></li>	
+			</s:iterator>
+		</ul>
+	</div> 	
+</div> 		

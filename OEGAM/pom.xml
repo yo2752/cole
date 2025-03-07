@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.icogam.oegam</groupId>
+	<artifactId>OEGAM</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Oegam Parent</name>
+	<modules>
+		<module>../utilidades</module>
+		<module>../viafirma</module>
+		<module>../GestorDocumentos</module>
+		<module>../AnuntisWSClient</module>
+		<module>../AtemWSClient</module>
+		<module>../tasas-ws</module>
+		<module>../justificante-profesional-ws</module>
+		<module>../CN_CTIT2</module>
+		<module>../BastidoresSigaWS</module>
+		<module>../EeffWS</module>
+		<module>../IVTM</module>
+		<module>../IvtmWSClient</module>
+		<module>../IvtmClientJAX</module>
+		<module>../JustificantesProWS</module>
+		<module>../Legalizacion</module>
+		<module>../MateCard2</module>
+		<module>../MateEITV</module>
+		<module>../ConsultaTarjetaEitvWS</module>
+		<module>../MatriculasWS</module>
+		<module>../MatriculaWSClient</module>
+		<module>../MatwWSClient</module>
+		<module>../MatwPermisoDistintivoWS</module>
+		<module>../RegistradoresWS</module>
+		<module>../WSCN</module>
+		<module>../EscriturasWS</module>
+		<module>../Rw</module>
+		<module>../sigcer</module>
+		<module>../Sancion</module>
+		<!-- <module>../SolicitudesPlacas</module> -->
+		<module>../oegam2_core</module> 
+		<module>../DatosSensiblesWS</module>
+		<module>../consulta-dev-ws</module>
+		<module>../Atex5WSClient</module>
+		<module>../MatriculasIvtmWS</module>
+		<module>../presentacion-jpt</module>
+		<module>../ConsultaBtvWS</module>
+		<module>../TramitarBtvWS</module>
+		<module>../CheckCTITSega</module>
+		<module>../CTITSega</module>
+		<module>../JustificantesProWSSega</module>
+		<module>../MatwWSClienteSega</module>
+		<module>../TramitarBtvWSSega</module>
+		<module>../ConsultaBtvWSSega</module>
+		<module>../ConsultaTarjetaEITVSega</module>
+		<module>../CAYCWSClient</module>
+		<module>../GestorImpresionRaspberryWS</module>
+		<module>../MatwDistintivoWS</module>
+		<module>../SerconClient</module>
+		<module>../oegam2_comun</module>
+		<module>../Procesos</module>
+		<module>../oegamComun</module>
+		<module>../InteveWS</module>
+		<module>../oegamInteve</module>
+		<module>../oegamCreditos</module>
+		<module>../oegamImpresion</module>
+		<module>../oegamDocBase</module>
+		<module>../oegamPlacasMatricula</module>
+		<module>../oegamInterga</module>
+		<module>../oegamPermisoInternacional</module>
+		<module>../oegamDuplicadoPermisoConducir</module>
+		<module>../oegamLegalizaciones</module>
+		<module>../oegamBajas</module>
+		<module>../oegamSanciones</module>
+		<module>../oegamConversiones</module>
+		<module>../oegamImportacion</module>
+		<module>../IntegracionSigaWS</module>
+		<module>../IntegracionSigaWSClient</module>
+		<module>../oegam2</module>
+	</modules>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>es</locales>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<scm>
+		<url>http://srvdes05/svn/Oegam</url>
+		<connection>scm:svn:http://srvdes05/svn/Oegam/trunk</connection>
+		<developerConnection>scm:svn:http://srvdes05/svn/Oegam/trunk</developerConnection>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>internal</id>
+			<name>Archiva Managed Internal Repository</name>
+			<url>http://srvdes05:8088/archiva/repository/internal</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>Archiva Managed Snapshot Repository</name>
+			<url>http://srvdes05:8088/archiva/repository/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- REPORTING -->
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>UTF-8</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>1.6</targetJdk>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>2.10</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+						<configuration>
+							<issueLinkTemplatePerSystem>
+								<mantisbt>%URL%/view.php?id=%ISSUE%</mantisbt>
+							</issueLinkTemplatePerSystem>
+						</configuration>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+	<organization>
+		<name>ICOGAM</name>
+		<url>http://www.gestoresmadrid.org</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>Julio Molina Chasserot</name>
+			<email>desarrollo1@gestoresmadrid.org</email>
+			<organization>ICOGAM</organization>
+			<roles>
+				<role>Jefe de Proyecto</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>2</id>
+			<name>Rubén Díaz Sanchidrián</name>
+			<email>desarrollo2@gestoresmadrid.org</email>
+			<organization>ICOGAM</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+			<properties>
+				<picUrl>http://localhost/pictures/ruben.jpg</picUrl>
+			</properties>
+		</developer>
+		<developer>
+			<id>3</id>
+			<name>Santiago Cuenca Lizcano</name>
+			<email>santiago.cuenca@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>4</id>
+			<name>Javier Rodríguez González</name>
+			<email>javier.rodriguez@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+			<properties>
+				<picUrl>http://localhost/pictures/javi.jpg</picUrl>
+			</properties>
+		</developer>
+		<developer>
+			<id>5</id>
+			<name>Antonio Trenado Chávez</name>
+			<email>antonio.trenado@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>6</id>
+			<name>Miguel Ángel Peña</name>
+			<email>miguel.pena@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>7</id>
+			<name>Juan Manuel Beas</name>
+			<email>juan.beas@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>8</id>
+			<name>José Rumbo Rufo</name>
+			<email>jose.rumbo@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<system>MantisBT</system>
+		<url>http://srvapp06/mantis/</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://192.168.50.147/jenkins</url>
+	</ciManagement>
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="unqualified"
+           attributeFormDefault="unqualified">
+    <xs:element name="Solicitud_Tramite">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Datos_Firmados"/>
+                <xs:element name="Firma_Gestor" type="tipoHash"/>
+            </xs:sequence>
+            <xs:attribute name="Version" type="tipoVersionRegistro" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Datos_Firmados">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="NIF_Gestor" type="tipoNIF"/>
+                <xs:element name="Matricula" type="alfa12"/>
+                <xs:element name="Lista_Transmitentes">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="3">
+                            <xs:element name="DOI" type="tipoNIF"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Texto_Legal" type="tipoTextoLegal"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!--Tipos-->
+    <xs:simpleType name="tipoVersionRegistro">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoHash">
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+    <xs:simpleType name="tipoNIF">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="alfa12">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tipoTextoLegal">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value=""/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

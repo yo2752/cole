@@ -1,0 +1,77 @@
+<definitions name="BTVConsulta" targetNamespace="http://sega.gestores.net/btvconsulta"
+ xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:tns="http://sega.gestores.net/btvconsulta">
+ <types>
+  <xs:schema targetNamespace="http://sega.gestores.net/btvconsulta" version="1.0" xmlns:tns="http://sega.gestores.net/btvconsulta" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="consultarBTV" type="tns:btvconsultaRequest"/>
+   <xs:element name="consultarBTVRespuesta" type="tns:btvconsultaResponse"/>
+   <xs:complexType name="btvconsultaRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="tns:btvconsultaArgument"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="btvconsultaArgument">
+    <xs:sequence>
+     <xs:element minOccurs="1" name="doi_gestor" type="xs:string"/>
+     <xs:element minOccurs="1" name="doi_gestoria" type="xs:string"/>
+     <xs:element minOccurs="1" name="doi_plataforma" type="xs:string"/>
+     <xs:element minOccurs="1" name="num_expediente_propio" type="xs:string"/>
+     <xs:element minOccurs="1" name="xmlB64" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="btvconsultaResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tns:btvconsultaReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="btvconsultaReturn">
+    <xs:sequence>
+     <xs:element minOccurs="1" name="num_expediente" type="xs:string"/>
+     <xs:element minOccurs="0" name="errores" type="tns:listaErrores"/>
+     <xs:element minOccurs="0" name="resultado" type="xs:string"/>
+     <xs:element minOccurs="0" name="codigo" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="listaErrores">
+    <xs:sequence>
+     <xs:element maxOccurs="unbounded" minOccurs="0" name="error" nillable="true" type="tns:btvCodigoDescripcion"/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="btvCodigoDescripcion">
+     <xs:sequence>
+      <xs:element minOccurs="0" name="codigo" type="xs:string"/>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+     </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name="BTVWS_consultarBTV">
+  <part element="tns:consultarBTV" name="consultarBTV"/>
+ </message>
+ <message name="BTVWS_consultarBTVRespuesta">
+  <part element="tns:consultarBTVRespuesta" name="consultarBTVRespuesta"/>
+ </message>
+ <portType name="BTVWS">
+  <operation name="consultarBTV" parameterOrder="consultarBTV">
+   <input message="tns:BTVWS_consultarBTV"/>
+   <output message="tns:BTVWS_consultarBTVRespuesta"/>
+  </operation>
+ </portType>
+ <binding name="BTVWSBinding" type="tns:BTVWS">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="consultarBTV">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="BTVConsulta">
+  <port binding="tns:BTVWSBinding" name="BTVConsulta">
+   <soap:address location="https://217.130.244.72:8484/sega/BTVConsulta"/>
+  </port>
+ </service>
+</definitions>

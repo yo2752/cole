@@ -1,0 +1,1266 @@
+<definitions name='CTITService' targetNamespace='http://blackbox.gescogroup.com/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://blackbox.gescogroup.com/' version='1.0' xmlns:tns='http://blackbox.gescogroup.com/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='checkCTIT' type='tns:checkCTIT'/>
+   <xs:element name='checkCTITResponse' type='tns:checkCTITResponse'/>
+   <xs:element name='fullCTIT' type='tns:fullCTIT'/>
+   <xs:element name='fullCTITResponse' type='tns:fullCTITResponse'/>
+   <xs:element name='notificationCTIT' type='tns:notificationCTIT'/>
+   <xs:element name='notificationCTITResponse' type='tns:notificationCTITResponse'/>
+   <xs:element name='tradeCTIT' type='tns:tradeCTIT'/>
+   <xs:element name='tradeCTITResponse' type='tns:tradeCTITResponse'/>
+   <xs:complexType name='checkCTIT'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:ctitsoapRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitsoapRequest'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='agencyFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='externalSystemFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='checkCTITResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:ctitsoapResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitsoapResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errorCodes' nillable='true' type='tns:ctitCheckError'/>
+     <xs:element minOccurs='0' name='result' type='xs:string'/>
+     <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitCheckError'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitCheckRequest' type='tns:ctitCheckRequest'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='abstractEntity'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='userLabels' nillable='true' type='tns:userLabel'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitCheckRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='ctitCheck' type='tns:ctitCheck'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitCheckErrors' nillable='true' type='tns:ctitCheckError'/>
+       <xs:element minOccurs='0' name='ctitCheckResponse' type='tns:ctitCheckResponse'/>
+       <xs:element minOccurs='0' name='ctitCheckXMLRequest' type='tns:ctitCheckXMLRequest'/>
+       <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystem' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='abstractProcessEntity'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='createdBy' type='tns:user'/>
+       <xs:element minOccurs='0' name='modifiedBy' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agency'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element name='agencyCode' type='xs:int'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agencyEmployees' nillable='true' type='tns:agencyEmployee'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agents' nillable='true' type='tns:agent'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='bankAccounts' nillable='true' type='tns:agencyBankAccount'/>
+       <xs:element minOccurs='0' name='emailAddress' type='xs:string'/>
+       <xs:element minOccurs='0' name='enabled' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='fiscalPersonType' type='tns:fiscalPersonType'/>
+       <xs:element name='invoicingId' type='xs:int'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='telephoneNumber' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='address'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='customStreet' type='xs:string'/>
+       <xs:element minOccurs='0' name='door' type='xs:string'/>
+       <xs:element minOccurs='0' name='floor' type='xs:string'/>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='postalCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='stair' type='xs:string'/>
+       <xs:element minOccurs='0' name='street' type='tns:street'/>
+       <xs:element minOccurs='0' name='streetNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='municipality'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='dgtName' type='xs:string'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='province' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='mlString'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='createdOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='deletedOn' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='modifiedOn' type='xs:dateTime'/>
+     <xs:element name='translations'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='entry'>
+         <xs:complexType>
+          <xs:sequence>
+           <xs:element minOccurs='0' name='key' type='xs:string'/>
+           <xs:element minOccurs='0' name='value' type='tns:translation'/>
+          </xs:sequence>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='translation'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='languageId' type='xs:string'/>
+     <xs:element minOccurs='0' name='mlString' type='tns:mlString'/>
+     <xs:element minOccurs='0' name='mlStringId' type='xs:int'/>
+     <xs:element minOccurs='0' name='value' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='province'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='ineCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='provinceGroup' type='tns:provinceGroup'/>
+       <xs:element minOccurs='0' name='region' type='tns:region'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='region'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='provinces' nillable='true' type='tns:province'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userLabel'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='bgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='fgColor' type='xs:string'/>
+       <xs:element minOccurs='0' name='label' type='xs:string'/>
+       <xs:element minOccurs='0' name='owner' type='tns:user'/>
+       <xs:element name='shared' type='xs:boolean'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='users' nillable='true' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='user'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element minOccurs='0' name='creationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='defaultLanguage' type='xs:string'/>
+       <xs:element minOccurs='0' name='dropOutDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='emailAddress' type='xs:string'/>
+       <xs:element minOccurs='0' name='enabled' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='nif' type='xs:string'/>
+       <xs:element minOccurs='0' name='observations' type='xs:string'/>
+       <xs:element minOccurs='0' name='role' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname' type='xs:string'/>
+       <xs:element minOccurs='0' name='surname2' type='xs:string'/>
+       <xs:element minOccurs='0' name='telephoneNumber' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userRptProfiles' nillable='true' type='tns:userRPTProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='profile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='servicePermissions' nillable='true' type='tns:servicePermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='uiPermissions' nillable='true' type='tns:uiPermission'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='userProfiles' nillable='true' type='tns:userProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='servicePermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='uiPermission'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='execute' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='fqn' type='xs:string'/>
+       <xs:element minOccurs='0' name='profile' type='tns:profile'/>
+       <xs:element minOccurs='0' name='read' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='write' type='xs:boolean'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='userRPTProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='admin' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='rptProfile' type='tns:rptProfile'/>
+       <xs:element minOccurs='0' name='user' type='tns:user'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptProfile'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='report'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='details' type='tns:rptDetails'/>
+       <xs:element minOccurs='0' name='group' type='tns:rptGroup'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='reportType' type='tns:reportType'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='rptProfiles' nillable='true' type='tns:rptProfile'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptDetails'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='jrbin' type='xs:string'/>
+       <xs:element minOccurs='0' name='jrxml' type='xs:string'/>
+       <xs:element minOccurs='0' name='paramxml' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='rptGroup'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='reports' nillable='true' type='tns:report'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='street'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='municipality' type='tns:municipality'/>
+       <xs:element minOccurs='0' name='streetName' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='streetType' type='tns:streetType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='streetType'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='description' type='tns:mlString'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agencyEmployee'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agent'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agencies' nillable='true' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agentCertificate' type='tns:agentCertificate'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='fiscalAddress' type='tns:address'/>
+       <xs:element name='memberId' type='xs:int'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agentCertificate'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='agentCertificateRequest' nillable='true' type='tns:agentCertificateRequest'/>
+       <xs:element minOccurs='0' name='certificate' type='xs:string'/>
+       <xs:element minOccurs='0' name='commonName' type='xs:string'/>
+       <xs:element minOccurs='0' name='country' type='xs:string'/>
+       <xs:element minOccurs='0' name='email' type='xs:string'/>
+       <xs:element minOccurs='0' name='encryptedPrivateKey' type='xs:string'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='givenName' type='xs:string'/>
+       <xs:element minOccurs='0' name='issuer' type='tns:certificateIssuer'/>
+       <xs:element minOccurs='0' name='organization' type='xs:string'/>
+       <xs:element minOccurs='0' name='organizationUnit' type='xs:string'/>
+       <xs:element minOccurs='0' name='passwd' type='xs:string'/>
+       <xs:element minOccurs='0' name='profOrderCif' type='xs:string'/>
+       <xs:element minOccurs='0' name='province' type='xs:string'/>
+       <xs:element minOccurs='0' name='requestId' type='xs:int'/>
+       <xs:element minOccurs='0' name='serialNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='state' type='tns:agentCertificateState'/>
+       <xs:element minOccurs='0' name='surnames' type='xs:string'/>
+       <xs:element minOccurs='0' name='title' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agentCertificateRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agentCertificate' type='tns:agentCertificate'/>
+       <xs:element minOccurs='0' name='certificateState' type='tns:agentCertificateState'/>
+       <xs:element minOccurs='0' name='requestState' type='tns:agentCertificateRequestState'/>
+       <xs:element minOccurs='0' name='response' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='branchOffice'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='branchEmployees' nillable='true' type='tns:branchEmployee'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='branchEmployee'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='professionalOrder'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='address' type='tns:address'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='branchOffices' nillable='true' type='tns:branchOffice'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='externalSystems' nillable='true' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+       <xs:element minOccurs='0' name='nif' type='xs:string'/>
+       <xs:element minOccurs='0' name='poCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='profOrderCertificate' type='tns:poCertificate'/>
+       <xs:element minOccurs='0' name='shortName' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='externalSystem'>
+    <xs:complexContent>
+     <xs:extension base='tns:user'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='authMethod' type='tns:authMethod'/>
+       <xs:element minOccurs='0' name='cif' type='xs:string'/>
+       <xs:element minOccurs='0' name='description' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystemName' type='xs:string'/>
+       <xs:element minOccurs='0' name='password' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='professionalOrders' nillable='true' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='sourceIps' type='xs:string'/>
+       <xs:element minOccurs='0' name='username' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='poCertificate'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='activationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='certificate' type='xs:string'/>
+       <xs:element minOccurs='0' name='commonName' type='xs:string'/>
+       <xs:element minOccurs='0' name='country' type='xs:string'/>
+       <xs:element minOccurs='0' name='csr' type='xs:string'/>
+       <xs:element minOccurs='0' name='email' type='xs:string'/>
+       <xs:element minOccurs='0' name='encryptedPrivateKey' type='xs:string'/>
+       <xs:element minOccurs='0' name='expirationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='givenName' type='xs:string'/>
+       <xs:element minOccurs='0' name='issuer' type='tns:certificateIssuer'/>
+       <xs:element minOccurs='0' name='profOrder' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='province' type='xs:string'/>
+       <xs:element minOccurs='0' name='representantNif' type='xs:string'/>
+       <xs:element minOccurs='0' name='serialNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='state' type='tns:poCertificateState'/>
+       <xs:element minOccurs='0' name='surnames' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='agencyBankAccount'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='accountNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='bank' type='tns:bank'/>
+       <xs:element minOccurs='0' name='bankOffice' type='xs:string'/>
+       <xs:element minOccurs='0' name='controlCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='bank'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='code' type='xs:string'/>
+       <xs:element minOccurs='0' name='logoName' type='xs:string'/>
+       <xs:element minOccurs='0' name='name' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitCheck'>
+    <xs:complexContent>
+     <xs:extension base='tns:dossier'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='buyer' type='xs:string'/>
+       <xs:element minOccurs='0' name='newVehiclePurpose' type='tns:ctitVehiclePurpose'/>
+       <xs:element minOccurs='0' name='plateNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='seller' type='xs:string'/>
+       <xs:element minOccurs='0' name='seller2' type='xs:string'/>
+       <xs:element minOccurs='0' name='seller3' type='xs:string'/>
+       <xs:element minOccurs='0' name='status' type='tns:ctitCheckStatus'/>
+       <xs:element minOccurs='0' name='type' type='tns:ctitType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract='true' name='dossier'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='dgtTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitCheckResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitCheckRequest' type='tns:ctitCheckRequest'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='result' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitCheckXMLRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='fullCTIT'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:ctitRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitRequest'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='agencyFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='currentVehiclePurpose' type='xs:string'/>
+     <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='externalSystemFiscalId' type='xs:string'/>
+     <xs:element minOccurs='0' name='mma' type='xs:int'/>
+     <xs:element minOccurs='0' name='seatPlaces' type='xs:int'/>
+     <xs:element minOccurs='0' name='tara' type='xs:int'/>
+     <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='fullCTITResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:ctitsoapFullResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitsoapFullResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='adviseCodes' nillable='true' type='tns:ctitFullAdvise'/>
+     <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+     <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errorCodes' nillable='true' type='tns:ctitFullError'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='impedimentCodes' nillable='true' type='tns:ctitFullImpediment'/>
+     <xs:element minOccurs='0' name='license' type='xs:string'/>
+     <xs:element minOccurs='0' name='report' type='xs:string'/>
+     <xs:element minOccurs='0' name='result' type='xs:string'/>
+     <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitFullAdvise'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitFull' type='tns:ctitFull'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFull'>
+    <xs:complexContent>
+     <xs:extension base='tns:dossier'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agricultureVehicle' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='buyerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='buyerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTPayment' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPPayment' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitFullAdvise' nillable='true' type='tns:ctitFullAdvise'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitFullImpediment' nillable='true' type='tns:ctitFullImpediment'/>
+       <xs:element minOccurs='0' name='DUA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVTM' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='inputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='license' type='tns:ctitFullLicense'/>
+       <xs:element minOccurs='0' name='matriculationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='motive' type='xs:string'/>
+       <xs:element minOccurs='0' name='outputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='plateNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='purposeChange' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='purposeChangeTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='renting' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='report' type='tns:ctitFullReport'/>
+       <xs:element minOccurs='0' name='reportTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='status' type='tns:ctitStatus'/>
+       <xs:element minOccurs='0' name='vehicleKind' type='xs:string'/>
+       <xs:element minOccurs='0' name='vehiclePurpose' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullImpediment'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitFull' type='tns:ctitFull'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullLicense'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='licensePDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullReport'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='reportPDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullError'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitFullRequest' type='tns:ctitFullRequest'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='ctitFull' type='tns:ctitFull'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitFullErrors' nillable='true' type='tns:ctitFullError'/>
+       <xs:element minOccurs='0' name='ctitFullResponse' type='tns:ctitFullResponse'/>
+       <xs:element minOccurs='0' name='ctitFullXMLRequest' type='tns:ctitFullXMLRequest'/>
+       <xs:element minOccurs='0' name='currentVehiclePurpose' type='xs:string'/>
+       <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystem' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='mma' type='xs:int'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='seatPlaces' type='xs:int'/>
+       <xs:element minOccurs='0' name='tara' type='xs:int'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+       <xs:element minOccurs='0' name='ctitFullRequest' type='tns:ctitFullRequest'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='result' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitFullXMLRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='notificationCTIT'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:ctitRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='notificationCTITResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:ctitsoapNotificationResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitsoapNotificationResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='adviseCodes' nillable='true' type='tns:ctitNotificationAdvise'/>
+     <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+     <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errorCodes' nillable='true' type='tns:ctitNotificationError'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='impedimentCodes' nillable='true' type='tns:ctitNotificationImpediment'/>
+     <xs:element minOccurs='0' name='license' type='xs:string'/>
+     <xs:element minOccurs='0' name='report' type='xs:string'/>
+     <xs:element minOccurs='0' name='result' type='xs:string'/>
+     <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationAdvise'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitNotification' type='tns:ctitNotification'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotification'>
+    <xs:complexContent>
+     <xs:extension base='tns:dossier'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agricultureVehicle' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='buyerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='buyerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTPayment' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPPayment' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitNotificationAdvise' nillable='true' type='tns:ctitNotificationAdvise'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitNotificationImpediment' nillable='true' type='tns:ctitNotificationImpediment'/>
+       <xs:element minOccurs='0' name='DUA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVTM' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='inputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='license' type='tns:ctitNotificationLicense'/>
+       <xs:element minOccurs='0' name='matriculationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='motive' type='xs:string'/>
+       <xs:element minOccurs='0' name='outputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='plateNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='purposeChange' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='purposeChangeTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='renting' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='report' type='tns:ctitNotificationReport'/>
+       <xs:element minOccurs='0' name='reportTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='status' type='tns:ctitStatus'/>
+       <xs:element minOccurs='0' name='vehicleKind' type='xs:string'/>
+       <xs:element minOccurs='0' name='vehiclePurpose' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationImpediment'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitNotification' type='tns:ctitNotification'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationLicense'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='licensePDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationReport'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='reportPDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationError'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitNotificationRequest' type='tns:ctitNotificationRequest'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='ctitNotification' type='tns:ctitNotification'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitNotificationErrors' nillable='true' type='tns:ctitNotificationError'/>
+       <xs:element minOccurs='0' name='ctitNotificationResponse' type='tns:ctitNotificationResponse'/>
+       <xs:element minOccurs='0' name='ctitNotificationXMLRequest' type='tns:ctitNotificationXMLRequest'/>
+       <xs:element minOccurs='0' name='currentVehiclePurpose' type='xs:string'/>
+       <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystem' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='mma' type='xs:int'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='seatPlaces' type='xs:int'/>
+       <xs:element minOccurs='0' name='tara' type='xs:int'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+       <xs:element minOccurs='0' name='ctitNotificationRequest' type='tns:ctitNotificationRequest'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='result' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitNotificationXMLRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='tradeCTIT'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:ctitRequest'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='tradeCTITResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:ctitsoapTradeResponse'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitsoapTradeResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='adviseCodes' nillable='true' type='tns:ctitTradeAdvise'/>
+     <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+     <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='errorCodes' nillable='true' type='tns:ctitTradeError'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='impedimentCodes' nillable='true' type='tns:ctitTradeImpediment'/>
+     <xs:element minOccurs='0' name='license' type='xs:string'/>
+     <xs:element minOccurs='0' name='report' type='xs:string'/>
+     <xs:element minOccurs='0' name='result' type='xs:string'/>
+     <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeAdvise'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitTrade' type='tns:ctitTrade'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTrade'>
+    <xs:complexContent>
+     <xs:extension base='tns:dossier'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agricultureVehicle' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='buyerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='buyerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CEMIEDMTPayment' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPExemption' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPNoSubjection' type='xs:string'/>
+       <xs:element minOccurs='0' name='CETITPPayment' type='xs:string'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitTradeAdvise' nillable='true' type='tns:ctitTradeAdvise'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitTradeImpediment' nillable='true' type='tns:ctitTradeImpediment'/>
+       <xs:element minOccurs='0' name='DUA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVA' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='IVTM' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='inputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='license' type='tns:ctitTradeLicense'/>
+       <xs:element minOccurs='0' name='matriculationDate' type='xs:dateTime'/>
+       <xs:element minOccurs='0' name='motive' type='xs:string'/>
+       <xs:element minOccurs='0' name='outputRegNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='plateNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='purposeChange' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='purposeChangeTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='renting' type='xs:boolean'/>
+       <xs:element minOccurs='0' name='report' type='tns:ctitTradeReport'/>
+       <xs:element minOccurs='0' name='reportTaxCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFiscalId' type='xs:string'/>
+       <xs:element minOccurs='0' name='sellerFullName' type='xs:string'/>
+       <xs:element minOccurs='0' name='status' type='tns:ctitStatus'/>
+       <xs:element minOccurs='0' name='vehicleKind' type='xs:string'/>
+       <xs:element minOccurs='0' name='vehiclePurpose' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeImpediment'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitTrade' type='tns:ctitTrade'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeLicense'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='licensePDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeReport'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='reportPDF' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeError'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='ctitTradeRequest' type='tns:ctitTradeRequest'/>
+       <xs:element minOccurs='0' name='key' type='xs:string'/>
+       <xs:element minOccurs='0' name='message' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='agency' type='tns:agency'/>
+       <xs:element minOccurs='0' name='agent' type='tns:agent'/>
+       <xs:element minOccurs='0' name='branchOffice' type='tns:branchOffice'/>
+       <xs:element minOccurs='0' name='ctitTrade' type='tns:ctitTrade'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='ctitTradeErrors' nillable='true' type='tns:ctitTradeError'/>
+       <xs:element minOccurs='0' name='ctitTradeResponse' type='tns:ctitTradeResponse'/>
+       <xs:element minOccurs='0' name='ctitTradeXMLRequest' type='tns:ctitTradeXMLRequest'/>
+       <xs:element minOccurs='0' name='currentVehiclePurpose' type='xs:string'/>
+       <xs:element minOccurs='0' name='customDossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='externalSystem' type='tns:externalSystem'/>
+       <xs:element minOccurs='0' name='mma' type='xs:int'/>
+       <xs:element minOccurs='0' name='professionalOrder' type='tns:professionalOrder'/>
+       <xs:element minOccurs='0' name='seatPlaces' type='xs:int'/>
+       <xs:element minOccurs='0' name='tara' type='xs:int'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='codeHG' type='xs:string'/>
+       <xs:element minOccurs='0' name='ctitTradeRequest' type='tns:ctitTradeRequest'/>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='result' type='xs:string'/>
+       <xs:element minOccurs='0' name='resultCode' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='ctitTradeXMLRequest'>
+    <xs:complexContent>
+     <xs:extension base='tns:abstractProcessEntity'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='dossierNumber' type='xs:string'/>
+       <xs:element minOccurs='0' name='xmlB64' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:simpleType name='provinceGroup'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENINSULA'/>
+     <xs:enumeration value='CANARIES'/>
+     <xs:enumeration value='CEUTAMELILLA'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='reportType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='REPORT'/>
+     <xs:enumeration value='STAT'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='agentCertificateState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='ERROR'/>
+     <xs:enumeration value='EXPIRED'/>
+     <xs:enumeration value='REVOKED'/>
+     <xs:enumeration value='REQUESTING'/>
+     <xs:enumeration value='NOTREQUESTING'/>
+     <xs:enumeration value='MODIFIED'/>
+     <xs:enumeration value='REQUESTERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='agentCertificateRequestState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='ERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='certificateIssuer'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='FIRMA_PROFESIONAL'/>
+     <xs:enumeration value='CAMERFIRMA'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='authMethod'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='CLIENTCERT'/>
+     <xs:enumeration value='PASSWORD'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='poCertificateState'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='NEW'/>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='ERROR'/>
+     <xs:enumeration value='EXPIRED'/>
+     <xs:enumeration value='REVOKED'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='fiscalPersonType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PERSON'/>
+     <xs:enumeration value='COMPANY'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='ctitVehiclePurpose'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='B00'/>
+     <xs:enumeration value='A00'/>
+     <xs:enumeration value='A01'/>
+     <xs:enumeration value='A02'/>
+     <xs:enumeration value='B03'/>
+     <xs:enumeration value='A04'/>
+     <xs:enumeration value='A05'/>
+     <xs:enumeration value='B06'/>
+     <xs:enumeration value='A07'/>
+     <xs:enumeration value='A08'/>
+     <xs:enumeration value='B09'/>
+     <xs:enumeration value='A10'/>
+     <xs:enumeration value='A11'/>
+     <xs:enumeration value='A12'/>
+     <xs:enumeration value='A13'/>
+     <xs:enumeration value='A14'/>
+     <xs:enumeration value='A15'/>
+     <xs:enumeration value='A16'/>
+     <xs:enumeration value='B17'/>
+     <xs:enumeration value='A18'/>
+     <xs:enumeration value='B18'/>
+     <xs:enumeration value='B19'/>
+     <xs:enumeration value='A20'/>
+     <xs:enumeration value='B21'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='ctitCheckStatus'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='TRAMITABLE'/>
+     <xs:enumeration value='INFORME_REQUERIDO'/>
+     <xs:enumeration value='NO_TRAMITABLE'/>
+     <xs:enumeration value='JEFATURA'/>
+     <xs:enumeration value='ERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='ctitType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='CTI'/>
+     <xs:enumeration value='NOT'/>
+     <xs:enumeration value='ENT'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='ctitStatus'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='OK'/>
+     <xs:enumeration value='NO_TRAMITABLE'/>
+     <xs:enumeration value='TRAMITABLE_CON_INCIDENCIAS'/>
+     <xs:enumeration value='ERROR'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='CTITWS_notificationCTITResponse'>
+  <part element='tns:notificationCTITResponse' name='notificationCTITResponse'></part>
+ </message>
+ <message name='CTITWS_tradeCTIT'>
+  <part element='tns:tradeCTIT' name='tradeCTIT'></part>
+ </message>
+ <message name='CTITWS_fullCTITResponse'>
+  <part element='tns:fullCTITResponse' name='fullCTITResponse'></part>
+ </message>
+ <message name='CTITWS_fullCTIT'>
+  <part element='tns:fullCTIT' name='fullCTIT'></part>
+ </message>
+ <message name='CTITWS_checkCTIT'>
+  <part element='tns:checkCTIT' name='checkCTIT'></part>
+ </message>
+ <message name='CTITWS_checkCTITResponse'>
+  <part element='tns:checkCTITResponse' name='checkCTITResponse'></part>
+ </message>
+ <message name='CTITWS_notificationCTIT'>
+  <part element='tns:notificationCTIT' name='notificationCTIT'></part>
+ </message>
+ <message name='CTITWS_tradeCTITResponse'>
+  <part element='tns:tradeCTITResponse' name='tradeCTITResponse'></part>
+ </message>
+ <portType name='CTITWS'>
+  <operation name='checkCTIT' parameterOrder='checkCTIT'>
+   <input message='tns:CTITWS_checkCTIT'></input>
+   <output message='tns:CTITWS_checkCTITResponse'></output>
+  </operation>
+  <operation name='fullCTIT' parameterOrder='fullCTIT'>
+   <input message='tns:CTITWS_fullCTIT'></input>
+   <output message='tns:CTITWS_fullCTITResponse'></output>
+  </operation>
+  <operation name='notificationCTIT' parameterOrder='notificationCTIT'>
+   <input message='tns:CTITWS_notificationCTIT'></input>
+   <output message='tns:CTITWS_notificationCTITResponse'></output>
+  </operation>
+  <operation name='tradeCTIT' parameterOrder='tradeCTIT'>
+   <input message='tns:CTITWS_tradeCTIT'></input>
+   <output message='tns:CTITWS_tradeCTITResponse'></output>
+  </operation>
+ </portType>
+ <binding name='CTITWSBinding' type='tns:CTITWS'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='checkCTIT'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='fullCTIT'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='notificationCTIT'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='tradeCTIT'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='CTITService'>
+  <port binding='tns:CTITWSBinding' name='CTITService'>
+   <soap:address location='https://test.gacn.es/bbws/CTITService'/>
+  </port>
+ </service>
+</definitions>

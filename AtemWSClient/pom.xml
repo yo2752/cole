@@ -1,0 +1,203 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>AtemWSClient</artifactId>
+  <name>AtemWSClient</name>
+  <description>Modulo que permite conocer toda la información almacenada en la Dirección General de Tráfico referente a un vehículo, ya sea por su matrícula o por su bastidor. La solicitud de esta información puede ser unitaria o masiva.</description>
+  <parent>
+  	<groupId>org.icogam.oegam</groupId>
+  	<artifactId>OEGAM</artifactId>
+  	<version>1.0.0-SNAPSHOT</version>
+  	<relativePath>..\OEGAM</relativePath>
+  </parent>
+	<properties>
+		<JAVA_HOME>${env.JAVA_HOME}</JAVA_HOME>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.birt.runtime.3_7_1</groupId>
+			<artifactId>javax.wsdl</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-saaj</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javamail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.santuario</groupId>
+			<artifactId>xmlsec</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.icogam.oegam</groupId>
+			<artifactId>viafirma</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>es</locales>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<scm>
+		<url>http://172.26.0.71/svn/Oegam/trunk/src/Oegam/AtemWSClient</url>
+		<connection>scm:svn:http://172.26.0.71/svn/Oegam/trunk/src/Oegam/AtemWSClient</connection>
+		<developerConnection>scm:svn:http://172.26.0.71/svn/Oegam/trunk/src/Oegam/AtemWSClient</developerConnection>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>internal</id>
+			<name>Archiva Managed Internal Repository</name>
+			<url>http://srvdes05:8088/archiva/repository/internal</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>Archiva Managed Snapshot Repository</name>
+			<url>http://srvdes05:8088/archiva/repository/snapshot</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<!-- REPORTING -->
+	
+	<reporting>
+		<plugins>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-pmd-plugin</artifactId>
+			    <version>3.1</version>
+			    <configuration>
+			       <linkXref>true</linkXref>
+			       <sourceEncoding>UTF-8</sourceEncoding>
+			       <minimumTokens>100</minimumTokens>
+			       <targetJdk>1.6</targetJdk>
+			    </configuration>
+			</plugin>
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-javadoc-plugin</artifactId>
+	            <version>2.9.1</version>
+	            <configuration>
+	               <source>1.5</source>
+	               <maxmemory>512</maxmemory>
+	            </configuration>
+	         </plugin>
+		</plugins>
+	</reporting>
+	<organization>
+		<name>ICOGAM</name>
+		<url>http://www.gestoresmadrid.org</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>Rubén Díaz Sanchidrián</name>
+			<email>ruben.diaz@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Responsable Técnico</role>
+				<role>Analista Funcional</role>
+				<role>Analista Programador</role>
+			</roles>
+			<properties>
+				<picUrl>http://localhost/pictures/ruben.jpg</picUrl>
+			</properties>
+		</developer>
+		<developer>
+			<id>2</id>
+			<name>Javier Rodríguez González</name>
+			<email>javier.rodriguez@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Programador</role>
+			</roles>
+			<properties>
+				<picUrl>http://localhost/pictures/javi.jpg</picUrl>
+			</properties>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Eduardo Cavanna</name>
+			<email>coordinador@gestoresmadrid.org</email>
+			<url>http://www.gestoresmadrid.org</url>
+			<organization>ICOGAM</organization>
+			<organizationUrl>http://www.gestoresmadrid.org</organizationUrl>
+			<roles>
+				<role>Cliente</role>
+			</roles>
+			<timezone>España/Madrid</timezone>
+			<properties>
+				<gtalk>some.name@gmail.com</gtalk>
+			</properties>
+		</contributor>
+		<contributor>
+			<name>Juan Pablo Tredinick</name>
+			<email>informatica3@gestoresmadrid.org</email>
+			<url>http://www.gestoresmadrid.org</url>
+			<organization>ICOGAM</organization>
+			<organizationUrl>http://www.gestoresmadrid.org</organizationUrl>
+			<roles>
+				<role>Probador</role>
+			</roles>
+			<timezone>España/Madrid</timezone>
+			<properties>
+				<gtalk>some.name@gmail.com</gtalk>
+			</properties>
+		</contributor>
+	</contributors>
+	<issueManagement>
+		<system>Mantis Bug Tracker</system>
+		<url>http://srvapp06/mantis/</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://192.168.50.47/jenkins</url>
+	</ciManagement>
+</project>

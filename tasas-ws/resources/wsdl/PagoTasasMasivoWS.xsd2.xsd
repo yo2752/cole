@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/" version="1.0" targetNamespace="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/">
+
+  
+<xs:element name="IndiServicioException" nillable="true" type="tns:faultBean"/>
+
+  
+<xs:element name="comprarTasasPorNRC" type="tns:comprarTasasPorNRC"/>
+
+  
+<xs:element name="comprarTasasPorNRCResponse" type="tns:comprarTasasPorNRCResponse"/>
+
+  
+<xs:element name="obtenerDatosPedido" type="tns:obtenerDatosPedido"/>
+
+  
+<xs:element name="obtenerDatosPedidoResponse" type="tns:obtenerDatosPedidoResponse"/>
+
+  
+<xs:element name="obtenerJustificantePago" type="tns:obtenerJustificantePago"/>
+
+  
+<xs:element name="obtenerJustificantePagoResponse" type="tns:obtenerJustificantePagoResponse"/>
+
+  
+<xs:element name="obtenerNumeroJustificante" type="tns:obtenerNumeroJustificante"/>
+
+  
+<xs:element name="obtenerNumeroJustificanteResponse" type="tns:obtenerNumeroJustificanteResponse"/>
+
+  
+<xs:element name="realizarPagoTasas" type="tns:realizarPagoTasas"/>
+
+  
+<xs:element name="realizarPagoTasasResponse" type="tns:realizarPagoTasasResponse"/>
+
+  
+<xs:complexType name="tasa">
+    
+<xs:sequence>
+      
+<xs:element name="estado" type="tns:estadoTasa" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="numeroTasa" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tipoTasa" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="resultadoConsultaTasas">
+    
+<xs:sequence>
+      
+<xs:element name="fechaDeCompra" type="xs:dateTime" minOccurs="0"/>
+      
+<xs:element name="formaPago" type="tns:formaPagoPasarela" minOccurs="0"/>
+      
+<xs:element name="listaTasas" type="tns:tasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="nrc" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroAutoliquidacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="mensajeRespuesta" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="csv" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="realizarPagoTasasResponse">
+    
+<xs:sequence>
+      
+<xs:element name="return" type="tns:resultadoOperacionCompraTasas" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="resultadoOperacionCompraTasas">
+    
+<xs:sequence>
+      
+<xs:element name="fechaDeCompra" type="xs:dateTime" minOccurs="0"/>
+      
+<xs:element name="formaPago" type="tns:formaPagoPasarela" minOccurs="0"/>
+      
+<xs:element name="nrc" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroAutoliquidacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tasasCompradas" type="tns:tasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="mensajeRespuesta" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="csv" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="documentoOperacionTasas">
+    
+<xs:sequence>
+      
+<xs:element name="datosJustificante" type="xs:base64Binary" minOccurs="0"/>
+      
+<xs:element name="formato" type="tns:formatoDocumento" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="datosCuentaCorriente">
+    
+<xs:sequence>
+      
+<xs:element name="codPais" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="codigoEntidadFinanciera" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="codigoOficina" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="controlIBAN" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="digitoDeControl" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroDeCuenta" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudConsultaTasas">
+    
+<xs:sequence>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="nrc" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroAutoliquidacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="formato" type="tns:formatoDocumento" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudPagoTasas">
+    
+<xs:sequence>
+      
+<xs:element name="aplicacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="datosAdicionales">
+        
+<xs:complexType>
+          
+<xs:sequence>
+            
+<xs:element name="entry" nillable="true" minOccurs="0" maxOccurs="unbounded">
+              
+<xs:complexType>
+                
+<xs:sequence>
+                  
+<xs:element name="key" type="xs:string" minOccurs="0"/>
+                  
+<xs:element name="value" type="xs:anyType" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      
+<xs:element name="datosCuentaCorriente" type="tns:datosCuentaCorriente" minOccurs="0"/>
+      
+<xs:element name="datosFirma" type="tns:datosFirma" minOccurs="0"/>
+      
+<xs:element name="datosTarjeta" type="tns:datosTarjeta" minOccurs="0"/>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="justificante" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tasasSolicitadas" type="tns:solicitudTasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="tipoIdentificador" type="tns:tipoIdentificador" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="datosFirma">
+    
+<xs:sequence>
+      
+<xs:element name="certificado" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="datosCompraFirmados" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="datosCompraSinFirmar" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="datosTarjeta">
+    
+<xs:sequence>
+      
+<xs:element name="anho" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="cvv" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="idEntidad" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="mes" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroTarjeta1" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroTarjeta2" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroTarjeta3" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroTarjeta4" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudTasa">
+    
+<xs:sequence>
+      
+<xs:element name="cantidad" type="xs:int" minOccurs="0"/>
+      
+<xs:element name="grupo" type="xs:int" minOccurs="0"/>
+      
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudDocumentoPresupuestoTasas">
+    
+<xs:sequence>
+      
+<xs:element name="aplicacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="codigoPostal" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="escalera" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="municipio" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="nombreVia" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numero" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroCuenta" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="pagoEfectivo" type="xs:boolean"/>
+      
+<xs:element name="piso" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="provincia" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="puerta" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="razonSocial" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tasasSolicitadas" type="tns:solicitudTasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tipoVia" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="realizarPagoTasas">
+    
+<xs:sequence>
+      
+<xs:element name="arg0" type="tns:solicitudPagoTasas" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerDatosPedido">
+    
+<xs:sequence>
+      
+<xs:element name="solicitud" type="tns:solicitudConsultaTasas" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerDatosPedidoResponse">
+    
+<xs:sequence>
+      
+<xs:element name="return" type="tns:datosPedidoCompleto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="datosPedidoCompleto">
+    
+<xs:sequence>
+      
+<xs:element name="numeroAutoliquidacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="nrc" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tasasSolicitadas" type="tns:tasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="csv" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="datosJustificante" type="xs:base64Binary" minOccurs="0"/>
+      
+<xs:element name="formato" type="tns:formatoDocumento" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="faultBean">
+    
+<xs:sequence>
+      
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="comprarTasasPorNRC">
+    
+<xs:sequence>
+      
+<xs:element name="arg0" type="tns:solicitudPagoTasasNRC" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudPagoTasasNRC">
+    
+<xs:sequence>
+      
+<xs:element name="aplicacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="importe" type="xs:double" minOccurs="0"/>
+      
+<xs:element name="nrc" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="entidad" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="fechaIngreso" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="tasasSolicitadas" type="tns:solicitudTasa" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      
+<xs:element name="tipoIdentificador" type="tns:tipoIdentificador" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="comprarTasasPorNRCResponse">
+    
+<xs:sequence>
+      
+<xs:element name="return" type="tns:resultadoConsultaTasas" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerJustificantePago">
+    
+<xs:sequence>
+      
+<xs:element name="solicitud" type="tns:solicitudJustificantePago" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="solicitudJustificantePago">
+    
+<xs:sequence>
+      
+<xs:element name="identificador" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="numeroAutoliquidacion" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="csv" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerJustificantePagoResponse">
+    
+<xs:sequence>
+      
+<xs:element name="return" type="tns:documentoJustificantePago" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="documentoJustificantePago">
+    
+<xs:sequence>
+      
+<xs:element name="documento" type="xs:base64Binary" minOccurs="0"/>
+      
+<xs:element name="formato" type="xs:string" minOccurs="0"/>
+      
+<xs:element name="mensajeRespuesta" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerNumeroJustificante">
+    
+<xs:sequence/>
+  </xs:complexType>
+
+  
+<xs:complexType name="obtenerNumeroJustificanteResponse">
+    
+<xs:sequence>
+      
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+<xs:simpleType name="estadoTasa">
+    
+<xs:restriction base="xs:string">
+      
+<xs:enumeration value="PAGADA"/>
+      
+<xs:enumeration value="ANULADA"/>
+      
+<xs:enumeration value="APLICADA"/>
+      
+<xs:enumeration value="DESAPLICADA"/>
+      
+<xs:enumeration value="MODIFICADA"/>
+      
+<xs:enumeration value="EXPEDIENTADA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+<xs:simpleType name="formaPagoPasarela">
+    
+<xs:restriction base="xs:string">
+      
+<xs:enumeration value="TARJETA_CREDITO"/>
+      
+<xs:enumeration value="CARGO_CUENTA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+<xs:simpleType name="formatoDocumento">
+    
+<xs:restriction base="xs:string">
+      
+<xs:enumeration value="PDF"/>
+      
+<xs:enumeration value="TXT"/>
+      
+<xs:enumeration value="XML"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+<xs:simpleType name="tipoIdentificador">
+    
+<xs:restriction base="xs:string">
+      
+<xs:enumeration value="NIF"/>
+      
+<xs:enumeration value="CIF"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

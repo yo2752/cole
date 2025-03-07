@@ -1,0 +1,138 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos del Vehiculo</td>
+			<td align="right"><img title="Ver evolución" onclick="consultaEvolucionVehiculo('idVehiculo','<s:property value="tramiteTraficoBean.vehiculo.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png"></td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">VEHÍCULO</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+
+			<td align="left" nowrap="nowrap">
+				<label for="idTipoVehiculo">Tipo de Vehículo: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:select id="idTipoVehiculo"
+					list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposVehiculo('T2')"
+					headerKey="-1"
+					headerValue="Seleccione Tipo"
+					name="tramiteTraficoBean.vehiculo.tipoVehiculoBean.tipoVehiculo"
+					listKey="tipoVehiculo"
+					listValue="descripcion"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap" style="vertical-align:middle;">
+				<label for="idMarcaVehiculo">Marca: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:textfield id="idMarcaVehiculo"
+					name="codigoMarca" 
+					onblur="this.className='input2'; validarMarca(this, document.getElementById('marca'), marcaVehiculoMatriculacion, document.getElementById('checkCodigoMarca'), 'MATE');" 
+					onfocus="this.className='inputfocus';"
+					size="23"
+					maxlength="22"
+					autocomplete="off"
+					cssStyle="position:relative; float:left;" />
+				&nbsp;
+				<span id="checkCodigoMarca"></span>
+				<s:hidden id="marca" name="tramiteTraficoBean.vehiculo.marcaBean.codigoMarca" />
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idModeloVehiculo">Modelo: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap" colspan="3">
+				<s:textfield id="idModeloVehiculo" 
+					name="tramiteTraficoBean.vehiculo.modelo"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';"
+					size="30" maxlength="22"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="bastidor">Numero de Bastidor: <span class="naranja">*</span></label>
+			</td>
+				<td align="left" nowrap="nowrap">
+					<s:textfield id="idBastidor"
+						name="tramiteTraficoBean.vehiculo.bastidor"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						onkeypress="return validarBastidor(event);"
+						size="32" maxlength="17"/>
+				</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label for="idMatricula">Matrícula: <span class="naranja">*</span></label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:if test="%{tramiteTraficoBean.vehiculo.idVehiculo != null}">
+					<s:textfield name="tramiteTraficoBean.vehiculo.matricula"
+						id="idMatricula"
+						onblur="this.className='input2';"
+						onkeypress="return validarMatricula(event)"
+						onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)"
+						onfocus="this.className='inputfocus';"
+						onchange="limpiarFormularioVehiculoTransmision()"
+						size="9" maxlength="15"/>
+				</s:if>
+				<s:else>
+					<s:textfield name="tramiteTraficoBean.vehiculo.matricula"
+						id="idMatricula"
+						onblur="this.className='input2';"
+						onkeypress="return validarMatricula(event)"
+						onfocus="this.className='inputfocus';"
+						onChange="return validarMatricula_alPegar(event)" onmousemove="return validarMatricula_alPegar(event)"
+						size="9" maxlength="15"/>
+				</s:else>
+			</td>
+		</tr>
+
+		<tr><td>&nbsp;</td></tr>
+
+	</table>
+
+	<script>
+		deshabilitaBasti();
+
+		//var viaVehiculoTransmision = new BasicContentAssist(document.getElementById('viaVehiculo'), [], null, true);
+		//recargarComboMunicipios('idProvinciaVehiculo','idMunicipioVehiculo','municipioSeleccionadoVehiculo');
+		//recargarComboPueblos('idProvinciaVehiculo','municipioSeleccionadoVehiculo','idPuebloVehiculo', 'puebloSeleccionadoVehiculo');
+		//recargarNombreVias('idProvinciaVehiculo', 'municipioSeleccionadoVehiculo', 'tipoViaVehiculo','viaVehiculo', viaVehiculoTransmision);
+
+		var marcaVehiculoMatriculacion = new BasicContentAssist(document.getElementById('idMarcaVehiculo'), [], null, true);
+
+		var listasMarcas = new Array(marcaVehiculoMatriculacion);
+		var camposMarcas = new Array('idMarcaVehiculo');
+		var hiddenMarcas = new Array('marca');
+
+		for(var i = 0; i < camposMarcas.length; i++){
+			cargarListaMarcasVehiculo(listasMarcas[i], camposMarcas[i], hiddenMarcas[i], null);
+		}
+	</script>
+</div>

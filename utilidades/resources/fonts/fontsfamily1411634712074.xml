@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+
+   <fontFamily name="Courier">
+       <normal><![CDATA[fonts/4483.ttf]]></normal>
+       <bold><![CDATA[fonts/4486.ttf]]></bold>
+       <italic><![CDATA[fonts/4484.ttf]]></italic>
+       <boldItalic><![CDATA[fonts/4487.ttf]]></boldItalic>
+       <pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+       <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+   </fontFamily>
+
+
+   <fontFamily name="Times New Roman">
+       <normal><![CDATA[fonts/times.ttf]]></normal>
+       <pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+       <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+   </fontFamily>
+
+
+</fontFamilies>

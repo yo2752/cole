@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.dgt.es/vehiculos/servicio" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns="http://www.dgt.es/vehiculos/esquema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.dgt.es/vehiculos/servicio" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.dgt.es/vehiculos/esquema" xmlns="http://www.dgt.es/vehiculos/esquema" xmlns:ns="http://www.dgt.es/vehiculos/esquema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="SolicitudMatriculacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="InfoReg" nillable="true" type="InformacionRegistro"/>
+					</xs:sequence>
+					<xs:attribute name="Version" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="1.0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RespuestaMatriculacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Resultado">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="OK"/>
+									<xs:enumeration value="ERROR"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="NumeroExpedienteColegio" type="xs:string"/>
+						<xs:element minOccurs="0" name="JustificanteEntrada" type="xs:string"/>
+						<xs:element minOccurs="0" name="JustificanteSalida" type="xs:string"/>
+						<xs:element minOccurs="0" name="InfoMatricula">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element minOccurs="0" name="PC_Temporal_PDF" type="xs:string"/>
+									<xs:element minOccurs="0" name="Matricula">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element minOccurs="0" name="FechaMatriculacion">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="ListadoErrores">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="Error">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Codigo" type="xs:string"/>
+												<xs:element name="Descripcion" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="InformacionRegistro">
+				<xs:sequence>
+					<xs:element name="XMLSolicitud" nillable="true" type="xs:string"/>
+					<xs:element name="Documentos" nillable="true" type="ListaDeDocumentos"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ListaDeDocumentos">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Documento" nillable="true" type="Documento"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Documento">
+				<xs:sequence>
+					<xs:element name="Codigo" nillable="true" type="xs:string"/>
+					<xs:element name="Contenido" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="enviarSolicitudMatriculacionResponse">
+    <wsdl:part element="ns:RespuestaMatriculacion" name="respuestaSolicitudMatriculacion"/>
+  </wsdl:message>
+  <wsdl:message name="enviarSolicitudMatriculacionRequest">
+    <wsdl:part element="ns:SolicitudMatriculacion" name="entradaSolicitudMatriculacion"/>
+  </wsdl:message>
+  <wsdl:message name="enviarSolicitudMatriculacionError">
+  </wsdl:message>
+  <wsdl:portType name="MATEGE_Colegios_WS">
+    <wsdl:operation name="enviarSolicitudMatriculacion">
+      <wsdl:input message="tns:enviarSolicitudMatriculacionRequest" name="enviarSolicitudMatriculacionRequest"/>
+      <wsdl:output message="tns:enviarSolicitudMatriculacionResponse" name="enviarSolicitudMatriculacionResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MATEGE" type="tns:MATEGE_Colegios_WS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="enviarSolicitudMatriculacion">
+      <soap:operation soapAction="urn:enviarSolicitudMatriculacion" style="document"/>
+      <wsdl:input name="enviarSolicitudMatriculacionRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="enviarSolicitudMatriculacionResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MATEGE">
+    <wsdl:port binding="tns:MATEGE" name="MATEGE">
+      <soap:address location="https://apl-cpd.dgt.es:443/dgtMategeWS/services/MATEGE"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

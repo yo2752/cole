@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="http://www.gacn.es/CTIT/tipos"
+targetNamespace="http://www.gacn.es/CTIT/tipos"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="unqualified"
+attributeFormDefault="unqualified">
+	<!--Tipos complejos-->
+	<xs:complexType name="Datos_Remitente">
+		<xs:sequence>
+			<xs:element name="Nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="2"/>
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Apellidos" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Documento_Identificacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Numero" type="tipoDOI_Remitente"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Correo_Electronico" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Datos_Interesado">
+		<xs:sequence>
+			<xs:element name="Nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="2"/>
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Apellidos" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Documento_Identificacion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Numero" type="tipoDOI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Correo_Electronico" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Asunto">
+		<xs:sequence>
+			<xs:element name="Codigo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="BTETC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Descripcion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Solicitud de Baja Telemática por Exportación o Tránsito Comunitario"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Destino">
+		<xs:sequence>
+			<xs:element name="Codigo">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="101001"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Descripcion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="DGT - Vehículos"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Tipos simples-->
+	<xs:simpleType name="tipoDOItitular">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|[A-Z]\d{7}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoDOI">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoDOI_Remitente">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoFechaAAAAMMDD">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-2][0-9]{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTasa">
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTramite">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoMotivo">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoFirma">
+		<xs:restriction base="xs:base64Binary">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTextoLegal">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Este Colegio de Gestores Administrativos ha verificado que la solicitud de baja definitiva por Exportación o Tránsito
+Comunitario presentada cumple todas las obligaciones establecidas en el Reglamento General de Vehículos y resto de normativa aplicable, así como las
+derivadas de la aplicación de las Instrucciones de la Dirección General de Tráfico vigentes en el momento de la solicitud entre ellas la obligación de
+liquidar ante el departamento de Aduanas la legal exportación del vehículo en el caso de bajas definitivas por exportación (DUA)."/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoSI">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SI"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoOrganismo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DGT"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

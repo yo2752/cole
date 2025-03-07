@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+  	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.ContratoDto</class-a>
+		<class-b>org.gestoresmadrid.core.contrato.model.vo.ContratoVO</class-b>
+		<field>
+			<a>colegioDto</a>
+			<b>colegio</b>
+		</field>
+		<field>
+			<a>colegiadoDto</a>
+			<b>colegiado</b>
+		</field>
+		<field>
+			<a>jefaturaTraficoDto</a>
+			<b>jefaturaTrafico</b>
+		</field>
+		<field>
+			<a>aplicacionesDto</a>
+			<b>aplicaciones</b>
+		</field>
+		<field>
+			<a>provinciaDto</a>
+			<b>provincia</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.core.general.model.vo.ContratoUsuarioVO</class-a>
+		<class-b>org.gestoresmadrid.oegamConversiones.view.dto.ContratoDto</class-b>
+		<field>
+			<a>contrato.idContrato</a>
+			<b>idContrato</b>
+		</field>
+		<field>
+			<a>contrato.razonSocial</a>
+			<b>razonSocial</b>
+		</field>
+		<field>
+			<a>contrato.cif</a>
+			<b>cif</b>
+		</field>
+		<field>
+			<a>contrato.via</a>
+			<b>via</b>
+		</field>
+		<field>
+			<a>contrato.municipio.nombre</a>
+			<b>municipio.nombre</b>
+		</field>
+			<field>
+			<a>contrato.provincia.nombre</a>
+			<b>provinciaDto.nombre</b>
+		</field>
+	</mapping>
+	
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.ColegiadoDto</class-a>
+		<class-b>org.gestoresmadrid.core.general.model.vo.ColegiadoVO</class-b>
+		<field>
+			<a>usuario.idUsuario</a>
+			<b>idUsuario</b>
+		</field>
+		<field>
+			<a>usuario</a>
+			<b>usuario</b>
+		</field>
+	</mapping>
+	
+	<mapping map-null="false">
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.DireccionDto</class-a>
+		<class-b>org.gestoresmadrid.core.direccion.model.vo.DireccionVO</class-b>
+		<field>
+			<a>idTipoVia</a>
+			<b>idTipoVia</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.FuncionDto</class-a>
+		<class-b>org.gestoresmadrid.core.general.model.vo.FuncionVO</class-b>
+		<field>
+			<a>codigoAplicacion</a>
+			<b>id.codigoAplicacion</b>
+		</field>
+		<field>
+			<a>codigoFuncion</a>
+			<b>id.codigoFuncion</b>
+		</field>
+		<field>
+			<a>aplicacionDto</a>
+			<b>aplicacion</b>
+		</field>
+	</mapping>
+	
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.JefaturaTraficoDto</class-a>
+		<class-b>org.gestoresmadrid.core.trafico.model.vo.JefaturaTraficoVO</class-b>
+		<field>
+			<a>provinciaDto</a>
+			<b>provincia</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>org.gestoresmadrid.oegamConversiones.view.dto.MunicipioDto</class-a>
+		<class-b>org.gestoresmadrid.core.direccion.model.vo.MunicipioVO</class-b>
+		<field>
+			<a>idMunicipio</a>
+			<b>id.idMunicipio</b>
+		</field>
+		<field>
+			<a>idProvincia</a>
+			<b>id.idProvincia</b>
+		</field>
+	</mapping>
+	
+</mappings>

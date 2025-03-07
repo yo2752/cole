@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FORMATO_GA">
+    <xs:complexType>
+      <xs:all>
+        <xs:element minOccurs="1" maxOccurs="1" name="CABECERA">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DATOS_GESTORIA">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="NIF" type="tipoNIFr" />
+                    <xs:element name="NOMBRE" type="alfa50r" />
+                    <xs:element name="PROFESIONAL" type="numCol" />
+                    <xs:element name="PROVINCIA" type="tipoProvinciar" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="1" maxOccurs="1" name="MATRICULACION">
+          <xs:complexType>
+            <xs:all>
+              <xs:element minOccurs="0" name="NUMERO_EXPEDIENTE" type="alfa30" />
+              <xs:element name="NUMERO_DOCUMENTO" type="alfa30r" />
+              <xs:element name="NUMERO_PROFESIONAL" type="numCol" />
+              <xs:element name="FECHA_CREACION" type="tipoFecha" />
+              <xs:element name="FECHA_PRESENTACION" type="tipoFecha" />
+              <xs:element minOccurs="0" name="FECHA_DEVOLUCION" type="tipoFecha" />
+              <xs:element name="JEFATURA" type="tipoProvinciar" />
+              <xs:element name="SUCURSAL" type="tipoSucursal" />
+              <xs:element name="TIPO_TASA" type="tipoTasa" />
+              <xs:element name="TASA" type="ttasa" />
+              <xs:element minOccurs="0" name="PROCEDENCIA" type="alfa30" />
+              <xs:element minOccurs="0" name="OBSERVACIONES" type="alfa255" />
+              <xs:element name="NUMERO_COTITULARES" type="tipoCotitulares" />
+	      <xs:element name="DATOS_DESTINATARIO">
+                <xs:complexType>
+                  <xs:all>
+		    <xs:element name="RAZON_SOCIAL_DEST" type="alfa70" />
+                    <xs:element name="DNI_DEST" type="tipoNIF" />
+                    <xs:element name="APELLIDO1_DEST" type="alfa70" />
+                    <xs:element name="APELLIDO2_DEST" type="alfa26" />
+                    <xs:element name="NOMBRE_DEST" type="alfa18" />
+                    <xs:element name="SIGLAS_DIRECCION_DEST" type="tipoSiglas" />
+                    <xs:element name="NOMBRE_VIA_DIRECCION_DEST" type="alfa26" />
+                    <xs:element name="NUMERO_DIRECCION_DEST" type="alfa4" />
+                    <xs:element name="LETRA_DIRECCION_DEST" type="alfa2" />
+                    <xs:element name="ESCALERA_DIRECCION_DEST" type="alfa2" />
+                    <xs:element name="PISO_DIRECCION_DEST" type="alfa2" />
+                    <xs:element name="PUERTA_DIRECCION_DEST" type="alfa4" />
+                    <xs:element name="KM_DIRECCION_DEST" type="alfa3" />
+                    <xs:element name="BLOQUE_DIRECCION_DEST" type="alfa2" />
+                    <xs:element name="MUNICIPIO_DEST" type="alfa24" />
+                    <xs:element name="PUEBLO_DEST" type="alfa24" />
+                    <xs:element name="PROVINCIA_DEST" type="tipoProvincia" />
+                    <xs:element name="CP_DEST" type="tipoCP" />
+		    <xs:element name="HECTOMETRO_DIRECCION_DEST" type="alfa2" />
+		    <xs:element minOccurs="0" name="PAIS_DEST" type="alfa3" />
+                    <xs:element minOccurs="0" name="TELEFONO_DEST" type="alfa12" />
+                    <xs:element minOccurs="0" name="CORREO_ELECTRONICO_DEST" type="alfa50" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DATOS_TITULAR">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="RAZON_SOCIAL_TITULAR" type="alfa70" />
+                    <xs:element name="DNI_TITULAR" type="tipoNIFr" />
+                    <xs:element name="ANAGRAMA_TITULAR" type="alfa4" />
+                    <xs:element name="APELLIDO1_TITULAR" type="alfa70" />
+                    <xs:element name="APELLIDO2_TITULAR" type="alfa26" />
+                    <xs:element name="NOMBRE_TITULAR" type="alfa18" />
+                    <xs:element name="FECHA_NACIMIENTO_TITULAR" type="tipoFecha" />
+                    <xs:element name="SEXO_TITULAR" type="tipoSexor" />
+		    <xs:element name="AUTONOMO" type="tipoSiNor" />
+ 		    <xs:element name="CODIGO_IAE" type="alfa4" />
+		    <xs:element name="CAMBIO_DOMICILIO" type="tipoSiNo" />
+                    <xs:element name="SIGLAS_DIRECCION_TITULAR" type="tipoSiglasr" />
+                    <xs:element name="NOMBRE_VIA_DIRECCION_TITULAR" type="alfa26r" />
+                    <xs:element name="NUMERO_DIRECCION_TITULAR" type="alfa4" />
+                    <xs:element name="LETRA_DIRECCION_TITULAR" type="alfa2" />
+                    <xs:element name="ESCALERA_DIRECCION_TITULAR" type="alfa2" />
+                    <xs:element name="PISO_DIRECCION_TITULAR" type="alfa2" />
+                    <xs:element name="PUERTA_DIRECCION_TITULAR" type="alfa4" />
+                    <xs:element name="KM_DIRECCION_TITULAR" type="alfa3" />
+		    <xs:element name="HECTOMETRO_DIRECCION_TITULAR" type="alfa2" />
+                    <xs:element name="BLOQUE_DIRECCION_TITULAR" type="alfa5" />
+                    <xs:element name="MUNICIPIO_TITULAR" type="alfa24r" />
+                    <xs:element name="PUEBLO_TITULAR" type="alfa24" />
+                    <xs:element name="PROVINCIA_TITULAR" type="tipoProvinciar" />
+                    <xs:element name="CP_TITULAR" type="tipoCPr" />
+		    <xs:element minOccurs="0" name="PAIS_TITULAR" type="alfa3" />
+                    <xs:element minOccurs="0" name="TELEFONO_TITULAR" type="alfa12" />
+                    <xs:element minOccurs="0" name="CORREO_ELECTRONICO_TITULAR" type="alfa50" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DATOS_REPRESENTANTE_TITULAR">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="DNI_REP_TITULAR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="NOMBRE_REP_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="CONCEPTO_REP_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="ACREDITACION_REP_TITULAR" type="alfa70" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+	      <xs:element name="DATOS_ARRENDATARIO">
+                <xs:complexType>
+                  <xs:all>
+          	    <xs:element name="RAZON_SOCIAL_ARR" type="alfa70" />
+                    <xs:element name="DNI_ARR" type="tipoNIF" />
+                    <xs:element name="APELLIDO1_ARR" type="alfa70" />
+                    <xs:element name="APELLIDO2_ARR" type="alfa26" />
+                    <xs:element name="NOMBRE_ARR" type="alfa18" />
+                    <xs:element name="FECHA_NACIMIENTO_ARR" type="tipoFecha" />
+                    <xs:element name="SEXO_ARR" type="tipoSexo" />
+                    <xs:element name="SIGLAS_DIRECCION_ARR" type="tipoSiglas" />
+                    <xs:element name="NOMBRE_VIA_DIRECCION_ARR" type="alfa26" />
+                    <xs:element name="NUMERO_DIRECCION_ARR" type="alfa5" />
+                    <xs:element name="LETRA_DIRECCION_ARR" type="alfa5" />
+                    <xs:element name="ESCALERA_DIRECCION_ARR" type="alfa2" />
+                    <xs:element name="PISO_DIRECCION_ARR" type="alfa2" />
+                    <xs:element name="PUERTA_DIRECCION_ARR" type="alfa5" />
+                    <xs:element name="KM_DIRECCION_ARR" type="alfa3" />
+		    <xs:element name="HECTOMETRO_DIRECCION_ARR" type="alfa2" />
+                    <xs:element name="BLOQUE_DIRECCION_ARR" type="alfa5" />
+                    <xs:element name="MUNICIPIO_ARR" type="alfa24" />
+                    <xs:element name="PUEBLO_ARR" type="alfa24" />
+                    <xs:element name="PROVINCIA_ARR" type="tipoProvincia" />
+                    <xs:element name="CP_ARR" type="tipoCP" />
+		    <xs:element name="FECHA_INICIO_RENTING" type="tipoFecha" />
+		    <xs:element name="FECHA_FIN_RENTING" type="tipoFecha" />
+		    <xs:element name="HORA_INICIO_RENTING" type="tipoHora" />
+		    <xs:element name="HORA_FIN_RENTING" type="tipoHora" />
+		    <xs:element name="PAIS_ARR" type="alfa3" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="CONDUCTOR_HABITUAL">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="DNI_COND_HABITUAL" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="FECHA_INICIO_COND_HABITUAL" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="FECHA_FIN_COND_HABITUAL" type="tipoFecha" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="TUTOR">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="DNI_TUTOR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="FECHA_INICIO_TUTOR" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="CODIGO_TRAMITE" type="alfa70" />
+                    <xs:element minOccurs="0" name="TIPO_TUTELA" type="alfa1" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_PRESENTADOR">
+                <xs:complexType>
+                  <xs:all>
+	            <xs:element minOccurs="0" name="RAZON_SOCIAL_PRESENTADOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="DNI_PRESENTADOR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="APELLIDO1_PRESENTADOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="APELLIDO2_PRESENTADOR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NOMBRE_PRESENTADOR" type="alfa18" />
+                    <xs:element minOccurs="0" name="SIGLAS_DIRECCION_PRESENTADOR" type="tipoSiglas" />
+                    <xs:element minOccurs="0" name="NOMBRE_VIA_DIRECCION_PRESENTADOR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NUMERO_DIRECCION_PRESENTADOR" type="alfa4" />
+                    <xs:element minOccurs="0" name="LETRA_DIRECCION_PRESENTADOR" type="alfa2" />
+                    <xs:element minOccurs="0" name="ESCALERA_DIRECCION_PRESENTADOR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PISO_DIRECCION_PRESENTADOR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PUERTA_DIRECCION_PRESENTADOR" type="alfa4" />
+                    <xs:element minOccurs="0" name="KM_DIRECCION_PRESENTADOR" type="alfa3" />
+		    <xs:element minOccurs="0" name="HECTOMETRO_DIRECCION_PRESENTADOR" type="alfa2" />
+                    <xs:element minOccurs="0" name="BLOQUE_DIRECCION_PRESENTADOR" type="alfa2" />
+                    <xs:element minOccurs="0" name="MUNICIPIO_PRESENTADOR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PROVINCIA_PRESENTADOR" type="tipoProvincia" />
+                    <xs:element minOccurs="0" name="CP_PRESENTADOR" type="tipoCP" />
+                    <xs:element minOccurs="0" name="TELEFONO_PRESENTADOR" type="alfa12" />
+                    <xs:element minOccurs="0" name="CORREO_ELECTRONICO_PRESENTADOR" type="alfa50" />
+		    <xs:element name="PAIS_PRESENTADOR" type="alfa3" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_SEGUNDO_TITULAR">
+                <xs:complexType>
+                  <xs:all>
+	            <xs:element minOccurs="0" name="RAZON_SOCIAL_SEGUNDO_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="DNI_SEGUNDO_TITULAR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="APELLIDO1_SEGUNDO_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="APELLIDO2_SEGUNDO_TITULAR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NOMBRE_SEGUNDO_TITULAR" type="alfa18" />
+                    <xs:element minOccurs="0" name="FECHA_NACIMIENTO_SEGUNDO_TITULAR" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="SEXO_SEGUNDO_TITULAR" type="tipoSexo" />
+ 		    <xs:element minOccurs="0" name="CAMBIO_SEGUNDO_DOMICILIO" type="tipoSiNo" />
+                    <xs:element minOccurs="0" name="SIGLAS_DIRECCION_SEGUNDO_TITULAR" type="tipoSiglas" />
+                    <xs:element minOccurs="0" name="NOMBRE_VIA_DIRECCION_SEGUNDO_TITULAR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NUMERO_DIRECCION_SEGUNDO_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="LETRA_DIRECCION_SEGUNDO_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="ESCALERA_DIRECCION_SEGUNDO_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PISO_DIRECCION_SEGUNDO_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PUERTA_DIRECCION_SEGUNDO_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="KM_DIRECCION_SEGUNDO_TITULAR" type="alfa3" />
+                    <xs:element minOccurs="0" name="HECTOMETRO_DIRECCION_SEGUNDO_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="BLOQUE_DIRECCION_SEGUNDO_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="MUNICIPIO_SEGUNDO_TITULAR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PUEBLO_SEGUNDO_TITULAR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PROVINCIA_SEGUNDO_TITULAR" type="tipoProvincia" />
+                    <xs:element minOccurs="0" name="CP_SEGUNDO_TITULAR" type="tipoCP" />
+		    <xs:element minOccurs="0" name="PAIS_SEGUNDO_TITULAR" type="alfa3" />
+                    <xs:element minOccurs="0" name="TELEFONO_SEGUNDO_TITULAR" type="alfa12" />
+                    <xs:element minOccurs="0" name="CORREO_ELECTRONICO_SEGUNDO_TITULAR" type="alfa50" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_TERCER_TITULAR">
+                <xs:complexType>
+                  <xs:all>
+		    <xs:element minOccurs="0" name="RAZON_SOCIAL_TERCER_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="DNI_TERCER_TITULAR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="APELLIDO1_TERCER_TITULAR" type="alfa70" />
+                    <xs:element minOccurs="0" name="APELLIDO2_TERCER_TITULAR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NOMBRE_TERCER_TITULAR" type="alfa18" />
+                    <xs:element minOccurs="0" name="FECHA_NACIMIENTO_TERCER_TITULAR" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="SEXO_TERCER_TITULAR" type="tipoSexo" />
+                    <xs:element minOccurs="0" name="SIGLAS_DIRECCION_TERCER_TITULAR" type="tipoSiglas" />
+                    <xs:element minOccurs="0" name="NOMBRE_VIA_DIRECCION_TERCER_TITULAR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NUMERO_DIRECCION_TERCER_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="LETRA_DIRECCION_TERCER_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="ESCALERA_DIRECCION_TERCER_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PISO_DIRECCION_TERCER_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="PUERTA_DIRECCION_TERCER_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="KM_DIRECCION_TERCER_TITULAR" type="alfa3" />
+                    <xs:element minOccurs="0" name="HECTOMETRO_DIRECCION_TERCER_TITULAR" type="alfa2" />
+                    <xs:element minOccurs="0" name="BLOQUE_DIRECCION_TERCER_TITULAR" type="alfa5" />
+                    <xs:element minOccurs="0" name="MUNICIPIO_TERCER_TITULAR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PUEBLO_TERCER_TITULAR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PROVINCIA_TERCER_TITULAR" type="tipoProvincia" />
+                    <xs:element minOccurs="0" name="CP_TERCER_TITULAR" type="tipoCP" />
+		    <xs:element minOccurs="0" name="PAIS_TERCER_TITULAR" type="alfa3" />
+                    <xs:element minOccurs="0" name="TELEFONO_TERCER_TITULAR" type="alfa12" />
+                    <xs:element minOccurs="0" name="CORREO_ELECTRONICO_TERCER_TITULAR" type="alfa50" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_VENDEDOR">
+                <xs:complexType>
+                  <xs:all>
+		    <xs:element minOccurs="0" name="RAZON_SOCIAL_VENDEDOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="DNI_VENDEDOR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="APELLIDO1_VENDEDOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="APELLIDO2_VENDEDOR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NOMBRE_VENDEDOR" type="alfa18" />
+                    <xs:element minOccurs="0" name="FECHA_NACIMIENTO_VENDEDOR" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="SEXO_VENDEDOR" type="tipoSexo" />
+                    <xs:element minOccurs="0" name="NOMBRE_VIA_DIRECCION_VENDEDOR" type="alfa26" />
+                    <xs:element minOccurs="0" name="MUNICIPIO_VENDEDOR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PUEBLO_VENDEDOR" type="alfa24" />
+                    <xs:element minOccurs="0" name="PROVINCIA_VENDEDOR" type="tipoProvincia" />
+                    <xs:element minOccurs="0" name="CP_VENDEDOR" type="tipoCP" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_IMPORTADOR">
+                <xs:complexType>
+                  <xs:all>
+		    <xs:element minOccurs="0" name="RAZON_SOCIAL_IMPORTADOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="DNI_IMPORTADOR" type="tipoNIF" />
+                    <xs:element minOccurs="0" name="APELLIDO1_IMPORTADOR" type="alfa70" />
+                    <xs:element minOccurs="0" name="APELLIDO2_IMPORTADOR" type="alfa26" />
+                    <xs:element minOccurs="0" name="NOMBRE_IMPORTADOR" type="alfa18" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DATOS_VEHICULO">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="MATRICULA" type="alfa9" />
+                    <xs:element name="FECHA_MATRICULACION" type="tipoFechar" />
+                    <xs:element name="FECHA_PRIMERA_MATRICULACION" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="FECHA_MATRICULA_TURISTICA" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="MATRICULA_DIPLOMATICA" type="tipoSiNo" />
+                    <xs:element minOccurs="0" name="MATRICULA_AYUNTAMIENTO" type="alfa12" />
+                    <xs:element name="SIGLAS_DIRECCION_VEHICULO" type="tipoSiglas" />
+                    <xs:element name="DOMICILIO_VEHICULO" type="alfa26" />
+                    <xs:element name="NUMERO_DIRECCION_VEHICULO" type="alfa4" />
+                    <xs:element name="KM_DIRECCION_VEHICULO" type="alfa2" />
+		    <xs:element name="HECTOMETRO_DIRECCION_VEHICULO" type="alfa2" />
+                    <xs:element name="BLOQUE_DIRECCION_VEHICULO" type="alfa2" />
+		    <xs:element name="LETRA_DIRECCION_VEHICULO" type="alfa2" />
+                    <xs:element name="ESCALERA_DIRECCION_VEHICULO" type="alfa2" />
+                    <xs:element name="PISO_DIRECCION_VEHICULO" type="alfa2" />
+                    <xs:element name="PUERTA_DIRECCION_VEHICULO" type="alfa4" />
+                    <xs:element name="MUNICIPIO_VEHICULO" type="alfa24" />
+                    <xs:element name="PUEBLO_VEHICULO" type="alfa24" />
+                    <xs:element name="PROVINCIA_VEHICULO" type="tipoProvincia" />
+                    <xs:element name="CP_VEHICULO" type="tipoCP" />
+		    <xs:element name="PAIS_VEHICULO" type="tipoPais" />
+                    <xs:element name="CODIGO_ITV" type="alfa8c" />
+                    <xs:element name="FECHA_ITV" type="tipoFecha" />
+                    <xs:element name="TIPO_ITV" type="alfa25r" />
+                    <xs:element name="VARIANTE_ITV" type="alfa25" />
+                    <xs:element name="VERSION_ITV" type="alfa35" />
+                    <xs:element name="NUMERO_HOMOLOGACION_ITV" type="alfa25" />
+                    <xs:element name="MARCA" type="alfa23r" />
+                    <xs:element name="MODELO" type="alfa22r" />
+                    <xs:element name="NUMERO_BASTIDOR" type="tipoBastidor" />
+                    <xs:element name="COLOR" type="tipoColor" />
+                    <xs:element name="CARBURANTE" type="tipoCarburante" />
+                    <xs:element name="POTENCIA_FISCAL" type="num5" />
+                    <xs:element name="POTENCIA_NETA" type="num5" />
+                    <xs:element name="CILINDRADA" type="num5" />
+                    <xs:element name="PLAZAS" type="num3" />
+                    <xs:element name="PLAZAS_PIE" type="num3" />
+                    <xs:element name="TARA" type="num6" />
+                    <xs:element name="MASA" type="num6" />
+                    <xs:element minOccurs="0" name="MASA_SERVICIO" type="alfa6" />
+                    <xs:element name="MASA_MAXIMA_ADMISIBLE" type="num6" />
+                    <xs:element name="RELACION_POTENCIA_PESO" type="num7" />
+                    <xs:element name="EXCESO_PESO" type="tipoSiNo" />
+                    <xs:element name="TIPO_VEHICULO" type="tipoVehiculo" />
+                    <xs:element name="SERVICIO_DESTINO" type="tipoServicio" />
+                    <xs:element name="PROCEDENCIA_VEHICULO" type="tipoProcedencia" />
+                    <xs:element name="CLASIFICACION_VEHICULO" type="alfa40" />
+                    <xs:element name="CLASIFICACION" type="alfa4" />
+                    <xs:element name="NUEVO" type="tipoSiNor" />
+                    <xs:element name="USADO" type="tipoSiNor" />
+                    <xs:element name="LUGAR_ADQUISICION" type="tipoLugarAdquisicion" />
+                    <xs:element name="LUGAR_MATRICULACION" type="tipoLugarMatriculacion" />
+                    <xs:element name="CLASIFICACION_DIRECTIVA_CEE" type="alfa2" />
+                    <xs:element name="EMISION_CO2" type="num3" />
+                    <xs:element name="EPIGRAFE" type="alfa2" />
+                    <xs:element name="KM" type="num7" />
+		    <xs:element minOccurs="0" name="NUMERO_RUEDAS" type="num2r" />
+		    <xs:element minOccurs="0" name="CUENTA_HORAS" type="alfa7" />
+                    <xs:element name="NUMERO_SERIE_ITV" type="alfa12" />
+                    <xs:element name="TIPO_NUMERO_SERIE_ITV" type="alfa1" />
+                    <xs:element minOccurs="0" name="OBSERVACIONES_VEHICULO" type="alfa2" />
+		    <xs:element name="RENTING" type="tipoSiNor" />
+		    <xs:element name="EEFF" type="tipoSiNor" />
+		    <xs:element minOccurs="0" name="NIVE" type="alfa32r" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="DATOS_LIMITACION">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="TIPO_LIMITACION" type="alfa1" />
+                    <xs:element minOccurs="0" name="FECHA_LIMITACION" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="NUMERO_REGISTRO_LIMITACION" type="num10" />
+                    <xs:element minOccurs="0" name="FINANCIERA_LIMITACION" type="alfa30" />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+	      <xs:element minOccurs="0" name="PENDIENTE_CARGA">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="TIPO_CARGA" type="tipoCarga"  />
+                    <xs:element minOccurs="0" name="FECHA_CARGA" type="tipoFecha" />
+                    <xs:element minOccurs="0" name="NUMERO_REGISTRO_CARGA" type="num10" />
+                    <xs:element minOccurs="0" name="FINANCIERA_CARGA" type="alfa30"  />
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DATOS_IMPUESTOS">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element minOccurs="0" name="PAGO_EFECTIVO" type="tipoSiNo" />
+                    <xs:element minOccurs="0" name="PAGO_POR_CUENTA" type="tipoSiNo" />
+                    <xs:element minOccurs="0" name="NUMERO_CUENTA" type="num20" />
+                    <xs:element name="FECHA_PRESENTACION_IMPUESTO" type="tipoFecha" />
+                    <xs:element name="CODIGO_ELECTRONICO_AEAT" type="alfa8c" />
+                    <xs:element minOccurs="0" name="CODIGO_DELEGACION" type="alfa5" />
+                    <xs:element name="DATOS_05_06">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="MOTIVO_EXENCION_05" type="tipo05" />
+                          <xs:element name="MOTIVO_EXENCION_06" type="tipo06" />
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DATOS_576">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="EXENTO_576" type="tipoSiNo" />
+                          <xs:element minOccurs="0" name="REDUCIDO_576" type="tipoSiNo" />
+                          <xs:element name="MOTIVO_EXENCION_576" type="alfa3" />
+                          <xs:element minOccurs="0" name="BASE_IMPONIBLE_576" type="num11" />
+                          <xs:element minOccurs="0" name="BASE_IMPONIBLE_REDUCIDA_576" type="num11" />
+                          <xs:element minOccurs="0" name="TIPO_GRAVAMEN_576" type="num5" />
+                          <xs:element minOccurs="0" name="DEDUCCION_LINEAL_576" type="num11" />
+                          <xs:element minOccurs="0" name="CUOTA_576" type="num11" />
+                          <xs:element minOccurs="0" name="CUOTA_INGRESAR_576" type="num11" />
+                          <xs:element minOccurs="0" name="A_DEDUCIR_576" type="num11" />
+                          <xs:element minOccurs="0" name="IMPORTE_TOTAL_576" type="num11" />
+                          <xs:element minOccurs="0" name="DECLARACION_COMPLEMENTARIA_576" type="alfa13" />
+                          <xs:element minOccurs="0" name="MATRICULA_PREVER_576" type="alfa9" />
+                          <xs:element minOccurs="0" name="TIPO_PREVER_576" type="alfa50" />
+                          <xs:element minOccurs="0" name="MARCA_PREVER_576" type="alfa23" />
+                          <xs:element minOccurs="0" name="MODELO_PREVER_576" type="alfa22" />
+                          <xs:element minOccurs="0" name="NUMERO_BASTIDOR_PREVER_576" type="alfa21" />
+                          <xs:element minOccurs="0" name="CLASIFICACION_PREVER_576" type="alfa50" />
+                          <xs:element minOccurs="0" name="CAUSA_HECHO_IMPONIBLE" type="alfa1" />
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="DATOS_NRC">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element minOccurs="0" name="CODIGO_NRC" type="alfa22" />
+                          <xs:element minOccurs="0" name="IMPORTE_NRC" type="num11" />
+                          <xs:element minOccurs="0" name="FECHA_OPERACION_NRC" type="tipoFecha" />
+                          <xs:element minOccurs="0" name="CODIGO_ERROR_NRC" type="alfa13" />
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="DATOS_IMVTM">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element minOccurs="0" name="ORGANISMO_IMVTM" type="tipoOrganismoImvtm" />
+                          <xs:element minOccurs="0" name="MUNICIPIO_IMVTM" type="alfa24" />
+                          <xs:element minOccurs="0" name="PROVINCIA_IMVTM" type="tipoProvincia" />
+                          <xs:element minOccurs="0" name="FECHA_PROCESO_IMVTM" type="tipoFecha" />
+                          <xs:element minOccurs="0" name="FECHA_ALTA_AUTOLIQUIDACION_IMVTM" type="tipoFecha" />
+                          <xs:element minOccurs="0" name="ID_AUTOLIQUIDACION_IMVTM" type="alfa50" />
+                          <xs:element minOccurs="0" name="CODIGO_BENEFICIOS_FISCALES_IMVTM" type="tipoBeneficioFiscal" />
+                          <xs:element minOccurs="0" name="PORCENTAJE_BENEFICIO_FISCAL_IMVTM" type="num5" />
+                          <xs:element minOccurs="0" name="TARIFA_IMVTM" type="alfa50" />
+                          <xs:element minOccurs="0" name="CUOTA_ANUAL_IMVTM" type="num5" />
+                          <xs:element minOccurs="0" name="CUOTA_PERIODO_IMVTM" type="num5" />
+                          <xs:element minOccurs="0" name="CUOTA_A_PAGAR_IMVTM" type="num5" />
+                          <xs:element minOccurs="0" name="NUMERO_CONTROL_PAGO_IMVTM" type="num22" />
+                          <xs:element minOccurs="0" name="EMISORA_RAFAGA_COBRATORIA_IMVTM" type="num20" />
+                          <xs:element minOccurs="0" name="REF_RAFAGA_COBRATORIA_IMVTM" type="num20" />
+                          <xs:element minOccurs="0" name="ID_RAFAGA_COBRATORIA_IMVTM" type="num20" />
+                          <xs:element minOccurs="0" name="IMPORTE_RAFAGA_COBRATORIA_IMVTM" type="num20" />
+                          <xs:element minOccurs="0" name="NUMERO_CUENTA_IMVTM" type="xs:string" />
+                          <xs:element minOccurs="0" name="ERROR_IMVTM" type="xs:string" />
+                          <xs:element minOccurs="0" name="FORMA_PAGO" type="tipoFormaPago" />
+                          <xs:element minOccurs="0" name="DNI_TITULAR_CUENTA" type="tipoNIF" />
+                          <xs:element minOccurs="0" name="NOMBRE_TITULAR_CUENTA" type="alfa70" />
+                          <xs:element minOccurs="0" name="NUMERO_TARJETA" type="alfa16" />
+                          <xs:element minOccurs="0" name="NOMBRE_TITULAR_TARJETA" type="alfa70" />
+                          <xs:element minOccurs="0" name="FECHA_CADUCIDAD_TARJETA" type="alfa4" />
+                          <xs:element minOccurs="0" name="DATOS_PRESENTADORIMVTM">
+                            <xs:complexType>
+                              <xs:all>
+				<xs:element minOccurs="0" name="RAZON_SOCIAL_PRESENTADORIMVTM" type="alfa70" />
+                                <xs:element minOccurs="0" name="DNI_PRESENTADORIMVTM" type="tipoNIF" />
+                                <xs:element minOccurs="0" name="APELLIDO1_PRESENTADORIMVTM" type="alfa70" />
+                                <xs:element minOccurs="0" name="APELLIDO2_PRESENTADORIMVTM" type="alfa26" />
+                                <xs:element minOccurs="0" name="NOMBRE_PRESENTADORIMVTM" type="alfa18" />
+                                <xs:element minOccurs="0" name="FECHA_NACIMIENTO_PRESENTADORIMVTM" type="tipoFecha" />
+                                <xs:element minOccurs="0" name="SEXO_PRESENTADORIMVTM" type="tipoSexo" />
+                                <xs:element minOccurs="0" name="SIGLAS_DIRECCION_PRESENTADORIMVTM" type="tipoSiglas" />
+                                <xs:element minOccurs="0" name="NOMBRE_VIA_DIRECCION_PRESENTADORIMVTM" type="alfa26" />
+                                <xs:element minOccurs="0" name="NUMERO_DIRECCION_PRESENTADORIMVTM" type="alfa5" />
+                                <xs:element minOccurs="0" name="LETRA_DIRECCION_PRESENTADORIMVTM" type="alfa5" />
+                                <xs:element minOccurs="0" name="ESCALERA_DIRECCION_PRESENTADORIMVTM" type="alfa2" />
+                                <xs:element minOccurs="0" name="PISO_DIRECCION_PRESENTADORIMVTM" type="alfa2" />
+                                <xs:element minOccurs="0" name="PUERTA_DIRECCION_PRESENTADORIMVTM" type="alfa5" />
+                                <xs:element minOccurs="0" name="KM_DIRECCION_PRESENTADORIMVTM" type="alfa3" />
+                                <xs:element minOccurs="0" name="BLOQUE_DIRECCION_PRESENTADORIMVTM" type="alfa5" />
+				<xs:element name="HECTOMETRO_DIRECCION_PRESENTADORIMVTM" type="alfa2" />
+                                <xs:element minOccurs="0" name="PUEBLO_PRESENTADORIMVTM" type="alfa24" />
+                                <xs:element minOccurs="0" name="MUNICIPIO_PRESENTADORIMVTM" type="alfa24" />
+                                <xs:element minOccurs="0" name="PROVINCIA_PRESENTADORIMVTM" type="tipoProvincia" />
+                                <xs:element minOccurs="0" name="CP_PRESENTADORIMVTM" type="tipoCP" />
+				<xs:element minOccurs="0" name="PAIS_PRESENTADORIMVTM" type="alfa3" />
+                                <xs:element minOccurs="0" name="TELEFONO_PRESENTADORIMVTM" type="alfa12" />
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+            <xs:attribute name="ProcesarMatriculacion" type="xs:unsignedByte" use="optional" />
+            <xs:attribute name="Procesar576" type="xs:unsignedByte" use="optional" />
+            <xs:attribute name="Procesar05_06" type="xs:unsignedByte" use="optional" />
+            <xs:attribute name="ProcesarIMVTM" type="xs:unsignedByte" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="FechaCreacion" type="xs:string" use="optional" />
+      <xs:attribute name="Plataforma" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+
+
+  <xs:simpleType name="alfa1">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa2">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa3">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa4">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa5">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa6">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa7">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa8c">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{8}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa8cr">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa9">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa12">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa13">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa16">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa18">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa21">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="21"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa21r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="21"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa22">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="22"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa22r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="22"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa23">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="23"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa23r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="23"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa24">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa24r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa25">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa25r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa26">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="26"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa26r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="26"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa30">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa30r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa32r">
+<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{1,32}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa35">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa40">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa50r">
+		<xs:restriction base="xs:string">
+ 		    <xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa70">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa70r">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="alfa255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num2r">
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="2"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num3">
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="3"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num5">
+<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{5}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num6">
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="6"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num7">
+<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{7}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{10}|.{0}"/>
+		</xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="num11">
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="11"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="num20">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{20}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	  <xs:simpleType name="num22">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{22}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+  <xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|.{0}"/>
+		</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipoNIFr">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}"/>
+		</xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="numCol">
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="5"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoCP">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{3,5}|.{0}"/>
+		</xs:restriction>
+		
+	</xs:simpleType>
+  <xs:simpleType name="tipoCPr">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{3,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoProvincia">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="AB"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AV"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="PM"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="BU"/>
+			<xs:enumeration value="CC"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CS"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="CU"/>
+			<xs:enumeration value="GE"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="GU"/>
+			<xs:enumeration value="SS"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="HU"/>
+			<xs:enumeration value="J"/>
+			<xs:enumeration value="LE"/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="LO"/>
+			<xs:enumeration value="LU"/>
+			<xs:enumeration value="M"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="MU"/>
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="OR"/>
+			<xs:enumeration value="O"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="GC"/>
+			<xs:enumeration value="PO"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="TF"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="SG"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="TE"/>
+			<xs:enumeration value="TO"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="VA"/>
+			<xs:enumeration value="BI"/>
+			<xs:enumeration value="ZA"/>
+			<xs:enumeration value="Z"/>
+			<xs:enumeration value="CE"/>
+			<xs:enumeration value="ML"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoProvinciar">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="AB"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AV"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="PM"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="BU"/>
+			<xs:enumeration value="CC"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CS"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="CU"/>
+			<xs:enumeration value="GE"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="GU"/>
+			<xs:enumeration value="SS"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="HU"/>
+			<xs:enumeration value="J"/>
+			<xs:enumeration value="LE"/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="LO"/>
+			<xs:enumeration value="LU"/>
+			<xs:enumeration value="M"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="MU"/>
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="OR"/>
+			<xs:enumeration value="O"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="GC"/>
+			<xs:enumeration value="PO"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="TF"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="SG"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="TE"/>
+			<xs:enumeration value="TO"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="VA"/>
+			<xs:enumeration value="BI"/>
+			<xs:enumeration value="ZA"/>
+			<xs:enumeration value="Z"/>
+			<xs:enumeration value="CE"/>
+			<xs:enumeration value="ML"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoFecha">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|[1-2][0-9]|30|31)/(0[1-9]|10|11|12)/([1-9][0-9][0-9][0-9])|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoFechar">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|[1-2][0-9]|30|31)/(0[1-9]|10|11|12)/([1-9][0-9][0-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSucursal">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoCarga">
+		<xs:restriction base="xs:string">
+		<xs:enumeration value=""/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="R"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoTasa">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="ttasa">
+<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoCotitulares">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSexo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSexor">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="H"/>
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSiglas">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="57"/>
+			<xs:enumeration value="58"/>
+			<xs:enumeration value="59"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSiglasr">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="57"/>
+			<xs:enumeration value="58"/>
+			<xs:enumeration value="59"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+<xs:simpleType name="tipoHora">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(([01]\d)|(2[0-3]))[0-5]\d|.{0}"/>
+        </xs:restriction>
+</xs:simpleType>
+  <xs:simpleType name="tipoBastidor">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="21"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoSiNo">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="Si"/>
+			<xs:enumeration value="No"/>
+		</xs:restriction>
+	</xs:simpleType>
+ <xs:simpleType name="tipoSiNor">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="Si"/>
+			<xs:enumeration value="No"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoColor">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="AM"/>
+			<xs:enumeration value="AZ"/>
+			<xs:enumeration value="BE"/>
+			<xs:enumeration value="BL"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="NE"/>
+			<xs:enumeration value="RO"/>
+			<xs:enumeration value="RS"/>
+			<xs:enumeration value="VE"/>
+			<xs:enumeration value="VI"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoCarburante">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="GA"/>
+			<xs:enumeration value="GO"/>
+			<xs:enumeration value="EL"/>
+			<xs:enumeration value="BU"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="OT"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoVehiculo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="00"/>
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="0A"/>
+			<xs:enumeration value="0B"/>
+			<xs:enumeration value="0C"/>
+			<xs:enumeration value="0D"/>
+			<xs:enumeration value="0E"/>
+			<xs:enumeration value="0F"/>
+			<xs:enumeration value="0G"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="1A"/>
+			<xs:enumeration value="1C"/>
+			<xs:enumeration value="1D"/>
+			<xs:enumeration value="1E"/>
+			<xs:enumeration value="1F"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="70"/>
+			<xs:enumeration value="71"/>
+			<xs:enumeration value="72"/>
+			<xs:enumeration value="73"/>
+			<xs:enumeration value="74"/>
+			<xs:enumeration value="75"/>
+			<xs:enumeration value="76"/>
+			<xs:enumeration value="77"/>
+			<xs:enumeration value="78"/>
+			<xs:enumeration value="79"/>
+			<xs:enumeration value="7A"/>
+			<xs:enumeration value="7B"/>
+			<xs:enumeration value="7C"/>
+			<xs:enumeration value="7D"/>
+			<xs:enumeration value="7E"/>
+			<xs:enumeration value="7F"/>
+			<xs:enumeration value="7G"/>
+			<xs:enumeration value="7H"/>
+			<xs:enumeration value="7I"/>
+			<xs:enumeration value="7J"/>
+			<xs:enumeration value="7K"/>
+			<xs:enumeration value="80"/>
+			<xs:enumeration value="81"/>
+			<xs:enumeration value="82"/>
+			<xs:enumeration value="90"/>
+			<xs:enumeration value="91"/>
+			<xs:enumeration value="92"/>
+			<xs:enumeration value="R0"/>
+			<xs:enumeration value="R1"/>
+			<xs:enumeration value="R2"/>
+			<xs:enumeration value="R3"/>
+			<xs:enumeration value="R4"/>
+			<xs:enumeration value="R5"/>
+			<xs:enumeration value="R6"/>
+			<xs:enumeration value="R7"/>
+			<xs:enumeration value="R8"/>
+			<xs:enumeration value="R9"/>
+			<xs:enumeration value="RA"/>
+			<xs:enumeration value="RB"/>
+			<xs:enumeration value="RC"/>
+			<xs:enumeration value="RD"/>
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="RF"/>
+			<xs:enumeration value="RH"/>
+			<xs:enumeration value="SH"/>
+			<xs:enumeration value="S0"/>
+			<xs:enumeration value="S1"/>
+			<xs:enumeration value="S2"/>
+			<xs:enumeration value="S3"/>
+			<xs:enumeration value="S4"/>
+			<xs:enumeration value="S5"/>
+			<xs:enumeration value="S6"/>
+			<xs:enumeration value="S7"/>
+			<xs:enumeration value="S8"/>
+			<xs:enumeration value="S9"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="SB"/>
+			<xs:enumeration value="SC"/>
+			<xs:enumeration value="SD"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="SF"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoServicio">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-B][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoProcedencia">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-3]"/>
+		</xs:restriction>
+	</xs:simpleType>	
+  <xs:simpleType name="tipoLugarAdquisicion">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-3]|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoLugarAdquisicionr">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-3]"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoLugarMatriculacion">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-5]|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoPais">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="ESP"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipo05">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="NS1"/>
+			<xs:enumeration value="NS2"/>
+			<xs:enumeration value="ER1"/>
+			<xs:enumeration value="ER2"/>
+			<xs:enumeration value="ER3"/>
+			<xs:enumeration value="ER4"/>
+			<xs:enumeration value="RE1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipo06">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="NS1"/>
+			<xs:enumeration value="NS2"/>
+			<xs:enumeration value="NS4"/>
+			<xs:enumeration value="NS5"/>
+			<xs:enumeration value="NS6"/>
+			<xs:enumeration value="NS7"/>
+			<xs:enumeration value="ET4"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoOrganismoImvtm">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="tipoOrganismoImvtmr">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="tipoBeneficioFiscal">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value=""/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoFormaPago">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="tipoFormaPagor"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:simpleType name="tipoFormaPagor">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="T"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

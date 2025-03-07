@@ -1,0 +1,94 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<table class="subtitulo">
+	<tr>
+		<td>Seleccione campos a clonar</td>
+	</tr>
+	</table>
+		<table class="tablaformbasica" >
+			<tr>
+				<td>
+					<input type="checkbox" id="checkTodo" style="display:inline-block" onClick="marcarAnularTodo()"/>
+					<label >Seleccionar todo</label>
+				</td>
+				</tr>
+				<tr>
+					<td>
+						<s:checkbox cssStyle="display:inline-block" id="checkRefPropia" name="clonarTramitesDto.result.matriculacion.checkRefPropia" />
+						<label >Referencia propia</label>
+					</td>
+				</tr>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaTitular">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaTitular"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkTitular" name="clonarTramitesDto.result.matriculacion.checkTitular" />
+							<label >Titular</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaVehiculo">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaVehiculo"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkVehiculo" name="clonarTramitesDto.result.matriculacion.checkVehiculo"/>
+							<label >Vehiculo (Excepto Bastidor)</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaConductorHabitual">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaConductorHabitual"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkCondHabitual" name="clonarTramitesDto.result.matriculacion.checkConductorHabitual" />
+							<label >Conductor Habitual</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaRenting">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaRenting"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display: inline-block" id="checkRenting" name="clonarTramitesDto.result.matriculacion.checkRenting"></s:checkbox>
+							<label >Renting</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaModelo576">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaModelo576"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkModelo576" name="clonarTramitesDto.result.matriculacion.checkModelo576" />
+							<label >Modelo 576, 05 y 06</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaPagoPresentacion">
+				<s:hidden name="clonarTramitesDto.result.matriculacion.pestaniaPagoPresentacion"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkPagoPresentacion" name="clonarTramitesDto.result.matriculacion.checkPagoPresentacion" />
+							<label >Pago / Presentaci&oacute;n</label>
+						</td>
+					</tr>
+				</s:if>
+				<s:if test="clonarTramitesDto.result.matriculacion.pestaniaLiberarEEFF">
+				<s:hidden  name="clonarTramitesDto.result.matriculacion.pestaniaLiberarEEFF"/>
+					<tr>
+						<td>
+							<s:checkbox cssStyle="display:inline-block" id="checkLiberarEEFF" name="clonarTramitesDto.result.matriculacion.checkLiberarEEFF" />
+							<label >Liberar EEFF</label>
+						</td>
+					</tr>
+				</s:if>
+				<tr>
+					<td>
+						<label>Numero de copias:</label> 
+						<s:select cssStyle="display:inline-block" id="idNumCopias" name="clonarTramitesDto.result.numCopias" list="#{1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10}">	</s:select>
+					</td>
+				</tr>
+				
+				
+				
+				
+			</table>

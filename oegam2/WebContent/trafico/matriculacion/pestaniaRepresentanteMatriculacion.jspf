@@ -1,0 +1,702 @@
+  <%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contentTabs" id="Representante" style="width: 760px; border: none; background-color: rgb(235, 237, 235);">
+<div class="contenido">			
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Datos del Representante
+			<s:set var="identificacion" value="traficoTramiteMatriculacionBean.representanteTitularBean.persona.nif"/>
+			<s:set var="colegiado" value="traficoTramiteMatriculacionBean.tramiteTraficoBean.numColegiado"/>
+			<s:if test="%{(#identificacion!='' && #identificacion!=null) && (#colegiado!='' && #colegiado!=null)}">
+			<img title="Ver evolución" onclick="consultaEvolucionPersona('<s:property value="traficoTramiteMatriculacionBean.representanteTitularBean.persona.nif"/>','<s:property value="traficoTramiteMatriculacionBean.representanteTitularBean.numColegiado"/>');" style="margin-right:10px;height:20px;width:20px;cursor:pointer;" alt="Ver evolución" src="img/history.png">
+			</s:if>
+			</td>
+		</tr>
+	</table>
+				
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">REPRESENTANTE</span>
+			</td>
+		</tr>
+	</table>
+			
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+	
+	<tr>
+	
+	<td align="left" nowrap="nowrap">
+       			<label for="tipoPersonaRepresentante">Tipo de persona: </label>
+       		</td>
+
+         	<td align="left" nowrap="nowrap">
+	         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoPersonas()"
+						id="tipoPersonaRepresentante"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						value="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.tipoPersona}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Tipo Persona"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+	</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" >
+				<label for="nifRepresentante">NIF / CIF: <span class="naranja">*</span></label>
+			</td>
+			<td  align="left" nowrap="nowrap" width="24%">
+       	    	<table style="align:left;" >
+					<tr>
+						<td align="left" nowrap="nowrap">
+							<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.nif" 
+		    				id="nifRepresentante" 
+		    				onblur="this.className='input2';calculaLetraNIF(this)" 
+		    				onfocus="this.className='inputfocus';" 
+		    				onchange="limpiarFormularioRepresentanteMatriculacion()"
+		    				size="10" maxLength="9"/>
+						</td>
+						
+					</tr>
+				</table>
+       	    </td>
+       	    
+       	    <td align="left" nowrap="nowrap" colspan="1">
+							<label for="Nif">Fecha Caducidad Nif:<span class="naranja">*</span></label>
+			</td>
+			<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadNif.dia" 
+										id="representanteTitularDiaCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadNif.mes" 
+										id="representanteTitularMesCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadNif.anio" 
+										id="representanteTitularAnioCadNif"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4"/>
+								</td>
+	
+								<td>
+									<div id="representanteIdFechaDni" <s:if test="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.indefinido != null &&
+										traficoTramiteMatriculacionBean.representanteTitularBean.persona.indefinido == true}">
+								 style="display:none"
+										</s:if>>
+				    			
+				    				</div>
+								</td>
+	
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+					</td>
+       	    
+    					    				    					        		
+   		</tr>
+   		<s:hidden name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.tipoPersona"></s:hidden>
+   		
+   			<tr>
+       		<td align="left" nowrap="nowrap" colspan="1">
+		        <label for="representanteTitularOtroDocIdentidad">Documento Alternativo:</label>
+		     </td>
+		     <td>		        			
+		        		<s:checkbox 
+		        		id="representanteTitularOtroDocumentoIdentidad"		
+						disabled="%{flagDisabled}"		
+						onclick="" 
+						onkeypress="this.onClick" 
+						onchange="habilitarDocumentoAlternativo('representanteTitularOtroDocumentoIdentidad','representanteTitularTipoDocumentoAlternativo','representanteTitularDiaCadAlternativo','representanteTitularMesCadAlternativo','representanteTitularAnioCadAlternativo','representanteTitularIdFecha','representanteIndefinido');"
+		        		name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad">
+		        		</s:checkbox>
+		     </td>
+		     <td align="left" nowrap="nowrap" colspan="1">
+		        		<label for="representanteIndefinido">Indefinido:</label>	
+		    </td>
+		    <td>	        			
+		        		<s:checkbox 
+		        		id="representanteIndefinido"		
+						disabled="%{flagDisabled}"		
+						onclick="" 
+						onkeypress="this.onClick" 
+						onchange="documentoIndefinido('representanteIndefinido', 'representanteTitularOtroDocumentoIdentidad', 'representanteTitularTipoDocumentoAlternativo', 'representanteTitularDiaCadNif', 'representanteTitularMesCadNif', 'representanteTitularAnioCadNif', 'representanteTitularDiaCadAlternativo', 'representanteTitularMesCadAlternativo', 'representanteTitularAnioCadAlternativo', 'representanteIdFechaDni','representanteTitularIdFecha');"
+		        		name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.indefinido">
+		        		</s:checkbox>
+		     </td>
+       </tr>
+       <tr>
+       
+       		<td align="left" nowrap="nowrap" colspan="1">
+       					<label for="representanteTitularTipoDocumentoAlternativo">Tipo de Doc Alternativo: </label>
+       		</td>
+       		<td>
+       		         	<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboTipoDocumentoAlternativo()" id="representanteTitularTipoDocumentoAlternativo"
+							onblur="this.className='input2';" onfocus="this.className='inputfocus';"
+							name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.tipoDocumentoAlternativo"
+							listValue="nombreEnum" listKey="valorEnum" title="Tipo Documento Alternativo" headerKey="-1" headerValue="-" disabled="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad != null &&
+										!traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad}"/>
+       		</td>
+
+       			<td align="left" nowrap="nowrap" colspan="1">
+						<label for="Nif">Caducidad Doc Alternativo:<span class="naranja">*</span></label>
+				</td>
+				<td>
+       				<TABLE WIDTH=100%>
+							<tr>
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadAlternativo.dia" 
+										id="representanteTitularDiaCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad != null &&
+										!traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadAlternativo.mes" 
+										id="representanteTitularMesCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="2" maxlength="2" disabled="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad != null &&
+										!traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>/</td>
+	
+								<td>
+									<s:textfield name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaCaducidadAlternativo.anio" 
+										id="representanteTitularAnioCadAlternativo"
+										onblur="this.className='input2';"
+										onfocus="this.className='inputfocus';" 
+										size="5" maxlength="4" disabled="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad != null &&
+										!traficoTramiteMatriculacionBean.representanteTitularBean.persona.otroDocumentoIdentidad}"/>
+								</td>
+	
+								<td>
+								<div id="representanteTitularIdFecha" <s:if test="%{traficoTramiteMatriculacionBean.representanteTitularBean.persona.indefinido != null &&
+										traficoTramiteMatriculacionBean.representanteTitularBean.persona.indefinido == true}">
+								 style="display:none"
+										</s:if>>
+				    			
+				    			</div>
+								</td>
+	
+								<td width="2%"></td>
+							</tr>
+						</TABLE>
+       					</td>
+       			</tr>
+   		
+   		<tr>
+   			<td align="left" nowrap="nowrap">
+		       	<label for="sexoTitular">Sexo: </label>
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+				<s:select list="@escrituras.utiles.UtilesVista@getInstance().getComboSexo()"
+									id="sexoRepresentante"
+									onblur="this.className='input2';"
+									onfocus="this.className='inputfocus';"
+									name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.sexo"
+									disabled="%{flagDisabled}"
+									listValue="nombreEnum"
+									listKey="valorEnum"
+									title="Sexo Persona"
+									headerKey="-1" headerValue="-"/>
+			 </td>
+   			<td align="left" nowrap="nowrap">
+    			<label for="apellido1Representante">Primer Apellido / Razon Social: <span class="naranja">*</span></label>
+    		</td>	
+   			
+   			<td align="left" nowrap="nowrap" colspan="4">
+      			<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.apellido1RazonSocial" 
+      				id="apellido1Representante" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="45" maxLength="100"/>
+      		</td>       					        	
+       	</tr>
+      			
+        <tr>
+        	<td align="left" nowrap="nowrap">
+      			<label for="apellido2Representante">Segundo Apellido: </label>
+      		</td>			    				    					        		
+   			        	       			
+    		<td align="left" nowrap="nowrap" colspan="2">
+      			<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.apellido2" 
+      				id="apellido2Representante" 
+      				onblur="this.className='input2';" 
+      				onfocus="this.className='inputfocus';" 
+      				size="30" maxLength="100"/>
+      		</td>
+      	
+      		<td align="left" nowrap="nowrap">
+    			<label for="nombreRepresentante">Nombre: </label>
+    		</td>			    				    					        		
+   			        	       			
+    		<td align="left" nowrap="nowrap">
+    			<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.nombre" 
+    				id="nombreRepresentante" 
+    				onblur="this.className='input2';" 
+    				onfocus="this.className='inputfocus';" 
+    				size="30" maxLength="100"/>
+    		</td>
+      	</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="17%">
+				<label for="idFechaNacimientoRepresentante">Fecha de Nacimiento: </label>
+			</td>
+			<td>
+				<table>
+					<tr>
+						
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaNacimientoBean.dia" 
+								id="diaNacRepresentante"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="2" maxlength="2"/>
+						</td>
+				
+						<td width="1%">/</td>
+						
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaNacimientoBean.mes" 
+								id="mesNacRepresentante"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="2" maxlength="2"/>
+						</td>
+				
+						<td width="1%">/</td>
+						
+						<td align="left" nowrap="nowrap" width="5%">
+							<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.fechaNacimientoBean.anio" 
+								id="anioNacRepresentante"
+								onblur="this.className='input2';" 
+								onkeypress="return validarNumerosEnteros(event)"
+								onfocus="this.className='inputfocus';" 
+								size="4" maxlength="4"/>
+						</td>
+				
+						<td align="left" nowrap="nowrap">
+				    		
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td align="left" nowrap="nowrap">
+			       <label for="estadoCivilRepresentante">Estado Civil: </label>
+			 </td>				        	       	       			
+			       					
+			<td align="left" nowrap="nowrap">
+							<s:select  
+								onblur="this.className='input2';"
+								onfocus="this.className='inputfocus';"
+								name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.estadoCivil" 
+			       				id="estadoCivilRepresentante" 					
+								list="@escrituras.utiles.UtilesVista@getInstance().getComboEstadosCivil()"
+								disabled="%{flagDisabled}"
+								listKey="valorEnum"
+								listValue="nombreEnum"
+								headerKey="-1"
+					    	    headerValue="Estado Civil"/>							
+			</td>
+		</tr>
+        </table>
+        <s:if test="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.idDireccion != null " >
+	        <table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left" style="100%">
+				<tr>
+					<td align="left" nowrap="nowrap" width="100%">
+						<table  style="align:left;">
+							<tr>
+								<td  align="left" style="vertical-align:middle" width="10%">
+									
+								</td>
+								<td align="left" nowrap="nowrap" width="90%">
+									
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+			</table>
+		</s:if>
+        
+        <table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	
+        <tr>        	       			
+        	<td align="left" nowrap="nowrap">
+				<label for="idProvinciaRepresentante">Provincia: <span class="naranja">*</span></label>
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+				<s:select cssStyle="width:150px;" list="@trafico.utiles.UtilesVistaTrafico@getInstance().getProvinciasRepresentante()"
+					headerKey="-1"
+	           		headerValue="Seleccione Provincia" onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+					name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.municipio.provincia.idProvincia" 
+					listKey="idProvincia" listValue="nombre"
+					id="idProvinciaRepresentante"
+					disabled="%{flagDisabled}"
+					onchange="cargarListaMunicipios(this,'idMunicipioRepresentante','municipioSeleccionadoRepresentante');
+					cargarListaTipoVia(this,'tipoViaRepresentanteTitular','tipoViaSeleccionadaRepresentanteTitular');
+					inicializarTipoVia('tipoViaRepresentanteTitular','nombreViaRepresentanteTitular',viaRepresentante);
+					borrarComboPueblo('idPuebloRepresentante');"/>	
+			</td>
+				
+			<td align="left" nowrap="nowrap">
+				<label for="idMunicipioRepresentante">Municipio: <span class="naranja">*</span></label>	
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">			
+				<select id="idMunicipioRepresentante" onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+       				${stringDisabled}
+					onchange="cargarListaPueblos('idProvinciaRepresentante', this, 'idPuebloRepresentante', 'puebloSeleccionadoRepresentante');
+						seleccionarCampo('municipioSeleccionadoRepresentante','idMunicipioRepresentante');
+						obtenerCodigoPostalPorMunicipio('idProvinciaRepresentante', this, 'codPostalRepresentante');
+						inicializarTipoVia('tipoViaRepresentanteTitular','nombreViaRepresentanteTitular',viaRepresentante);">
+					<option value="-1">Seleccione Municipio</option>
+				</select>						  
+		    	<s:hidden id="municipioSeleccionadoRepresentante" 
+		    		name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.municipio.idMunicipio"/>
+			</td>
+		</tr>
+		
+		<tr> 
+			<td align="left" nowrap="nowrap">
+				<label for="idPuebloRepresentante">Pueblo: </label>			
+			</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">				
+				<select id="idPuebloRepresentante" style="width:200px;" onblur="this.className='input2';" 
+       				onfocus="this.className='inputfocus';"
+       				${stringDisabled}
+					onchange="seleccionarCampo('puebloSeleccionadoRepresentante','idPuebloRepresentante');">
+					<option value="-1">Seleccione Pueblo</option>
+				</select>						  
+			   	<s:hidden id="puebloSeleccionadoRepresentante" 
+			   		name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.pueblo"/>
+			</td>
+						
+			<td align="left" nowrap="nowrap" >
+				<label for="codPostalRepresentante">Código Postal: <span class="naranja">*</span></label>
+			</td>			    				    					        		
+   			        	       			
+    		<td align="left" nowrap="nowrap">
+             	<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.codPostal" 
+             		id="codPostalRepresentante" 
+             		maxlength="5" size="5" 
+             		onblur="this.className='input';"
+             		onkeypress="return validarNumerosEnteros(event)"
+             		onfocus="this.className='inputfocus';" />
+			</td>		
+        </tr>
+        
+        <tr>        	       			
+   			<td align="left" nowrap="nowrap">
+   				<label for="tipoViaRepresentanteTitular">Tipo de vía: </label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" >
+   				<select id="tipoViaRepresentanteTitular" 
+					onblur="this.className='input2';" 
+					onfocus="this.className='inputfocus';"
+					${stringDisabled}
+					onchange="seleccionarCampo('tipoViaSeleccionadaRepresentanteTitular','tipoViaRepresentanteTitular');
+							cargarListaNombresVia('idProvinciaRepresentante', 'municipioSeleccionadoRepresentante', this, 'nombreViaRepresentanteTitular',viaRepresentante);">
+					<option value="-1">Seleccione Tipo Via</option>
+				</select>
+		    	<s:hidden id="tipoViaSeleccionadaRepresentanteTitular" 
+		    		name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.tipoVia.idTipoVia"/>
+       		</td>
+   			
+			<td align="left" nowrap="nowrap">
+   				<label for="nombreViaRepresentanteTitular">Nombre de vía: <span class="naranja">*</span></label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" colspan="2">
+	       			<s:textfield disabled="%{flagDisabled}" id="nombreViaRepresentanteTitular"
+	       				onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.nombreVia"
+		       			cssStyle="width:200px;position:relative;" size="40" maxLength="100" autocomplete="off"/>
+						
+       		</td>        
+		          		
+		</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+        <tr>    			
+   			<td align="left" nowrap="nowrap" width="7%">
+   				<label for="numeroDireccionRepresentanteTitular">Número: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.numero" 
+   				id="numeroDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				onkeypress="return validarSN2(event,this)"
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" width="7%">
+   				<label for="letraDireccionRepresentanteTitular">Letra: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.letra" 
+   				id="letraDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" width="7%">
+   				<label for="escaleraDireccionRepresentanteTitular">Escalera: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.escalera" 
+   				id="escaleraDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap" width="7%">
+   				<label for="pisoDireccionRepresentanteTitular">Piso: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.planta" 
+   				id="pisoDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+      	</tr>
+      	
+      	<tr>    			
+   			<td align="left" nowrap="nowrap">
+   				<label for="puertaDireccionRepresentanteTitular">Puerta: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.puerta" 
+   				id="puertaDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<label for="bloqueDireccionRepresentanteTitular">Bloque: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.bloque" 
+   				id="bloqueDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<label for="kmDireccionRepresentanteTitular">Km: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.puntoKilometrico" 
+   				id="kmDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<label for="hmDireccionRepresentanteTitular">Hm: </label>
+   			</td>
+   			
+       		<td align="left" nowrap="nowrap">
+   				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.persona.direccion.hm" 
+   				id="hmDireccionRepresentanteTitular" 
+   				onblur="this.className='input2';" 
+   				onfocus="this.className='inputfocus';" 
+   				size="4" maxLength="3"/>
+   			</td>
+      	</tr>
+	</table>
+		
+	<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>	        				
+      		<td align="left" nowrap="nowrap" width="17%">
+      			<label for="diaAltaIni">Fecha inicio Tutela: </label>
+      		</td>
+
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaInicio.dia" 
+					id="diaInicioTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" />
+			</td>
+			
+			<td width="1%">/</td>
+			
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaInicio.mes" 
+					id="mesInicioTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" />
+			</td>
+			
+			<td width="1%">/</td>
+			
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaInicio.anio" 
+					id="anioInicioTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="4" />
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+		    	
+			</td>		
+		</tr>
+		<tr>
+			<td width="22%" align="left" width="14%">
+				<label for="diaAltaIni">Fecha fin Tutela: </label>
+			</td>
+	
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaFin.dia" 
+					id="diaFinTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" />
+			</td>
+			
+			<td width="1%">/</td>
+			
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaFin.mes" 
+					id="mesFinTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="2" maxlength="2" />
+			</td>
+			
+			<td width="1%">/</td>
+			
+			<td align="left" nowrap="nowrap" width="5%">
+				<s:textfield disabled="%{flagDisabled}" name="traficoTramiteMatriculacionBean.representanteTitularBean.fechaFin.anio" 
+					id="anioFinTutela"
+					onblur="this.className='input2';"
+					onfocus="this.className='inputfocus';" 
+					size="5" maxlength="4" />
+			</td>
+			
+			<td align="left" nowrap="nowrap">
+		    	
+			</td>  							
+		</tr>	        
+		</table>
+		<table  cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	
+        	
+       	<tr>
+       		<td align="left" nowrap="nowrap">
+       			<label for="conceptoRepresentanteTitular">Concepto: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getConceptoTutela()"
+						id="conceptoRepresentanteTitular"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="traficoTramiteMatriculacionBean.representanteTitularBean.conceptoRepre"
+						disabled="%{flagDisabled}"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Concepto tutela"
+						headerKey="-1" headerValue="-"
+						onchange="cambioConceptoRepresentanteTitular()"/>
+       		</td>
+       		
+       		<td align="left" nowrap="nowrap">
+       			<label for="motivoRepresentanteTitular">Motivo: </label>
+       		</td>				        		
+       	       			
+       		<td align="left" nowrap="nowrap">
+       			<s:select list="@trafico.utiles.UtilesVistaTrafico@getInstance().getTiposTutela()"
+						id="motivoRepresentanteTitular"
+						onblur="this.className='input2';"
+						onfocus="this.className='inputfocus';"
+						name="traficoTramiteMatriculacionBean.representanteTitularBean.idMotivoTutela"
+						listValue="nombreEnum"
+						listKey="valorEnum"
+						title="Motivo tutela"
+						headerKey="-1" headerValue="-"
+						disabled="true"/>
+       		</td>
+       	</tr> 			        			        				        	
+	</table>
+<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableMATE(traficoTramiteMatriculacionBean.tramiteTraficoBean)}">
+	<table class="acciones" width="95%" align="left">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" class="oculto" name="bGuardar" id="idBotonGuardar" value="Consultar / Guardar" onClick="return guardarAltaMatriculacion('Representante');" onKeyPress="this.onClick"/>
+			</td>
+		</tr>
+	</table>
+</s:if>	
+<script>	 
+	cambioConceptoRepresentanteTitular();
+	var viaRepresentante = new BasicContentAssist(document.getElementById('nombreViaRepresentanteTitular'), [], null, true);
+	recargarComboMunicipios('idProvinciaRepresentante','idMunicipioRepresentante','municipioSeleccionadoRepresentante');
+	recargarComboTipoVia('idProvinciaRepresentante','tipoViaRepresentanteTitular','tipoViaSeleccionadaRepresentanteTitular');
+	recargarComboPueblos('idProvinciaRepresentante','municipioSeleccionadoRepresentante','idPuebloRepresentante', 'puebloSeleccionadoRepresentante');
+	recargarNombreVias('idProvinciaRepresentante', 'municipioSeleccionadoRepresentante', 'tipoViaSeleccionadaRepresentanteTitular','nombreViaRepresentanteTitular', viaRepresentante);
+
+	$( document ).ready(function() {
+
+	
+		$('#Representante').find('input, textarea, button').attr('readonly','readonly');
+		$('#Representante').find('select, checkbox').attr('disabled','disabled');
+		});
+</script>
+
+</div>		
+</div>

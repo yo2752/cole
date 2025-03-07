@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:Tipos="http://www.sea.es/profProof/tipos"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	xsi:noNamespaceSchemaLocation="InterfazMatg.xsd">
+	<xs:import namespace="http://www.sea.es/profProof/tipos" schemaLocation="Tipos.xsd" />
+	<xs:element name="Solicitud_Justificante_Profesional">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Firmados" />
+				<xs:element name="Firma_Gestor" type="Tipos:tipoHash" />
+			</xs:sequence>
+			<xs:attribute name="version" type="Tipos:tipoVersionRegistro" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DOI_Colegio" type="Tipos:tipoNIF_Colegio" />
+				<xs:element name="DOI_Gestoria" type="Tipos:tipoNIF" />
+				<xs:element name="DOI_Gestor" type="Tipos:tipoNIF" />
+				<xs:element name="Direccion_Gestor" type="Tipos:alfa70"></xs:element>
+					<xs:element name="Titular">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Datos_Nombre" type="Tipos:tipoDatoNombre" />
+								<xs:choice>
+									<xs:element name="DOI" type="Tipos:tipoNIF" />
+									<xs:element name="FA" type="Tipos:tipoFA" />
+								</xs:choice>
+								<xs:element name="Municipio" type="Tipos:alfa70" />
+								<xs:element name="Direccion" type="Tipos:alfa70">
+									</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Datos_Vehiculo">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Tipo" type="Tipos:alfa70" />
+								<xs:element name="Matricula" type="Tipos:tipoMatricula" />
+								<xs:element name="Marca" type="Tipos:alfa23" />
+								<xs:element name="Modelo" type="Tipos:alfa22" />
+								<xs:element name="Bastidor" type="Tipos:alfa21" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Tipo_Tramite" type="Tipos:alfa70" />
+					<xs:element name="Documentos" type="Tipos:tipoDocumentos" />
+					<xs:element name="Motivo" type="Tipos:motivo" />
+					<xs:element name="Dias_Validez">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+								<xs:minInclusive value="30" />
+								<xs:maxInclusive value="30" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Jefatura" type="Tipos:alfa70" />
+					<xs:element name="Nombre_Gestor" type="Tipos:alfa70" />
+					<xs:element name="Nombre_Colegio" type="Tipos:alfa70" />
+					<xs:element name="Provincia_Despacho_Profesional" type="Tipos:alfa70" />
+					<xs:element name="Provincia_Fecha" type="Tipos:alfa70" />
+					<xs:element name="Numero_Colegiado_Gestor" type="Tipos:alfa70" />
+					<xs:element name="Texto_Legal">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="LOS DATOS CONSIGNADOS EN ESTE XML SE SUMINISTRAN PARA LA EMISIÓN DE UN JUSTIFICANTE PROFESIONAL" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

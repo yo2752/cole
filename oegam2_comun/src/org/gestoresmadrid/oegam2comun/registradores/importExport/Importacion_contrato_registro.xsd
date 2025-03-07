@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="tipos.xsd"/>
+	<xs:element name="FORMATO_GA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="CABECERA">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="DATOS_GESTORIA">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="NIF" type="tipoNIF" minOccurs="0" />
+										<xs:element name="NOMBRE" type="alfa50" minOccurs="0" />
+										<xs:element name="PROFESIONAL" type="numCol" />
+										<xs:element name="PROVINCIA" type="tipoProvincia" minOccurs="0" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="CONTRATO_CANCELACION" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Modelo" type="xs:string" minOccurs="0"/>
+								<xs:element name="Solicitante_Cancelacion" type="Solicitante_CancelacionType" minOccurs="0"/>
+								<xs:element name="Identificacion_Bien" type="Identificacion_Bien_CancelacionType" minOccurs="0"/>
+								<xs:element name="Situacion_Juridica_Cancelada" type="Tipificacion_Situacion_JuridicaType" minOccurs="0" maxOccurs="3"/>
+								<xs:element name="Identificacion_Contrato_Inscrito" type="Identificacion_Contrato_InscritoType" minOccurs="0"/>
+								<xs:element name="Causa_Cancelacion" type="Tipificacion_Causa_CancelacionType" minOccurs="0"/>
+								<xs:element name="Importe_Comision_Cancelacion" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="ImporteType"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Firma_Solicitante" type="Firma_SolicitanteType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CONTRATO_FINANCIACION" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Identificacion" type="Identificacion_ContratoType"  minOccurs="0"/>
+								<xs:element name="Registro" type="RegistroType" minOccurs="0"/>
+								<xs:element name="Compradores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Comprador" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Fiadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Fiador" type="Interviniente_FiadorType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Financiadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Financiador" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Vendedores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Vendedor" type="VendedorType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Objetos_Financiados" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Objeto_Financiado" type="Objeto_FinanciadoType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Datos_Financieros" type="Datos_Financieros_FinanciacionType" minOccurs="0"/>
+								<xs:element name="Condiciones_Particulares" type="Condiciones_ParticularesType" minOccurs="0"/>
+								<xs:element name="Condiciones_Generales" type="Condiciones_GeneralesType" minOccurs="0"/>
+								<xs:element name="Firmas" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Firma" type="FirmaType" minOccurs="0" maxOccurs="unbounded">
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CONTRATO_LEASING" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Identificacion" type="Identificacion_ContratoType" minOccurs="0"/>
+								<xs:element name="Arrendatarios" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Arrendatario" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Fiadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Fiador" type="Interviniente_FiadorType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Arrendadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Arrendador" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Bienes_Objeto_Contrato" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Bien" type="Objeto_LeasingType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Datos_Financieros" type="Datos_Financieros_LeasingType" minOccurs="0"/>
+								<xs:element name="Condiciones_Particulares" type="Condiciones_ParticularesType" minOccurs="0"/>
+								<xs:element name="Condiciones_Generales" type="Condiciones_GeneralesType" minOccurs="0"/>
+								<xs:element name="Firmas" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Firma" type="FirmaType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CONTRATO_RENTING" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Identificacion" type="Identificacion_ContratoType" minOccurs="0"/>
+								<xs:element name="Arrendatarios" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Arrendatario" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Fiadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Fiador" type="Interviniente_FiadorType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Arrendadores" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Arrendador" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Bienes_Objeto_Contrato" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Bien" type="Objeto_FinanciadoType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Datos_Financieros" type="Datos_Financieros_RentingType" minOccurs="0"/>
+								<xs:element name="Condiciones_Particulares" type="Condiciones_ParticularesType" minOccurs="0"/>
+								<xs:element name="Condiciones_Generales" type="Condiciones_GeneralesType" minOccurs="0"/>
+								<xs:element name="Firmas" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Firma" type="FirmaType" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="FINANCIADORES" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Financiador" type="IntervinienteType" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CyN_REUNION_JUNTA" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>1 - SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO REUNION JUNTA</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType" minOccurs="0"/>
+								<xs:element name="Sociedad" type="SociedadType" minOccurs="0"/>
+								<xs:element name="Reunion_Junta" type="Reunion_JuntaType" minOccurs="0"/>
+								<xs:element name="Acuerdos" type="AcuerdosType" minOccurs="0"/>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="AyN_REUNION_JUNTA" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>2 - SOCIEDADES ANÓNIMAS Y LIMITADAS. ACEPTACIÓN DE NOMBRAMIENTO REUNION JUNTA</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Nombramiento" type="NombramientoType" minOccurs="0"/>
+								<xs:element name="Sociedad" type="SociedadType" minOccurs="0"/>
+								<xs:element name="Reunion_Junta" type="Reunion_JuntaType" minOccurs="0"/>
+								<xs:element name="LugaryFecha" type="LugaryFechaType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CyN_JUNTA_ACCIONISTA" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>3.- SOCIEDADES ANÓNIMAS. CESE Y NOMBRAMIENTO JUNTA ACCIONISTAS</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType" minOccurs="0"/>
+								<xs:element name="Sociedad" type="SociedadType" minOccurs="0"/>
+								<xs:element name="Junta_Accionistas" type="JuntaType" minOccurs="0"/>
+								<xs:element name="Acuerdos" type="Acuerdos2Type" minOccurs="0"/>
+								<xs:element name="Aprobacion_Acta" type="Aprobacion_ActaType" minOccurs="0"/>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CyN_JUNTA_SOCIOS" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>4.- SOCIEDADES LIMITADAS. CESE Y NOMBRAMIENTO JUNTA SOCIOS</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType" minOccurs="0"/>
+								<xs:element name="Sociedad" type="SociedadType" minOccurs="0"/>
+								<xs:element name="Junta_Socios" type="Junta2Type"/>
+								<xs:element name="Acuerdos" type="Acuerdos2Type"/>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="DELEGACION_FACULTADES" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>5.- SOCIEDADES ANÓNIMAS Y LIMITADAS. CESE Y NOMBRAMIENTO Y DELEGACIÓN DE FACULTADES</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Certificantes" type="CertificantesType"/>
+								<xs:element name="Sociedad" type="SociedadType"/>
+								<xs:element name="Consejo_Administracion" type="ConsejoType"/>
+								<xs:element name="Acuerdos" type="AcuerdosType"/>
+								<xs:element name="LugaryFecha_Certificacion" type="LugaryFechaType"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ESCRITURAS_NUEVO_ENVIO" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>ESCRITURAS</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Escritura" type="EscrituraType" minOccurs="0"/>
+								<xs:element name="Destinatario" type="Identificacion_SujetoType" minOccurs="0"/>
+								<xs:element name="Domicilio" type="Domicilio_INEType" minOccurs="0"/>
+								<xs:element name="Registro" type="RegistroType" minOccurs="0"/>
+								<xs:element name="Bienes" type="Bienes_EscrituraType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="FechaCreacion" type="xs:string" use="optional" />
+			<xs:attribute name="Plataforma" type="xs:string" use="optional" />
+		</xs:complexType>
+    </xs:element>
+</xs:schema>

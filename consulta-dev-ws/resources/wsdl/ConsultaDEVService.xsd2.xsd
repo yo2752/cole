@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns="http://www.dgt.es/nostra/esquemas/consultaDEV/peticion" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.dgt.es/nostra/esquemas/consultaDEV/datos-especificos" xmlns:ns2="http://www.dgt.es/scsp/esquemas/datos-comun" targetNamespace="http://www.dgt.es/nostra/esquemas/consultaDEV/peticion" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	
+<xs:import namespace="http://www.dgt.es/nostra/esquemas/consultaDEV/datos-especificos" schemaLocation="ConsultaDEVService.xsd4.xsd"/>
+	
+<xs:import namespace="http://www.dgt.es/scsp/esquemas/datos-comun" schemaLocation="ConsultaDEVService.xsd5.xsd"/>
+	
+	
+<xs:element name="Peticion">
+		
+<xs:complexType>
+			
+<xs:all>
+				
+<xs:element ref="ns2:Atributos"/>
+				
+<xs:element ref="Solicitudes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	
+<xs:element name="Solicitudes">
+		
+<xs:complexType>
+			
+<xs:sequence>
+				
+<xs:element ref="SolicitudTransmision"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+<xs:element name="SolicitudTransmision">
+		
+<xs:complexType>
+			
+<xs:all>
+				
+<xs:element ref="ns2:DatosGenericos"/>
+				
+<xs:element ref="ns1:DatosEspecificos" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

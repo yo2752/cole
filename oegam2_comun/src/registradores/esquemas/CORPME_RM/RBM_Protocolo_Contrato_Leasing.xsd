@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="RBM_Protocolo_Tipos.xsd"/>
+    <xs:element name="RBM-Contrato-Leasing">
+        <xs:annotation>
+            <xs:documentation>formato XML para realizar la transmisión de los contratos de leasing a los Registros de Bienes Muebles</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Identificacion" type="Identificacion_ContratoType">
+                    <xs:annotation>
+                        <xs:documentation>para identificar el contrato</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Arrendatarios">
+                    <xs:annotation>
+                        <xs:documentation>indicar los Arrendatarios</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Arrendatario" type="IntervinienteType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información Arrendatario</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Fiadores" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>información fiadores</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Fiador" type="Interviniente_FiadorType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información fiador</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Arrendadores">
+                    <xs:annotation>
+                        <xs:documentation>información Arrendadores</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Arrendador" type="IntervinienteType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información Arrendador</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Bienes_Objeto_Contrato">
+                    <xs:annotation>
+                        <xs:documentation>objetos comprendidos en el contrato</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Bien" type="Objeto_LeasingType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>información un bien u objeto</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Datos_Financieros" type="Datos_Financieros_LeasingType">
+                    <xs:annotation>
+                        <xs:documentation>indicar la información financiera</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Condiciones_Particulares" type="Condiciones_ParticularesType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>indicar las condiciones particulares</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Condiciones_Generales" type="Condiciones_GeneralesType" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>condiciones generales</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Firmas">
+                    <xs:annotation>
+                        <xs:documentation>describir la información sobre las firmas realizadas sobre el contrato por los intervinientes</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Firma" type="FirmaType" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>para indicar una firma</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Clausula_LOPD" type="xs:string" default="Declaro que los datos aportados son correctos y completos a efectos de la solicitud por mí realizada, y de acuerdo con el Art. 6 y 11 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, autorizo la utilización de la información contenida en el/los documentos remitidos, a efectos de su almacenamiento electrónico y utilización para los fines del Registro de Bienes Muebles">
+                    <xs:annotation>
+                        <xs:documentation>Contenido de la claúsula de la ley de protección de datos</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Version" default="4.0.0"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

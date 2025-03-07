@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<xs:schema xmlns="http://sega.gestores.net/ctit/tipos" xmlns:tipos="http://sega.gestores.net/ctit/tipos" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://sega.gestores.net/ctit/tipos" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+   <xs:complexType name="checkRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="tipos:checkArgument"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="checkArgument">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="agencyFiscalId" type="xs:string"/>
+     <xs:element minOccurs="0" name="customDossierNumber" type="xs:string"/>
+     <xs:element minOccurs="0" name="externalSystemFiscalId" type="xs:string"/>
+     <xs:element minOccurs="0" name="xmlB64" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="checkResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tipos:checkReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="checkReturn">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="dossierNumber" type="xs:string"/>
+     <xs:element maxOccurs="unbounded" minOccurs="0" name="errorCodes" nillable="true" type="tipos:ctitError"/>
+     <xs:element minOccurs="0" name="result" type="tipos:checkStatus"/>
+     <xs:element minOccurs="0" name="resultCode" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+    <xs:simpleType name="checkStatus">
+    <xs:restriction base="xs:string">
+     <xs:enumeration value="TRAMITABLE"/>
+     <xs:enumeration value="INFORME_REQUERIDO"/>
+     <xs:enumeration value="NO_TRAMITABLE"/>
+     <xs:enumeration value="JEFATURA"/>
+     <xs:enumeration value="ERROR"/>
+    </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:complexType name="ctitError">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="key" type="xs:string"/>
+     <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+   </xs:complexType>
+
+
+   <xs:complexType name="ctitRequest">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="arg0" type="tipos:ctitArgument"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ctitArgument">
+       <xs:complexContent>
+           <xs:extension base="tipos:checkArgument">
+            <xs:sequence>
+             <xs:element minOccurs="0" name="currentVehiclePurpose" type="tipos:ctitVehiclePurpose"/>
+             <xs:element minOccurs="0" name="firstMatriculationINECode" type="xs:string"/>
+             <xs:element minOccurs="0" name="mma" type="xs:int"/>
+             <xs:element minOccurs="0" name="seatPlaces" type="xs:int"/>
+             <xs:element minOccurs="0" name="sellerINECode" type="xs:string"/>
+             <xs:element minOccurs="0" name="tara" type="xs:int"/>
+            </xs:sequence>
+           </xs:extension>
+       </xs:complexContent>
+   </xs:complexType>
+   
+   <xs:complexType name="ctitResponse">
+    <xs:sequence>
+     <xs:element minOccurs="0" name="return" type="tipos:ctitReturn"/>
+    </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ctitReturn">
+       <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="adviseCodes" nillable="true" type="tipos:ctitError"/>
+            <xs:element minOccurs="0" name="codeHG" type="xs:string"/>
+            <xs:element minOccurs="0" name="dossierNumber" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="errorCodes" nillable="true" type="tipos:ctitError"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="impedimentCodes" nillable="true" type="tipos:ctitError"/>
+            <xs:element minOccurs="0" name="license" type="xs:string"/>
+            <xs:element minOccurs="0" name="report" type="xs:string"/>
+            <xs:element minOccurs="0" name="result" type="tipos:ctitStatus"/>
+            <xs:element minOccurs="0" name="resultCode" type="xs:string"/>
+       </xs:sequence>
+   </xs:complexType>
+   
+   
+   <xs:simpleType name="ctitVehiclePurpose">
+    <xs:restriction base="xs:string">
+     <xs:enumeration value="B00"/>
+     <xs:enumeration value="A00"/>
+     <xs:enumeration value="A01"/>
+     <xs:enumeration value="A02"/>
+     <xs:enumeration value="A03"/>
+     <xs:enumeration value="A04"/>
+     <xs:enumeration value="A05"/>
+     <xs:enumeration value="B06"/>
+     <xs:enumeration value="A07"/>
+     <xs:enumeration value="B07"/>
+     <xs:enumeration value="A08"/>
+     <xs:enumeration value="B09"/>
+     <xs:enumeration value="A10"/>
+     <xs:enumeration value="A11"/>
+     <xs:enumeration value="A12"/>
+     <xs:enumeration value="A13"/>
+     <xs:enumeration value="A14"/>
+     <xs:enumeration value="A15"/>
+     <xs:enumeration value="A16"/>
+     <xs:enumeration value="B17"/>
+     <xs:enumeration value="A18"/>
+     <xs:enumeration value="B18"/>
+     <xs:enumeration value="B19"/>
+     <xs:enumeration value="A20"/>
+     <xs:enumeration value="B21"/>
+    </xs:restriction>
+   </xs:simpleType>
+   
+
+   
+   <xs:simpleType name="ctitStatus">
+    <xs:restriction base="xs:string">
+     <xs:enumeration value="OK"/>
+     <xs:enumeration value="NO_TRAMITABLE"/>
+     <xs:enumeration value="TRAMITABLE_CON_INCIDENCIAS"/>
+     <xs:enumeration value="ERROR"/>
+    </xs:restriction>
+   </xs:simpleType>
+   
+</xs:schema>

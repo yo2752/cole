@@ -1,0 +1,133 @@
+.clear{clear:both;}
+.floatleft{float:left;}
+.floatright{float:right;}
+.left {
+	text-align: left;
+}
+.center {
+	text-align: center;
+}
+.red{color:#9e233f;}
+.green{color:#3f9e23;}
+.orange{color:#ff8c00}
+.invisible{display:none;}
+
+h1.titulo {
+	width: 91.5%;
+	margin: 0 0 0 1em;
+	height: 1.4em;
+	padding: .5em 0 0 1.5em;
+	border: none;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #a52642;
+	text-align: left;
+	font-style: normal;
+	background: #eaeaea url('/oegam2/img/tit.gif') center left no-repeat;
+}
+
+h2.subtitulo {
+	width: 100%;
+	margin: 0;
+	height: 1.4em;
+	padding: .5em 0 .25em 0;
+	text-align: center;
+	color: #fff;
+}
+
+.formularios {
+	width: 95%;
+	margin: .5em 0 0 1em;
+}
+
+.formularios form {
+	/*position: relative;*/
+	width: 100%;
+	margin: 0 padding:0;
+}
+
+.formularios fieldset {
+	background: #f4f4f4;
+}
+
+.formularios fieldset#fsBotonera {
+	margin: 1em 0;
+	text-align: center;
+	background: #fff;
+}
+
+.formularios fieldset ul {
+	list-style-type: none;
+	margin: 1%;
+	padding: 0;
+}
+
+.formularios fieldset ul li {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 2em;
+	border: none;
+}
+
+.formularios fieldset ul li.label {
+	width: 18%;
+	padding-top: .5em;
+}
+
+.formularios fieldset ul li.field {
+	width: 30%;
+	padding-bottom: .5em;
+}
+
+.formularios fieldset ul li span {
+	position: relative;
+	float: left;
+}
+
+.formularios fieldset ul li span.barraSep {
+	padding-top: .5em;
+}
+.carpeta{position:relative; padding-left:2%; text-align:left;}
+.cuadroTotales{width:48%; height:20em; margin:.25em; padding:0 .25em .25em .25em; border:1px solid #000;}
+.cuadroTotales ul{height:4em; margin:auto 1.5em; padding:.5em 0;}
+.cuadroTotales ul li{margin:0; padding:0; font-size:1em; text-decoration:none; border:none;}
+.cuadroTotales img{border:1px solid #d7d7d7;}
+.cuadroTotales .pautas{margin:0 .5em 1em .5em; background:#e7e7e7; border:1px solid #ccc;}
+.graficas{margin:0 .5em 1em .5em; font-size:1.1em;}
+#resultado h3{position:relative; width:96%; margin:0 0 .5em 0 ; padding:.5em; font-family: Arial, Helvetica, sans-serif; font-size:2.5em; font-weight:normal; letter-spacing: -2px; color:#9e233f; background:#e7e7e7; border:1px solid #ccc;}
+#resultado h4{position:relative; padding:0 .25em 1em .25em; font-family: Arial, Helvetica, sans-serif; font-size:1.5em; font-weight:normal; letter-spacing: -1px; color:#9e233f; border-bottom:1px solid #999;}
+#resultado h4 abbr{padding:.25em; margin:.25em; font-size:1.2em; background:#e7e7e7; border:1px solid #000;}
+#resultado h4 span.alert{position:relative; float:right; top:-10px; width:30px; height:30px; background:url('/oegam2/img/warning-icon.png') top center no-repeat;}
+
+#tabContents{margin:.5em 0; padding:0; list-style-type:none;}
+#tabContents li{position:relative; float:left; height:2.5em; margin:0 .25em; padding:0; font-size:1.2em; border:2px outset #5d0c1f; border-radius:8px; background:#f7f7f7; font-weight:bold; text-decoration:none; text-transform:uppercase;}
+#tabContents li:hover{cursor:pointer; background:#9e233f; color:#fff;}
+#tabContents li a{display:block; width:100%; height:100%; padding:.75em .5em .75em 0; color:#9e233f; text-decoration:none;}
+#tabContents li:hover a{color:#fff;}
+#tabContents li.selected{background:#9e233f;}
+#tabContents li.selected a{color:#fff;}
+#tabContents .notifications{position:absolute; top:-1.5em; left:90%; z-index:999999;}
+#tabContents .notificationsbg{display:block; width:30px; height:30px; background:url('/oegam2/img/notification.png') center center no-repeat; padding-top:.9em; font-size:1.3em; color:#fff;}
+
+#tabEstadoCola ul{list-style-type:none; margin:0; padding:0;}
+#tabEstadoCola ul li{float:left; width:30%; min-height:12em; margin:.5em 1em .5em 0; padding:.5em; text-align:center; border:2px solid #5d0c1f; border-radius:8px;}
+#tabEstadoCola ul li h4{font-size:1.3em; letter-spacing:0;}
+#tabEstadoCola ul li strong{margin:auto; font-size:3em; color:#555;}
+#tabEstadoCola ul li strong.min{font-size:1.5em;}
+
+#resultadoEstadoCola{position:relative; float:right; font-family: Arial, Helvetica, sans-serif; font-size:.9em; font-weight:bold; text-transform:uppercase;}
+#diagnosticoCola{position:relative; width:98%; margin:0 0 .5em 0 ; padding:.5em; background:#f7f7f7; border:1px solid #ccc;}
+#diagnosticoCola table{width:100%; font-size:1.2em;}
+#diagnosticoCola table tr{border-bottom:1px solid #000;}
+#diagnosticoCola table th:nth-child(3){width:50%;}
+#diagnosticoCola table th, #diagnosticoCola table td{border-bottom:1px solid #999;}
+#diagnosticoCola table th{width:33%; padding:.5em; text-align:center; color:#9e233f; background:#ccc; border-top:1px solid #999; border-left:1px solid #999; border-right:1px solid #999;}
+#diagnosticoCola table td{padding:.5em; font-size:.9em;}
+#diagnosticoCola #tituloDiagnostico{position:relative; margin:1em 0; padding:1em 0; border-bottom:1px solid #ccc;}
+#diagnosticoCola #tituloDiagnostico h4{position:relative; float:left; margin:0; padding:0; border:none;}
+#diagnosticoCola #tituloDiagnostico a{position:relative; float:right; border:none;}
+
+#loadingMsg p{color:#5d0c1f; font-size:2em; font-weight:bold; text-align:center; margin-top:1em; background:#fff;}
+#loadingMsg p span{font-size:.9em;}

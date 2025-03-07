@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:element name="Datos_CIRCE">
+		<xs:annotation>
+			<xs:documentation>Datos necesarios cuando envía CIRCE. Tipo_Entidad = 1 y Codigo_Entidad =6</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Envio_Tramite">
+					<xs:annotation>
+						<xs:documentation>Datos obligatorios cuando se envía un documento al registro.Tipo_Mensaje = DPR.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Identificacion" type="Identificacion_Tramite_CIRCEType">
+								<xs:annotation>
+									<xs:documentation>Identificación del trámite</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Version" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Versión del subesquema</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

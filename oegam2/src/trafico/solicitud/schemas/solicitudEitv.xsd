@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:import namespace="http://www.gacn.es/CTIT/tipos"/>
+	<xs:element name="ConsultaTarjeta">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="Datos_Firmados"/>
+				<xs:element name="Firma_Gestor" type="tipoHash"/>
+			</xs:all>					
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="AGENT_DOI" type="tipoNIF"/>
+				<xs:element name="AGENCY_DOI" type="alfa17"/>
+				<xs:element name="VIN"	type="alfa17"/>
+				<xs:element name="NIVE"	type="alfa32"/>
+				<xs:element name="TEXTO_LEGAL" type="tipoTextoLegal"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	
+	
+		
+		<xs:simpleType name="tipoNIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[kKlL0-9]{1}[0-9]{7}[a-zA-Z]{1}|[mMxXyYzZ]{1}[0-9]{7}[a-zA-Z]{1}|[a-hA-HjJuUvV]{1}[0-9]{8}|[p-sP-SnNwW]{1}[0-9]{7}[a-jA-J]{1}|.{0}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="tipoHash">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="alfa17">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="alfa32">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="tipoTextoLegal">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="texto legal"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	
+</xs:schema>

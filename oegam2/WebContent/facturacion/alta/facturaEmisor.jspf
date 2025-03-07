@@ -1,0 +1,27 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+	<tr>
+		<td class="tabular"><span class="titulo">Emisor de la factura</span></td>
+	</tr>
+</table>
+
+<table class="tablaformbasica" border="0">
+	<tr>
+		<td align="right" width="2%">
+			<s:checkbox name="gestorComoEmisor" id="idCheckGestorEmisorFactura" onkeypress="this.onClick" onclick="clickOnCheckEmisorFactura(this);" />
+		</td>
+		<td style="vertical-align: middle;" align="left" width="10%">
+			<label for="gestor">Gestor</label>
+		</td>
+		<td align="right" width="5%">
+			<s:checkbox name="gestoriaComoEmisor" id="idCheckGestoriaEmisorFactura" onkeypress="this.onClick" onclick="clickOnCheckEmisorFactura(this);" />
+		</td>
+		<td style="vertical-align: middle;" align="left">
+			<label for="gestoria">Gestoría</label>
+		</td>
+	</tr>
+</table>
+
+<s:hidden name="datosCliente.factura.emisor" id="hiddenEmisor"/>

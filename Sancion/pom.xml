@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>Sanciones</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <groupId>org.icogam.oegam</groupId>
+  <packaging>jar</packaging>
+  <name>Sancion</name>
+  <description>El proyecto de ""Sanciones" permite a los gestores administrativos gestionar  sanciones a través de la plataforma OEGAM. Por gestionar se entiende que el gestor administrativo podrá crear, eliminar, consultar y generar listados en pdf. En la primera versión del proyecto se contemplan las siguientes funcionalidades: dar de alta una sanción, consultarlas, eliminarlas, modificar el estado de la sanción, modificar y generar listados en formato pdf.</description>
+  <url>http://oegam.gestoresmadrid.org</url>
+  <build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>es</locales>
+				</configuration>
+			</plugin>
+		</plugins>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.icogam.oegam</groupId>
+  		<artifactId>utilidades</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.icogam.oegam</groupId>
+  		<artifactId>oegam2_comun</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	  <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+  </dependencies>
+  <properties>
+  	<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+  </properties>
+  
+  <!-- REPORTING -->
+  
+  <reporting>
+		<plugins>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-pmd-plugin</artifactId>
+			    <version>3.1</version>
+			    <configuration>
+			       <linkXref>true</linkXref>
+			       <sourceEncoding>UTF-8</sourceEncoding>
+			       <minimumTokens>100</minimumTokens>
+			       <targetJdk>1.6</targetJdk>
+			    </configuration>
+			</plugin>
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-javadoc-plugin</artifactId>
+	            <version>2.9.1</version>
+	            <configuration>
+	               <source>1.5</source>
+	               <maxmemory>512</maxmemory>
+	            </configuration>
+	         </plugin>
+			<plugin>
+	        	<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>2.10</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+						<configuration>
+							<issueLinkTemplatePerSystem>
+								<mantisbt>%URL%/view.php?id=%ISSUE%</mantisbt>
+							</issueLinkTemplatePerSystem>
+						</configuration>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+	<organization>
+		<name>ICOGAM</name>
+		<url>http://www.gestoresmadrid.org</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>José Rumbo Rufo</name>
+			<email>jose.rumbo@globaltms.es</email>
+			<organization>Global TMS</organization>
+			<roles>
+				<role>Analista Funcional</role>
+				<role>Analista Programador</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>2</id>
+			<name>Julio Molina Chasserot</name>
+			<email>desarrollo1@gestoresmadrid.org</email>
+			<organization>ICOGAM</organization>
+			<roles>
+				<role>Jefe de Proyecto</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Eduardo Cavanna</name>
+			<email>coordinador@gestoresmadrid.org</email>
+			<url>http://www.gestoresmadrid.org</url>
+			<organization>ICOGAM</organization>
+			<organizationUrl>http://www.gestoresmadrid.org</organizationUrl>
+			<roles>
+				<role>Cliente</role>
+			</roles>
+			<timezone>España/Madrid</timezone>
+			<properties>
+				<gtalk>some.name@gmail.com</gtalk>
+			</properties>
+		</contributor>
+	</contributors>
+	<issueManagement>
+		<system>MantisBT</system>
+		<url>http://srvapp06/mantis/</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://192.168.50.47/jenkins</url>
+	</ciManagement>
+  
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://www.dgt.es/nostra/esquemas/consultaDEV" targetNamespace="http://www.dgt.es/nostra/esquemas/consultaDEV">
+<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema>
+<xsd:import schemaLocation="ConsultaDEVService.xsd2.xsd" namespace="http://www.dgt.es/nostra/esquemas/consultaDEV/peticion"/>
+<xsd:import schemaLocation="ConsultaDEVService.xsd3.xsd" namespace="http://www.dgt.es/nostra/esquemas/consultaDEV/respuesta"/></xsd:schema></wsdl:types>
+<wsdl:message name="PeticionReq">
+<wsdl:part name="peticion" element="xsns:Peticion" xmlns:xsns="http://www.dgt.es/nostra/esquemas/consultaDEV/peticion"/></wsdl:message>
+<wsdl:message name="PeticionRes">
+<wsdl:part name="respuesta" element="xsns:Respuesta" xmlns:xsns="http://www.dgt.es/nostra/esquemas/consultaDEV/respuesta"/></wsdl:message>
+<wsdl:portType name="ConsultaDEVPortType">
+<wsdl:operation name="consultaDEV">
+<wsdl:input name="peticion" message="ns0:PeticionReq"/>
+<wsdl:output name="respuesta" message="ns0:PeticionRes"/></wsdl:operation></wsdl:portType>
+<wsdl:binding name="ConsultaDEVSoapBinding" type="ns0:ConsultaDEVPortType">
+<soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="consultaDEV">
+<soap11:operation soapAction="consultaDEV" style="document"/>
+<wsdl:input name="peticion">
+<soap11:body parts="peticion" use="literal"/></wsdl:input>
+<wsdl:output name="respuesta">
+<soap11:body parts="respuesta" use="literal"/></wsdl:output></wsdl:operation></wsdl:binding>
+<wsdl:service name="ConsultaDEVService">
+<wsdl:port name="ConsultaDEVSoap" binding="ns0:ConsultaDEVSoapBinding">
+<soap11:address location="https://sedeapl.dgt.gob.es:8080/WS_NTRA_INTER/ConsultaDEVService"/></wsdl:port>
+<wsdl:port name="ConsultaDEVSoap.0" binding="ns0:ConsultaDEVSoapBinding">
+<soap11:address location="https://sedeapl.dgt.gob.es:8080/WS_NTRA_INTER/ConsultaDEVService"/></wsdl:port></wsdl:service></wsdl:definitions>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- Generated using Flame-Ware Solutions XML-2-XSD v2.0 at http://www.flame-ware.com/Products/XML-2-XSD/ -->
+<xs:schema id="opti_CET_620" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="opti_CET_620" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="autoliquidacion">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codigo" type="xs:string" minOccurs="0" />
+              <xs:element name="matricula" type="xs:string" minOccurs="0" />
+              <xs:element name="documento_GATA" type="xs:string" minOccurs="0" />
+              <xs:element name="CET" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

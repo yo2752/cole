@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:element name="Datos_AEAT">
+		<xs:annotation>
+			<xs:documentation>Datos necesarios cuando envía la AEAT. Tipo_Entidad = 1 y Codigo_Entidad = 3</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Envio_Tramite">
+					<xs:annotation>
+						<xs:documentation>Datos obligatorios cuando se envía un documento al registro.Tipo_Mensaje = DPR.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Identificacion_Ordenante" type="Identificacion_OrdenanteType">
+								<xs:annotation>
+									<xs:documentation>Bloque para indicar los datos del ordenante</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Identificacion_Documento" type="Identificacion_DocumentoType">
+								<xs:annotation>
+									<xs:documentation>Identificación del documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Datos_Facturacion" type="Datos_FacturacionType">
+								<xs:annotation>
+									<xs:documentation>Datos para facturación</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Objetos">
+								<xs:annotation>
+									<xs:documentation>Objetos inscribibles incluidos en el documento </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="BienesMuebles" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Bloque para indicar los bienes muebles. Obligatorio si Tipo_Registro = 3</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Bien_Mueble" type="Bien_MuebleType" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Bloque para indicar un bien mueble</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Numero_Muebles" type="xs:integer" use="required">
+													<xs:annotation>
+														<xs:documentation>Número de bienes muebles incluidos. Debe coincidir con el número de bloques incluidos de Biene_Mueble</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="BienesInmuebles">
+											<xs:annotation>
+												<xs:documentation>Bloque para indicar los bienes inmuebles. Obligatorio si Tipo_Registro = 2</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Bien_Inmueble" type="Bien_InmuebleType" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Bloque para indicar un bien inmueble</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Numero_Inmuebles" type="xs:integer" use="required">
+													<xs:annotation>
+														<xs:documentation>Número de bienes inmuebles incluidos. Debe coincidir con el número de bloques incluidos de Bien_Mueble</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Sociedades">
+											<xs:annotation>
+												<xs:documentation>Bloque para indicar las sociedades o empresarios individuales. Obligatorio si Tipo_Registro = 1</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Sociedad" type="SociedadType" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Bloque para indicar una sociedad o empresario</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Numero_Sociedades" type="xs:integer" use="required">
+													<xs:annotation>
+														<xs:documentation>Número de sociedades incluidas. Debe coincidir con el número de bloques incluidos de Sociedad.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Confirmacion_Minuta">
+					<xs:annotation>
+						<xs:documentation>Obligatorio cuando Tipo_Mensaje = CMR=Confirmación minuta para registro</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="Confirmacion_MinutaType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Confirmacion_Pago" type="Confirmacion_Pago_FacturasType">
+					<xs:annotation>
+						<xs:documentation>Obligatorio cuando Tipo_Mensaje = CPR=Confirmación de pago de factura para registro.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Version" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Versión del subesquema</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

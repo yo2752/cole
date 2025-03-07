@@ -1,0 +1,32 @@
+<%@ page isErrorPage="true" %>
+
+<br/><br/><br/><br/><br/>
+
+<div class="rbroundbox">
+	<div class="rbtop">
+		<div></div>
+	</div>
+	<div class="rbcontent">
+		<br><br>
+		<center>
+			<table>
+				<tr>
+					<td>
+						<ul>
+							<li>${mensaje}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+			<br><br>
+			<c:if test="${requestScope.botonSeleccionCertificado=='true'}">
+				<input type="button" onclick="irArestart()" class="botonGrande" value="Seleccionar certificado"/>
+			</c:if>
+			<br><br>
+		</center>
+	</div><!-- /rbcontent -->
+	<div class="rbbot">
+		<div></div>
+	</div>
+</div><!-- /rbroundbox -->
+

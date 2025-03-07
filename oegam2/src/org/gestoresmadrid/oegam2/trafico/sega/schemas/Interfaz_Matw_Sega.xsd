@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by AppsPortables.com (AppsPortables.com) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Tipos="http://www.dgt.es/vehiculos/tipos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="unqualified" attributeFormDefault="unqualified" xsi:noNamespaceSchemaLocation="InterfazMatw.xsd">
+	<!---->
+	<xs:import namespace="http://www.dgt.es/vehiculos/tipos" schemaLocation="./Interfaz_Matw_Tipos_Sega.xsd"/>
+	<!---->
+	<xs:element name="Solicitud_Registro_Entrada">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Firmados"/>
+				<xs:any namespace="##any" processContents="skip" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="Tipos:tipoVersionRegistro" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Genericos"/>
+				<xs:element ref="Datos_Especificos"/>
+				<xs:element ref="Documentos"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Genericos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Organismo" type="Tipos:tipoOrganismo"/>
+				<xs:element name="Remitente" type="Tipos:TipoDatoColegio"/>
+				<xs:element name="Interesados">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Interesado" type="Tipos:TipoDatoGestoria"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Asunto" type="Tipos:TipoDatoAsuntoMATG"/>
+				<xs:element name="Destino" type="Tipos:TipoDatoDestino"/>
+				<xs:element name="Numero_Expediente" type="Tipos:alfa20"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Especificos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Jefatura" type="Tipos:alfa2"/>
+				<xs:element name="Sucursal" type="Tipos:alfa1"/>
+				<xs:element name="Numero_Expediente_Colegio" type="Tipos:alfa20_expediente"/>
+				<xs:element name="Tasa" type="Tipos:alfa12_tasa"/>
+				<xs:element name="Datos_Vehiculo">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Servicio" type="Tipos:alfa3"/>
+							<xs:element name="Fecha_Primera_Matriculacion" type="Tipos:tipoFechaAAAAMMDD" minOccurs="0"/>
+							<xs:element name="Bastidor" type="Tipos:alfa21" minOccurs="0"/>
+							<xs:element name="NIVE" type="Tipos:alfa32" minOccurs="0"/>
+							<xs:element name="Kilometraje" type="Tipos:num6" minOccurs="0"/>
+							<xs:element name="Cuenta_Horas" type="Tipos:num6" minOccurs="0"/>
+							<xs:element name="Fecha_Validez_ITV" type="Tipos:tipoFechaAAAAMMDD" minOccurs="0"/>
+							<xs:element name="Importado" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+							<xs:element name="Matricula_Extranjera" type="Tipos:alfa9" minOccurs="0"/>
+							<xs:element name="Subasta" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+							<xs:element name="Usado" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+							<xs:element name="Matricula_Origen" type="Tipos:alfa9" minOccurs="0"/>
+							<xs:element name="Tipo_Inspeccion_Itv" type="Tipos:alfa1"/>
+                                                        <xs:element name="Carsharing" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Titular">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion" type="Tipos:TipoDatoTitular"/>
+							<xs:element name="Servicio_Autonomo" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Autonomo" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+										<xs:element name="Codigo_IAE" type="Tipos:num4" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Domicilio_Titular" type="Tipos:TipoCambioDomicilio"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Domicilio_Vehiculo" type="Tipos:TipoDatoDireccion" minOccurs="0"/>
+				<xs:element name="Datos_Tecnicos">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Numero_Homologacion_Base" type="Tipos:alfa50" minOccurs="0"/>
+							<xs:element name="Numero_Homologacion" type="Tipos:alfa50" minOccurs="0"/>							
+							<xs:element name="Codigo_ITV" type="Tipos:alfa9" minOccurs="0"/>
+							<xs:element name="Tipo_Tarjeta_Itv" type="Tipos:alfa2" minOccurs="0"/>
+							<xs:element name="Tipo_Vehiculo_Industria" type="Tipos:alfa4" minOccurs="0"/>
+							<xs:element name="Tipo_Vehiculo_DGT" type="Tipos:alfa2" minOccurs="0"/>
+							<xs:element name="Procedencia" type="Tipos:num3" minOccurs="0"/>
+							<xs:element name="Marca_Base" type="Tipos:alfa23" minOccurs="0"/>
+							<xs:element name="Marca" type="Tipos:alfa23" minOccurs="0"/>
+							<xs:element name="Fabricante_Base" type="Tipos:alfa70" minOccurs="0"/>
+							<xs:element name="Fabricante" type="Tipos:alfa70" minOccurs="0"/>
+							<xs:element name="Modelo" type="Tipos:alfa22" minOccurs="0"/>
+							<xs:element name="Color" type="Tipos:alfa2" minOccurs="0"/>
+							<xs:element name="Tipo_Base" type="Tipos:alfa25" minOccurs="0"/>
+							<xs:element name="Tipo" type="Tipos:alfa25" minOccurs="0"/>
+							<xs:element name="Variante_Base" type="Tipos:alfa25" minOccurs="0"/>
+							<xs:element name="Variante" type="Tipos:alfa25" minOccurs="0"/>
+							<xs:element name="Version_Base" type="Tipos:alfa35" minOccurs="0"/>
+							<xs:element name="Version" type="Tipos:alfa35" minOccurs="0"/>
+							<xs:element name="Caracteristicas" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Potencia_Fiscal" type="Tipos:dec12" minOccurs="0"/>
+										<xs:element name="Cilindrada" type="Tipos:dec7" minOccurs="0"/>
+										<xs:element name="Tara" type="Tipos:num7" minOccurs="0"/>
+										<xs:element name="Masa_Maxima_Autorizada" type="Tipos:num6" minOccurs="0"/>
+										<xs:element name="Numero_Maximo_Plazas" type="Tipos:num3" minOccurs="0"/>
+										<xs:element name="Tipo_Carburante" type="Tipos:alfa3" minOccurs="0"/>
+										<xs:element name="Relacion_Potencia_Peso" type="Tipos:dec6_potenciaPeso" minOccurs="0"/>
+										<xs:element name="Numero_Plazas_De_Pie" type="Tipos:num3" minOccurs="0"/>
+										<xs:element name="Co2" type="Tipos:dec6_co2" minOccurs="0"/>
+										<xs:element name="MOM_Base" type="Tipos:num7" minOccurs="0"/>
+										<xs:element name="Masa_En_Servicio" type="Tipos:num7" minOccurs="0"/>
+										<xs:element name="Potencia_Neta_Maxima" type="Tipos:dec12_potenciaNeta" minOccurs="0"/>
+										<xs:element name="Carroceria" type="Tipos:alfa5" minOccurs="0"/>
+										<xs:element name="CategoriaEu" type="Tipos:alfa7" minOccurs="0"/>
+										<xs:element name="DistanciaEjes" type="Tipos:num4" minOccurs="0"/>
+										<xs:element name="Masa_Tecnica_Admisible" type="Tipos:num6" minOccurs="0"/>
+										<xs:element name="Via_Anterior" type="Tipos:num4" minOccurs="0"/>
+										<xs:element name="Via_Posterior" type="Tipos:num4" minOccurs="0"/>
+										<xs:element name="Codigo_ECO" type="Tipos:alfa25" minOccurs="0"/>
+										<xs:element name="Consumo" type="Tipos:num4" minOccurs="0"/>
+										<xs:element name="Eco_Innovacion" type="Tipos:tipoSNBlanco" minOccurs="0"/>
+										<xs:element name="Nivel_Emisiones" type="Tipos:alfa15" minOccurs="0"/>
+										<xs:element name="Reduccion_Eco" type="Tipos:num4" minOccurs="0"/>
+										<xs:element name="Tipo_Alimentacion" type="Tipos:alfa1" minOccurs="0"/>
+										<xs:element name="Categoria_Electrica" type="Tipos:alfa4" minOccurs="0"/>
+										<xs:element name="Autonomia_Electrica" type="Tipos:num4" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Pais_Fabricacion" type="Tipos:alfa1" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Arrendatario" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion" type="Tipos:TipoDatoTitular"/>
+							<xs:element name="Fecha_inicio" type="Tipos:tipoFechaAAAAMMDD"/>
+							<xs:element name="Fecha_fin" type="Tipos:tipoFechaAAAAMMDD" minOccurs="0"/>
+							<xs:element name="Hora_inicio" type="Tipos:tipoHora"/>
+							<xs:element name="Hora_fin" type="Tipos:tipoHora" minOccurs="0"/>
+							<xs:element name="Domicilio_Arrendatario" type="Tipos:TipoCambioDomicilio"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Conductor_habitual" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion" type="Tipos:TipoDatoConductor"/>
+							<xs:element name="Fecha_fin" type="Tipos:tipoFechaAAAAMMDD" minOccurs="0"/>
+							<xs:element name="Hora_fin" type="Tipos:tipoHora" minOccurs="0"/>
+							<xs:element name="Domicilio_conductor" type="Tipos:TipoCambioDomicilio"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Tutor" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Documento_Identidad" type="Tipos:TipoDocumentoIdentificacion"/>
+							<xs:element name="Tipo_tutela" type="Tipos:alfa1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Impuestos" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CEM" type="Tipos:alfa8" minOccurs="0"/>
+							<xs:element name="CEMA" type="Tipos:alfa8" minOccurs="0"/>
+							<xs:element name="Exencion_CEM" type="Tipos:alfa10" minOccurs="0"/>
+							<xs:element name="Justificado_IVTM" type="Tipos:tipoSN" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Tipo_Tramite" type="Tipos:alfa2"/>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="Tipos:tipoVersionEspecificos"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Documentos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Documento" type="Tipos:TipoDatoDocumento" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

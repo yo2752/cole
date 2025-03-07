@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<display-name>Oegam2</display-name>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>etiquetasOegam</taglib-uri>
+			<taglib-location>/WEB-INF/etiquetas_oegam.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<context-param>
+		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+		<param-value>/WEB-INF/tiles.xml</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+  		Ubicacion de los archivos de configuracion de Spring
+  	</description>
+		<param-name>contextConfigLocation</param-name>
+		<param-value> 
+           /WEB-INF/applicationContext.xml 
+           /WEB-INF/applicationContext-security.xml 
+           </param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+  		Si toma el valor viafirma, se autentificará al usuario mediante certificado con viafirma.
+  		Si toma el valor false, la aplicación se saltará dicha autentificación.
+  	</description>
+		<param-name>AutenticacionSISTEMA</param-name>
+		<!-- ¡OJO AL SINCRONIZAR CON EL REPO!, SUBIR SIEMPRE CON EL VALOR VIAFIRMA -->
+		<param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+		API de inicialización del cliente de viafirma.
+		Posibles valores : ws y rest
+	</description>
+		<param-name>apiClienteViafirma</param-name>
+		<param-value>ws</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+    	Establece el tipo de firma de los mensajes DPR
+    	(Documento Para el Registro)
+		Posibles valores: APPLET, HSM
+	</description>
+		<param-name>firmaDPR</param-name>
+		<param-value>HSM</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+    	Establece el tipo de firma de la documentacion de las notificaciones
+    	(Documento Para el Registro)
+		Posibles valores: APPLET, HSM
+	</description>
+		<param-name>firmaNotificacionAcuse</param-name>
+		<param-value>HSM</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+		Establece el tipo de firma de los mensajes DPR de los acuses
+    	(Documento Para el Registro)
+		Posibles valores: APPLET, HSM
+	</description>
+		<param-name>firmaAcuse</param-name>
+		<param-value>HSM</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+		Si toma el valor real, se invoca al web service
+		y si toma el valor simulacion, no. (para OEGAM - Registro)
+	</description>
+		<param-name>modoEnvio</param-name>
+		<param-value>simulacion</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+		Comprueba si o no que el firmante del trámite es la
+		personalidad que figura como presentante del mismo. (para OEGAM - Registro)
+	</description>
+		<param-name>comprobarFirmante</param-name>
+		<param-value>Si</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+		Si se establece a si, solo serán válidos para autenticarse en la
+		plataforma los certificados expedidos por firmaProfesional
+	</description>
+		<param-name>soloFirmaProfesional</param-name>
+		<param-value>No</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+    	¿Verificar los procesos levantados mediante un interceptor?
+    	Solo debe valer 'si' para SIGA
+    </description>
+		<param-name>VERIFICACION_PROCESOS</param-name>
+		<param-value>no</param-value>
+	</context-param>
+
+<!-- 	<listener>
+		<listener-class>administracion.listeners.PropertiesListener</listener-class>
+	</listener>
+ -->	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.gestoresmadrid.oegam2.listeners.PropiedadesListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.gestoresmadrid.oegam2comun.administracion.listeners.DatosMaestrosLicListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>administracion.acciones.SessionCounterListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.gestoresmadrid.oegam2.cola.servlet.ColasServletContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>net.sf.navigator.menu.MenuContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>viafirmaClientResponseServlet</servlet-name>
+		<servlet-class>viafirma.servlet.ViafirmaClientResponseServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>viafirmaClientResponseServlet</servlet-name>
+		<url-pattern>/viafirmaClientResponseServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>viafirmaClientResponseServletMate</servlet-name>
+		<servlet-class>viafirma.servlet.ViafirmaClientResponseServletMate</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>viafirmaClientResponseServletMate</servlet-name>
+		<url-pattern>/viafirmaClientResponseServletMate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>recargaCombos</servlet-name>
+		<servlet-class>administracion.cache.servlet.RecargaCombosServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>recargaCombos</servlet-name>
+		<url-pattern>/recargaCombosServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>recargaDatosSensibles</servlet-name>
+		<servlet-class>administracion.cache.servlet.RecargaDatosSensiblesServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>recargaDatosSensibles</servlet-name>
+		<url-pattern>/recargaDatosSensiblesServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>recargaStatusOegamServlet</servlet-name>
+		<servlet-class>administracion.cache.servlet.RecargaStatusOegamServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>recargaStatusOegamServlet</servlet-name>
+		<url-pattern>/recargaStatusOegamServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>cargarPdfLopd</servlet-name>
+		<servlet-class>administracion.cache.servlet.PdfLopdServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>cargarPdfLopd</servlet-name>
+		<url-pattern>/cargarLopd</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>recargaPropertiesOegamServlet</servlet-name>
+		<servlet-class>administracion.cache.servlet.RecargaPropertiesOegamServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>recargaPropertiesOegamServlet</servlet-name>
+		<url-pattern>/recargaPropertiesOegamServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>JnlpServlet05</servlet-name>
+	    <servlet-class>org.gestoresmadrid.oegam2.jnlp.servlet.JnlpServlet05</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>JnlpServlet05</servlet-name>
+    	<url-pattern>/jnlpServlet05</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	    <servlet-name>JnlpServlet</servlet-name>
+	    <servlet-class>org.gestoresmadrid.oegam2.jnlp.servlet.JnlpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>JnlpServlet</servlet-name>
+    	<url-pattern>/jnlpServlet</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>filtro.struts2.dispatcher.FiltroStruts2</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.jsp</location>
+
+	</error-page>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	<security-constraint>
+        <web-resource-collection>
+			<web-resource-name>TODO</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+  	</security-constraint>
+
+</web-app>

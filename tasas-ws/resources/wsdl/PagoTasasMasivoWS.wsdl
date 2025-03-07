@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/" targetNamespace="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/">
+<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema>
+<xsd:import schemaLocation="PagoTasasMasivoWS.xsd2.xsd" namespace="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></xsd:schema></wsdl:types>
+<wsdl:message name="comprarTasasPorNRC">
+<wsdl:part name="parameters" element="xsns:comprarTasasPorNRC" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="comprarTasasPorNRCResponse">
+<wsdl:part name="parameters" element="xsns:comprarTasasPorNRCResponse" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="IndiServicioException">
+<wsdl:part name="fault" element="xsns:IndiServicioException" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerDatosPedido">
+<wsdl:part name="parameters" element="xsns:obtenerDatosPedido" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerDatosPedidoResponse">
+<wsdl:part name="parameters" element="xsns:obtenerDatosPedidoResponse" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerJustificantePago">
+<wsdl:part name="parameters" element="xsns:obtenerJustificantePago" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerJustificantePagoResponse">
+<wsdl:part name="parameters" element="xsns:obtenerJustificantePagoResponse" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerNumeroJustificante">
+<wsdl:part name="parameters" element="xsns:obtenerNumeroJustificante" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="obtenerNumeroJustificanteResponse">
+<wsdl:part name="parameters" element="xsns:obtenerNumeroJustificanteResponse" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="realizarPagoTasas">
+<wsdl:part name="parameters" element="xsns:realizarPagoTasas" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:message name="realizarPagoTasasResponse">
+<wsdl:part name="parameters" element="xsns:realizarPagoTasasResponse" xmlns:xsns="http://itv.webservices.productos.ingresos.sic.servicios.trafico.es/"/></wsdl:message>
+<wsdl:portType name="PagoItv">
+<wsdl:operation name="comprarTasasPorNRC">
+<wsdl:input name="comprarTasasPorNRCRequest" message="ns0:comprarTasasPorNRC"/>
+<wsdl:output name="comprarTasasPorNRCResponse" message="ns0:comprarTasasPorNRCResponse"/>
+<wsdl:fault name="IndiServicioException" message="ns0:IndiServicioException"/></wsdl:operation>
+<wsdl:operation name="obtenerDatosPedido">
+<wsdl:input name="obtenerDatosPedidoRequest" message="ns0:obtenerDatosPedido"/>
+<wsdl:output name="obtenerDatosPedidoResponse" message="ns0:obtenerDatosPedidoResponse"/>
+<wsdl:fault name="IndiServicioException" message="ns0:IndiServicioException"/></wsdl:operation>
+<wsdl:operation name="obtenerJustificantePago">
+<wsdl:input name="obtenerJustificantePagoRequest" message="ns0:obtenerJustificantePago"/>
+<wsdl:output name="obtenerJustificantePagoResponse" message="ns0:obtenerJustificantePagoResponse"/>
+<wsdl:fault name="IndiServicioException" message="ns0:IndiServicioException"/></wsdl:operation>
+<wsdl:operation name="obtenerNumeroJustificante">
+<wsdl:input name="obtenerNumeroJustificanteRequest" message="ns0:obtenerNumeroJustificante"/>
+<wsdl:output name="obtenerNumeroJustificanteResponse" message="ns0:obtenerNumeroJustificanteResponse"/>
+<wsdl:fault name="IndiServicioException" message="ns0:IndiServicioException"/></wsdl:operation>
+<wsdl:operation name="realizarPagoTasas">
+<wsdl:input name="realizarPagoTasasRequest" message="ns0:realizarPagoTasas"/>
+<wsdl:output name="realizarPagoTasasResponse" message="ns0:realizarPagoTasasResponse"/>
+<wsdl:fault name="IndiServicioException" message="ns0:IndiServicioException"/></wsdl:operation></wsdl:portType>
+<wsdl:binding name="PagoItvPortBinding" type="ns0:PagoItv">
+<soap11:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="comprarTasasPorNRC">
+<soap11:operation soapAction="" style="document"/>
+<wsdl:input name="comprarTasasPorNRCRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="comprarTasasPorNRCResponse">
+<soap11:body use="literal"/></wsdl:output>
+<wsdl:fault name="IndiServicioException">
+<soap11:fault name="IndiServicioException" use="literal"/></wsdl:fault></wsdl:operation>
+<wsdl:operation name="obtenerDatosPedido">
+<soap11:operation soapAction="" style="document"/>
+<wsdl:input name="obtenerDatosPedidoRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="obtenerDatosPedidoResponse">
+<soap11:body use="literal"/></wsdl:output>
+<wsdl:fault name="IndiServicioException">
+<soap11:fault name="IndiServicioException" use="literal"/></wsdl:fault></wsdl:operation>
+<wsdl:operation name="obtenerJustificantePago">
+<soap11:operation soapAction="" style="document"/>
+<wsdl:input name="obtenerJustificantePagoRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="obtenerJustificantePagoResponse">
+<soap11:body use="literal"/></wsdl:output>
+<wsdl:fault name="IndiServicioException">
+<soap11:fault name="IndiServicioException" use="literal"/></wsdl:fault></wsdl:operation>
+<wsdl:operation name="obtenerNumeroJustificante">
+<soap11:operation soapAction="" style="document"/>
+<wsdl:input name="obtenerNumeroJustificanteRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="obtenerNumeroJustificanteResponse">
+<soap11:body use="literal"/></wsdl:output>
+<wsdl:fault name="IndiServicioException">
+<soap11:fault name="IndiServicioException" use="literal"/></wsdl:fault></wsdl:operation>
+<wsdl:operation name="realizarPagoTasas">
+<soap11:operation soapAction="" style="document"/>
+<wsdl:input name="realizarPagoTasasRequest">
+<soap11:body use="literal"/></wsdl:input>
+<wsdl:output name="realizarPagoTasasResponse">
+<soap11:body use="literal"/></wsdl:output>
+<wsdl:fault name="IndiServicioException">
+<soap11:fault name="IndiServicioException" use="literal"/></wsdl:fault></wsdl:operation></wsdl:binding>
+<wsdl:service name="PagoItvService">
+<wsdl:port name="PagoItvPort" binding="ns0:PagoItvPortBinding">
+<soap11:address location="http://pre-datapower.trafico.es:8080/WS_INDI_MASIVOS/PagoTasasMasivoWS"/></wsdl:port></wsdl:service></wsdl:definitions>

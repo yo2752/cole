@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:Tipos="http://www.gacn.es/CTIT/tipos"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="unqualified"
+xsi:noNamespaceSchemaLocation="Interfaz_CONSULTABTV.xsd"
+attributeFormDefault="unqualified">
+	<!---->
+	<xs:import namespace="http://www.gacn.es/CTIT/tipos" schemaLocation="./Tipos.xsd"/>
+	<!---->
+	<xs:element name="Solicitud_Tramite">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Datos_Firmados"/>
+				<xs:element name="Firma_Gestor" type="Tipos:tipoHash"/>
+			</xs:sequence>
+			<xs:attribute name="Version" type="Tipos:tipoVersionRegistro" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Datos_Firmados">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DOI_Gestor" type="Tipos:tipoNIF"/>
+				<xs:element name="DOI_Gestoria" type="Tipos:tipoNIF"/>
+				<xs:element name="Matricula" type="Tipos:alfa12"/>
+				<xs:element name="DOI_Titular1" type="Tipos:tipoNIF"/>
+				<xs:element name="DOI_Titular2" type="Tipos:tipoNIF" minOccurs="0"/>
+				<xs:element name="DOI_Titular3" type="Tipos:tipoNIF" minOccurs="0"/>
+				<xs:element name="Texto_Legal" type="Tipos:tipoTextoLegal"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

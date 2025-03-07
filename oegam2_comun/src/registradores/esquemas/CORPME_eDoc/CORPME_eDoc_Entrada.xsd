@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:element name="CORPME-Acuse-Entrada">
+		<xs:annotation>
+			<xs:documentation>Esquema CORPME con la estructura de la respuesta de un número de entrada </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="NumEntradaMercantil" type="Numero_Entrada_MercantilType"/>
+				<xs:element name="NumEntradaPropiedad" type="Numero_Entrada_PropiedadType"/>
+				<xs:element name="NumEntradaBienesMuebles" type="Numero_Entrada_Bienes_MueblesType"/>
+				<xs:element name="NumEntradaLiquidadora" type="Numero_Entrada_LiquidadoraType"/>
+			</xs:choice>
+			<xs:attribute name="Version" type="xs:string" use="optional"/>
+			<xs:attribute name="Tipo_Registro" use="required">
+				<xs:annotation>
+					<xs:documentation>1 = Mercantil, 2 = Propiedad 3 = Bienes Muebles, 4 = Oficina Liquidadora</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:pattern value="\d{1}"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Registro" use="required">
+				<xs:annotation>
+					<xs:documentation>Código de registro CORPME. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{5}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Fecha" use="required">
+				<xs:annotation>
+					<xs:documentation>Fecha de entrada</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="10"/>
+						<xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Hora" use="required">
+				<xs:annotation>
+					<xs:documentation>Hora de entrada</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{2}:\d{2}:\d{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Localizador" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Localizador o referencia dentro del registro que identifica a la entrada.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

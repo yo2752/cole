@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" elementFormDefault="qualified" attributeFormDefault="unqualified" jaxb:version="1.0"><xs:annotation><xs:appinfo><jaxb:globalBindings typesafeEnumMemberName="generateName" /></xs:appinfo></xs:annotation>
+	<xs:element name="remesa">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="declaracion" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>Modelo 620A4</xs:documentation>
+							</xs:annotation>
+							<xs:element name="lista_intervinientes">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="interviniente" type="intervinienteA2Type" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Identificacion">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OficinaLiquidadora" type="OficinaLiquidadoraType" />
+										<xs:element name="OficinaLiquidadoraDesc" type="xs:string" />
+										<xs:element name="FechaDevengo" type="fechaTypeO" />
+										<xs:element name="FechaMatricula" type="fechaType" />
+										<xs:element name="NumMatricula" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="15" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Tipo" type="tipoType" />
+										<xs:element name="TipoDesc" type="xs:string" />
+										<xs:element name="IndTransmitente" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="Vehiculos">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Marca">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="30" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="MarcaDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="30" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Modelo">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="ModeloDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="150" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Potencia" type="xs:string" minOccurs="0" maxOccurs="1" />
+											<xs:element name="TipoMotor">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Cilindrada" type="importe6_2Type" />
+											<xs:element name="Bastidor">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="21" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="ProcedenciaDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="18" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Subasta">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="1" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Embarcaciones">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Fabricante">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="30" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FabricanteDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="0" />
+														<xs:maxLength value="30" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Modelo">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="ModeloDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="150" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Eslora" type="importe4_2Type" />
+											<xs:element name="Manga" type="importe4_2Type" />
+											<xs:element name="Casco">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="10" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="TipoMotor">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80" />
+														<xs:minLength value="0" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Potencia" type="xs:string" minOccurs="0" maxOccurs="1" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Aeronaves">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="MarcaDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="30" />
+														<xs:minLength value="1" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="ModeloDesc">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="150" />
+														<xs:minLength value="1" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Peso" type="digito5Type" />
+											<xs:element name="Motores" type="digito2Type" />
+											<xs:element name="MarcaMotor">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="20" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Potencia" type="xs:string" minOccurs="0" maxOccurs="1" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="Liquidacion">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Exento" type="boolObligatorioType" />
+										<xs:element name="NoSujeto" type="boolObligatorioType" />
+										<xs:element name="Prescrita" type="boolObligatorioType" />
+										<xs:element name="Fundamento" type="fundamentoType" />
+										<xs:element name="FundamentoDesc">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="100" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PrecioCompraventa" type="importe17_2Type" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="ReduccionCodigo" type="reduccionType" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="ReduccionPorcentaje" type="porcentajeType" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="ReduccionImporte" type="importe17_2Type" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="Porcentaje">
+											<xs:simpleType>
+												<xs:restriction base="porcentajeType">
+													<xs:minLength value="1"></xs:minLength>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Base" type="importe17_2Type" />
+										<xs:element name="TipoGravamen" type="importe4_2Type" />
+										<xs:element name="Cuota" type="importe17_2Type" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="codigo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="13" />
+									<xs:maxLength value="13" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="modelo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="5" />
+									<xs:maxLength value="5" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="version_xsd_modelo" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5" />
+									<xs:minLength value="3" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="codigo" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5" />
+						<xs:maxLength value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fec_emision" type="fechaType" use="required" />
+			<xs:attribute name="total_decl" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:minInclusive value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="version_xsd" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="versioncodigo" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="importe4_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?([0-9])?[0-9],[0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe5_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])?[0-9])?[0-9],[0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe5_4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe6_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe7_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe9_4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(((((([0-9]\.)?[0-9])?[0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?((((((([0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9]\.)?[0-9])?[0-9])?[0-9],[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,4},[0-9][0-9])?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe17_2TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,4},[0-9][0-9])" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="importe12Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\-)?(([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))(\.[0-9][0-9][0-9]){0,3})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="porcentajeType">		 
+        <xs:restriction base="xs:string">		 
+            <xs:pattern value="(([0-9]?[0-9],[0-9]{2})|(100,00))?"/>		 
+        </xs:restriction>		 
+    </xs:simpleType>
+	<xs:simpleType name="digito2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,2}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito3Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,3}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,4}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito5Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,5}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NumeroType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{0,5})|(S/N)" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito6Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,6}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,9}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito10Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,10}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito12Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{0,12}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9])|((1|2)[0-9])|(3(0|1)))/((0[1-9])|(1[0-2]))/[1-9][0-9]{3})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nifType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\d{8})([A-HJ-NP-TV-Z]))?" />
+			<xs:pattern value="(([A-HJU-V])(\d{8}))?" />
+			<xs:pattern value="(([A-GK-NP-SW-Z])(\d{7})([A-NP-TV-Z]))?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mesType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0[1-9])|(1[0-2]))?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="anioType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d{4})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="boolType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(S|N)?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="intervinienteA2Type">
+		<xs:sequence>
+			<xs:element name="nif" type="nifType" />
+			<xs:element name="nombre">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="apellido1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="apellido2">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nombre_razonsocial">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="75" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="provincia" type="provinciaType" />
+			<xs:element name="provinciaDesc" type="xs:string" />
+			<xs:element name="municipio">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3" />
+						<xs:minLength value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="municipioDesc">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siglas" type="siglasType" />
+			<xs:element name="siglasDesc" type="xs:string" />
+			<xs:element name="nombre_via">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+						<xs:minLength value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numero" type="NumeroType" />
+			<xs:element name="escalera">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="piso">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="puerta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cp">
+				<xs:simpleType>
+					<xs:restriction base="cifras5Type">
+						<xs:minLength value="0" />
+						<xs:maxLength value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="telf" type="cifras9Type" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="tipo" type="TipoIntervinienteType" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="OficinaLiquidadoraType">
+		<xs:annotation>
+			<xs:documentation>
+				001=O.L. ALCALÁ DE HENARES,
+				002=O.L. ALCOBENDAS,
+				003=O.L. ALCORCÓN,
+				004=O.L. ALGETE,
+				005=O.L. ARANJUEZ,
+				006=O.L. ARGANDA DEL REY,
+				007=O.L. COLLADO VILLALBA,
+				008=O.L. COLMENAR VIEJO,
+				009=O.L. COSLADA,
+				010=O.L. FUENLABRADA,
+				011=O.L. GETAFE,
+				012=O.L. LAS ROZAS,
+				013=O.L. LEGANES,
+				014=O.L. MAJADAHONDA,
+				015=O.L. MOSTOLES,
+				016=O.L. NAVALCARNERO,
+				017=O.L. PARLA,
+				018=O.L. PINTO,
+				019=O.L. POZUELO DE ALARCON,
+				020=O.L. SAN FERNANDO DE HENARES,
+				021=O.L. SAN LORENZO DEL ESCORIAL,
+				022=O.L. SAN MARTIN VALDEIGLESIAS,
+				023=O.L. S. SEBASTIAN DE LOS REYES,
+				024=O.L. TORREJÓN DE ARDOZ,
+				000=MADRID CAPITAL (D.G. TRIBUTOS.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="001" />
+			<xs:enumeration value="002" />
+			<xs:enumeration value="003" />
+			<xs:enumeration value="004" />
+			<xs:enumeration value="005" />
+			<xs:enumeration value="006" />
+			<xs:enumeration value="007" />
+			<xs:enumeration value="008" />
+			<xs:enumeration value="009" />
+			<xs:enumeration value="010" />
+			<xs:enumeration value="011" />
+			<xs:enumeration value="012" />
+			<xs:enumeration value="013" />
+			<xs:enumeration value="014" />
+			<xs:enumeration value="015" />
+			<xs:enumeration value="016" />
+			<xs:enumeration value="017" />
+			<xs:enumeration value="018" />
+			<xs:enumeration value="019" />
+			<xs:enumeration value="020" />
+			<xs:enumeration value="021" />
+			<xs:enumeration value="022" />
+			<xs:enumeration value="023" />
+			<xs:enumeration value="024" />
+			<xs:enumeration value="000" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tipoType">
+		<xs:annotation>
+			<xs:documentation>
+				A=TURISMO,
+				B=TODO TERRENO,
+				C=MOTOCICLETA,
+				D=MOTOCICLETA SCOOTER,
+				E=VEHICULOS INDUSTRIALES,
+				F=VEHICULO NO CATALOGADO,
+				G=BARCOS A MOTOR,
+				H=BARCOS A VELA,
+				I=MOTORES MARINOS,
+				J=AERONAVE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A" />
+			<xs:enumeration value="B" />
+			<xs:enumeration value="C" />
+			<xs:enumeration value="D" />
+			<xs:enumeration value="E" />
+			<xs:enumeration value="F" />
+			<xs:enumeration value="G" />
+			<xs:enumeration value="H" />
+			<xs:enumeration value="J" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaTypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9])|((1|2)[0-9])|(3(0|1)))/((0[1-9])|(1[0-2]))/[1-9][0-9]{3})" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="boolCompleto">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(SI|NO)?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="boolObligatorioType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(S|N)" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fundamentoType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2" />
+			<xs:enumeration value="01" />
+			<xs:enumeration value="02" />
+			<xs:enumeration value="03" />
+			<xs:enumeration value="17" />
+			<xs:enumeration value="A1" />
+			<xs:enumeration value="A2" />
+			<xs:enumeration value="A3" />
+			<xs:enumeration value="A4" />
+			<xs:enumeration value="B3" />
+			<xs:enumeration value="C1" />
+			<xs:enumeration value="S1" />
+			<xs:enumeration value="S2" />
+			<xs:enumeration value="" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="reduccionType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2" />
+			<xs:enumeration value="01" />
+			<xs:enumeration value="02" />
+			<xs:enumeration value="03" />
+			<xs:enumeration value="04" />
+			<xs:enumeration value="05" />
+			<xs:enumeration value="06" />
+			<xs:enumeration value="07" />
+			<xs:enumeration value="08" />
+			<xs:enumeration value="" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nifTypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([A-Z]|[0-9])(\d{7})([A-Z]|[0-9]))"/>
+			<xs:pattern value="((CM)(\d{7}))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="digito4TypeO">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,4}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="siglasType">
+		<xs:annotation>
+			<xs:documentation>
+				ACCES=ACCESO,
+				ACUED=ACUEDUCTO,
+				AEROD=AERODROMO,
+				AEROP=AEROPUERTO,
+				ALAM=ALAMEDA,
+				ALAMD=ALAMEDA,
+				ALMAC=ALMACEN,
+				ALTO=ALTO,
+				APDO=APARTADO POSTAL
+				APTO=APARTAMENTO,
+				ARROY=ARROYO,
+				ARRY=ARROYO,
+				AUTOV=AUTOVIA,
+				AVDA=AVENIDA,
+				AVIA=AUTOVIA
+				BADA=BARRIADA,
+				BAJD=BAJADA,
+				BARDA=BARRIADA,
+				BARRA=BARRANCO,
+				BARRO=BARRIO,
+				BASIL=BASILICA,
+				BLOQ=BLOQUE,
+				BRANC=BARRANCO,
+				BULEV=BULEVAR,
+				BULV=BULEVAR,
+				C.C.B=CENTRO COMERCIAL BARRIO,
+				C.CUL=CENTRO CULTURAL,
+				C.PUB=CENTRO PUBLICO,
+				C.SAN=CENTRO SANITARIO,
+				CALLE=CALLE,
+				CAMPA=CAMPAMENTO,
+				CANAL=CANAL,
+				CANTO=CANTON,
+				CAÑAD=CAÑADA,
+				CAR=CARRERA,
+				CASA=CASA,
+				CASER=CASERIO,
+				CASET=CASETAS,
+				CASIL=CASILLA,
+				CASTI=CASTILLO,
+				CEMEN=CEMENTERIO,
+				CERRO=CERRO,
+				CETRO=CENTRO,
+				CIUDA=CIUDAD,
+				CJTO=CONJUNTO,
+				CLLJA=CALLEJA,
+				CLLON=CALLEJON,
+				CMNO=CAMINO,
+				CÑADA=CAÑADA,
+				COL=COLONIA,
+				COLAD=COLAD,
+				COLEG=COLEGIO,
+				COMP.=COMPLEJO,
+				CONJ=CONJUNTO,
+				CRA=CARRERA,
+				CRRIL=CARRIL,
+				CSTAN=COSTANILLA,
+				CTRA=CARRETERA,
+				CUSTA=CUESTA,
+				CHALE=CHALET,
+				DEHES=DEHESA,
+				DESC=DESCONOCIDO,
+				DISEM=DISEMINADO,
+				DISPE=DISPENSARIO,
+				E.PRO=ESCUELA PROFESIONAL,
+				EDIFI=EDIFICIO,
+				ENLAC=ENLACE,
+				ES.OF=ESCUELA OFICIAL,
+				ESCAL=ESCALINATA,
+				ESCUE=ESCUELA,
+				ESTAC=ESTACION,
+				ESTAD=ESTADIO,
+				EXPLA=EXPLANACION,
+				EXTRR=EXTRARRADIO,
+				F.B.D=FUNDACION BENEFICA DOCENTE,
+				FABRI=FABRICA,
+				FACUL=FACULTAD,
+				FEDES=FERROCARRIL DESMANTELADO,
+				FFCC=FERROCARRIL DESMANTELADO,
+				FINCA=FINCA,
+				FUENT=FUENTE,
+				FUNDA=FUNDACION,
+				G.V.=GRAN VIA,
+				GALE=GALERIA,
+				GRUP=GRUPO,
+				GTA=GLORIETA,
+				HIPOD=HIPODROMO,
+				HOSPI=HOSPITAL,
+				HOTEL=HOTEL,
+				I.F.P=INSTITUTO FORMACION PROFESIONA,
+				IGLES=IGLESIA,
+				IN.PO=INSTITUTO POLITECNICO,
+				INSTI=INSTITUTO,
+				JDIN=JARDIN
+				JARDI=JARDIN,
+				LICEO=LICEO,
+				LUGAR=LUGAR,
+				MANZ=MANZANA,
+				MANZA=MANZANA,
+				MATAD=MATADERO,
+				MERC=MERCADO,
+				MERCA=MERCADO,
+				METRO=ESTACION DE METRO,
+				MINIS=MINISTERIO,
+				MONTE=MONTE,
+				NUCLE=NUCLEO,
+				PAB=PABELLON,
+				PALAC=PALACIO,
+				PARAJ=PARAJE,
+				PARCE=PARCELA,
+				PARTI=PARTICULAR,
+				PASEO=PASEO,
+				PASO=PASO ELEVADO,
+				PATIO=PATIO,
+				PATRO=PATRONATO,
+				PBDO=POBLADO
+				PISTA=PISTA,
+				PLAZA=PLAZA,
+				PLZLA=PLAZUELA,
+				PNTE=PUENTE,
+				POBLA=POBLADO,
+				POLG=POLIGONO,
+				POLID=POLIDEPORTIVO,
+				POLIG=POLIGONO,
+				PORTO=PUERTO,
+				PQUE=PARQUE,
+				PROL=PROLONGACION,
+				PROLG=PROLONGACION,
+				PRAJE=PARAJE,
+				PRTA=PUERTA,
+				PRTO=PUERTO,
+				PSAJE=PASAJE,
+				PUEBL=PUEBLO,
+				PUERT=PUERTA,
+				PZO=PASADIZO,
+				RAMB=RAMBLA,
+				RAMPA=RAMPA,
+				RCDA=RINCONADA,
+				RCO=RINCON,
+				RCON=RINCON,
+				RESID=RESIDENCIAL,
+				RIO=RIO,
+				RNADA=RINCONADA,
+				RNCON=RINCON,
+				RONDA=RONDA,
+				ROTON=ROTONDA,
+				RTDA=ROTONDA,
+				SACRA=SACRAMENTAL,
+				SALID=SALIDA,
+				SE.SA=SERVICIO DE SALUD,
+				SECT=SECTOR,
+				SENDA=SENDA,
+				SITIO=SITIO,
+				SUBES=SUBESTACION,
+				SBIDA=SUBIDA,
+				SUBID=SUBIDA,
+				TANAT=TANATORIO,
+				TRANS=TRANSVERSAL,
+				TRAS=TRASERA,
+				TRVA=TRAVESIA,
+				U.V.A=U.V.A.,
+				URB=URBANIZACION,
+				VIA=VIA,
+				VIAS=VIAS,
+				VREDA=VEREDA,
+				ZONA=ZONA,
+				ZOOLO=ZOOLOGICO.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="ACCES"/>
+			<xs:enumeration value="ACUED"/>
+			<xs:enumeration value="AEROD"/>
+			<xs:enumeration value="AEROP"/>
+			<xs:enumeration value="ALAM"/>
+			<xs:enumeration value="ALAMD"/>
+			<xs:enumeration value="ALMAC"/>
+			<xs:enumeration value="ALTO"/>
+			<xs:enumeration value="APDO"/>
+			<xs:enumeration value="APTO"/>
+			<xs:enumeration value="ARROY"/>
+			<xs:enumeration value="ARRY"/>
+			<xs:enumeration value="AVIA"/>
+			<xs:enumeration value="AUTOV"/>
+			<xs:enumeration value="AVDA"/>
+			<xs:enumeration value="BADA"/>
+			<xs:enumeration value="BAJD"/>
+			<xs:enumeration value="BARDA"/>
+			<xs:enumeration value="BARRA"/>
+			<xs:enumeration value="BARRO"/>
+			<xs:enumeration value="BASIL"/>
+			<xs:enumeration value="BLOQ"/>
+			<xs:enumeration value="BRANC"/>
+			<xs:enumeration value="BULEV"/>
+			<xs:enumeration value="BULV"/>
+			<xs:enumeration value="C.C.B"/>
+			<xs:enumeration value="C.CUL"/>
+			<xs:enumeration value="C.PUB"/>
+			<xs:enumeration value="C.SAN"/>
+			<xs:enumeration value="CALLE"/>
+			<xs:enumeration value="CAMPA"/>
+			<xs:enumeration value="CANAL"/>
+			<xs:enumeration value="CANTO"/>
+			<xs:enumeration value="CAÑAD"/>
+			<xs:enumeration value="CAR"/>
+			<xs:enumeration value="CASA"/>
+			<xs:enumeration value="CASER"/>
+			<xs:enumeration value="CASET"/>
+			<xs:enumeration value="CASIL"/>
+			<xs:enumeration value="CASTI"/>
+			<xs:enumeration value="CEMEN"/>
+			<xs:enumeration value="CERRO"/>
+			<xs:enumeration value="CETRO"/>
+			<xs:enumeration value="CIUDA"/>
+			<xs:enumeration value="CJTO"/>
+			<xs:enumeration value="CLLJA"/>
+			<xs:enumeration value="CLLON"/>
+			<xs:enumeration value="CMNO"/>
+			<xs:enumeration value="CÑADA"/>
+			<xs:enumeration value="COL"/>
+			<xs:enumeration value="COLAD"/>
+			<xs:enumeration value="COLEG"/>
+			<xs:enumeration value="COMP."/>
+			<xs:enumeration value="CONJ"/>
+			<xs:enumeration value="CRA"/>
+			<xs:enumeration value="CRRIL"/>
+			<xs:enumeration value="CSTAN"/>
+			<xs:enumeration value="CTRA"/>
+			<xs:enumeration value="CUSTA"/>
+			<xs:enumeration value="CHALE"/>
+			<xs:enumeration value="DEHES"/>
+			<xs:enumeration value="DESC"/>
+			<xs:enumeration value="DISEM"/>
+			<xs:enumeration value="DISPE"/>
+			<xs:enumeration value="E.PRO"/>
+			<xs:enumeration value="EDIFI"/>
+			<xs:enumeration value="ENLAC"/>
+			<xs:enumeration value="ES.OF"/>
+			<xs:enumeration value="ESCAL"/>
+			<xs:enumeration value="ESCUE"/>
+			<xs:enumeration value="ESTAC"/>
+			<xs:enumeration value="ESTAD"/>
+			<xs:enumeration value="EXPLA"/>
+			<xs:enumeration value="EXTRR"/>
+			<xs:enumeration value="F.B.D"/>
+			<xs:enumeration value="FABRI"/>
+			<xs:enumeration value="FACUL"/>
+			<xs:enumeration value="FEDES"/>
+			<xs:enumeration value="FFCC"/>
+			<xs:enumeration value="FINCA"/>
+			<xs:enumeration value="FUENT"/>
+			<xs:enumeration value="FUNDA"/>
+			<xs:enumeration value="G.V."/>
+			<xs:enumeration value="GALE"/>
+			<xs:enumeration value="GRUP"/>
+			<xs:enumeration value="GTA"/>
+			<xs:enumeration value="HIPOD"/>
+			<xs:enumeration value="HOSPI"/>
+			<xs:enumeration value="HOTEL"/>
+			<xs:enumeration value="I.F.P"/>
+			<xs:enumeration value="IGLES"/>
+			<xs:enumeration value="IN.PO"/>
+			<xs:enumeration value="INSTI"/>
+			<xs:enumeration value="JARDI"/>
+			<xs:enumeration value="JDIN"/>
+			<xs:enumeration value="LICEO"/>
+			<xs:enumeration value="LUGAR"/>
+			<xs:enumeration value="MANZ"/>
+			<xs:enumeration value="MANZA"/>
+			<xs:enumeration value="MATAD"/>
+			<xs:enumeration value="MERC"/>
+			<xs:enumeration value="MERCA"/>
+			<xs:enumeration value="METRO"/>
+			<xs:enumeration value="MINIS"/>
+			<xs:enumeration value="MONTE"/>
+			<xs:enumeration value="NUCLE"/>
+			<xs:enumeration value="PAB"/>
+			<xs:enumeration value="PALAC"/>
+			<xs:enumeration value="PARAJ"/>
+			<xs:enumeration value="PARCE"/>
+			<xs:enumeration value="PARTI"/>
+			<xs:enumeration value="PASEO"/>
+			<xs:enumeration value="PASO"/>
+			<xs:enumeration value="PATIO"/>
+			<xs:enumeration value="PBDO"/>
+			<xs:enumeration value="PATRO"/>
+			<xs:enumeration value="PISTA"/>
+			<xs:enumeration value="PLAZA"/>
+			<xs:enumeration value="PLZLA"/>
+			<xs:enumeration value="PNTE"/>
+			<xs:enumeration value="POBLA"/>
+			<xs:enumeration value="POLG"/>
+			<xs:enumeration value="POLID"/>
+			<xs:enumeration value="POLIG"/>
+			<xs:enumeration value="PORTO"/>
+			<xs:enumeration value="PQUE"/>
+			<xs:enumeration value="PRAJE"/>
+			<xs:enumeration value="PROL"/>
+			<xs:enumeration value="PROLG"/>
+			<xs:enumeration value="PRTA"/>
+			<xs:enumeration value="PRTO"/>
+			<xs:enumeration value="PSAJE"/>
+			<xs:enumeration value="PUEBL"/>
+			<xs:enumeration value="PUERT"/>
+			<xs:enumeration value="PZO"/>
+			<xs:enumeration value="RAMB"/>
+			<xs:enumeration value="RAMPA"/>
+			<xs:enumeration value="RCDA"/>
+			<xs:enumeration value="RCO"/>
+			<xs:enumeration value="RCON"/>
+			<xs:enumeration value="RESID"/>
+			<xs:enumeration value="RIO"/>
+			<xs:enumeration value="RNADA"/>
+			<xs:enumeration value="RNCON"/>
+			<xs:enumeration value="RONDA"/>
+			<xs:enumeration value="ROTON"/>
+			<xs:enumeration value="RTDA"/>
+			<xs:enumeration value="SACRA"/>
+			<xs:enumeration value="SALID"/>
+			<xs:enumeration value="SE.SA"/>
+			<xs:enumeration value="SECT"/>
+			<xs:enumeration value="SENDA"/>
+			<xs:enumeration value="SITIO"/>
+			<xs:enumeration value="SUBES"/>
+			<xs:enumeration value="SBIDA"/>
+			<xs:enumeration value="SUBID"/>
+			<xs:enumeration value="TANAT"/>
+			<xs:enumeration value="TRANS"/>
+			<xs:enumeration value="TRAS"/>
+			<xs:enumeration value="TRVA"/>
+			<xs:enumeration value="U.V.A"/>
+			<xs:enumeration value="URB"/>
+			<xs:enumeration value="VIA"/>
+			<xs:enumeration value="VIAS"/>
+			<xs:enumeration value="VREDA"/>
+			<xs:enumeration value="ZONA"/>
+			<xs:enumeration value="ZOOLO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras4Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{4})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras2Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{2})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras10Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{10})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras5Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{5})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cifras9Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{9})?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="collapsedStringType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoIntervinienteType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sujeto Pasivo" />
+			<xs:enumeration value="Transmitente" />
+			<xs:enumeration value="Presentador" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="provinciaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="" />
+			<xs:enumeration value="01" />
+			<xs:enumeration value="02" />
+			<xs:enumeration value="03" />
+			<xs:enumeration value="04" />
+			<xs:enumeration value="05" />
+			<xs:enumeration value="06" />
+			<xs:enumeration value="07" />
+			<xs:enumeration value="08" />
+			<xs:enumeration value="09" />
+			<xs:enumeration value="10" />
+			<xs:enumeration value="11" />
+			<xs:enumeration value="12" />
+			<xs:enumeration value="13" />
+			<xs:enumeration value="14" />
+			<xs:enumeration value="15" />
+			<xs:enumeration value="16" />
+			<xs:enumeration value="17" />
+			<xs:enumeration value="18" />
+			<xs:enumeration value="19" />
+			<xs:enumeration value="20" />
+			<xs:enumeration value="21" />
+			<xs:enumeration value="22" />
+			<xs:enumeration value="23" />
+			<xs:enumeration value="24" />
+			<xs:enumeration value="25" />
+			<xs:enumeration value="26" />
+			<xs:enumeration value="27" />
+			<xs:enumeration value="29" />
+			<xs:enumeration value="30" />
+			<xs:enumeration value="31" />
+			<xs:enumeration value="32" />
+			<xs:enumeration value="33" />
+			<xs:enumeration value="34" />
+			<xs:enumeration value="35" />
+			<xs:enumeration value="36" />
+			<xs:enumeration value="37" />
+			<xs:enumeration value="38" />
+			<xs:enumeration value="39" />
+			<xs:enumeration value="40" />
+			<xs:enumeration value="41" />
+			<xs:enumeration value="42" />
+			<xs:enumeration value="43" />
+			<xs:enumeration value="44" />
+			<xs:enumeration value="45" />
+			<xs:enumeration value="46" />
+			<xs:enumeration value="47" />
+			<xs:enumeration value="48" />
+			<xs:enumeration value="49" />
+			<xs:enumeration value="50" />
+			<xs:enumeration value="51" />
+			<xs:enumeration value="52" />
+			<xs:enumeration value="88" />
+			<xs:enumeration value="28" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

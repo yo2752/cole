@@ -1,0 +1,36 @@
+<div id="divErroresAEAT" align="center">
+	<table class="subtitulo" cellSpacing="0"  style="width:100%;" >
+		<tr>
+			<td  style="width:100%;text-align:center;">Res&uacute;men de la Generaci&oacute;n del Fichero AEAT</td>
+		</tr>
+	</table>
+	<table style="width:100%;font-size:11px;" class="tablacoin" summary="Resumen de la Generación del Fichero AEAT" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+    	<tr>
+    		<th style="text-align:center;">Expediente</th>
+    		<th style="text-align:center;">Error</th>
+   		</tr>
+   		<s:iterator value="listaResumenErroresFicheroAEAT">
+   			<s:if test="%{!error}">
+	   			<tr>
+	   				<td style="color:green;font-weight:bold;height:auto;">
+	    	  			<s:property value="NumExpedienteError"/>
+	    	  		</td>	
+	   				<td style="color:green;font-weight:bold;height:auto;">
+	    	  			<s:property value="descripcionError"/>
+	    	 		</td>	
+	   			</tr>
+	   		</s:if>
+	      	<s:else>
+	      		<tr>
+	   				<td style="color:red;font-weight:bold;height:auto;">
+	    	  			<s:property value="NumExpedienteError"/>
+	    	  		</td>	
+	   				<td style="color:red;font-weight:bold;height:auto;">
+	    	  			<s:property value="descripcionError"/>
+	    	 		</td>	
+	   			</tr>
+	      	</s:else>
+   		</s:iterator>
+	</table>
+		<ul><li id="mostrarDocumentoFicheroLink" style="display:none;font-size:11px;"><a href="#" onclick="window.open('mostrarDocumentoTrafico.action','Documento_de_impresión_generado',''); muestraYOcultaFicheroAEAT();" title="Documento Generado (Link para imprimir">Documento generado</a> (Link para imprimir)</li></ul>					
+</div>

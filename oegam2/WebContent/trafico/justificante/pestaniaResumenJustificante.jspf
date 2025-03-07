@@ -1,0 +1,127 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Resumen </td>
+			<td align="right">
+				<img src="img/history.png" alt="ver evolución" style="margin-right:10px;height:20px;width:20px;cursor:pointer;"
+				onclick="abrirEvolucionTramite(<s:property value="%{tramiteTraficoBean.numExpediente}"/>);" title="Ver evolución"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS GENERALES</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="120">
+				<label>Número de Expediente: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.numExpediente}"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label>Referencia Propia: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.referenciaPropia}"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label>Estado: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.estado.nombreEnum}"/>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label>Matricula: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.vehiculo.matricula}"/>
+			</td>
+		</tr>
+
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LA TRAMITACIÓN</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap">
+				<label>Fecha de presentación: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{tramiteTraficoBean.fechaPresentacion.dia}"/>/
+				<s:label value="%{tramiteTraficoBean.fechaPresentacion.mes}"/>/
+				<s:label value="%{tramiteTraficoBean.fechaPresentacion.anio}"/>
+			</td>
+		</tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LOS INTERVINIENTES</span>
+			</td>
+		</tr>
+	</table>
+
+	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+			<td align="left" nowrap="nowrap" width="190">
+				<label>Nombre y apellidos del titular: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{titular.persona.nombre}"/>
+				<s:label value="%{titular.persona.apellido1RazonSocial}"/>
+				<s:label value="%{titular.persona.apellido2}"/>
+			</td>
+
+			<td width="20"></td>
+		</tr>
+		<tr>
+			<td align="left" nowrap="nowrap" width="120">
+				<label>DNI del Titular: </label>
+			</td>
+
+			<td align="left" nowrap="nowrap">
+				<s:label value="%{titular.persona.nif}"/>
+			</td>
+		</tr>
+		<tr><td></td></tr>
+
+		<tr><td></td></tr>
+	</table>
+</div>

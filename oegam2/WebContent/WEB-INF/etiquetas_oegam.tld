@@ -1,0 +1,32 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>oegam</short-name>
+    <uri>etiquetasOegam</uri>
+    <description>Etiquetas OEGAM</description>
+    <tag>
+    	<name>botonesPaginaConsulta</name>
+        <tag-class>trafico.tags.BotonesPaginaConsultaTag</tag-class>
+        <body-content>empty</body-content>
+        <info>Devuelve html dinámico de la tabla con los botones de 
+        	la página de consulta de trámites de tráfico
+        </info>
+    </tag>
+   	<tag>
+    	<name>botonesPaginaConsultaRemesas</name>
+        <tag-class>org.gestoresmadrid.oegam2.remesa.tags.BotonesPaginaConsultaRemesaTag</tag-class>
+        <body-content>empty</body-content>
+        <info>Devuelve html dinámico de la tabla con los botones de 
+        	la página de consulta de remesas
+        </info>
+    </tag>
+    <tag>
+    	<name>botonesPaginaConsultaModelos</name>
+        <tag-class>org.gestoresmadrid.oegam2.modelos.tags.BotonesPaginaConsultaModelosTag</tag-class>
+        <body-content>empty</body-content>
+        <info>Devuelve html dinámico de la tabla con los botones de 
+        	la página de consulta de modelos 600 601
+        </info>
+    </tag>
+</taglib>
+

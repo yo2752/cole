@@ -1,0 +1,57 @@
+package org.gestoresmadrid.core.datosSensibles.model.vo;
+import java.io.Serializable;
+import javax.persistence.*;
+
+/**
+ * The primary key class for the DATOS_SENSIBLES_NIF database table.
+ * 
+ */
+@Embeddable
+public class DatosSensiblesNifPK implements Serializable {
+	//default serial version id, required for serializable classes.
+	private static final long serialVersionUID = 1L;
+
+	@Column(name="NIF")
+	private String nif;
+
+	@Column(name="ID_GRUPO")
+	private String idGrupo;
+
+    public DatosSensiblesNifPK() {
+    }
+	public String getNif() {
+		return this.nif;
+	}
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
+	public String getIdGrupo() {
+		return this.idGrupo;
+	}
+	public void setIdGrupo(String idGrupo) {
+		this.idGrupo = idGrupo;
+	}
+
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof DatosSensiblesNifPK)) {
+			return false;
+		}
+		DatosSensiblesNifPK castOther = (DatosSensiblesNifPK)other;
+		return 
+			this.nif.equals(castOther.nif)
+			&& this.idGrupo.equals(castOther.idGrupo);
+
+    }
+    
+	public int hashCode() {
+		final int prime = 31;
+		int hash = 17;
+		hash = hash * prime + this.nif.hashCode();
+		hash = hash * prime + this.idGrupo.hashCode();
+		
+		return hash;
+    }
+}

@@ -1,0 +1,404 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<div class="contenido">		
+
+	<table class="subtitulo" cellSpacing="0" cellspacing="0" align="left">
+		<tr>
+			<td class="espacio"><img src="img/activo.gif" alt=" - " /></td>
+			<td>Resumen del trámite de transmision</td>
+			<td align="right">
+				<img src="img/history.png" alt="ver evolución" style="margin-right:10px;height:20px;width:20px;cursor:pointer;"
+		  		onclick="abrirEvolucionTramite(<s:property value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente}"/>);" title="Ver evolución"/>
+			</td>
+		</tr>
+	</table>
+
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS GENERALES</span>
+			</td>
+		</tr>
+	</table>
+	
+ 	<table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">
+		<tr>
+   			<td align="left" nowrap="nowrap" width="120">
+       			<label>Número de Expediente: </label>
+       		</td>
+       		
+         	<td align="left" nowrap="nowrap">
+       			<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.numExpediente}"/>
+       		</td>
+		</tr>
+
+		<tr>
+			<td align="left" nowrap="nowrap">
+   				<label>Referencia Propia: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.referenciaPropia}"/>
+   			</td>	
+      	</tr>
+      	
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Estado: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.estado.nombreEnum}"/>
+   			</td>	
+       	</tr>
+       	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Matricula: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.matricula}"/>
+   			</td>	
+       	</tr>
+       	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Bastidor: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.vehiculo.bastidor}"/>
+   			</td>	
+       	</tr>
+       	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Tipo de transferencia: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tipoTransferenciaActual.nombreEnum}"/>
+   			</td>	
+       	</tr>
+       	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Modo adjudicación: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.modoAdjudicacion.nombreEnum}"/>
+   			</td>	
+       	</tr>
+    </table>
+    
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LA TRAMITACIÓN</span>
+			</td>
+		</tr>
+	</table>
+	
+    <table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	
+    	<tr>
+			<td align="left" nowrap="nowrap">
+   				<label>Fecha de presentación: </label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.dia}"/>/
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.mes}"/>/
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.fechaPresentacion.anio}"/>
+   			</td>
+		</tr>
+		<tr><td></td></tr>	
+		<tr>
+			<td align="left" nowrap="nowrap" width="120">
+   				<label>Codigo de Tasa Transmisión: </label>
+   			</td>
+   			
+   			<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.tramiteTraficoBean.tasa.codigoTasa}"/>
+   			</td>
+		</tr>
+	</table>
+    
+	<table class="nav" cellSpacing="1" cellPadding="5" width="100%" align="left">	
+		<tr>
+			<td class="tabular">
+				<span class="titulo">DATOS DE LOS INTERVINIENTES</span>
+			</td>
+		</tr>
+	</table>
+	 
+    <table cellSpacing="3" class="tablaformbasica" cellPadding="0" align="left">	        	
+       	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label>Nombre y apellidos del adquiriente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.adquirienteBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.adquirienteBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.adquirienteBean.persona.apellido2}"/>
+   			</td>
+   		
+   			<td width="20"></td>
+   		</tr><tr>
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label>DNI del adquiriente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.adquirienteBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	<s:if test="%{tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.nif!=null && !tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.nif.equals('')}">
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Nombre y apellidos del representante del adquiriente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.apellido2}"/>
+   			</td>
+   		
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap">
+   				<label>DNI del representante del adquiriente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteAdquirienteBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	</s:if>
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label>Nombre y apellidos del transmitente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.transmitenteBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.transmitenteBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.transmitenteBean.persona.apellido2}"/>
+   			</td>
+   		
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label>DNI del transmitente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.transmitenteBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	<s:if test="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif!=null && !tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif.equals('')}">
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap">
+   				<label>Nombre y apellidos del representante del transmitente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.apellido2}"/>
+   			</td>
+   			
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap">
+   				<label>DNI del representante del transmitente: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representanteTransmitenteBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	</s:if>
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label>Nombre y apellidos del presentador: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.presentadorBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.presentadorBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.presentadorBean.persona.apellido2}"/>
+   			</td>
+   		
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label>DNI del presentador: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.presentadorBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	<s:if test="%{tramiteTraficoTransmisionBean.poseedorBean.persona.nif!=null && !tramiteTraficoTransmisionBean.poseedorBean.persona.nif.equals('')}">
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label>Nombre y apellidos del poseedor: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.poseedorBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.poseedorBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.poseedorBean.persona.apellido2}"/>
+   			</td>
+   			
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label>DNI del poseedor: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.poseedorBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	</s:if>
+      	<s:if test="%{tramiteTraficoTransmisionBean.representantePoseedorBean.persona.nif!=null && !tramiteTraficoTransmisionBean.representantePoseedorBean.persona.nif.equals('')}">
+      	<tr><td></td></tr>
+      	<tr>        	       			
+			<td align="left" nowrap="nowrap" width="190">
+   				<label>Nombre y apellidos del representante del poseedor: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representantePoseedorBean.persona.nombre}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representantePoseedorBean.persona.apellido1RazonSocial}"/>
+   				<s:label value="%{tramiteTraficoTransmisionBean.representantePoseedorBean.persona.apellido2}"/>
+   			</td>
+   		
+   			<td width="20"></td>
+   		</tr><tr>	
+   			<td align="left" nowrap="nowrap" width="120">
+   				<label>DNI del representante del poseedor: </label>
+   			</td>
+   			
+         	<td align="left" nowrap="nowrap">
+   				<s:label value="%{tramiteTraficoTransmisionBean.representantePoseedorBean.persona.nif}"/>
+   			</td>	
+      	</tr>
+      	</s:if>
+	</table>
+	
+	<%@include file="../resumenAcciones.jspf" %>
+	
+	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esConsultableOGuardableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+	<table class="acciones">
+		<tr>
+			<td align="center" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+				<input type="button" 
+					   class="boton" 
+					   name="bGuardar10" 
+					   id="bGuardar10" 
+					   value="Consultar / Guardar" 
+					   onClick="return guardarAltaTramiteTransmisionActual('Resumen');" 
+					   onKeyPress="this.onClick"/>				
+			</td>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esValidableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td align="right" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" 
+						   class="boton" 
+						   name="bFinalizar" 
+						   id="bFinalizar" 
+						   value="Validar"
+						   onClick="return validarAltaTramiteTransmisionActual('Resumen');" 
+						   onKeyPress="this.onClick"/>
+				</td>
+			</s:if>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esImprimibleTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td align="right" style="size: 100%; TEXT-ALIGN: center;list-style:none;">
+					<input type="button" 
+						   class="boton" 
+						   name="bImprimir" 
+						   id="bImprimir" 
+						   value="ImprimirPdf" 
+						   onClick="return imprimirPdfAltaTramiteTransmisionActual('Resumen');"
+						   onKeyPress="this.onClick"/>
+				</td>
+	  		</s:if>
+	  		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esJustificantesNuevos(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td align="center">
+					<input type="button" class="boton" name="bGenerarJustificantesPro" 
+						id="idBotonGenerarJustificantesPro" value="GenerarJustificante" 
+						onClick="return generarJustificanteTransmisionActual('Resumen');" onKeyPress="this.onClick"/>
+						&nbsp;
+				</td>
+	  		</s:if>
+	  		<s:else>
+		  		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esGenerableJustificante(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+					<td>
+						<input type="button" class="boton" name="bGenerarJustificantesPro" 
+						id="idBotonGenerarJustificantesPro" value="GenerarJustificante" 
+						onClick="return validarYGenerarJustificanteProAltaTransmisionActual('Resumen');" onKeyPress="this.onClick"/>
+						&nbsp;
+					</td>
+				
+				</s:if>
+	  		</s:else>
+		</tr>
+		<tr>
+			<td>
+				<img id="loadingImage10" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+			</td>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esValidableTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td>
+					<img id="loadingImage12" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+				</td>
+			</s:if>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esImprimibleTransmisionActual(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td>
+					<img id="loadingImage15" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+				</td>
+			</s:if>
+			<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esGenerableJustificante(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td>
+					<img id="loadingImage16" style="display:none;margin-left:auto;margin-right:auto;" src="img/loading.gif">
+				</td>
+			</s:if>
+		</tr>
+	</table>
+	</s:if>
+	 <s:else>
+		 <table class="acciones">
+			<tr>
+		    	<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esJustificantesNuevos(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+				<td align="center">
+					<input type="button" class="boton" name="bGenerarJustificantesPro" 
+						id="idBotonGenerarJustificantesPro" value="GenerarJustificante" 
+						onClick="return generarJustificanteTransmisionActual('Resumen');" onKeyPress="this.onClick"/>
+						&nbsp;
+				</td>
+	  		</s:if>
+	  		<s:else>
+		  		<s:if test="%{@trafico.utiles.UtilesVistaTrafico@getInstance().esGenerableJustificante(tramiteTraficoTransmisionBean.tramiteTraficoBean)}">
+					<td>
+						<input type="button" class="boton" name="bGenerarJustificantesPro" 
+						id="idBotonGenerarJustificantesPro" value="GenerarJustificante" 
+						onClick="return validarYGenerarJustificanteProAltaTransmisionActual('Resumen');" onKeyPress="this.onClick"/>
+						&nbsp;
+					</td>
+				
+				</s:if>
+	  		</s:else>
+			</tr>
+		</table>
+    </s:else>
+	
+</div>

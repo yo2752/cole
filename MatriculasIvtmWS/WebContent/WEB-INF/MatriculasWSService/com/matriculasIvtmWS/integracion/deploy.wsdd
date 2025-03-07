@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MatriculasWSService WSDL service -->
+
+  <service name="MatriculasWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://integracion.matriculasIvtmWS.com"/>
+      <parameter name="wsdlServiceElement" value="MatriculasWSService"/>
+      <parameter name="schemaQualified" value="http://bean.integracion.matriculasIvtmWS.com,http://integracion.matriculasIvtmWS.com"/>
+      <parameter name="wsdlServicePort" value="MatriculasWS"/>
+      <parameter name="className" value="com.matriculasIvtmWS.integracion.MatriculasWS"/>
+      <parameter name="wsdlPortType" value="MatriculasWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://integracion.matriculasIvtmWS.com" xmlns:retNS="http://integracion.matriculasIvtmWS.com" xmlns:rtns="http://bean.integracion.matriculasIvtmWS.com" name="obtenerMatricula" qname="operNS:obtenerMatricula" returnQName="retNS:obtenerMatriculaReturn" returnType="rtns:MatriculasWSResponse" soapAction="">
+        <parameter xmlns:pns="http://integracion.matriculasIvtmWS.com" xmlns:tns="http://bean.integracion.matriculasIvtmWS.com" qname="pns:request" type="tns:MatriculasWSRequest"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerMatricula"/>
+
+      <typeMapping xmlns:ns="http://bean.integracion.matriculasIvtmWS.com" qname="ns:TipoFecha" type="java:com.matriculasIvtmWS.integracion.bean.TipoFecha" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.integracion.matriculasIvtmWS.com" qname="ns:MatriculasWSRequest" type="java:com.matriculasIvtmWS.integracion.bean.MatriculasWSRequest" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.integracion.matriculasIvtmWS.com" qname="ns:MatriculasWSResponse" type="java:com.matriculasIvtmWS.integracion.bean.MatriculasWSResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://integracion.matriculasIvtmWS.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.integracion.matriculasIvtmWS.com" qname="ns:ResultadoWS" type="java:com.matriculasIvtmWS.integracion.bean.ResultadoWS" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://integracion.matriculasIvtmWS.com" xmlns:cmp-ns="http://bean.integracion.matriculasIvtmWS.com" qname="ns:ArrayOf_tns1_ResultadoWS" type="java:com.matriculasIvtmWS.integracion.bean.ResultadoWS[]" innerType="cmp-ns:ResultadoWS" encodingStyle=""/>
+  </service>
+</deployment>

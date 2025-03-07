@@ -1,0 +1,1415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+
+	<package name="trafico" extends="default">
+
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<!-- Actions de Trafico -->
+
+		<action name="*ConsultaTramiteTrafico" method="{1}"
+			class="trafico.acciones.ConsultaTramiteTraficoAction">
+			<result name="aImprimirAction" type="chain">
+				<param name="actionName">inicioImprimirAction</param>
+				<param name="volverAntiguaConsulta">${volverAntiguaConsulta}</param>
+			</result>
+			<result name="aImpresionAction" type="chain">
+				<param name="actionName">inicioImpresionAction</param>
+				<param name="volverAntiguaConsulta">${volverAntiguaConsulta}</param>
+			</result>
+			<result name="aClonarAction" type="chain">
+				<param name="actionName">inicioClonarTramites</param>
+			</result>
+			<result name="altaSolInfoNuevo" type="chain">
+				<param name="actionName">detalleAltaTramSolInformacion</param>
+			</result>
+			<result name="altaFactura" type="tiles">altaFacturacion</result>
+			<result name="consultaTramiteTrafico" type="tiles">consultaTramiteTrafico
+			</result>
+			<result name="altasTramiteTransmision" type="tiles">altasTramiteTransmision
+			</result>
+			<result name="altasTramiteTransmisionActual" type="tiles">altasTramiteTransmisionActual
+			</result>
+			<result name="altaSolicitud" type="tiles">altaSolicitudDatos</result>
+			<result name="detalleSolicitudInformacion" type="chain">
+				<param name="actionName">inicioSolicitudInformacion</param>
+			</result>
+			<result name="altaTramiteBaja" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoBaja</param>
+			</result>
+			<result name="altaTramiteMatriculacion" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoMatriculacion</param>
+			</result>
+			<result name="altaTramiteDuplicado" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoDuplicado</param>
+			</result>
+			<result name="altaTramiteCambioServicio" type="chain">
+				<param name="actionName">inicioAltaTramTrafCambioServicio</param>
+			</result>
+			<result name="altasMatriculacion" type="tiles">altasMatriculacion
+			</result>
+			<result name="altasMatriculacionMatw" type="tiles">altasMatriculacionMatw
+			</result>
+			<result name="autorizarFichasA" type="tiles">autorizarFichaA</result>
+			<result name="autorizarCtit" type="tiles">autorizarCtit</result>
+			<result name="autorizarMatw" type="tiles">autorizarMatw</result>
+			<result name="mostrarDocumentoJustificante" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+
+			<result name="descargarCertificadoTasas" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="descargarFicheroAEAT" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			
+			<result name="descargarFichero05" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+				
+			<result name="descargarXMLTrafico" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+
+			<result name="descargarFichero" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="descargarFicheroPermiso" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+
+			<result name="exportarTramite" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="pagoIVTM" type="redirect">${url}</result>
+
+			<result name="altaTramiteTraficoJustificante" type="chain">
+				<param name="actionName">generarDesdeResumenAltaTramiteJustificanteProfesional</param>
+			</result>
+			<result name="actualizarMatManual">actualizarMatManual</result>
+			<result name="popUpMatriculaManual">/trafico/matriculacionN/popUpMatriculaManual.jsp</result>
+			<result name="popUpJustificanteProf">/trafico/justificante/popupMotivoDocs.jsp</result>
+			<result name="popUpDuplicarTramite">/trafico/duplicarDesasignarTasa.jsp</result>
+			<result name="popUpMotivo">/trafico/justificante/popupMotivoDocs.jsp</result>
+			<result name="popUpBorrarDatos">/trafico/popUpBorrarDatos.jsp</result>
+			<result name="popUpActualizarDatos">/trafico/popUpActualizarDatos.jsp</result>
+			<result name="popUpActualizarPueblo">/trafico/popUpActualizarPueblo.jsp</result>
+			<result name="popUpAutorizarTramites">/trafico/popUpAutorizarTramite.jsp</result>
+			
+			<result name="descargarManualAcreditacionCtr" type="stream">
+			  <param name="contentDisposition">attachment;filename="AcreditacionCtr.pdf"</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarAnexo1" type="stream">
+			  <param name="contentDisposition">attachment;filename="ANEXO1.pdf"</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*EvolucionJustificanteProf" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.EvolucionJustificanteProfAction">
+			<result name="success">/trafico/evolucionJustificanteProf.jsp</result>
+		</action>
+
+		<action name="*ImprimirAction" method="{1}"
+			class="org.gestoresmadrid.oegam2.impresion.controller.action.ImprimirAction">
+			<result name="success" type="tiles">imprimirTramites</result>
+
+			<result name="descargarFichero" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+
+		</action>
+		
+		<action name="*ImpresionAction" method="{1}"
+			class="org.gestoresmadrid.oegam2.impresion.controller.action.ImpresionAction">
+			<result name="success" type="tiles">impresionTramites</result>
+			<result name="descargarFichero" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<action name="*ClonarTramites" method="{1}"
+			class="org.gestoresmadrid.oegam2.clonarTramites.controller.action.ClonarTramitesAction">
+			<result name="success" type="tiles">clonarTramites</result>
+		</action>
+
+		<action name="*ConsultaVehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.vehiculo.controller.action.ConsultaVehiculoAction">
+			<result name="success" type="tiles">consultaVehiculo</result>
+		</action>
+
+		<action name="*DetalleVehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.vehiculo.controller.action.DetalleVehiculoAction">
+			<result name="success" type="tiles">detalleVehiculo</result>
+		</action>
+
+		<action name="*ConsultaMensajesWebService" method="{1}"
+			class="org.gestoresmadrid.oegam2.mensajes.proceso.controller.action.ConsultaMensajesWebServiceAction">
+			<result name="success" type="tiles">consultaMensajesWebService
+			</result>
+		</action>
+
+		<action name="*DetalleMensajesWebService" method="{1}"
+			class="org.gestoresmadrid.oegam2.mensajes.proceso.controller.action.DetalleMensajesWebServiceAction">
+			<result name="success" type="tiles">detalleTramiteWebService</result>
+		</action>
+
+		<action name="*Solicitudes" method="{1}"
+			class="colas.acciones.SolicitudesAction">
+			<result name="consultaSolicitudesErrorServicio" type="tiles">consultaSolicitudesErrorServicio
+			</result>
+		</action>
+
+		<action name="*EvolucionTramiteTrafico" method="{1}"
+			class="trafico.evolucion.EvolucionTramiteTraficoAction">
+			<result name="success">/trafico/evolucionTramite.jsp</result>
+		</action>
+
+		<action name="*Trafico" method="{1}" class="trafico.acciones.TraficoAction">
+			<result name="consultaTramiteTrafico" type="tiles">consultaTramiteTrafico
+			</result>
+			<result name="mostrarDocumentoImpreso" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarXML" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarBM" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargaXLS" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarAEAT" type="stream">
+				<param name="contentType">application/txt</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="consultaDireccion">/trafico/consultaDireccion.jsp</result>
+			<result name="consultaDireccionConPuebloCorreos">/trafico/consultaDireccionConPuebloCorreos.jsp
+			</result>
+		</action>
+
+		<action name="*AltasJustificantesProfesionales" method="{1}"
+			class="trafico.transmision.acciones.AltasJustificanteProfesionalAction">
+			<result name="altasTramiteJustificante" type="tiles">altasTramiteJustificante
+			</result>
+		</action>
+
+		<action name="*ConsultaEvJustificanteProf" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.ConsultaEvolucionJustificanteProfAction">
+			<result name="success">/trafico/justificanteN/consultaEvolucionJustificanteProf.jsp
+			</result>
+		</action>
+
+		<action name="*VerificacionJustificante" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.VerificacionJustificanteProfesionalAction">
+			<result name="success" type="tiles">verifJustificante</result>
+			<result name="mostrarDocumentoJustificante" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<action name="*JustificantesProfesionales" method="{1}"
+			class="trafico.transmision.acciones.JustificanteProfesionalAction">
+			<result name="consultaJustificantesProfesionales" type="tiles">consultaJustificantesProfesionales
+			</result>
+			<result name="verificacionJustificantesProfesionales" type="tiles">verificacionJustificantesProfesionales
+			</result>
+
+			<result name="mostrarDocumentoJustificante" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<action name="*ImprimirTrafico" method="{1}"
+			class="trafico.acciones.ImprimirTraficoAction">
+			<result name="mostrarDocumentoImpreso" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+
+
+		<action name="*Acciones" method="{1}"
+			class="trafico.acciones.AccionesAction">
+			<result name="success">/trafico/evolucionAcciones.jsp</result>
+		</action>
+		<!--Matriculacion -->
+
+		<action name="*AltasMatriculacionMatw" method="{1}"
+			class="trafico.matriculacion.acciones.AltasMatriculacionMatwAction">
+			<result name="altasMatriculacionMatw" type="tiles">altasMatriculacionMatw
+			</result>
+			<result name="validarMatriculacion" type="tiles">validarMatriculacion
+			</result>
+			<result name="applet">/trafico/empty.jsp</result>
+			<result name="completarXmlConFirmaColegiado">completarXmlConFirmaColegiado</result>
+			<result name="actualizarMatManual">actualizarMatManual</result>
+			<result name="popUpMatriculaManual">/trafico/matw/popUpMatriculaManual.jsp</result>
+			<result name="aClonarTramite" type="chain">
+				<param name="actionName">inicioClonarTramites</param>
+			</result>
+			<result name="altaTramiteMatriculacion" type="chain">
+				<param name="actionName">inicioAltaTramiteTraficoMatriculacion</param>
+			</result>
+			<result name="descargarFichero" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarRespuesta" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarDocumentoBase" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarJustificanteIVTM" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="pagoIVTM" type="redirect">${url}</result>
+		</action>
+
+<!-- 		<action name="*AltasMatriculacion" method="{1}"
+			class="trafico.matriculacion.acciones.AltasMatriculacionAction">
+			<result name="altasMatriculacion" type="tiles">altasMatriculacion
+			</result>
+			<result name="validarMatriculacion" type="tiles">validarMatriculacion
+			</result>
+			<result name="applet">/trafico/empty.jsp</result>
+			<result name="completarXmlConFirmaColegiado">completarXmlConFirmaColegiado</result>
+
+			<result name="descargarFichero" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="descargarRespuesta" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="descargarDocBase" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+ -->
+		<action name="*Importar" method="{1}"
+			class="trafico.acciones.ImportarAction">
+			<result name="importarDGT" type="tiles">importarDGT</result>
+			<result name="importarDGT_DGT" type="tiles">importarDGT</result>
+			<result name="importarDGT_MATEGE" type="tiles">importarDGT</result>
+			<result name="importarDGT_MATE" type="tiles">importarDGT</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">ficheroErrores</param>
+				<param name="contentDisposition">attachment;filename="ficheroErrores.dgt"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="ficheroPegatinasDownload" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">ficheroErrores</param>
+				<param name="contentDisposition">attachment;filename="ficheroPegatinas.pdf"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="altasMatriculacion" type="tiles">altasMatriculacion
+			</result>
+		</action>
+
+
+		<action name="*EtiquetasMatricula" method="{1}"
+			class="trafico.matriculacion.acciones.EtiquetasMatriculaAction">
+			<result name="etiquetasMatricula" type="tiles">etiquetasMatricula
+			</result>
+		</action>
+
+
+		<action name="*ConsultaTramiteMatriculacion" method="{1}"
+			class="trafico.matriculacion.acciones.ConsultaTramiteMatriculacionAction">
+			<result name="consultaTramiteMatriculacion" type="tiles">consultaTramiteMatriculacion
+			</result>
+		</action>
+
+		<action name="*TraficoAjax" method="{1}"
+			class="trafico.ajax.acciones.TraficoAjaxAction">
+		</action>
+
+		<action name="*FacturacionAjax" method="{1}"
+			class="facturacion.ajax.acciones.FacturacionAjaxAction">
+		</action>
+
+		<!--Tasas -->
+
+		<action name="*ImportarTasas" method="{1}"
+			class="trafico.tasas.acciones.ImportarTasasAction">
+			<result name="importarTasas" type="tiles">importarTasas</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">ficheroErrores</param>
+				<param name="contentDisposition">attachment;filename="ficheroErrores.txt"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*ConsultaTasa" method="{1}"
+			class="trafico.tasas.acciones.ConsultaTasaAction">
+			<result name="consultaTasa" type="tiles">consultaTasa</result>
+			<result name="detalleTasa" type="tiles">detalleTasa</result>
+			<result name="descargarCertificadoDeTasas" type="tiles">descargarCertificadoDeTasas
+			</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">ficheroTasas</param>
+				<param name="contentDisposition">attachment;filename="tasas.txt"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarCertificadoTasas" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name ="popPupMotivo">/trafico/tasas/motivoPopPup.jsp</result>  
+			<result name="popUpCambioAlmacen">/trafico/tasas/cambiarAlmacenTasa.jsp</result>  
+		</action>
+
+		<action name="*ResumenTasa" method="{1}"
+			class="trafico.tasas.acciones.ResumenTasaAction">
+			<result name="resumenTasa" type="tiles">resumenTasa</result>
+		</action>
+		<!-- Tasas Nuevas -->
+		<action name="*ConsultaTasas" method="{1}" class="org.gestoresmadrid.oegam2.tasas.controller.action.ConsultaTasaNuevaAction">
+			<result name="success" type="tiles">consultaTasaNueva</result>
+			<result name="descargarCertificadoDeTasas" type="tiles">descargarCertificadoDeTasas
+			</result>
+			<result name="ficheroDownload" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">ficheroTasas</param>
+				<param name="contentDisposition">attachment;filename="tasas.txt"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarCertificadoTasas" type="stream">
+				<param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			
+			
+		</action>
+		<!-- Gestion Tasa Nueva  -->
+		<action name="*GestionTasa" method="{1}"  class="org.gestoresmadrid.oegam2.tasas.controller.action.GestionTasaAction">
+			<result name="success" type="tiles">detalleTasaNueva</result>
+		</action>
+		<action name="*EvolucionTs" method="{1}"
+			class="org.gestoresmadrid.oegam2.tasas.controller.action.EvolucionTasaAction">
+			<result name="success">/trafico/tasas/evolucionTasa.jsp</result>
+		</action>
+		<!--Transmision -->
+
+		<action name="*AltasTramiteTransmision" method="{1}"
+			class="trafico.transmision.acciones.AltasTramiteTransmisionAction">
+			<interceptor-ref name="fileUpload">
+			  <param name="maximumSize">2097152</param>
+			</interceptor-ref>
+			<interceptor-ref name="stackInterceptores" />
+           	<result name="descargarDocumento" type="stream">
+         	  <param name="contentType">application/pdf</param>
+			  <param name="inputName">inputStream</param>
+			  <param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+			<result name="altasTramiteTransmision" type="tiles">altasTramiteTransmision
+			</result>
+			<result name="exportar" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="applet">/trafico/empty.jsp</result>
+			<result name="completarXmlConFirmaColegiado">completarXmlConFirmaColegiado</result>
+			<result name="checkCTITConFirmaColegiado">checkCTITConFirmaColegiado</result>
+
+			<result name="descargarDocumentoBase" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
+			<result name="altaTramiteTraficoJustificante" type="chain">
+				<param name="actionName">generarDesdeResumenAltaTramiteJustificanteProfesional</param>
+			</result>
+			<result name="popUpJustificanteProf">/trafico/justificanteProfesional/datosACompletarJustifProf.jsp</result>
+			
+			<result name="descargarAnexoHerencia" type="stream">
+			  <param name="contentDisposition">attachment;filename="ANEXO_I.pdf"</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*AltasTramiteTransmisionActual" method="{1}"
+			class="trafico.transmision.acciones.AltasTramiteTransmisionActualAction">
+			<result name="altasTramiteTransmision" type="tiles">altasTramiteTransmisionActual
+			</result>
+			<result name="exportar" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="altaTramiteTraficoJustificante" type="chain">
+				<param name="actionName">generarDesdeResumenAltaTramiteJustificanteProfesional</param>
+			</result>
+			<result name="popUpJustificanteProf">/trafico/justificanteProfesional/datosACompletarJustifProf.jsp</result>
+		</action>
+
+		<!--Solicitud Informacion -->
+		<action name="*SolicitudInformacion" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.SolicitudInformacionAction">
+			<result name="detalle" type="tiles">detalleSolicitudInformacion
+			</result>
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<!-- Evolucion Tasa -->
+
+		<action name="*Tasa" method="{1}" class="trafico.acciones.TasaAction">
+			<result name="evolucionTasa">/trafico/evolucionTasa.jsp</result>
+		</action>
+
+		<action name="*Facturacion" method="{1}"
+			class="trafico.acciones.FacturacionAction">
+			<result name="DUPLICADO" type="tiles">altasTramiteDuplicado</result>
+			<result name="MATRICULACION" type="tiles">altasMatriculacionMatw</result>
+			<result name="TRANSMISION" type="tiles">altasTramiteTransmisionActual
+			</result>
+			<result name="BAJA" type="tiles">altaTramiteBaja</result>
+			<result name="TRANSMISION ELECTRONICA" type="tiles">altasTramiteTransmision
+			</result>
+			<result name="SOLICITUD" type="tiles">altaSolicitudDatos</result>
+		</action>
+
+		<action name="*ConsultaIVTM" method="{1}"
+			class="trafico.ivtm.acciones.ConsultaIVTMAction">
+			<result name="consultaIVTM" type="tiles">consultaIVTM</result>
+			<result name="popupMatricula">/trafico/ivtm/consultaIVTMPopup.jsp</result>
+		</action>
+
+		<action name="*RespuestaPagoIVTM" method="{1}"
+			class="trafico.ivtm.acciones.RespuestaPagoIVTMAction">
+			<result name="consultaTramiteMatriculacionDetalle" type="chain">
+				<param name="actionName">detalleVueltaPagoConsultaTramiteTrafico</param>
+			</result>
+			<result name="consultaTramiteMatriculacionInicio" type="chain">
+				<param name="actionName">inicioVueltaPagoConsultaTramiteTrafico</param>
+			</result>
+		</action>
+
+		<!-- //TODO MPC. Cambio IVTM. -->
+		<action name="*ModificacionIVTM" method="{1}"
+			class="trafico.ivtm.acciones.ModificacionIVTMNuevoAction">
+			<result name="modificacionIVTM" type="tiles">modificacionIVTM</result>
+			<result name="modificaDatosIVTM" type="tiles">modificaDatosIVTM
+			</result>
+			<result name="descargarDocAutoliquidacionIVTM" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+		
+		<!-- IVTM nuevo -->
+		<action name="*ConsultaIVTM" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.ivtm.controller.action.ConsultaIVTMAction">
+			<result name="success" type="tiles">consultaIVTM</result>
+			<!-- <result name="popupMatricula">/trafico/ivtm/consultaIVTMPopup.jsp</result> -->
+		</action>
+		
+		<!-- MATRÍCULAS/BASTIDORES Y TASAS EN UN INFORME DE SOLICITUD DE DATOS -->
+		<action name="*MatrSolDatos" method="{1}"
+			class="trafico.acciones.MatriculasSolInfoAction">
+			<result name="jspMatrSolInfo" type="tiles">jspMatrSolInfo</result>
+		</action>
+
+		<!-- Entidades Financieras EEFF -->
+		<!-- <action name="*LiberarEEFF" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.eeff.controller.action.LiberarEEFFAction">
+			<result name="altasMatriculacion" type="tiles">altasMatriculacion
+			</result>
+			<result name="altasMatriculacionMatw" type="tiles">altasMatriculacionMatw
+			</result>
+		</action> -->
+
+		<action name="*ConsultaEEFF" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.eeff.controller.action.ConsultaEEFFAction">
+			<result name="success" type="tiles">consultaEEFF</result>
+			<result name="popPupCambioEstado">/trafico/eeff/cambiarEstado.jsp</result>
+			<result name="aAltaConsultaEEFFF" type="chain">
+				<param name="actionName">altaAltaConEEFF</param>
+			</result>
+		</action>
+
+		<action name="*AltaConEEFF" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.eeff.controller.action.AltaConsultaEEFFAction">
+			<result name="success" type="tiles">altaConsultaEEFF</result>
+			<result name="popPupResultadoWs">/trafico/eeff/resultadoWS.jsp</result>
+		</action>
+
+		<!-- -->
+		
+		<!-- ....................................................................................................... -->
+		<!-- .............................................................................TRAFICO SOLICITUDES PLACAS -->
+		<!-- ....................................................................................................... -->
+
+		<action name="*SolicitudPlacas" method="{1}"
+			class="trafico.matriculacion.acciones.SolicitudPlacasAction">
+			<result name="altaSolicitud" type="tiles">altaSolicitudPlaca</result>
+			<result name="inicioSolicitud" type="tiles">solicitudPlacasInicio
+			</result>
+			<result name="buscarSolicitud" type="tiles">solicitudPlacasBuscar
+			</result>
+			<result name="modificarSolicitud" type="tiles">solicitudPlacasModificar
+			</result>
+			<result name="solicitudRealizada" type="tiles">solicitudPlacasRealizada
+			</result>
+			<result name="refrescarSolicitud" type="redirect">nuevaSolicitudPlacas.action
+			</result>
+			<result name="refrescarSolicitudModif" type="redirect">modificarSolicitudPlacas.action
+			</result>
+			<result name="estadisticasSolicitud" type="tiles">solicitudPlacasEstadisticas
+			</result>
+			<result name="recargarListado" type="redirect">inicioConsultaPlacas.action</result>
+			<result name="resultadoVolverAltaSolic" type="redirect">altaSolicitudPlacas.action</result>
+			<result name="resultadoVolverConsTram" type="redirect">inicioConsultaTramiteTrafico.action</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*SolicitudPlacas1" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.AltaSolicitudesPlacasAction">
+			<result name="altaSolicitud" type="tiles">altaSolicitudPlacas1</result>
+			<result name="inicioSolicitud" type="tiles">solicitudPlacas1Inicio
+			</result>
+			<result name="buscarSolicitud" type="tiles">solicitudPlacas1Buscar
+			</result>
+			<result name="modificarSolicitud" type="tiles">solicitudPlacas1Modificar
+			</result>
+			<result name="solicitudRealizada" type="tiles">solicitudPlacas1Realizada
+			</result>
+			<result name="refrescarSolicitud">/trafico/matriculacion/solicitudContent.jsp
+			</result>
+		</action>
+		
+		<!-- anterior class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.AltaSolicitudesPlacasAction" class="trafico.matriculacion.acciones.AltaSolicitudesPlacasAction" -->
+		<!-- nuevo class="trafico.matriculacion.acciones.SolicitudPlacasAction" -->
+		
+		<action name="*ConsultaPlacas" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.ConsultaPlacasAction">
+			<result name="buscarSolicitud" type="tiles">solicitudPlacasBuscar
+			</result>
+		</action>
+		
+		<action name="*ConsultaSolicitudesPlacas" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.ConsultaSolicitudesPlacasAction">
+			<result name="buscarSolicitud" type="tiles">solicitudPlacas1Buscar
+			</result>
+			<result name="inicioSolicitud" type="tiles">solicitudPlacas1Inicio
+			</result>
+			<result name="estadisticasSolicitud" type="tiles">solicitudPlacas1Estadisticas
+			</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<!-- anterior class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.ConsultaSolicitudesPlacasAction" -->
+		<!-- nuevo class="org.gestoresmadrid.oegam2.trafico.solicitudesplacas.controller.action.ConsultaPlacasAction" -->
+			
+		
+		<!-- ......................................................................................................... -->
+		<!-- ......................................................................FINAL DE TRAFICO SOLICITUDES PLACAS -->
+		<!-- ......................................................................................................... -->
+		
+
+		<action name="*ConsultaImpresionMasiva" method="{1}"
+			class="org.gestoresmadrid.oegam2.impresion.masiva.controller.action.ConsultaImpresionMasivaAction">
+			<result name="success" type="tiles">inicioConsultaImpresionMasiva</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+		
+		<action name="*ConsultaImpresion" method="{1}" class="org.gestoresmadrid.oegam2.impresion.controller.action.ConsultaImpresionAction">
+			<result name="success" type="tiles">inicioConsultaImpresion</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="descargarZIP" type="stream">
+             	<param name="contentType">application/zip</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarTXT" type="stream">
+				<param name="contentType">application/txt</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*ConsultaFicherosTemporales" method="{1}"
+			class="org.gestoresmadrid.oegam2.ficheros.temporales.controller.action.ConsultaFicherosTemporalesAction">
+			<result name="success" type="tiles">inicioFicherosTemporales</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+		<!-- VEHICULOS PREMATRICULADOS -->
+
+		<action name="*ConsultaTarjeta" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.prematriculados.controller.action.ConsultaTarjetaAction">
+			<result name="success" type="tiles">vehiculoPrematriculadoAltaUnitaria
+			</result>
+		</action>
+
+		<action name="*ConsultaTarjetaMulti" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.prematriculados.controller.action.ConsultaTarjetaMultiAction">
+			<result name="success" type="tiles">vehiculoPrematriculadoAltaMultiple
+			</result>
+		</action>
+
+		<action name="*ConsultaTarjetaResultados" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.prematriculados.controller.action.ConsultaTarjetaResultadosAction">
+			<result name="success" type="tiles">vehiculoPrematriculadoResultado
+			</result>
+			<result name="descargaFichero" type="stream">
+				<param name="contentType">application/x-zip-compressed</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>
+
+
+		<!-- CAMBIOS DE ACTIONS DE ALTAS -->
+		<action name="*AltaTramiteTraficoBaja" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.AltaTramiteTraficoBajaAction">
+			<result name="success" type="tiles">altaTramiteBaja</result>
+			<result name="descargarDocumentoBase" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="aImprimirAction" type="chain">
+				<param name="actionName">inicioImpresionAction</param>
+				<param name="volverAntiguaConsulta">${volverAntiguaConsulta}</param>
+			</result>
+		</action>
+
+		<action name="*AltaTramiteTraficoMatriculacion" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.AltaTramiteTraficoMatriculacionAction">
+			<result name="success" type="tiles">altaTramiteMatriculacion</result>
+			<result name="aClonarTramite" type="chain">
+				<param name="actionName">inicioClonarTramites</param>
+			</result>
+			<result name="pagoIVTM" type="redirect">${url}</result>
+			<result name="actualizarMatManual">actualizarMatManual</result>
+			<result name="popUpMatriculaManual">/trafico/matriculacionN/popUpMatriculaManual.jsp</result>
+			<result name="descargarFichero" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarJustificanteIVTM" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarDocumentoBase" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="*AltaTramiteTraficoDuplicado" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.AltaTramiteTraficoDuplicadoAction">
+			<interceptor-ref name="fileUpload">
+			  <param name="maximumSize">2097152</param>
+			</interceptor-ref>
+			<interceptor-ref name="stackInterceptores" />
+           	<result name="descargarDocumento" type="stream">
+         	  <param name="contentType">application/pdf</param>
+			  <param name="inputName">inputStream</param>
+			  <param name="contentDisposition">attachment;filename=${ficheroDescarga}</param>
+			  <param name="bufferSize">1024</param>
+			</result>
+			<result name="success" type="tiles">altaTramiteDuplicado</result>
+		</action>
+			<action name="*AltaTramTrafCambioServicio" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.AltaTramiteTraficoCambioServicioAction">
+			<result name="success" type="tiles">altaTramiteCambioServicio</result>
+			<result name="pestaniaTitularCambioServicio">/trafico/cambioServicio/pestaniaTitularCambioServicio.jsp</result>	
+			<result name="pestaniaVehiculoCambioServicio">/trafico/cambioServicio/pestaniaVehiculoCambioServicio.jsp</result>
+		</action>
+		<action name="*ConsultaEvTramiteTraf" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.ConsultaEvolucionTramiteTraficoAction">
+			<result name="success">/trafico/consultaEvolucionTramiteTrafico.jsp
+			</result>
+		</action>
+
+		<action name="*CompraTasas" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.GestionCompraTasasAction">
+			<result name="buscar" type="tiles">cargaListaCompraTasas</result>
+			<result name="success" type="tiles">compraTasas</result>
+			<result name="pagoTasas" type="tiles">pagoTasas</result>
+			<result name="cargaListaCompraTasas" type="tiles">cargaListaCompraTasas
+			</result>
+			<result name="resumenCompraTasas" type="tiles">resumenCompraTasas
+			</result>
+			<result name="popupCambioEstado">/tasas/seleccionEstado.jsp</result>
+			<result name="popupImportacionTasas">/tasas/importarTasas.jsp</result>
+			<result name="descargaDocumento" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="importarCompra" type="tiles">importarCompraTasas
+			</result>
+		</action>
+
+		<action name="*ImputacionHoras" method="{1}"
+			class="org.gestoresmadrid.oegam2.imputaciones.controller.action.GestionImputacionHorasAction">
+			<result name="imputar" type="tiles">imputar</result>
+
+			<result name="llevarACargar" type="chain">
+				<param name="actionName">cargarHorasImputacionHoras</param>
+			</result>
+
+		</action>
+
+		<!-- PRESENTACION JPT -->
+		<action name="*PresentacionJPT" method="{1}"
+			class="org.gestoresmadrid.presentacion.jpt.controller.action.PresentacionJPTAction">
+			<result name="success" type="tiles">presentacionJPT</result>
+			<result name="confirmar" type="tiles">presentacionJPTconfirmar
+			</result>
+			<result name="presentacion" type="tiles">presentacionJPTpresentacion
+			</result>
+			<result name="evolucion">administracion/presentacionJPT/evolucionPopup.jsp
+			</result>
+		</action>
+
+		<action name="*EstadisticasJPT" method="{1}"
+			class="org.gestoresmadrid.presentacion.jpt.controller.action.EstadisticasJPTAction">
+			<result name="success" type="tiles">cargarListaTipoEstadisticas
+			</result>
+		</action>
+
+		<action name="*GenerarEstadisticaJPT" method="{1}"
+			class="org.gestoresmadrid.presentacion.jpt.controller.action.GenerarEstadisticaJPTAction">
+			<result name="success" type="tiles">generarEstadisticaJPT</result>
+			<result name="descargarPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*DescargarExcelJPT" method="{1}"
+			class="org.gestoresmadrid.presentacion.jpt.controller.action.ExcelNoPresentadosAction">
+			<result name="success" type="tiles">excelNoPresentados</result>
+			<result name="descargaExcel" type="stream">
+				<param name="contentType">application/xls</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="*SeleccionarDireccion" method="{1}"
+			class="org.gestoresmadrid.oegam2.direccion.controller.action.SeleccionarDireccionAction">
+			<result name="success">/trafico/seleccionarDireccion.jsp</result>
+		</action>
+
+		<action name="*JefaturaJPT" method="{1}"
+			class="org.gestoresmadrid.presentacion.jpt.controller.action.JefaturaJPTAction">
+			<result name="success" type="tiles">asociarJefaturaJPT</result>
+		</action>
+
+
+		<!-- ESTACION ITV -->
+		<action name="*EstacionITV" method="{1}"
+			class="org.gestoresmadrid.oegam2.estacionITV.controller.action.EstacionITVAction">
+			<result name="success" type="tiles">altaEstacionITV</result>
+		</action>
+
+		<!-- Vehículo -->
+
+		<action name="*ConsultaEvVehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.vehiculo.controller.action.ConsultaEvolucionVehiculoAction">
+			<result name="success">/vehiculo/consultaEvolucionVehiculo.jsp</result>
+		</action>
+
+		<action name="*ConsultaEvolucionKmVehiculo" method="{1}"
+			class="org.gestoresmadrid.oegam2.vehiculo.controller.action.ConsultaEvolucionKmVehiculoAction">
+			<result name="success">/vehiculo/consultaEvolucionKmVehiculo.jsp
+			</result>
+		</action>
+
+		<!-- Facturación Tasa -->
+
+		<action name="*AltaTramiteFacturacionTasas" method="{1}"
+			class="org.gestoresmadrid.oegam2.facturacion.tasa.controller.action.AltaTramiteFacturacionTasaAction">
+			<result name="success" type="tiles">altaTramiteFacturacion</result>
+		</action>
+
+		<action name="*ConsultaFacturacionTasas" method="{1}"
+			class="org.gestoresmadrid.oegam2.facturacion.tasa.controller.action.ConsultaFacturacionTasaAction">
+			<result name="success" type="tiles">consultaFacturacionTasa</result>
+			<result name="altaFacturacionTasa" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteFacturacionTasas</param>
+			</result>
+		</action>
+
+		<!-- Remesas -->
+		<action name="*Rms" method="{1}"
+			class="org.gestoresmadrid.oegam2.remesa.controller.action.AltaRemesasAction">
+			<result name="altaRemesa600" type="tiles">altaRemesa600</result>
+			<result name="altaRemesa601" type="tiles">altaRemesa601</result>
+			<result name="popPupPresentarRemesa">/remesas/datosBancariosPopPup.jsp</result>
+			<result name="aModelo600" type="chain">
+				<param name="actionName">altaMD</param>
+			</result>
+			<result name="aModelo601" type="chain">
+				<param name="actionName">altaMD</param>
+			</result>
+		</action>
+
+		<action name="*AjaxRMS" method="{1}"
+			class="org.gestoresmadrid.oegam2.remesa.controller.action.RemesasAjaxAction">
+			<result name="pestaniaBienRustico">/remesas/bien/rustico/bienRustico.jsp</result>
+			<result name="pestaniaBienUrbano">/remesas/bien/urbano/bienUrbano.jsp</result>
+			<result name="pestaniaOtroBien">/remesas/bien/otro/otroBien.jsp</result>
+			<result name="pagTransmitente">/remesas/personas/transmitente.jsp</result>
+			<result name="pagSujetoPasivo">/remesas/personas/sujetoPasivo.jsp</result>
+			<result name="popPupPresentarRemesa">/remesas/datosBancariosPopPup.jsp</result>
+			<result name="pagBien600">/remesas/remesa600/pestaniaBienes.jsp</result>
+			<result name="pagBien601">/remesas/remesa601/pestaniaBienes.jsp</result>
+			<result name="pagNotario600">/remesas/remesa600/pestaniaDocumento.jsp</result>
+			<result name="pagNotario601">/remesas/remesa601/pestaniaDocumento.jsp</result>
+		</action>
+
+		<action name="*ConsultaNotarioRM" method="{1}"
+			class="org.gestoresmadrid.oegam2.notario.controller.action.ConsultaNotarioAction">
+			<result name="success" type="tiles">consultaNotario</result>
+			<result name="altaNotario" type="tiles">altaNotario</result>					
+		</action>
+
+		<action name="*ConsultaBienRustico" method="{1}"
+			class="org.gestoresmadrid.oegam2.bien.controller.action.ConsultaBienRusticoAction">
+			<result name="success">/bien/rustico/consulta.jsp</result>
+		</action>
+
+		<action name="*ConsultaBienUrbano" method="{1}"
+			class="org.gestoresmadrid.oegam2.bien.controller.action.ConsultaBienUrbanoAction">
+			<result name="success">/bien/urbano/consulta.jsp</result>
+		</action>
+
+		<action name="*ConsultaRmS" method="{1}"
+			class="org.gestoresmadrid.oegam2.remesa.controller.action.ConsultaRemesasAction">
+			<result name="success" type="tiles">consultaRemesas</result>
+			<result name="popUpCambioEstadoRemesa">/remesas/cambiarEstado.jsp</result>
+			<result name="irAltaRemesa" type="chain">
+				<param name="actionName">altaRms</param>
+			</result>
+			<result name="irEvolucionRemesa" type="chain">
+				<param name="actionName">consultarEvolucionReme</param>
+			</result>
+		</action>
+
+		<action name="*EvolucionReme" method="{1}"
+			class="org.gestoresmadrid.oegam2.evolucionRemesa.controller.action.EvolucionRemesaAction">
+			<result name="success">/remesas/evolucionRemesa.jsp</result>
+		</action>
+
+		<action name="*ImpRmS" method="{1}"
+			class="org.gestoresmadrid.oegam2.impresion.remesas.controller.action.ImprimirRmAction">
+			<result name="success" type="tiles">impresionRemesas</result>
+			<result name="descargarDoc" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+
+		<!-- Datos Bancarios -->
+		<action name="*ConsultaDtB" method="{1}"
+			class="org.gestoresmadrid.oegam2.datosBancariosFavoritos.controller.action.ConsultaDatosBancariosAction">
+			<result name="success" type="tiles">consultaDatosBancarios</result>
+		</action>
+
+		<action name="*DTB" method="{1}"
+			class="org.gestoresmadrid.oegam2.datosBancariosFavoritos.controller.action.AltaDatosBancariosAction">
+			<result name="altaDatoBancario" type="tiles">altaDatosBancarios
+			</result>
+		</action>
+
+		<action name="*EvolucionDtb" method="{1}"
+			class="org.gestoresmadrid.oegam2.evolucionDatosBancariosFavoritos.controller.action.EvolucionDatosBancariosFavoritosAction">
+			<result name="success">/datosBancarios/evolucionDatosBancarios.jsp
+			</result>
+		</action>
+
+		<!-- Matriculas TESTRA -->
+		<action name="*ConsultaMatriculaTestra" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.testra.controller.action.ConsultaMatriculasTestraAction">
+			<result name="success" type="tiles">consultaTestra</result>
+			<result name="importarTestra" type="tiles">importarTestra</result>
+		</action>
+		<action name="*MatriculaTestra" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.testra.controller.action.MatriculasTestraAction">
+			<result name="success" type="tiles">altaTestra</result>
+			<result name="guardar" type="tiles">altaTestra</result>
+		</action>
+		<!-- Fin Matriculas TESTRA -->
+
+		<!-- Consulta Contrato -->
+		<action name="*ConsultaContrato" method="{1}"
+			class="org.gestoresmadrid.oegam2.contrato.controller.action.ConsultaContratosAction">
+			<result name="success" type="tiles">consultaContratos</result>
+			<result name="popPupMotivo">/contrato/motivoPopPup.jsp</result>
+			<result name ="popPupActualizarAlias">/contrato/actualizarAliasPopPup.jsp</result>
+			<result name="irEvolucionContrato" type="chain">
+				<param name="actionName">consultarEvolucionContrato</param>
+			</result>
+
+		</action>
+	<action name="*EvolucionContrato" method="{1}"
+			class="org.gestoresmadrid.oegam2.evolucionContrato.controller.action.EvolucionContratoAction">
+			<result name="success">/contrato/consultaEvolucionContrato.jsp</result>
+		</action>
+		
+		<!-- Consulta Contrato -->
+		<!-- Consulta DEV -->
+		<action name="*ConsultaDEV" method="{1}"
+			class="org.gestoresmadrid.oegam2.consultaDev.controller.action.ConsultaDevAction">
+			<result name="success" type="tiles">consultaPeticionesDev</result>
+			<result name="popPupCambioEstado">/consultaDev/cambiarEstado.jsp</result>
+			<result name="irAltaDev" type="chain">
+				<param name="actionName">altaAltasDEV</param>
+			</result>
+			<result name="irEvolucionDev" type="chain">
+				<param name="actionName">consultarEvolucionConDEV</param>
+			</result>
+			<result name="descargarExcel" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*AltasDEV" method="{1}"
+			class="org.gestoresmadrid.oegam2.consultaDev.controller.action.AltaConsultaDevAction">
+			<result name="altaDev" type="tiles">altaDev</result>
+		</action>
+		<action name="*EvolucionConDEV" method="{1}"
+			class="org.gestoresmadrid.oegam2.consultaDev.controller.action.EvolucionConsultaDevAction">
+			<result name="success">/consultaDev/evolucionConsultaDev.jsp</result>
+		</action>
+		<action name="*AltasMasivasDev" method="{1}"
+			class="org.gestoresmadrid.oegam2.consultaDev.controller.action.ConsultaDevMasivasAction">
+			<result name="success" type="tiles">altaMasivasDev</result>
+		</action>
+		<!-- Consulta DEV -->
+		<!--JUSTIFICANTES PROFESIONALES NUEVOS -->
+		<action name="*AltaJustificanteProfesional" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.AltaJustificanteProfesionalAction">
+			<result name="success" type="tiles">altaJustificanteProf</result>
+			<result name="imprimirJp" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*JustificanteProfAjax" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.JustificanteProfAjax">
+			<result name="pagTitular">/trafico/justificanteProfesional/pestaniaTitularJustificante.jsp
+			</result>
+			<result name="pagVehiculo">/trafico/justificanteProfesional/pestaniaVehiculoJustificante.jsp
+			</result>
+		</action>
+		<action name="*ConsultaJustificanteProfesional" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.ConsultaJustificanteProfesionalAction">
+			<result name="success" type="tiles">consultaJustificanteProf</result>
+
+			<result name="mostrarDocumentoJustificanteProf" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="popPupPresentarJustif">/trafico/justificanteProfesional/datosACompletarJustifProf.jsp
+			</result>
+		</action>
+
+		<action name="*EvolucionJustificantesProf" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.justificante.profesional.controller.action.ConsultaEvolucionJustificanteProfAction">
+			<result name="success">/trafico/justificanteProfesional/consultaEvolucionJustificanteProf.jsp
+			</result>
+		</action>
+		<!-- -->
+		<!-- Tramite Solicitud Informacion -->
+		<action name="*AltaTramSolInformacion" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.solInfo.controller.action.AltaTramiteSolInfoAction">
+			<result name="pagAltaTramSolInfo" type="tiles">altaTramSolInfo</result>
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStreamZip</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="descargarXML" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="inputName">inputStreamXML</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="*AjaxSolInformacion" method="{1}" class="org.gestoresmadrid.oegam2.trafico.solInfo.controller.action.TramiteSolInfoAjax">
+			<result name="pestaniaSolInfoVehiculos">/trafico/solInfo/pestaniaVehiculosSolInfo.jsp</result>
+		</action>
+		<action name="*ActualizacionMF" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.mf.controller.action.ActualizacionMFAction">
+			<result name="actualizacion" type="tiles">actualizacion</result>
+		</action>
+		<action name="*ConsultaMF" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.mf.controller.action.ConsultaActualizacionMFAction">
+			<result name="success" type="tiles">consultaActualizacionMF</result>
+			<result name="descargar" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*ConsultaEmpresaTelematica" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.empresa.telematica.controller.action.ConsultaEmpresaTelematicaAction">
+			<result name="success" type="tiles">consultaEmpresaTelematica</result>
+			<result name="popUP">/trafico/empresaTelematica/popUp.jsp</result>
+		</action>
+		<action name="*AltaEmpresaTelematica" method="{1}"
+			class="org.gestoresmadrid.oegam2.trafico.empresa.telematica.controller.action.AltaEmpresaTelematicaAction">
+			<result name="success" type="tiles">altaEmpresaTelematica</result>
+		</action>		
+		
+		<action name="*GestionPrm" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.GestionPermisosDgtAction">
+			<result name ="success" type="tiles">gestionPrm</result>		
+			<result name="popUpCambioEstado">/permisosDgt/cambiarEstado.jsp</result>
+		</action>
+		
+		<action name="*GestionFchTc" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.GestionFichasTecnicasDgtAction">
+			<result name ="success" type="tiles">gestionFchTr</result>		
+			<result name="popUpCambioEstado">/fichasTecnicasDgt/cambiarEstado.jsp</result>
+		</action>
+		
+		<action name="*GPFMasivo" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.GestionPermFichasMasivoDgtAction">
+			<result name ="success" type="tiles">gestionPrmFchMsv</result>		
+		</action>
+		
+		<action name="*EvolucionPrmDstvFicha" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.EvolucionPrmDstvFichaDgtAction">
+			<result name="success">/permisoDistintivoItv/evolucionPrmDstvFicha.jsp</result>
+		</action>
+		
+		<action name="*EvoDocPrmDstvFicha" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.EvolucionDocPrmDstvFichaDgtAction">
+			<result name="success">/permisoDistintivoItv/evolucionDocPrmDstvFicha.jsp</result>
+		</action>
+			<action name="*FactDstv" method="{1}" class="org.gestoresmadrid.oegam2.permisoDistintivoItv.controller.action.ConsultaFacturacionDstvAction">
+			<result name="success" type="tiles">consultaFacturacionDstv</result>
+			<result name="popUpNotificarIncidencia">/permisoDistintivoItv/notificarIncidenciaDstv.jsp</result>
+			<result name="descargarExcelFactDstv" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*AltaCircular" method="{1}" class="org.gestoresmadrid.oegam2.circulares.controller.action.AltaCircularAction">
+			<result name="altaCircularOegam" type="tiles">altaCircularOegam</result>			
+		</action>
+		<action name="*ConsultaCircular" method="{1}" class="org.gestoresmadrid.oegam2.circulares.controller.action.ConsultaCircularAction">
+			<result name="success" type="tiles">consultaCircularOegam</result>
+			<result name="popUP">/circularesOegam/popUp.jsp</result>
+			<result name="popUpModalCircular" type="tiles">popUpModalCircular</result>
+		</action>
+		<action name="*AltaTramIntv" method="{1}" class="org.gestoresmadrid.oegam2.trafico.inteve.controller.action.AltaTramiteTraficoInteveAction">
+			<result name="altaTramiteInteve" type="tiles">altaTramiteTraficoInteve</result>
+			<result name="descargarSolInteve" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>		
+		</action>
+		<action name="*ConsultaTrI" method="{1}" class="org.gestoresmadrid.oegam2.trafico.inteve.controller.action.ConsultaTramiteInteveAction">
+			<result name="success" type="tiles">consultaTramiteTraficoInteve</result>
+			<result name="popUpSeleccionEstado">/trafico/inteve/seleccionEstado.jsp</result>
+			<result name="descargarSolicitudes" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>		
+		</action>
+		<action name="*ConsultaEvTramiteInteve" method="{1}"
+			class="org.gestoresmadrid.oegam2.controller.action.ConsultaEvolucionTramiteTraficoAction">
+			<result name="success">/trafico/inteve/consultaEvolucionTramiteInteve.jsp
+			</result>
+		</action>
+		
+		<action name= "*AjaxTRI" method="{1}" class="org.gestoresmadrid.oegam2.trafico.inteve.controller.action.TramiteTraficoInteveAjax">
+			<result name ="pagSolicitanteTrIntv">/trafico/inteve/datosSolicitanteInteve.jsp</result>
+			<result name ="pagRepresentanteTrIntv">/trafico/inteve/datosRepresentanteSolicitanteInteve.jsp</result>
+			<result name ="pagSolicitudTrIntv">/trafico/inteve/datosSolicitudInteve.jsp</result>
+		</action>
+		
+		<action name="*AltaPermisoInternacional" method="{1}" class="org.gestoresmadrid.oegam2.permisoInternacional.controller.action.AltaPermisoInternacionalAction">
+			<result name="altaPermisoInternacional" type="tiles">altaPermisoInternacional</result>
+			<result name="descargarMandato" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="imprimirPInternacional" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>						
+		</action>
+		
+		<action name="*ConsultaPIntern" method="{1}" class="org.gestoresmadrid.oegam2.permisoInternacional.controller.action.ConsultaPermisoInternacionalAction">
+			<result name="success" type="tiles">consultaCarnetInternacional</result>			
+			<result name ="popUpCambioEstadoPI">/trafico/permisoInternacional/cambiarEstadoPI.jsp</result>
+			<result name="imprimirPInternacional" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>	
+		</action>	
+		
+		<action name="*AltaDuplicadoPermisoConducir" method="{1}" class="org.gestoresmadrid.oegam2.duplicadoPermiso.controller.action.AltaDuplicadoPermisoConducirAction">
+			<result name="altaDuplicadoPermisoConducir" type="tiles">altaDuplicadoPermisoConducir</result>
+			<result name="descargarMandato" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="imprimirDPC" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>	
+		</action>
+		
+		<action name="*ConsultaDuplPermCond" method="{1}" class="org.gestoresmadrid.oegam2.duplicadoPermiso.controller.action.ConsultaDuplicadoPermisoConducirAction">
+			<result name="success" type="tiles">consultaDuplicadoPermisoConducir</result>			
+			<result name ="popUpCambioEstadoDPCond">/trafico/duplicadoPermisoConducir/cambiarEstadoDPCond.jsp</result>
+			<result name="imprimirDPC" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		<action name= "*AjaxPIT" method="{1}" class="org.gestoresmadrid.oegam2.permisoInternacional.controller.action.PermisoInternacionalAjax">
+			<result name ="pagTitularPermInter">/trafico/permisoInternacional/pestaniaTitularPermInter.jsp</result>
+		</action>
+		
+		<action name= "*AjaxDPC" method="{1}" class="org.gestoresmadrid.oegam2.duplicadoPermiso.controller.action.DuplicadoPermConducirAjax">
+			<result name ="pagTitularDPC">/trafico/duplicadoPermisoConducir/pestaniaTitularDuplPermCond.jsp</result>
+		</action>
+		
+		<action name="*EvoPInter" method="{1}" class="org.gestoresmadrid.oegam2.permisoInternacional.controller.action.EvolucionPermisoInternacionalAction">
+			<result name="success">/trafico/permisoInternacional/evolucionPermisoIntern.jsp</result>
+		</action>
+		
+		<action name="*EvoDPCond" method="{1}" class="org.gestoresmadrid.oegam2.duplicadoPermiso.controller.action.EvoDuplicadoPermisoConducirAction">
+			<result name="success">/trafico/duplicadoPermisoConducir/evolucionDPCond.jsp</result>
+		</action>
+		
+		<action name="*ConsTramTraf" method="{1}" class="org.gestoresmadrid.oegam2.trafico.consulta.controller.action.ConsultaTramiteTrafAction">
+			<result name="success" type="tiles">consultaTramiteTraf</result>
+			<result name="popUpCambioEstado">/trafico/cambiarEstadosConsultaTramTraf.jsp</result>	
+			<result name="popUpMatriculaManual">/trafico/matriculacionN/popUpMatriculaManual.jsp</result>
+			<result name="popUpDuplicarTramite">/trafico/duplicarDesasignarTasa.jsp</result>	
+			<result name="altasTramiteTransmision" type="tiles">altasTramiteTransmision</result>
+			<result name="altasTramiteTransmisionActual" type="tiles">altasTramiteTransmisionActual</result>
+			<result name="altaSolicitud" type="tiles">altaSolicitudDatos</result>
+			<result name="altaTramiteBaja" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoBaja</param>
+			</result>
+			<result name="altaTramiteMatriculacion" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoMatriculacion</param>
+			</result>
+			<result name="altaTramiteDuplicado" type="chain">
+				<param name="actionName">cargarExpedienteAltaTramiteTraficoDuplicado</param>
+			</result>
+			<result name="altaTramiteCambioServicio" type="chain">
+				<param name="actionName">inicioAltaTramTrafCambioServicio</param>
+			</result>
+			<result name="aImpresionAction" type="chain">
+				<param name="actionName">inicioImpresionAction</param>
+				<param name="volverAntiguaConsulta">${volverAntiguaConsulta}</param>
+			</result>
+			<result name="aImprimirAction" type="chain">
+				<param name="actionName">inicioImprimirAction</param>
+				<param name="volverAntiguaConsulta">${volverAntiguaConsulta}</param>
+			</result>
+			<result name="aClonarAction" type="chain">
+				<param name="actionName">inicioClonarTramites</param>
+			</result>
+			<result name="descargarFichero" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+			<result name="descargarZip" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="mostrarDocumentoJustificante" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+			<result name="descargarXMLTrafico" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="allowCaching">false</param>
+			</result>
+		</action>	
+		
+		<action name="*EvoConsultaTramTraf" method="{1}" class="org.gestoresmadrid.oegam2.trafico.consulta.controller.action.EvolucionConsultaTramiteTrafAction">
+			<result name="success">/trafico/evolConsultaTramiteTrafico.jsp</result>
+		</action>	
+		<action name="*GestImpr" method="{1}" class="org.gestoresmadrid.oegam2.impr.controller.action.GestionImprAction">
+			<result name ="success" type="tiles">gestionImpr</result>	
+				<result name="popUpCambioEstadoImpr">/impr/cambiarEstadoImpr.jsp</result>	
+				<result name="popUpModificarCarpetaImpr">/impr/modificarCarpetaImpr.jsp</result>	
+		</action>
+		<action name="*GestDocImpr" method="{1}" class="org.gestoresmadrid.oegam2.impr.controller.action.GestionDocImprAction">
+			<result name ="success" type="tiles">gestionDocImpr</result>	
+			<result name="popUpCambioEstadoDocImpr">/impr/cambiarEstado.jsp</result>	
+			<result name="impDescarga" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		<action name="*GestCanjes" method="{1}" class="org.gestoresmadrid.oegam2.trafico.canjes.controller.action.GestionarCanjesAction">
+			<result name="success" type ="tiles">gestionCanjes</result>
+			<result name="gestionCanjes">/canjes/gestionCanjes.jsp</result>	
+			<result name="descargarCanje" type="stream">
+			 	<param name="contentType">application/zip</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+	</package>
+</struts>

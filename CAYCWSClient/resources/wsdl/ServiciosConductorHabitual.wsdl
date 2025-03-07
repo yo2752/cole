@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xmlsoap" xmlns:impl="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices">
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dgt.es/xml-schemas">
+			<import namespace="http://www.trafico.es/servicios/vehiculos/comunicaciones/webservices" schemaLocation="esquema.xsd"/>
+		</schema>
+	</types>
+	<message name="modificacionConductorHabitualRequest">
+		<part element="impl:modificacionConductorHabitual" name="parameters">
+		</part>
+	</message>
+	<message name="altaConductorHabitualResponse">
+		<part element="impl:altaConductorHabitualResponse" name="parameters">
+		</part>
+	</message>
+	<message name="modificacionConductorHabitualResponse">
+		<part element="impl:modificacionConductorHabitualResponse" name="parameters">
+		</part>
+	</message>
+	<message name="altaConductorHabitualRequest">
+		<part element="impl:altaConductorHabitual" name="parameters">
+		</part>
+	</message>
+	<portType name="ConductorHabitualServicioWeb">
+		<operation name="altaConductorHabitual">
+			<input message="impl:altaConductorHabitualRequest">
+			</input>
+			<output message="impl:altaConductorHabitualResponse">
+			</output>
+		</operation>
+		<operation name="modificacionConductorHabitual">
+			<input message="impl:modificacionConductorHabitualRequest">
+			</input>
+			<output message="impl:modificacionConductorHabitualResponse">
+			</output>
+		</operation>
+	</portType>
+	<binding name="CaycConductorHabitualSoapBinding" type="impl:ConductorHabitualServicioWeb">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="altaConductorHabitual">
+			<wsdlsoap:operation soapAction="altaConductorHabitual" style="document"/>
+			<input>
+				<wsdlsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsdlsoap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="modificacionConductorHabitual">
+			<wsdlsoap:operation soapAction="modificacionConductorHabitual" style="document"/>
+			<input>
+				<wsdlsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsdlsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ServiciosConductorHabitual">
+		<port binding="impl:CaycConductorHabitualSoapBinding" name="CaycConductorHabitualSoap">
+			<wsdlsoap:address location="http://pr-apls-prep.dgt.es:8080/WS_CAYC/ServiciosConductorHabitual"/>
+		</port>
+	</service>
+</definitions>

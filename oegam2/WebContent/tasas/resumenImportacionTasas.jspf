@@ -1,0 +1,114 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<s:if test="%{listaResumen != null}">
+	<div id="resumenTodo" style="">
+		<br>
+		<table class="subtitulo" cellSpacing="0" cellspacing="0">
+			<tr>
+				<td>Resumen de la importación:</td>
+				<td><img src="img/impresora.png"
+					style="height: 23px; cursor: pointer;"
+					onclick="imprimirId('resumenTodo',false,null);"></td>
+			</tr>
+		</table>
+		<table style="width: 720px; font-size: 11px; height: auto;"
+			class="tablacoin" summary="Resumen de la importación" border="0"
+			cellpadding="0" cellspacing="0" style="margin-top:0px;">
+			<tr>
+				<th>Tipo Tasa</th>
+				<th>Correctas</th>
+				<th>Incorrectas</th>
+			</tr>
+			<s:iterator value="listaResumen"  var="tasa">
+				<tr>
+					<s:if test="%{(guardadasBien != 0) || (guardadasMal != 0)}">
+						<td style="font-weight: bold; height: auto;"><s:property
+								value="tipoTasa" /></td>
+					</s:if>
+					<s:else>
+						<td><s:property value="tipoTasa" /></td>
+					</s:else>
+					<s:if test="%{guardadasBien != 0}">
+						<td style="color: green; font-weight: bold; height: auto;">
+							<table style="width: 100%; border: 0px;">
+								<tr>
+									<td
+										style="width: 55%; text-align: right; border: 0px; height: auto;">
+										<s:property value="guardadasBien" />
+									</td>
+									<td
+										style="width: 45%; text-align: left; border: 0px; height: auto;">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</s:if>
+					<s:else>
+						<td style="color: green;">
+							<table style="width: 100%; border: 0px;">
+								<tr>
+									<td
+										style="width: 55%; text-align: right; border: 0px; height: auto;">
+										<s:property value="guardadasBien" />
+									</td>
+									<td
+										style="width: 45%; text-align: left; border: 0px; height: auto;">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</s:else>
+					<s:if test="%{guardadasMal != 0}">
+						<td style="color: red; font-weight: bold; height: auto;">
+							<table style="width: 100%; border: 0px;">
+								<tr>
+									<td
+										style="width: 55%; text-align: right; border: 0px; height: auto;">
+										<s:property value="guardadasMal" />
+									</td>
+									<td
+										style="width: 45%; text-align: left; border: 0px; height: auto;">
+										<s:if test="%{tipoTasa.equals('TOTAL')}">
+											<img src='img/plus.gif' style='cursor: pointer;'
+												onclick='cambiarMostrarError(this);'>
+										</s:if>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</s:if>
+					<s:else>
+						<td style="color: red;">
+							<table style="width: 100%; border: 0px;">
+								<tr>
+									<td
+										style="width: 55%; text-align: right; border: 0px; height: auto;">
+										<s:property value="guardadasMal" />
+									</td>
+									<td
+										style="width: 45%; text-align: left; border: 0px; height: auto;"></td>
+								</tr>
+							</table>
+						</td>
+					</s:else>
+				</tr>
+			</s:iterator>
+		</table>
+		<br>
+
+		<s:if test="hasActionErrors()">
+			<table cellSpacing=3 class="tablaformbasica" cellPadding=0>
+				<tr>
+					<td align="left" nowrap="nowrap"
+						style="color: red; font-family: tahoma, arial, sans-serif; font-size: 11px; font-weight: bold;">
+						Puede descargar el fichero con las l&iacute;neas que no se
+						importaron haciendo click en el siguiente enlace: <s:url
+							action="descargaFicheroImportarTasas.action"></s:url>
+						<s:a href="%{ficheroDescarga}">Enlace fichero</s:a>
+					</td>
+				</tr>
+			</table>
+		</s:if>
+	</div>
+	<br/>
+</s:if>

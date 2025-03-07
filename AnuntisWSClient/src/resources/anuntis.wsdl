@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="AnuntisSGM.MotorESP.WebServices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="AnuntisSGM.MotorESP.WebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="AnuntisSGM.MotorESP.WebServices">
+      <s:element name="GetReportsRequests">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetReportsRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportsRequestsResult" type="tns:ArrayOfReportRequestData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReportRequestData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportRequestData" nillable="true" type="tns:ReportRequestData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportRequestData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="reportRequestId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="carPlate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nif" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SecureHeaderAPI" type="tns:SecureHeaderAPI" />
+      <s:complexType name="SecureHeaderAPI">
+        <s:attribute name="ContractId" type="s:int" use="required" />
+        <s:attribute name="UserId" type="s:int" use="required" />
+        <s:attribute name="API" type="s:string" />
+        <s:attribute name="ExternalId" type="s:string" />
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetReportsRequestsByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dateIni" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateFin" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportsRequestsByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportsRequestsByDateResult" type="tns:ArrayOfReportRequestData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfReportRequestData" nillable="true" type="tns:ArrayOfReportRequestData" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetReportsRequestsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportsRequests" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportsRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsSecureHeaderAPI">
+    <wsdl:part name="SecureHeaderAPI" element="tns:SecureHeaderAPI" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportsRequestsByDate" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportsRequestsByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateSecureHeaderAPI">
+    <wsdl:part name="SecureHeaderAPI" element="tns:SecureHeaderAPI" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsHttpGetIn" />
+  <wsdl:message name="GetReportsRequestsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReportRequestData" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateHttpGetIn">
+    <wsdl:part name="dateIni" type="s:string" />
+    <wsdl:part name="dateFin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReportRequestData" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsHttpPostIn" />
+  <wsdl:message name="GetReportsRequestsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReportRequestData" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateHttpPostIn">
+    <wsdl:part name="dateIni" type="s:string" />
+    <wsdl:part name="dateFin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsRequestsByDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReportRequestData" />
+  </wsdl:message>
+  <wsdl:portType name="ReportsSoap">
+    <wsdl:operation name="GetReportsRequests">
+      <wsdl:input message="tns:GetReportsRequestsSoapIn" />
+      <wsdl:output message="tns:GetReportsRequestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <wsdl:input message="tns:GetReportsRequestsByDateSoapIn" />
+      <wsdl:output message="tns:GetReportsRequestsByDateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ReportsHttpGet">
+    <wsdl:operation name="GetReportsRequests">
+      <wsdl:input message="tns:GetReportsRequestsHttpGetIn" />
+      <wsdl:output message="tns:GetReportsRequestsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <wsdl:input message="tns:GetReportsRequestsByDateHttpGetIn" />
+      <wsdl:output message="tns:GetReportsRequestsByDateHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ReportsHttpPost">
+    <wsdl:operation name="GetReportsRequests">
+      <wsdl:input message="tns:GetReportsRequestsHttpPostIn" />
+      <wsdl:output message="tns:GetReportsRequestsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <wsdl:input message="tns:GetReportsRequestsByDateHttpPostIn" />
+      <wsdl:output message="tns:GetReportsRequestsByDateHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReportsSoap" type="tns:ReportsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportsRequests">
+      <soap:operation soapAction="AnuntisSGM.MotorESP.WebServices/GetReportsRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetReportsRequestsSecureHeaderAPI" part="SecureHeaderAPI" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <soap:operation soapAction="AnuntisSGM.MotorESP.WebServices/GetReportsRequestsByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetReportsRequestsByDateSecureHeaderAPI" part="SecureHeaderAPI" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportsSoap12" type="tns:ReportsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportsRequests">
+      <soap12:operation soapAction="AnuntisSGM.MotorESP.WebServices/GetReportsRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetReportsRequestsSecureHeaderAPI" part="SecureHeaderAPI" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <soap12:operation soapAction="AnuntisSGM.MotorESP.WebServices/GetReportsRequestsByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetReportsRequestsByDateSecureHeaderAPI" part="SecureHeaderAPI" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportsHttpGet" type="tns:ReportsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetReportsRequests">
+      <http:operation location="/GetReportsRequests" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <http:operation location="/GetReportsRequestsByDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportsHttpPost" type="tns:ReportsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetReportsRequests">
+      <http:operation location="/GetReportsRequests" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportsRequestsByDate">
+      <http:operation location="/GetReportsRequestsByDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Reports">
+    <wsdl:port name="ReportsSoap" binding="tns:ReportsSoap">
+      <soap:address location="http://www.coches.net:8111/WS/Reports.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportsSoap12" binding="tns:ReportsSoap12">
+      <soap12:address location="http://www.coches.net:8111/WS/Reports.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportsHttpGet" binding="tns:ReportsHttpGet">
+      <http:address location="http://www.coches.net:8111/WS/Reports.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportsHttpPost" binding="tns:ReportsHttpPost">
+      <http:address location="http://www.coches.net:8111/WS/Reports.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

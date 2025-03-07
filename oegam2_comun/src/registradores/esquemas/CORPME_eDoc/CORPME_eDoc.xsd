@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by TEAM ViRiLiTY (VRL) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CORPME_eDoc_CGN.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_TGSS.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_CGPJ.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_Tipos.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_PRIVADO.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_REGISTRO.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_Gestion_Interna.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_Administracion.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_CIRCE.xsd"/>
+	<xs:include schemaLocation="CORPME_eDoc_DGTributos.xsd"/>
+	<xs:element name="CORPME-eDoc">
+		<xs:annotation>
+			<xs:documentation>Mensajes XML Servicio CORPME Documentos Electrónicos versión 5.8.0</xs:documentation>
+			<xs:documentation>Modificaciones sobre la versión 5.7.0:
+            
+1) Se añaden los siguientes tipos de mensajes CORPME-eDoc/@Tipo_Mensaje:
+
+LEIPC=Petición código LEI desde Registro Mercantil a CORPME
+LEIRC=Respuesta código LEI desde CORPME a Registro Mercantil
+LEICE=Notificación de Cambios sobre entidad con LEI desde Registro Mercantil a CORPME
+
+1.1) Se añaden los nuevos tipos de mensajes para el Registro Público Concursal CORPME-eDoc/@Tipo_Mensaje:
+
+RPC = Registro Público Concursal
+ARPC = Anulación publicación Registro Público Concursal
+RRPC = Rectificación publicación Registro Público Concursal
+
+2) se añaden las nuevas operaciones para bienes muebles en //element(*,Tipo_OperacionType)/Mercantil/Operacion:
+
+300=SOLICITUD ASIGNACION LEI
+301=SOLICITUD RECTIFICACION LEI
+302=SOLICITUD PORTABILIDAD LEI
+303=SOLICITUD VALIDACION LEI
+
+400=SOLICITUD DE NOMBRAMIENTO DE EXPERTOS/AUDITORES/MEDIADORES CONCURSALES
+401=NOMBRAMIENTO Y CESE DE ADMINISTRADOR/CARGO
+402=OTORGAMIENTO Y REVOCACION DE PODERES
+403=OTROS DOCUMENTOS PRIVADOS
+
+3) Se añade el código de entidad CORPME-eDoc/@Codigo_Entidad
+
+24 = LEI
+
+3.1) Se añade el código de entidad  CORPME-eDoc/@Codigo_Entidad
+
+25 = REGISTRO PÚBLICO CONCURSAL
+
+3.1) Se añade el código de entidad  CORPME-eDoc/@Codigo_Entidad
+
+26 = Consejo General de los Procuradores
+
+
+4) Se añade el elemento //element(*,Cuenta_BancariaType)/IBAN en el esquema CORPPE_eDoc
+5) Se añade el elemento Facturacion/Cobro/CuentaCorriente/IBAN en el esquema CORPME_eDoc_Factura
+
+6) Se añade el nodo Datos_Acuerdo_Extrajudicial en Datos_CGN en el esquema CORME_eDoc_CGN para la inscripción de los
+acuerdos extrajudiciales en el Registro Público Concursal
+     6.1) Se añaden los tipos NombreDenoType e IdentificacionType en el esquema CORPME_eDocTipos     
+
+7) Se añade el elemento Datos_CGN/BienesMuebles
+
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="0">
+					<xs:element ref="Datos_CGN"/>
+					<xs:element ref="Datos_TGSS"/>
+					<xs:element ref="Datos_CGPJ"/>
+					<xs:element ref="Datos_ADMINISTRACION"/>
+					<xs:element ref="Datos_PRIVADO"/>
+					<xs:element ref="Datos_CIRCE"/>
+					<xs:element ref="Datos_REGISTRO"/>
+					<xs:element ref="Datos_GI_CORPME"/>
+					<xs:element ref="Datos_DGTributos"/>
+				</xs:choice>
+				<xs:element name="Documentos" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bloque contenedor de documentos. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Documento" type="DocumentoType" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Bloque para un documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Numero_Documentos" type="xs:integer" use="required">
+							<xs:annotation>
+								<xs:documentation>Indica el número de documentos enviados</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Firma_Datos_Mensaje" type="Firma_Datos_MensajeType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bloque contenedor de la firma del mensaje.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="required"/>
+			<xs:attribute name="Tipo_Mensaje" use="required">
+				<xs:annotation>
+					<xs:documentation>DPR= Documento para el Registro  
+NE=Número Entrada
+DAPR=Denegacion Asiento de Presentación Registro
+NDAPR=Notificación Denegacion Asiento de Presentación Registro
+APR=Asiento Presentación Registro
+NAPR=Notificación Asiento Presentación Registro
+NACA = Notificación asiento caducado
+RITDR=Resolución Inscripción Total desde Registro
+RIPDR=Resolución Inscripción Parcial desde Registro
+RDEFDR=Resolución Defectuosa desde Registro 
+ARA=Acuse Recepción Asiento 
+ARDA=Acuse Recepción Denegación Asiento
+ARIT=Acuse Recepción Inscripción Total
+ARIP=Acuse Recepción Inscripción Parcial
+ARID=Acuse Recepción Defectos.
+MDR=Minuta Desde Registro
+CMR=Confirmación minuta para registro
+FDR=Factura desde registro
+CPR=Confirmación de pago de factura para registro
+CRNO=Comunicación de registro no operativo
+CROP=Comunicación de registro  operativo
+NOTR=Notificación Registro
+COMR=Comunicación Registro
+ANOTR=Acuse Notificación Registro
+ACOMR=Acuse Comunicación Registro
+INTFRPDF = Petición del Listado de Documentos Pendientes de Firma. CORPME --> REGISTRO. 
+INTFRRDF = Respuesta a Petición del Listado de Documentos Pendientes de Firma.REGISTRO --> CORPME. 
+INTFRERF = Envío del resultado del proceso de firma. CORPME --> REGISTRO.
+INTFRRERF = Respuesta desde el registro con el id lote asignado a la transacción del resultado de la firma. REGISTRO --> CORPME.
+INTFRPIPE = Petición de información de la evolución de procesos. CORPME --> REGISTRO.
+INTFRRPIPE = Respuesta a la petición de información de la evolución de procesos. REGISTRO --> CORPME.
+INTFRPIPD = Petición del Listado del estado de los documentos firmados en detalle.  CORPME --> REGISTRO.
+INTFRRPIPD = Respuesta a la petición del Listado del estado de los documentos firmados en detalle.   REGISTRO --> CORPME.
+INTFRPD = Petición del contenido de un documento. CORPME --> REGISTRO. 
+INTFRRPD = Respuesta a la petición del documento. REGISTRO --> CORPME. 
+INTFRPL = Petición de listado CORPME --> REGISTRO
+INTFRRPL = Respuesta petición de listado REGISTRO --> CORPME
+DGTENCP = Envío de la carta de pago desde la dirección general de tributos al registro. DGT -> CORPME.
+DGTENDR = Envío del documento desde el registro a la dirección general de tritutos. CORPME -> DGT.
+DGTCOLO= Consulta de localizador registral. DGT -> CORPME.
+MTTDR = Message Terminated Text Desde Registro 
+MTTPR = Message Terminated Text Para Registro
+INTCEOLPLD = Petición de lista de documentos 
+INTCEOLRPLD = Respuesta a petición de lista de documentos
+INTCEOLPDD = Petición de detalle de documento
+INTCEOLRPDD = Respuesta a petición de detalle de documento
+SCDCSVR =  Servicio de Consulta de Documentos a traves del Codigo de Verificacion Segura
+SPR =  Solicitud de publicidad Registral
+FPR = Factura para registro
+RSPRO = Respuesta Servicio Publicidad Registral Online
+MSPR = Modificación Servicio Publicidad Registral
+NUR = Notificaciones Urbanísticas de Registro
+IDGSFP = Inscripción de la Dirección General de Seguros, Fondos y Pensiones
+SDJ = Solicitud de datos para la Jura
+RDJ = Recepción de datos de la Jura
+AAJ = Anulación Acta de Jura
+NEDCGN = Notificación Error Datos desde el CGN
+NEDGEN = Notificación Error Datos desde el GEN
+NREE = Notificación Resolución Errores Expediente
+CROPR = Notificación de creación de nuevo proyecto: USUARIO/NOTARIO EXTRANJERO -> GESTOR 
+CROSE = Notificación de rechazo de servicio: USUARIO/NOTARIO EXTRANJERO -> GESTOR 
+CRODO = Notificación de documento subido a un servicio: GESTOR -> USUARIO/NOTARIO EXTRANJERO 
+CROPAU = Notificación de confirmación de pago realizado por un proyecto por parte de un usuario/notario extranjero: ADMINISTRADOR DE CUENTAS -> USUARIO/NOTARIO EXTRANJERO 
+CROPAG = Notificación de pago realizado por un proyecto: ADMINISTRADOR DE CUENTAS -> GESTOR 
+NOTPLUS = Notificación de actos sujetos al impuesto de plusvalias a los ayuntamiento
+NEJ = Notificación de error en Jura ante Notario
+RPC = Registro Público Concursal
+LEIPC=Petición código LEI desde Registro Mercantil a CORPME
+LEIRC=Respuesta código LEI desde CORPME a Registro Mercantil
+LEICE=Notificación de Cambios sobre entidad con LEI desde Registro Mercantil a CORPME
+ARPC = Anulación publicación Registro Público Concursal
+RRPC = Rectificación publicación Registro Público Concursal
+</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="DPR"/>
+						<xs:enumeration value="NE"/>
+						<xs:enumeration value="DAPR"/>
+						<xs:enumeration value="NDAPR"/>
+						<xs:enumeration value="APR"/>
+						<xs:enumeration value="NAPR"/>
+						<xs:enumeration value="NACA"/>
+						<xs:enumeration value="RITDR"/>
+						<xs:enumeration value="RIPDR"/>
+						<xs:enumeration value="RDEFDR"/>
+						<xs:enumeration value="ARA"/>
+						<xs:enumeration value="ARDA"/>
+						<xs:enumeration value="ARIT"/>
+						<xs:enumeration value="ARIP"/>
+						<xs:enumeration value="ARID"/>
+						<xs:enumeration value="MDR"/>
+						<xs:enumeration value="CMR"/>
+						<xs:enumeration value="FDR"/>
+						<xs:enumeration value="CPR"/>
+						<xs:enumeration value="CRNO"/>
+						<xs:enumeration value="CROP"/>
+						<xs:enumeration value="NOTR"/>
+						<xs:enumeration value="COMR"/>
+						<xs:enumeration value="ANOTR"/>
+						<xs:enumeration value="ACOMR"/>
+						<xs:enumeration value="INTFRPDF"/>
+						<xs:enumeration value="INTFRRDF"/>
+						<xs:enumeration value="INTFRERF"/>
+						<xs:enumeration value="INTFRRERF"/>
+						<xs:enumeration value="INTFRPIPE"/>
+						<xs:enumeration value="INTFRRPIPE"/>
+						<xs:enumeration value="INTFRPIPD"/>
+						<xs:enumeration value="INTFRRPIPD"/>
+						<xs:enumeration value="INTFRPD"/>
+						<xs:enumeration value="INTFRRPD"/>
+						<xs:enumeration value="INTFRPL"/>
+						<xs:enumeration value="INTFRRPL"/>
+						<xs:enumeration value="DGTENCP"/>
+						<xs:enumeration value="DGTENDR"/>
+						<xs:enumeration value="DGTCOLO"/>
+						<xs:enumeration value="SCDR"/>
+						<xs:enumeration value="RSCDR"/>
+						<xs:enumeration value="RRSPR"/>
+						<xs:enumeration value="RSPR"/>
+						<xs:enumeration value="MTTDR"/>
+						<xs:enumeration value="MTTPR"/>
+						<xs:enumeration value="INTCEOLPLD"/>
+						<xs:enumeration value="INTCEOLRPLD"/>
+						<xs:enumeration value="INTCEOLPDD"/>
+						<xs:enumeration value="INTCEOLRPDD"/>
+						<xs:enumeration value="SCDCSVR"/>
+						<xs:enumeration value="SPR"/>
+						<xs:enumeration value="FPR"/>
+						<xs:enumeration value="RSPRO"/>
+						<xs:enumeration value="MSPR"/>
+						<xs:enumeration value="NUR"/>
+						<xs:enumeration value="IDGSFP"/>
+						<xs:enumeration value="SDJ"/>
+						<xs:enumeration value="RDJ"/>
+						<xs:enumeration value="AAJ"/>
+						<xs:enumeration value="NEDCGN"/>
+						<xs:enumeration value="NEDGEN"/>
+						<xs:enumeration value="NREE"/>
+						<xs:enumeration value="CROPR"/>
+						<xs:enumeration value="CROSE"/>
+						<xs:enumeration value="CRODO"/>
+						<xs:enumeration value="CROPAU"/>
+						<xs:enumeration value="CROPAG"/>
+						<xs:enumeration value="NOTPLUS"/>
+						<xs:enumeration value="NEJ"/>
+						<xs:enumeration value="RPC"/>
+						<xs:enumeration value="LEIPC"/>
+						<xs:enumeration value="LEIRC"/>
+						<xs:enumeration value="LEICE"/>
+						<xs:enumeration value="ARPC"/>
+						<xs:enumeration value="RRPC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Id_Tramite" use="required">
+				<xs:annotation>
+					<xs:documentation>Identificador único del trámite generado por el emisor. Uno distinto para cada envío de tipo DPR.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Tipo_Entidad" use="required">
+				<xs:annotation>
+					<xs:documentation>1=Administración Pública, 2=Privada, 3=Interna</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Entidad" use="required">
+				<xs:annotation>
+					<xs:documentation>1=Notariado, 2=TGSS, 3=AEAT, 4=CGPJ, 5=YAFAR, 6 = CIRCE, ...</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="EntidadType"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Retorno" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation>Código de retorno de las respuestas. 0 = Retorno sin incidencias, distinto de 0, error. Solo se debe informar cuando se realice un ACK a un mensaje recibido.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Descripcion_Retorno" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Descripción retorno. Si Codigo_Retorno = 0, vendrá vacáo, si es distinto de 0, contendrá el mensaje de error.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Tipo_Registro" use="required">
+				<xs:annotation>
+					<xs:documentation>1 = Mercantil, 2 = Propiedad 3 = Bienes Muebles, 4 = Oficina Liquidadora, 5=SPM</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Codigo_Registro" use="required">
+				<xs:annotation>
+					<xs:documentation>Código de registro CORPME. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{5}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Canal" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Canal. 1 = Punto a Punto</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Numero_Secuencia_Mensaje" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Número de secuencia del mensaje. Se utiliza para diferenciar cuando se envían sobre un mismo id_tramite el mismo tipo de mensaje más de una vez, p.e. cuando se envía varias veces el mensaje de notificación de defectos. Si no viene informado su valor se entiende que es 1.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
